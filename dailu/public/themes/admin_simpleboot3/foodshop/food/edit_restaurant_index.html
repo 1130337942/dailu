@@ -1,0 +1,310 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+    .tabType.col-md-9{
+    	display: none;
+    }
+    .tabType.col-md-9.active {
+    	display: block;
+    }
+</style>
+<script type="text/html" id="photos-item-tpl2">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls2[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names2[]" value="{name}" style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;" onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs" id="myTab">
+        <li><a href="{:url('food/restaurant_index')}">餐厅列表</a></li>
+        <li class="active"><a href="">修改连锁餐厅</a></li>
+    </ul>   
+    <form action="{:url('food/do_edit_restaurant_index')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+        <input type="hidden" name="id" value="{$Restaurant_chainData.id}">
+        <input type="hidden" name="page" value="{$page}">
+        <div class="row">
+            <div class="col-md-9">
+                <div id="province" class="col-md-9 tabType active" >
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="100">省份名称</th>
+                        <td>
+                            <div class="form-control">
+                                <select class="pro province_id" name="province_id">
+                                        <option value="">省/直辖市</option>
+                                        <volist name="area" id="vo">
+                                                <option value="{$vo['area_id']}" {$vo.status}>{$vo.area_name}</option>
+                                        </volist>
+                                </select>
+                                <select class="city city_id" name="city_id">
+                                        <option value="{pigcms{$vo['area_id']}">城市</option>
+                                        <volist name="cityList" id="vo">
+                                                <option value="{$vo['area_id']}" {$vo.status}>{$vo.area_name}</option>
+                                        </volist>
+                                </select>
+                                 <select class="city city_id" name="area_id">
+                                        <option value="{pigcms{$vo['area_id']}">区域</option>
+                                        <volist name="areaList" id="vo">
+                                                <option value="{$vo['area_id']}" {$vo.status}>{$vo.area_name}</option>
+                                        </volist>
+                                </select>
+              
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>连锁餐厅名称</th>
+                        <td>
+                                <input class="form-control" placeholder="请输入店铺名称" name="restaurant_name" type="text" id="restaurant_name" value="{$Restaurant_chainData.restaurant_name}" />
+                        </td> 
+                    </tr>
+                    <tr>
+                        <th>所属类型</th>
+                        <td>
+                            <div class="form-control">
+                                 <select class="type" name="type">
+                                        <option value="必吃美食" <if condition="$Restaurant_chainData.type eq '必吃美食'">selected="selected"</if>>必吃美食</option>
+                                        <option value="本土美食" <if condition="$Restaurant_chainData.type eq '本土美食'">selected="selected"</if>>本土美食</option>
+                                        <option value="美食街区" <if condition="$Restaurant_chainData.type eq '美食街区'">selected="selected"</if>>美食街区</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                            <th>封面</th>
+                            <td>
+                                <ul id="photos" class="pic-list list-unstyled form-inline">
+                            
+                                   <foreach name="Restaurant_chainData.pic11" item="vo">
+                                       <php>$img_url=cmf_get_image_preview_url($vo['url']);</php>
+                                       <li id="saved-image{$key}">
+                                           <input id="photo-{$key}" type="hidden" name="photo_urls[]"
+                                                  value="{$vo.url}">
+                                           <input class="form-control" id="photo-{$key}-name" type="text"
+                                                  name="photo_names[]"
+                                                  value="{$vo.name|default=''}" style="width: 200px;" title="图片名称">
+                                           <img id="photo-{$key}-preview"
+                                                src="{:cmf_get_image_preview_url($vo['url'])}"
+                                                style="height:36px;width: 36px;"
+                                                onclick="parent.imagePreviewDialog(this.src);">
+                                           <a href="javascript:uploadOneImage('图片上传','#photo-{$key}');">替换</a>
+                                           <a href="javascript:(function(){$('#saved-image{$key}').remove();})();">移除</a>
+                                       </li>
+                                   </foreach>
+                         
+                                </ul>
+                           </td>
+                    </tr>
+                   
+                    <tr>
+                        <th>经纬度</th>
+                        <td>
+                                <input class="form-control" type="text" name="longitude" id="longitude" value="{$Restaurant_chainData.longitude}" placeholder="请输入经度">
+                                <input class="form-control" type="text" name="latitude" id="latitude" value="{$Restaurant_chainData.latitude}" placeholder="请输入纬度">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>店铺简介</th>
+                        <td>
+                            <script type="text/plain" id="content" name="restaurant_Introduction">{$Restaurant_chainData.restaurant_Introduction}</script>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th>人均消费</th>
+                        <td>
+                                <input class="form-control" placeholder="请输入人均消费" name="per_capita" type="text" id="" value="{$Restaurant_chainData.per_capita}" />
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th>用餐时间</th>
+                        <td>
+                                <input class="form-control" placeholder="请输入用餐时间" name="meal_time" type="text" id="" value="{$Restaurant_chainData.meal_time}" />
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th>营业时间</th>
+                        <td>
+                                <input class="form-control" placeholder="请输入营业时间" name="business_hours" type="text" id="" value="{$Restaurant_chainData.business_hours}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>联系电话</th>   
+                        <td>
+                                <input class="form-control" placeholder="请输入联系电话" name="phone" type="text" id="" value="{$Restaurant_chainData.phone}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>详细地址</th>
+                        <td>
+                                <input class="form-control" placeholder="请输入详细地址" name="address" type="text" id="" value="{$Restaurant_chainData.address}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>相册</th>
+                        <td>
+                            <ul id="picture" class="pic-list list-unstyled form-inline">
+                               <foreach name="Restaurant_chainData.picture21" item="vo">
+                                   <php>$img_url=cmf_get_image_preview_url($vo['url']);</php>
+                                   <li id="saved2-image{$key}">
+                                       <input id="photo2-{$key}" type="hidden" name="photo_urls2[]"
+                                              value="{$vo.url}">
+                                       <input class="form-control" id="photo2-{$key}-name" type="text"
+                                              name="photo_names2[]"
+                                              value="{$vo.name|default=''}" style="width: 200px;" title="图片名称">
+                                       <img id="photo2-{$key}-preview"
+                                            src="{:cmf_get_image_preview_url($vo['url'])}"
+                                            style="height:36px;width: 36px;"
+                                            onclick="parent.imagePreviewDialog(this.src);">
+                                       <a href="javascript:uploadOneImage('图片上传','#photo2-{$key}');">替换</a>
+                                       <a href="javascript:(function(){$('#saved2-image{$key}').remove();})();">移除</a>
+                                   </li>
+                               </foreach>
+                         </ul>
+                         <a href="javascript:uploadMultiImage('图片上传','#picture','photos-item-tpl2');"
+                                        class="btn btn-sm btn-default">选择图片</a>
+                       </td>
+                    </tr>
+                    <tr>
+                        <th>其他描述</th>
+                        <td>
+                            <script type="text/plain" id="content3" name="other_description">{$Restaurant_chainData.other_description}</script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <b>更新时间</b>
+                        </th>
+                        <td>
+                            <input class="form-control js-bootstrap-datetime" type="text" name="update_time" value="{:date('Y-m-d H:i:s',time())}">
+                        </td>
+                    </tr>
+                </table>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('EDIT')}</button>
+                        <a class="btn btn-default" href="{:url('food/restaurant_index')}">{:lang('BACK')}</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+         //调用编辑器
+        //多次调用时，传参数
+        function editorRunder() {
+            for(var i = 0; i < arguments.length; i++) {
+                    var editorcontent = new baidu.editor.ui.Editor();
+                    editorcontent.render(arguments[i]);
+
+                    try {
+                            editorcontent.sync();
+                    } catch(err) {
+                            //console.log(err);
+                    }
+            }
+        }
+        editorRunder('content', 'content2', 'content3')
+        
+        try {
+            editorcontent.sync();
+        } catch (err) {
+        }
+
+        $('.btn-cancel-thumbnail').click(function () {
+            $('#thumbnail-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+            $('#thumbnail').val('');
+        });
+
+    });
+
+    function doSelectCategory() {
+        var selectedCategoriesId = $('#js-categories-id-input').val();
+        openIframeLayer("{:url('AdminCategory/select')}?ids=" + selectedCategoriesId, '请选择分类', {
+            area: ['700px', '400px'],
+            btn: ['确定', '取消'],
+            yes: function (index, layero) {
+                //do something
+
+                var iframeWin          = window[layero.find('iframe')[0]['name']];
+                var selectedCategories = iframeWin.confirm();
+                if (selectedCategories.selectedCategoriesId.length == 0) {
+                    layer.msg('请选择分类');
+                    return;
+                }
+                $('#js-categories-id-input').val(selectedCategories.selectedCategoriesId.join(','));
+                $('#js-categories-name-input').val(selectedCategories.selectedCategoriesName.join(' '));
+                //console.log(layer.getFrameIndex(index));
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            }
+        });
+    }
+    
+    //省份切换到城市
+    $(".pro").on("change",function(){
+            var area_id = $(this).val();
+            $('.city option').each(function(){
+                if($(this).text()!='城市'){
+                    $(this).remove();
+                }
+            });
+            $('.area option').each(function(){
+                if($(this).text()!='地区'){
+                    $(this).remove();   
+                }
+            });
+            $.get("__ROOT__/index.php/spot/introduction/getCityLink",{area_type:2,area_id:area_id},function(data){
+                    var json = $.parseJSON(data);
+                    var option="";
+                    $.each(json,function(key,val){
+                        option += '<option value="'+val.area_id+'">'+val.area_name+'</option>';
+                    });
+                    $(".city").append(option);
+            });
+            
+    });
+    
+    //城市切换到区域/县
+    $(".city").change(function(){
+        var area_id = $(this).val();
+        $('.area option').each(function(){
+                $(this).remove();
+        });
+        $.get("__ROOT__/index.php/spot/introduction/getCityLink",{area_type:3,area_id:area_id},function(data){
+                var json = $.parseJSON(data);
+                var option="";
+                option += '<option value="">区/县</option>';
+                $.each(json,function(key,val){
+                    option += '<option value="'+val.area_id+'">'+val.area_name+'</option>';
+                });
+                $(".area").append(option);
+        });
+    }); 
+        
+    $('.nav-tabs li a').on('click',function(){
+    	var id = $(this).attr('href');
+    	$(id).addClass('active').siblings('.col-md-9').removeClass('active');
+    })
+</script>
+</body>
+</html>

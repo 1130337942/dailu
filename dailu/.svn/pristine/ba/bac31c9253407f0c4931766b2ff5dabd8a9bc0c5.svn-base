@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>酒店付款页</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/hotel_pay.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_storeForm"/>
+	<div class="progress">
+		<div class="main clearfix">
+			<div class="logo fl"><a href="/"><img src="/static/common/img/logo.png" alt="袋鹿"></a></div>
+			<div class="fr progress_info">
+				<span class="step1 active">填写订单<i></i></span>
+				<span class="step2 active">在线支付<i></i></span>
+				<span class="step3">订单完成</span>
+			</div>
+		</div>
+	</div>
+	<div class="main_wap">
+		<div class="hotel_info">
+			<div class="tit">{$order_info.hotel_name}</div>
+			<div class="info">{$order_info.hotel_room_type} - {$order_info.value_add}（{$order_info.payment_type}）{$order_info.room_number}间  |  入住时间：{$order_info.arrival_date}  |  退房时间：{$order_info.departure_date}</div>
+			<div class="pro">订单提交成功，请尽快付款！  订单号：{$order_info.hotel_order_id}</div>
+			<div class="lookout">注意：袋鹿会根据您的付款方式进行预授权或扣除房费，如订单不确认将解除或全额退款至您的付款账户。该订单确认后不可被取消修改，若未入住将收取您全额房费</div>
+		</div>
+		<if condition="$order_info.payment == '担保 ' ">
+		<div class="surety">
+			<div class="sur_tit">担保支付</div>
+			<div class="surety_info_wap">
+				担保支付需要您的信用卡相关信息
+				<form action="hotelOrderPay" method="post" id="myform">
+					<!-- <input type="id" name=""> -->
+					<table>
+						<tr>
+							<td>
+								信用卡号*：<input id="credit" type="text" name="number"> 
+							</td>
+							<td>
+								<input  type="hidden" name="hotel_id" value="{$order_info.id}">
+							</td>
+							<td>
+								<input type="button" id="ajaxBtn" value="提交" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								有效期* <select name="" id="">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+								</select>月
+								<select name="" id="">
+									<option value="2018">2018</option>
+									<option value="2019">2019</option>
+									<option value="2020">2020</option>
+									<option value="2021">2021</option>
+									<option value="2022">2022</option>
+									<option value="2023">2023</option>
+								</select>年
+							</td>
+						</tr>
+						<tr>
+							<td>
+								持卡人* <input class="credit_user" name="credit_user"  type="text">
+							</td>
+						</tr>
+						<tr>
+							<td>证件类型 <span class="card_type">身份证</span></td>
+						</tr>
+						<tr>
+							<td>证件号码* <input class="card_num" type="text"></td>
+						</tr>
+						
+					</table>
+					<div class="sure_paywap">
+						<if condition="$order_info.pay_status == 0 "><span>应付金额<strong>¥ {$order_info.total_price}</strong></span><a class="submit" href="Alipay?id={$order_info.id}">立即支付</a><else /><a class="submit">已支付</a></if>
+					</div>
+				</form>
+				
+			</div>
+		</div>
+		<else />
+		<div class="type_box">
+			<div class='tit'>支付方式</div>
+			
+			<ul class="type_list clearfix">
+				<li class="list alipay fl active" type="alipay"></li>
+				<li class="list weixin fl" type="weixin"></li>
+				<li class="list online fl" type="online"></li>
+			</ul>
+			<div class="pay_wap">
+				<if condition="$order_info.pay_status == 0 " >
+					<if condition="$order_info.show_status == 8 " >
+						<span>应付金额<strong>¥ {$order_info.total_price}</strong></span><a class="submit submit_btn" href="javascript:;" id="{$order_info.id}"><input type="hidden" value={$order_info.hotel_order_id}>立即支付</a>
+					<else />
+						<a class="submit">已取消</a>
+					</if>
+				<else />
+					<a class="submit">已支付</a>
+				</if>
+			</div>
+			
+		</div>
+		</if>
+		<div class="weixin_mask">
+			<div class="weixin_box">
+				<div>请使用微信扫描二维码完成支付
+				<br>支付金额 <strong>¥</strong></div>
+				<div>
+					<img class="weixin_ewm" src="" alt="">
+				</div>
+			</div>	
+		</div>
+	</div>
+	
+	<include file="public@publicFooter"/>
+	
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/hotel_pay.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//ajax提交
+		$("#ajaxBtn").click(function() {
+			var params = $("#myform").serialize();
+			$.ajax( {
+				type : "POST",
+				url : "hotelOrderPay",
+				data : params,
+				success : function(msg) {
+					alert("success: " + msg);
+				}
+			});
+		})
+	})
+</script>
+
+</html>

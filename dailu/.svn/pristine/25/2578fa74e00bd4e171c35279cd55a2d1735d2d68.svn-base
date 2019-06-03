@@ -1,0 +1,1 @@
+SELECT T2.* FROM (SELECT  @r AS _id,  (SELECT @r := pid FROM car_user_relation WHERE uid = _id) AS pid,  @l := @l + 1 AS lvl  FROM  (SELECT @r := 15 , @l := 0) vars,  car_user_relation h  WHERE @r <> 0) T1 JOIN car_user_relation T2 ON T1._id = T2.uid ORDER BY T1.lvl DESC;

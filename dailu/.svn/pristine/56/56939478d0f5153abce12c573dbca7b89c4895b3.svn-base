@@ -1,0 +1,452 @@
+<include file="public@header" />
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+
+    .tabType.col-md-9 {
+        display: none;
+    }
+
+    .tabType.col-md-9.active {
+        display: block;
+    }
+</style>
+<script type="text/html" id="photos-item-tpl">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names[]" value="{name}" style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;" onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+<script type="text/html" id="photos-item-tpl2">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls2[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names2[]" value="{name}" style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;" onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+<script type="text/html" id="files-item-tpl">
+    <li id="saved-file{id}">
+        <input id="file-{id}" type="hidden" name="file_urls[]" value="{filepath}">
+        <input class="form-control" id="file-{id}-name" type="text" name="file_names[]" value="{name}" style="width: 200px;" title="文件名称">
+        <a id="file-{id}-preview" href="{preview_url}" target="_blank">下载</a>
+        <a href="javascript:uploadOne('文件上传','#file-{id}','audio');">替换</a>
+        <a href="javascript:(function(){$('#saved-file{id}').remove();})();">移除</a>
+    </li>
+</script>
+
+<body>
+    <div class="wrap js-check-wrap">
+        <ul class="nav nav-tabs" id="myTab">
+            <li>
+                <a href="{:url('night/night')}">简要介绍列表</a>
+            </li>
+            <li class="active">
+                <a href="{:url('night/add_night')}">添加醉美夜色</a>
+            </li>
+        </ul>
+        <form action="{:url('night/do_edit_night')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+            <input type="hidden" name="id" value="{$natureAbstureData.id}">
+            <input type="hidden" name="page" value="{$page}">
+            <div class="row">
+                <div class="col-md-9">
+                    <div id="province" class="col-md-9 tabType active">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th width="100">省份名称</th>
+                                <td>
+                                    <div class="form-control">
+                                        <select class="pro province_id" name="province_id">
+                                            <option value="">省/直辖市</option>
+                                            <volist name="area" id="vo">
+                                                <option value="{$vo['area_id']}" {$vo.status}>{$vo.area_name}</option>
+                                            </volist>
+                                        </select>
+                                        <select class="city city_id" name="city_id">
+                                            <option value="$vo['area_id']">城市</option>
+                                            <volist name="cityList" id="vo">
+                                                <option value="{$vo['area_id']}" {$vo.status}>{$vo.area_name}</option>
+                                            </volist>
+                                        </select>
+                                        <select class="area area_id" name="area_id">
+                                            <option value="$vo['area_id']">区域</option>
+                                            <volist name="areaList" id="vo">
+                                                <option value="{$vo['area_id']}" {$vo.status}>{$vo.area_name}</option>
+                                            </volist>
+                                        </select>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>所属类型</th>
+                                <td>
+                                    <div class="form-control">
+                                        <select class="type" name="type">
+                                            <option value="视觉享受" <if condition="$natureAbstureData.type eq '视觉享受'">selected="selected"</if>>视觉享受</option>
+                                            <option value="灯红酒绿" <if condition="$natureAbstureData.type eq '灯红酒绿'">selected="selected"</if>>灯红酒绿</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>封面</th>
+                                <td>
+                                    <ul id="photos" class="pic-list list-unstyled form-inline">
+
+                                        <foreach name="natureAbstureData.pic11" item="vo">
+                                            <php>$img_url=cmf_get_image_preview_url($vo['url']);</php>
+                                            <li id="saved-image{$key}">
+                                                <input id="photo-{$key}" type="hidden" name="photo_urls[]" value="{$vo.url}">
+                                                <input class="form-control" id="photo-{$key}-name" type="text" name="photo_names[]" value="{$vo.name|default=''}" style="width: 200px;"
+                                                    title="图片名称">
+                                                <img id="photo-{$key}-preview" src="{:cmf_get_image_preview_url($vo['url'])}" style="height:36px;width: 36px;" onclick="parent.imagePreviewDialog(this.src);">
+                                                <a href="javascript:uploadOneImage('图片上传','#photo-{$key}');">替换</a>
+                                                <a href="javascript:(function(){$('#saved-image{$key}').remove();})();">移除</a>
+                                            </li>
+                                        </foreach>
+
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>景点名称</th>
+                                <td>
+                                    <input class="form-control" placeholder="请输入景点名称" name="spot_name" type="text" id="spot_name" value="{$natureAbstureData.spot_name}"
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>景点评分</th>
+                                <td>
+                                    <input class="form-control" placeholder="请输入景点评分,(如:9.8)" name="attr_score" type="text" id="attr_score" value="{$natureAbstureData.attr_score}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>景点排名</th>
+                                <td>
+                                    <input class="form-control" placeholder="请输入景点排名,( 如: 1 )" name="ranking" type="text" id="ranking" value="{$natureAbstureData.ranking}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>经纬度</th>
+                                <td>
+                                    <input class="form-control" type="text" name="longitude" id="longitude" value="{$natureAbstureData.longitude}" placeholder="请输入经度">
+                                    <input class="form-control" type="text" name="latitude" id="latitude" value="{$natureAbstureData.latitude}" placeholder="请输入纬度">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>景点摘要</th>
+                                <td>
+                                    <input class="form-control" placeholder="请输入景点摘要" name="absture" type="text" id="" value="{$natureAbstureData.absture}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>景点简介</th>
+                                <td>
+                                    <script type="text/plain" id="content" name="spot_Introduction">{$natureAbstureData.spot_Introduction}</script>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>适玩季节</th>
+                                <td>
+                                    <input class="form-control" placeholder="请选择适玩季节" readonly name="suit_season" type="text" id="" value="{$natureAbstureData.suit_season}" />
+                                    <div class="check_month">
+                                        <input id="all" type="checkbox" name="all" />全年
+                                        <input type="checkbox" name="vehicle" value="1" /> 1月
+                                        <input type="checkbox" name="vehicle" value="2" /> 2月
+                                        <input type="checkbox" name="vehicle" value="3" /> 3月
+                                        <input type="checkbox" name="vehicle" value="4" /> 4月
+                                        <input type="checkbox" name="vehicle" value="5" /> 5月
+                                        <input type="checkbox" name="vehicle" value="6" /> 6月
+                                        <input type="checkbox" name="vehicle" value="7" /> 7月
+                                        <input type="checkbox" name="vehicle" value="8" /> 8月
+                                        <input type="checkbox" name="vehicle" value="9" /> 9月
+                                        <input type="checkbox" name="vehicle" value="10" /> 10月
+                                        <input type="checkbox" name="vehicle" value="11" /> 11月
+                                        <input type="checkbox" name="vehicle" value="12" /> 12月
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>开放时间</th>
+                                <td>
+                                    <input class="form-control" placeholder="请输入开放时间" name="suit_time" type="text" id="" value="{$natureAbstureData.suit_time}"
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>开放时段</th>
+                                <td>
+                                    <div class="form-control">
+                                        <select class="period_time" name="period_time">
+                                                <option value="day" <if condition="$natureAbstureData.period_time eq ''">selected="selected"</if>>请选择</option>
+                                                <option value="day" <if condition="$natureAbstureData.period_time eq 'day'">selected="selected"</if>>白天</option>
+                                                <option value="night" <if condition="$natureAbstureData.period_time eq 'night'">selected="selected"</if>>夜晚</option>
+                                                <option value="allday" <if condition="$natureAbstureData.period_time eq 'allday'">selected="selected"</if>>全天</option>
+                                        </select>
+                                    </div>
+                                    <p class="help-block">提示:根据开放时间来判定开放时段</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>联系电话</th>
+                                <td>
+                                    <input class="form-control" placeholder="请输入联系电话" name="phone" type="text" id="" value="{$natureAbstureData.phone}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>详细地址</th>
+                                <td>
+                                    <input class="form-control" placeholder="请输入详细地址" name="address" type="text" id="" value="{$natureAbstureData.address}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>适玩时间</th>
+                                <td>
+                                    <input class="form-control" placeholder="请输入适玩时间(如：2小时)" name="play_time" type="text" id="" value="{$natureAbstureData.play_time}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <b>适玩时间是否能修改</b>
+                                </th>
+                                <td>
+                                    <div class="checkbox">
+                                        <if condition = '$natureAbstureData.not_modifity  eq 0'>
+                                            <label>
+                                                <input type="radio" name="not_modifity" value="0" checked />能
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="not_modifity" value="1">不能
+                                            </label>
+                                        <else />
+                                            <label>
+                                                <input type="radio" name="not_modifity" value="0">能
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="not_modifity" value="1" checked />不能
+                                            </label>
+                                        </if>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>相册</th>
+                                <td>
+                                    <ul id="picture" class="pic-list list-unstyled form-inline">
+                                        <foreach name="natureAbstureData.picture21" item="vo">
+                                            <php>$img_url=cmf_get_image_preview_url($vo['url']);</php>
+                                            <li id="saved2-image{$key}">
+                                                <input id="photo2-{$key}" type="hidden" name="photo_urls2[]" value="{$vo.url}">
+                                                <input class="form-control" id="photo2-{$key}-name" type="text" name="photo_names2[]" value="{$vo.name|default=''}" style="width: 200px;"
+                                                    title="图片名称">
+                                                <img id="photo2-{$key}-preview" src="{:cmf_get_image_preview_url($vo['url'])}" style="height:36px;width: 36px;" onclick="parent.imagePreviewDialog(this.src);">
+                                                <a href="javascript:uploadOneImage('图片上传','#photo2-{$key}');">替换</a>
+                                                <a href="javascript:(function(){$('#saved2-image{$key}').remove();})();">移除</a>
+                                            </li>
+                                        </foreach>
+                                    </ul>
+                                    <a href="javascript:uploadMultiImage('图片上传','#picture','photos-item-tpl2');"
+                                        class="btn btn-sm btn-default">选择图片</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>景点门票</th>
+                                <td>
+                                    <script type="text/plain" id="content2" name="attractions_tickets">{$natureAbstureData.attractions_tickets}</script>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>其他描述</th>
+                                <td>
+                                    <script type="text/plain" id="content3" name="other_description">{$natureAbstureData.other_description}</script>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>音频文件</th>
+                                <td>
+                                    <ul id="files" class="pic-list list-unstyled form-inline">
+
+                                        <foreach name="natureAbstureData.audio_file11" item="vo">
+                                            <php>$file_url=cmf_get_file_download_url($vo['url']);</php>
+                                            <li id="saved-file{$key}">
+                                                <input id="file-{$key}" type="hidden" name="file_urls[]" value="{$vo.url}">
+                                                <input class="form-control" id="file-{$key}-name" type="text" name="file_names[]" value="{$vo.name}" style="width: 200px;"
+                                                    title="文件名称">
+                                                <a id="file-{$key}-preview" href="{$file_url}" target="_blank">下载</a>
+                                                <a href="javascript:uploadOne('文件上传','#file-{$key}','audio');">替换</a>
+                                                <a href="javascript:(function(){$('#saved-file{$key}').remove();})();">移除</a>
+                                            </li>
+                                        </foreach>
+
+                                    </ul>
+                                    <a href="javascript:uploadMultiFile('附件上传','#files','files-item-tpl');" class="btn btn-sm btn-default">选择文件</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <b>更新时间</b>
+                                </th>
+                                <td>
+                                    <input class="form-control js-bootstrap-datetime" type="text" name="update_time" value="{:date('Y-m-d H:i:s',time())}">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('EDIT')}</button>
+                            <a class="btn btn-default" href="{:url('night/describe')}">{:lang('BACK')}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+    <script type="text/javascript">
+        //编辑器路径定义
+        var editorURL = GV.WEB_ROOT;
+    </script>
+    <script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // -------------------------------
+            $("#all").click(function() {
+                $(":checkbox[name='vehicle']").prop("checked", this.checked); 
+                getMonth()
+            });
+            $("input[name='vehicle']").on('click',function(){
+                if( !this.checked){
+                    $("#all").prop("checked", false);
+                }
+                getMonth()
+            });
+           
+            function getMonth(){
+                var month_num = "";
+                $("input[name='vehicle']:checkbox:checked").each(function () {
+                    month_num += $(this).val()+','
+                });
+                $("input[name='suit_season']").val(month_num.substring(0,month_num.length-1))
+            }
+            
+            //调用编辑器
+            //多次调用时，传参数
+            function editorRunder() {
+                for (var i = 0; i < arguments.length; i++) {
+                    var editorcontent = new baidu.editor.ui.Editor();
+                    editorcontent.render(arguments[i]);
+
+                    try {
+                        editorcontent.sync();
+                    } catch (err) {
+                        //console.log(err);
+                    }
+                }
+            }
+            editorRunder('content', 'content2', 'content3')
+
+            try {
+                editorcontent.sync();
+            } catch (err) {}
+
+            $('.btn-cancel-thumbnail').click(function () {
+                $('#thumbnail-preview').attr('src',
+                    '__TMPL__/public/assets/images/default-thumbnail.png');
+                $('#thumbnail').val('');
+            });
+
+        });
+
+        function doSelectCategory() {
+            var selectedCategoriesId = $('#js-categories-id-input').val();
+            openIframeLayer("{:url('AdminCategory/select')}?ids=" + selectedCategoriesId, '请选择分类', {
+                area: ['700px', '400px'],
+                btn: ['确定', '取消'],
+                yes: function (index, layero) {
+                    //do something
+
+                    var iframeWin = window[layero.find('iframe')[0]['name']];
+                    var selectedCategories = iframeWin.confirm();
+                    if (selectedCategories.selectedCategoriesId.length == 0) {
+                        layer.msg('请选择分类');
+                        return;
+                    }
+                    $('#js-categories-id-input').val(selectedCategories.selectedCategoriesId.join(','));
+                    $('#js-categories-name-input').val(selectedCategories.selectedCategoriesName.join(' '));
+                    //console.log(layer.getFrameIndex(index));
+                    layer.close(index); //如果设定了yes回调，需进行手工关闭
+                }
+            });
+        }
+
+        //省份切换到城市
+        $(".pro").on("change", function () {
+            var area_id = $(this).val();
+            $('.city option').each(function () {
+                if ($(this).text() != '城市') {
+                    $(this).remove();
+                }
+            });
+            $('.area option').each(function () {
+                if ($(this).text() != '地区') {
+                    $(this).remove();
+                }
+            });
+            $.get("__ROOT__/index.php/spot/introduction/getCityLink", {
+                area_type: 2,
+                area_id: area_id
+            }, function (data) {
+                var json = $.parseJSON(data);
+                var option = "";
+                $.each(json, function (key, val) {
+                    option += '<option value="' + val.area_id + '">' + val.area_name +
+                        '</option>';
+                });
+                $(".city").append(option);
+            });
+
+        });
+
+        //城市切换到区域/县
+        $(".city").change(function () {
+            var area_id = $(this).val();
+            $('.area option').each(function () {
+                $(this).remove();
+            });
+            $.get("__ROOT__/index.php/spot/introduction/getCityLink", {
+                area_type: 3,
+                area_id: area_id
+            }, function (data) {
+                var json = $.parseJSON(data);
+                var option = "";
+                option += '<option value="">区/县</option>';
+                $.each(json, function (key, val) {
+                    option += '<option value="' + val.area_id + '">' + val.area_name +
+                        '</option>';
+                });
+                $(".area").append(option);
+            });
+        });
+
+        $('.nav-tabs li a').on('click', function () {
+            var id = $(this).attr('href');
+            $(id).addClass('active').siblings('.col-md-9').removeClass('active');
+        })
+    </script>
+</body>
+
+</html>

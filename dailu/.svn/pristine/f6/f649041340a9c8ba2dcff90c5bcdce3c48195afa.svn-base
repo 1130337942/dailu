@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>酒店列表</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/common/js/pagination/pagination.css">
+	<link rel="stylesheet" href="/static/v1/css/store/doubleDate.css">
+	<link rel="stylesheet" href="/static/v1/css/store/hotel_list.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_store"/>
+	<div class="search_form clearfix" id="doubledate">
+		<div class="fl dest input_list">
+			<div class="tip">搜索目的地</div>
+			<div class="dest_box">
+				<input type="text" value="{$city}" size="15" id="des" name="des" mod="address|notice" mod_address_source="hotel" mod_address_suggest="" mod_address_reference="cityid" mod_notice_tip="中文/拼音" autocomplete="off"/>
+				<input id="cityid" name="cityid" type="hidden" value="" />
+			</div>		
+		</div>
+		<div class="fl arr_time input_list">
+			<div class="tip">入住日期</div>
+			<div class="date_box">
+				<i class="arr_down"></i>
+				<input class="doubledate" id="arr_time" type="text" value="{$_COOKIE['hotel_arrival_date']}">
+			</div>
+		</div>
+		<div class="fl leave_time input_list">
+			<div class="tip">离店日期</div>
+			<div class="date_box">
+				<i class="arr_down"></i>	
+				<input class="doubledate" id='leave_time' type="text" value="{$_COOKIE['hotel_departure_date']}">
+			</div>
+		</div>
+		<div class="fl business input_list">
+			<div class="tip">酒店名、商圈、地标</div>
+
+			<if condition="isset($_COOKIE['query_text'])">
+				<input id="loca" type="text" value="{$_COOKIE['query_text']}" placeholder="如位置/酒店名/品牌">
+			<else />
+				<input id="loca" type="text" value="" placeholder="如位置/酒店名/品牌">
+			</if>
+
+			<div class="businessBox">
+				<div class="b_wap">
+					<div class="tit"></div>
+					<div class="list"></div>
+				</div>
+			</div>
+		</div>
+		<div class="fl searchBtn">立即搜索</div>
+	</div>
+	<div class="filterBox">
+		<div class="list loc_list hide">
+			<span class="filter title">位置</span>
+			<span class="filter active bx" type='type' val=''>不限</span>
+			<foreach name="business_name" id="vo">
+				<span class="locType" type='type' val='{$key}'>{$key}<i></i></span>
+			</foreach>
+			<!-- <span class="locType" type='type' val='dis'>商圈<i></i></span>
+			<span class="locType" type='type' val='lan'>机场/车站<i></i></span>
+			<span class="locType" type='type' val='yy'>医院<i></i></span>
+			<span class="locType" type='type' val='dx'>大学<i></i></span>
+			<span class="locType" type='type' val='sn'>市内景点<i></i></span>
+			<span class="locType" type='type' val='sw'>市外景点<i></i></span>
+			<span class="locType" type='type' val='yc'>演出场馆<i></i></span> -->
+			<div class="loc_box">
+			</div>
+		</div>
+		<div class="list">
+			<span class="filter title">价格</span>
+			<span class="filter active bx" type='rate' val=''>不限</span>
+			<span class="filter" type='rate' val='0,100'>100元以下</span>
+			<span class="filter" type='rate' val='100,300'>100-300元</span>
+			<span class="filter" type='rate' val='300,600'>300-600元</span>
+			<span class="filter" type='rate' val='600,1500'>600-1500元</span>
+			<span class="filter" type='rate' val='1500,100000'>1500元以上</span>
+			<span class="filter" type='rate' val=''>自定义<input class="val1" type="number" placeholder="¥"> - <input class="val2" type="number" placeholder="¥"></span>
+		</div>
+		<div class="list">
+			<span class="filter title">星级</span>
+			<span class="filter active bx" type='star_rate' val=''>不限</span>
+			<span class="filter" type='star_rate' val="2">经济/客栈</span>
+			<span class="filter" type='star_rate' val="3">三星/舒适</span>
+			<span class="filter" type='star_rate' val="4">四星/高档</span>
+			<span class="filter" type='star_rate' val="5">五星/豪华</span>
+			<span class="filter" type='star_rate' val="A">公寓</span>
+		</div>
+		<div class="list brandList" style="padding-right:100px ">
+			<span class="filter title">品牌</span>
+			<span class="filter_more " id="filter_more">更多</span>
+			<span class="filter active bx" type='brand_id' val=''>不限</span>
+			<span class="filter" type='brand_id' val="32">如家</span>
+			<span class="filter" type='brand_id' val="56">汉庭</span>
+			<span class="filter" type='brand_id' val="41">速8</span>
+			<span class="filter" type='brand_id' val="53">7天</span>
+			<span class="filter" type='brand_id' val="93">城市便捷</span>
+			<span class="filter" type='brand_id' val="34">锦江之星</span>
+			<span class="filter" type='brand_id' val="44">格林豪泰</span>
+			<span class="filter" type='brand_id' val="313">喜来登</span>
+			<span class="filter" type='brand_id' val="97">维也纳</span>
+			<span class="filter" type='brand_id' val="11">香格里拉</span>
+			<div class="allBrandDiv">
+			
+			</div>
+		</div>
+		<div class="list filter_topic" style="padding-right:100px ">
+			<span class="filter title">主题</span>
+			<span class="filter_topicmore">更多</span>
+			<span class="filter active bx" type='theme_id' val=''>不限</span>
+			<foreach name="theme"  id="vo">
+				<span class="filter" type='theme_id' val="{$vo.Id}">{$vo.Name}</span>
+			</foreach>
+		</div>
+		<div class="moreFilter">
+			<!-- <span class="more">查看更多筛选条件</span> -->
+		</div>
+	</div> 
+	<div class="content_wap clearfix">
+		<div class="list_wap  fl">
+			<div class="title clearfix">
+				<div class="fl left_filter">
+					<span>排序</span>
+					<span type='sort' val='StarRankDesc' class="filter active down">星级 <i class="ico"></i></span>
+					<span class="filter" type='sort' val='RateDesc'>价格 <i class="ico"></i></span>
+				</div>
+				<div class="fr right_tot">
+					为您搜索到 <span class="totnum">{$hotel_list_info.count}</span> 家酒店 
+				</div>
+			</div>
+			<ul class="hotel_box">
+				<volist name="hotel_list_info.hotel" id="vo">
+					<li lng='{$vo.Detail.Longitude}' lat='{$vo.Detail.Latitude}' class="list clearfix">
+						<div class="imgBox fl">
+							<img src="{$vo.Detail.ThumbNailUrl}" alt="">
+						</div>
+						<div class="info fl">
+							<div class="hot_tit" title="{$vo.Detail.HotelName}">{$vo.Detail.HotelName}</div>
+							<div class="keyword">
+								<span class="area" zone_id ="{$vo.Detail.BusinessZone}">{$vo.Detail.BusinessZoneName}</span>
+								<span>{$vo.Detail.Category}星级</span>
+							</div>
+							<div class="location">
+								{$vo.Detail.Address} 
+							</div>
+							<div class="booking_time">{$vo.Detail.book_time}小时之前有人预订了该酒店</div>
+							<div class='service'>
+								<volist name="$vo.Facilities" id="voo">
+									<span class="ico{$voo.id} ico" title="{$voo.type}"></span>
+								</volist>
+							</div>
+						</div>
+						<div class="price_box fl">
+							<div class="point"><span>{$vo.Detail.Review.Score}</span> {$vo.Detail.Review.comm}</div>
+							<div class="pj">用户评价 {$vo.Detail.Review.Count}条</div>
+							<div class="td">“{$vo.Detail.comment}”</div>
+						</div>
+						<div  class="price"><span>¥{$vo.LowRate} </span>起</div>
+						<div class="btn"><a href="javascript:;" hotel_id="{$vo.HotelId}">查看详情</a></div>
+					</li>
+				</volist>	
+			</ul>
+			<div class="nodata clearfix">
+				<img class="no_img fl" src="/static/v1/img/nohotel.png" alt="">
+				<div class="massage fl">
+					<p>很抱歉，没有找到符合您条件的酒店<br>
+						建议您适当减少条件<a href="javascript:;">清空条件</a>
+					</p>
+
+				</div>
+			</div>
+			<div id="pagination"></div>
+		</div>
+		<div class="map_wap fr">
+			<div class="title">地图交通</div>
+			<div id="allmap"></div>
+		</div>					
+	</div>                  
+	<include file="public@publicFooter"/>
+	
+</body>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/doubleDate2.0.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/pagination/jquery.pagination.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/storecity/fixdiv.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/storecity/address.js"></script>            
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=zCYe26uTQPGYmENmF1fXa2tO1dhZjSOw"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/hotel_list.js"></script>
+</html>

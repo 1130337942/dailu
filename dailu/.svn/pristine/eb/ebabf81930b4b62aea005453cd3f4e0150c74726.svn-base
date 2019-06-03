@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="robots" content="nofollow" />
+<!-- 分享显示的标题-->
+
+<meta itemprop="name" content='分分钟设计出属于自己的旅行路书，方便又快捷，你也来试试吧！' />
+<!-- 分享显示的缩略图-->
+<meta itemprop="image" content="http://a.dailuer.com/static/v1/img/tripinfoShare/prev1.png" />
+
+<!-- 分享显示的简介-->
+<meta name="description" itemprop="description" content="袋鹿旅行，自由行的必备工具" />
+	<title>注册</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/login/login.css');?>">
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js"></script>
+</head>
+<body>
+	<div class="mainBox">
+		<div class="loginBox">
+			<div class="fl leftInfo">
+				<h4 class='logo'></h4>
+				<div class='zh'>登录袋鹿，与10000+名旅游<br>达人一起制定行程！</div>
+				<div class='en'>Log in the dailuer.com, and  make the  itinerary <br>	 with more than 10000 popular traveler together!</div>
+				<!-- <div class="make"><a href="#">> 立即定制</a></div> -->
+			</div>
+			<div class="fr registerWap">
+				<div class='list1 clearfix'><span class='en fl'>注册 Register</span><span class='tologin fr'>已有账号 <a href="/portal/login/login.html">登录</a></span>
+				</div>
+				<div class='list2'>
+					<label class='' for="user">
+						<div class='errInfo'></div>
+						<span class='status'></span>
+					</label>
+					<input id='user' class=' user' type="text" placeholder="用户名，2-8汉字/4-16字符">
+					<label class='p-lab' for="phone">
+						<div class='errInfo'></div>
+						<span class='status'></span>
+					</label>
+					<input id='phone' class='phone' type="number" placeholder="请输入您的手机号码">
+					<label class='in-lab' for="invitation">
+						<div class='errInfo'></div>
+						<span class='status'></span>
+					</label>
+					<input  id='invitation' class='invitation' type="text" placeholder="请输入您的邀请码" value = ''>
+				</div>
+				<div id="embed-captcha"></div>
+				<div id="wait" class="show">正在加载图形验证......</div>
+				<div class='phoneCode'>
+					<label class='sendCode' for="phoneCode">发送验证码</label>
+					<input id='phoneCode' type="number" placeholder="请输入手机验证码">
+				</div>
+				<div class='passWorld'>
+					<label for="passWorld">
+						<div class='errInfo'></div>
+						<span class='status'></span>
+					</label>
+					<input onfocus="this.type='password'" id='passWorld' type="text" placeholder="密码需6-20位,请包含字母和数字">
+				</div>
+				<div class='registerBox'>
+					<button class="go_register">立即注册</button>
+					<div class='agree'>注册即代表您同意我们的<a href="javascript:;">服务协议</a>和<a href="javascript:;">隐私政策</a></div>
+				</div>
+			</div>
+			<a class="close" href="javascript:;" style="">x</a>
+		</div>
+	</div>
+<div class='agreementMask'>
+	<div class="agreementInfo">
+		<div class="title">袋鹿旅游用户注册协议
+			<span class='close'>X</span>
+		</div>
+		<div class='agr-content'>
+			【审慎阅读】您在申请注册流程中点击同意前，应当认真阅读以下协议。请您务必审慎阅读、充分理解协议中相关条款内容，其中包括：
+			<br> 1、与您约定免除或限制责任的条款；
+			<br> 2、与您约定法律适用和管辖的条款；
+			<br> 3、其他以粗体下划线标识的重要条款。
+			<br> 如您对协议有任何疑问，可向平台客服咨询。
+			<br> 【特别提示】当您按照注册页面提示填写信息、阅读并同意协议且完成全部注册程序后，即表示您已充分阅读、理解并接受协议的全部内容。如您因平台服务与淘宝发生争议的，适用《袋鹿旅游平台服务协议》处理。如您在使用平台服务过程中与其他用户发生争议的，依您与其他用户达成的协议处理。
+			<br> 阅读协议的过程中，如果您不同意相关协议或其中任何条款约定，您应立即停止注册程序。
+		</div>
+		<div class='袋鹿book'>
+			<a href="#">《袋鹿旅游平台协议》</a>
+			<br>
+			<a href="#">《隐私政策》</a>
+		</div>
+		<div class='btnBox'>
+			<button class='agreeBtn'>同意以上协议</button>
+
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/gt.js"></script>
+<script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/login/register.js');?>"></script>
+
+</html>

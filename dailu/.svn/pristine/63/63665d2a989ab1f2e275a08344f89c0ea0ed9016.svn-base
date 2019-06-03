@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'dl';
+  src: url('AGENCYB.ttf');
+  src: url('AGENCYB.eot');
+  src: url('AGENCYB.eot?#iefix') format('embedded-opentype'), url('AGENCYB.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'benMo';
+  src: url('benMoJianZi/BenMoJianZi-2-subfont.ttf');
+  src: url('benMoJianZi/BenMoJianZi-2-subfont.eot');
+  src: url('benMoJianZi/BenMoJianZi-2-subfont.eot?#iefix') format('embedded-opentype'), url('benMoJianZi/BenMoJianZi-2-subfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DINMittelschriftStd';
+  src: url('DINMittelschriftStd/DINMittelschrift.ttf');
+  src: url('DINMittelschriftStd/DINMittelschrift.eot?#iefix') format('DINMittelschrift.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

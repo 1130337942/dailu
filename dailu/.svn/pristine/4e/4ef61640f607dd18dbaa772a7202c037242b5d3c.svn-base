@@ -1,0 +1,552 @@
+.hide {
+	display: none;
+}
+.checkBox{
+	cursor: pointer;
+	margin-right: 15px;
+	font-size: 14px;
+	color: #999;
+}
+.checkBox::before {
+	margin-right: 6px;
+	display: inline-block;
+	content:'';
+	vertical-align: middle;
+	width: 12px;
+	height: 12px;
+	border: 1px solid #e5e5e5;
+	background-color: #fafafa;
+}
+.on.checkBox::before {
+	background: #fff url(/static/v1/img/checked.png) center center no-repeat;
+}
+
+input,select{
+     appearance:none;
+    -moz-appearance:none;
+   -webkit-appearance:none;  
+	outline: none;
+	border: none;
+	font-family: 'DINMittelschriftStd';
+}
+.searchwap {
+	width: 1200px;
+	height: 100px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+	margin: 112px auto 0;
+	border: 1px solid #659ff5;
+
+}
+.searchwap .tip {
+	font-size: 14px;
+	color: #999;
+} 
+.searchwap .city {
+	margin-top: 26px;
+	width: 310px;
+	height: 48px;
+	border-right: 1px solid #e5e5e5;
+}
+.searchwap .city .tip {
+	text-align: center;
+}
+.searchwap .city .change{
+	cursor: pointer;
+	margin: 0 45px;
+	display: inline-block;
+	width: 28px;
+	height: 18px;
+	border-radius: 9px;
+	border: solid 1px #cccccc;
+	background: #fff url(/static/v1/img/store_change.png) center center no-repeat;
+	vertical-align: middle;
+	position: relative;
+}
+.searchwap .city .change::before ,
+.searchwap .city .change::after{
+	position: absolute;
+	display: block;
+	content: '';
+	width: 20px;
+	height: 1px;
+	background-color: #cccccc;
+	top: 50%;
+}
+.searchwap .city .change::after{
+	left: -20px;
+}
+
+.searchwap .city .change::before{
+	right: -20px;
+}
+.searchwap .city .put_in{
+	margin-top: 5px;
+}
+.searchwap .city input{
+	width: 98px;
+	font-size: 20px;
+	font-family: PingFang-SC-Medium;
+	color: #333;
+}
+#leave_city{
+	margin-left: 38px;
+}
+#dest_city{
+	margin-left: 68px;
+}
+.searchwap  .type {
+	text-align: center;
+	width: 150px;
+	height: 100px;
+	border-right: 1px solid #e5e5e5;
+}
+.searchwap  .type .dan {
+	margin-top: 26px;
+}
+.searchwap  .leave_day{
+	border-right: 1px solid #e5e5e5;
+
+}
+.searchwap  .leave_day ,
+.searchwap  .dest_day {
+	width: 265px;
+	height: 75px;
+	padding-left: 40px;
+	padding-top: 25px;
+}
+.searchwap .dest_day.dan input ,
+.searchwap .dest_day.dan .tip {
+	color: #ccc;
+}
+.searchwap .dest_day .put_in.dan::after{
+	border-right: 2px solid #999;
+	border-bottom: 2px solid #999;
+}
+.searchwap .put_in{
+	margin-top: 5px;
+	position: relative;
+}
+.searchwap input {
+	font-size: 20px;
+	font-family: DINMittelschriftStd;
+}
+.searchwap .leave_day .put_in::after ,
+.searchwap .dest_day .put_in::after {
+	display: block;
+	content: '';
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	border-right: 2px solid #999;
+	border-bottom: 2px solid #999;
+	transform: rotate(45deg);
+	top: 50%;
+	margin-top: -12px;
+	right: 62px;
+}
+.search_btn{
+	width: 120px;
+	height: 100px;
+	background-color: #659ff5;
+	background-image: linear-gradient(-74deg, 
+		#659ff5 0%, 
+		#87b5f8 100%), 
+	linear-gradient(
+		#659ff5, 
+		#659ff5);
+	background-blend-mode: normal, 
+		normal;
+	border-radius: 0px 4px 4px 0px;
+	cursor: pointer;
+	text-align: center;
+	line-height: 100px;
+	font-size: 20px;
+	color: #fff;
+}
+.search_btn:hover {
+	transition: all 0.2s;
+	background-color: #5294f5;
+	background-image:none;
+}
+
+.filter_box {
+	position: relative;
+	font-size: 14px;
+	color: #666;
+	margin: 8px auto 0;
+	width: 1080px;
+	padding-left: 120px;
+	height: 42px;
+	line-height: 42px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.filter_box .tit {
+	position: absolute;
+	left: 38px;
+	top: 0;
+	color: #999;
+}
+.filter_box .filter{
+	padding-right: 20px;
+	margin-right: 30px;
+	position: relative;
+}
+.filter_box .filter::after {
+	position: absolute;
+	top: 15px;
+	right: 5px;
+	display: block;
+	content: '';
+	width: 0px;
+	height: 0px;
+	border-right: 4px solid #999;
+	border-bottom: 4px solid #999;
+	border-top: 4px solid transparent;
+	border-bottom: 4px solid transparent;
+	transform: rotate(-90deg);
+}
+.filter_box .child_f{
+	background-color: #fff;
+	min-width: 120px;
+	font-size: 12px;
+	color: #999;
+	position: absolute;
+	top: 40px;
+	left: 0;
+}
+.filter_box .child_f p .checkBox{
+	margin-right: 5px;
+}
+.filter_box .child_f p {
+	cursor: pointer;
+	padding-left: 10px;
+}
+.filter_box .filter:hover .child_f{
+	display: block;
+}
+
+.listWap{
+	font-size: 14px;
+	margin: 8px auto 0;
+	width: 1128px;
+	padding:0 36px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.listWap .title {
+	height: 40px;
+	color: #999;
+	line-height: 40px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.listWap .title span{
+	display: inline-block;
+}
+.listWap .title .flight_info{
+	width: 290px;
+}
+.listWap .title .departure{
+	width: 193px;
+	text-align: center;
+}
+.listWap .title .arrive{
+	width: 202px;
+	text-align: center;
+}
+.listWap .title .rate{
+	width: 150px;
+	text-align: center;
+}
+.listWap .title .flight_price{
+	width: 165px;
+	text-align: center;
+}
+.listWap .airList .list{
+	cursor: pointer;
+	padding:25px 36px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.listWap .airList .list .flight_info {
+	width: 235px;
+	/*width: 302px;*/
+	overflow: hidden;
+}
+.airList .list .flight_info .airname {
+	font-size: 16px;
+	font-weight: 600;
+}
+.airList .list .flight_info .airtype {
+	margin-top: 5px;
+	color: #666;
+}
+.airList .list .departure{
+	text-align: right;
+	width: 145px;
+	overflow: hidden;
+}
+.airList .list .departure .time{
+	font-size: 24px;
+	font-family: DINMittelschriftStd;
+}
+.airList .list .departure .place {
+	color: #666;
+}
+.airList .list .arr{
+	width: 150px;
+	height: 50px;
+	background: #fff url(/static/v1/img/arr_r.png) center center no-repeat;
+}
+.airList .list .arrive {
+	width: 196px;
+}
+.airList .list .arrive .time {
+	font-size: 24px;
+	font-family: DINMittelschriftStd;
+}
+.airList .list .arrive .place {
+	color: #666;
+}
+.airList .list .rate{
+	width: 137px;
+	height: 50px;
+	color: #666;
+	line-height: 50px;
+}
+.airList .list .flight_price {
+	width: 180px;
+}
+.airList .list .flight_price .price {
+	font-size: 14px;
+	color: #f4a21e;
+}
+.airList .list .flight_price .price strong {
+	font-weight: normal;
+	font-size: 24px;
+	font-family: DINMittelschriftStd;
+}
+.airList .list .flight_price .reb {
+	color: #999;
+}
+
+.airList .list  .ctrl_bar {
+	width: 86px;
+	height: 36px;
+	background-color: #f4a21e;
+	border-radius: 2px;
+	text-align: center;
+	color:#fff;
+	line-height: 36px;
+	font-size: 16px;
+	cursor: pointer;
+}
+.airList .list .list_box {
+	width: 968px;
+	padding:0 39px;
+	background: #fbfbfb;
+}
+.airList .list .list_box .tit {
+	color: #999;
+	height: 46px;
+	line-height: 46px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.airList .list .loading{
+	width: 100%;
+	height: 40px;
+	padding:3px 0;
+	text-align: center;
+}
+.airList .list  .loading img{
+	width:auto;
+	height: 100%;
+}
+.airList .list .list_box  span {
+	display: inline-block;
+	text-indent: 1em;
+}
+.airList .list .list_box .ruleInfo span {
+	display: inline;
+	text-indent: 0em;
+}
+.airList  .list_box  .pro_name {
+	width: 200px;
+}
+.airList  .list_box  .rule {
+	width:400px;
+}
+
+.airList  .list_box  .air_price {
+	width: 268px;
+}
+.airList  .list_box .air_info{
+	position: relative;
+	font-family: PingFang-SC-Bold;
+	height: 46px;
+	line-height: 46px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.airList  .list_box .air_info:last-child{
+	border-bottom: none;
+}
+.airList  .list_box .air_info .air_price{
+	color: #f4a21e;
+}
+.airList  .list_box .air_info .rule{
+	color:#659ff5 ;
+}
+ .list_box .air_info .air_price strong {
+ 	font-weight: normal;
+ 	font-size: 16px;
+ 	font-family: DINMittelschriftStd;
+ }
+.list_box .air_info .air_price a {
+	width: 54px;
+	height: 26px;
+	line-height: 26px;
+	background-color: #f4a21e;
+	border-radius: 2px;
+	float: right;
+	margin-top: 10px;
+	color: #fff;
+}
+.list_box .air_info .air_price a:hover {
+	text-decoration: underline;
+}
+
+.airList  .list_box .air_info .ruleInfo{
+	position: absolute;
+	top: 45px;
+	left: 215px;
+	width: 459px;
+	padding:10px 18px;
+	border: 1px solid #e5e5e5;
+	box-shadow: 0px 2px 8px 0px 
+		rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
+	background-color: #fff;
+	z-index: 3;
+}
+
+.list_box .air_info .ruleInfo .rule_tit{
+	color:#999;
+}
+.list_box .air_info .ruleInfo .rule_tit span {
+	color:#333;
+}
+.list_box .air_info .ruleInfo {
+	line-height: 24px;
+	color: #999;
+}
+.longTimemask{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color:rgba(0,0,0,0.4);
+	z-index: 100;
+}
+.longTimemask .msg_box {
+	background-color: #fff;
+	position: absolute;
+	width: 300px;
+	height: 200px;
+	top: 50%;
+	left: 50%;		
+	border: 1px solid #7faaea;
+    transform: translate(-50%,-50%);
+}
+.msg_box .message_header {
+	font-size: 16px;
+	color:#fff;
+	line-height: 35px;
+    text-indent: 15px;
+    background-color: #659ff5;
+}
+.msg_box .msg_body{
+	text-align: center;
+    height: 70px;
+    padding: 35px 10px 0 75px;
+    background: url(/static/v1/img/deadline.png) 20px 30px no-repeat;
+    background-size: 15%;
+    font-size: 14px;
+}
+.msg_box .msg_body strong {
+	color: red;
+	font-weight: normal;
+}
+.msg_box .msg_ctrl {
+	text-align: center;
+}
+.msg_box .msg_ctrl span{
+	display: inline-block;
+	padding:5px 10px;
+	background-color: #659ff5;
+	color: #fff;
+	border-radius: 2px;
+	font-size: 14px;
+	color: #fff;
+	cursor: pointer;
+}
+.msg_box .msg_ctrl .cancel {
+	margin-left: 10px;
+}
+.testify {
+	line-height: 24px;
+	font-size: 14px;
+	color: #999;
+	padding: 26px 0;
+}
+.virtue {
+	margin: 8px auto 96px;
+	width: 1200px;
+	height: 124px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.virtue .vir_list{
+	margin-top: 40px;
+}
+.virtue .img_l ,
+.virtue .info_r {
+	display: inline-block;
+	height: 60px;
+	vertical-align: middle;
+}
+
+.virtue .img_l {
+	width: 60px;
+	background: #fff url(/static/v1/img/touming.png) center 0 no-repeat;
+}
+.virtue .vir_list:nth-child(1){
+	margin-left: 48px;
+} 
+.virtue .vir_list:nth-child(2) .img_l {
+	width: 60px;
+	background: #fff url(/static/v1/img/kf_tel.png) center 0 no-repeat;
+}
+.virtue .vir_list:nth-child(3) .img_l {
+	width: 60px;
+	background: #fff url(/static/v1/img/jisu.png) center 0 no-repeat;
+}
+.virtue .info_r {
+	margin-left: 15px;
+	width: 300px;
+	color: #999;
+}
+.virtue .info_r .tit {
+	margin-bottom: 5px;
+	color: #333;
+	font-family: PingFang-SC-Bold;
+	font-size: 20px;
+}

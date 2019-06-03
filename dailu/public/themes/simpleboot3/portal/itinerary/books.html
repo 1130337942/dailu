@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>行程单电子书</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/common/css/common.css');?>">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/common/DL-fonts-family/dailu.css');?>">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/itinerary/books.css');?>">
+	<link rel="stylesheet" href="/static/common/css/detailsPopup.css">
+	<link rel="stylesheet" href="/static/common/swiper/swiper.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/itinerary/model_date.css');?>">
+	<script src='/static/common/js/echarts.min.js'></script>
+	<script src="/static/common/js/turn/jquery.min.1.7.js"></script>
+	
+</head>
+<body>
+	<include file="public@publicHeader"/>
+	<script>
+		$('.header').next('script').remove();
+	</script>
+	<div class="main">
+		<div style="padding-top:86px;"></div>
+		<div class="title clearfix">
+		 	<div class="fl left_tab">
+		 		<span tar='date' class="active">日历概要</span>
+		 		<span tar ='books' class="">行程详情</span>
+		 		<span tar ='map' class="">地图模式</span>
+
+
+		 		<!-- <span>预定</span> -->
+		 		<!-- <span  tar ='share' class="">导出行程单</span> -->
+		 	</div>
+			<div class="fr right_ctrl">
+				<a href="javascript:;" class="editTrip">修改行程</a>
+				<a  tar ='share' class="downshare">导出行程单</a>
+				<span class="issue fabu" href="javascript:;">分享发布</span>
+				<!-- <a href="/portal/scenerymap/tripOverview.html?hotel=0">继续编辑</a> -->
+			</div>
+		</div>
+		<div>
+			<!-- 电子书 -->
+			<div class="book_box hide">
+				<div class="book_right_bar">
+				<ul>
+					<li index='3' class="bar active">总览</li>
+					<li index='4' class="bar">费用</li>
+					
+				</ul>
+				</div>
+				<div class="book_outer">
+				<div id="flipbook" class="shadow">
+					<div class="page hard hard_first"> 袋鹿行程单 </div> 
+					<div class="page hard hard_first">
+						<div class="page_inner overview">
+							<div class="page_head clearfix">
+								<span class="fl">行程计划</span><span class="fr">袋鹿旅行</span>
+							</div>
+							<div class="hard_tit">
+								<div class="book_title">行程概览</div>
+								<div class="header_line">
+									<span>杭州</span>/<span>长沙</span>/<span>上海</span>
+								</div>
+							</div>
+							<div class="catalog">
+								<span>出行人数</span>
+								<span class="cat_con fr person_num">0成人，0儿童</span>
+							</div>
+							<div class="catalog">
+								<span>出行天数</span>
+								<span class="cat_con fr day_num">天</span>
+							</div>
+							<div class="catalog">
+								<span>出发城市</span>
+								<span class="cat_con fr start_city"></span>
+							</div>
+							<div class="catalog">
+								<span>返回城市</span>
+								<span class="cat_con fr last_city"></span>
+							</div>
+							<div class="catalog">
+								<span>出行时间</span>
+								<span class="cat_con fr start_date"></span>
+							</div>
+							<div class="catalog">
+								<span>酒店数量</span>
+								<span class="cat_con fr hotel_num">家</span>
+							</div>
+							<div class="catalog">
+								<span>城际交通</span>
+								<span class="cat_con fr traffic_num"></span>
+							</div>
+						</div>
+						
+					</div>
+					<div class="page">
+						<div class="page_inner">
+							<div class="page_head clearfix">
+								<span class="fl">行程路线</span><span class="fr">袋鹿旅行</span>
+							</div>
+							<div class="page_tit">
+								<div class="book_title">行程路线</div>
+								<div class="">
+									<span>TRAVEL LINE</span>
+								</div>
+							</div>
+							<div class="main_map">
+								<img src="" alt="">
+							</div>
+							<div class="city_catalog_box">
+								<div class="city_catalog start_catalog">
+									<i class="zxq_ico"></i>
+									<span></span>
+									<div class="day fr"></div>
+								</div>
+								
+								
+								<div class="city_catalog city_catalog_last">
+									<i class="zxq_ico"></i>
+									<span></span>
+									<div class="day fr"></div>
+								</div>
+
+							</div>
+							<!-- <div class="page_footer">第2页</div> -->
+						</div>
+					</div>
+					<div class="page">
+						<div class="page_inner">
+							<div class="page_head clearfix">
+								<span class="fl">费用清单</span><span class="fr">袋鹿旅行</span>
+							</div>
+							<div class="hard_tit">
+								<div class="book_title">费用清单</div>
+								<div>
+									总费用：¥<span class="travel_tot_money"></span> 起
+								</div>
+							</div>
+							<div class="wap muster">
+								<div class="wap_title">
+									<span class="wap_1">交通费用</span>
+									<span class="wap_2">单价</span>
+									<span class="wap_3">数量</span>
+									<span class="wap_4">总价</span>
+								</div>
+								<div class="wap_content wap_content_traffic">
+									
+								</div>
+							</div>
+							<div class="wap muster">
+								<div class="wap_title">
+									<span class="wap_1">酒店费用</span>
+									<span class="wap_2">单价</span>
+									<span class="wap_3">数量</span>
+									<span class="wap_4">总价</span>
+								</div>
+								<div class="wap_content wap_content_hotel">
+									
+								</div>
+							</div>
+							
+							<div class="wap muster">
+								<div class="wap_title">
+									<span class="wap_1">餐饮费用</span>
+									<span class="wap_2">单价</span>
+									<span class="wap_3">数量</span>
+									<span class="wap_4">总价</span>
+								</div>
+								<div class="wap_content wap_content_eat">
+									
+								</div>
+							</div>
+
+							<div class="wap muster">
+								<div class="wap_title">
+									<span class="wap_1">门票费用</span>
+									<span class="wap_2">单价</span>
+									<span class="wap_3">数量</span>
+									<span class="wap_4">总价</span>
+								</div>
+								<div class="wap_content wap_content_ticket">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="page">
+						<div class="page_inner">
+							<div class="page_head clearfix">
+								<span class="fl">行程线路</span><span class="fr">袋鹿旅行</span>
+							</div>
+							<div class="wap muster">
+								
+							</div>
+							<div class="wap muster">
+								<div class="wap_title">
+									<span class="wap_1">费用占比</span>
+								</div>
+								<div class='percentBox clearfix'>
+									<div class="p-left fl" id='p-left'></div>
+									<div class="p-right fr">
+										<ul class='clearfix'>
+											<li class='fl'><span></span>餐饮费用 </li>
+											<li class='fl'><span></span>交通费用 </li>
+											<li class='fl'><span></span>接机费用 </li>
+										</ul>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="page hard hard_last flag_before">
+						<div class="share_box">
+							<img class="ewm" src="" alt="">
+							<div class="btn">您的行程安排已结束</div>
+							<div class="share_tip">可通过微信/QQ/微博 扫描二维码查看您的旅行行程</div>
+						</div>
+						
+					</div>
+					<div class="page hard hard_last"></div>
+				</div> 
+				</div>
+			</div>
+			<!-- 导出行程单 -->
+			<div class="down2share hide">
+			<div class="book_img">
+				<img class="" src="/static/v1/img/book_outer.png" alt="">
+				<div class="d_title">导出到电脑</div>
+				<div class="d_tips">下载的PDF行程单到电脑</div>
+				<div class="d_btn download">下载PDF行程单</div>
+				<div class="book_text">
+					<div class="tit">袋鹿行程单</div>
+					<div class="tit_en"> Dailuer itinerary</div>
+					<div class="foot">袋鹿旅行提供</div>
+				</div>
+			</div>
+			<div class="phone_img">
+				<img class="" src="/static/v1/img/share_ewm.png" alt="">
+				
+				<img class="ewm" src="" alt="">
+				
+				<!-- <img class="ewm_s" src="/static/v1/img/share_ewm_s.png" alt=""> -->
+				<div class="d_title">导出到手机</div>
+				<div class="d_tips">扫描二维码，随时随地查看行程单</div>
+				<div class="d_btn app_btn">同步到手机APP</div>
+			</div>
+			</div>
+			<!-- 日历模式 老版本-->
+			<div class="calendar_pat calendar hide">
+				<div class="cimgMask"><img src="" alt=""></div>
+				<span class="prev_btn"></span>
+				<span class="next_btn"></span>
+				<div class="calender_left">
+					<div class="day_num">天</div>
+					<ul>
+						<li class="time_list noon">上午</li>
+						<li class="time_list afternoon">下午</li>
+						<li class="time_list evening">晚上</li>
+					</ul>
+				</div>
+				<div class="cal_food_wap fl">美食</div>
+				<div class="bottom_bar">
+					<span class="traffic_c">通勤规划</span>
+					<span class="hotel_c">住宿规划</span>
+					<span class="food_c">美食规划</span>
+					<span class="spot_c">景点规划</span>
+					<span class="shopping_c">购物规划</span>
+				</div>
+				<div class="bottom_hotel">
+					<div class="bottom_hotel_box clearfix">
+
+					</div>		
+				</div>
+				<div class="bottom_food clearfix">
+					
+					<div class="bottom_food_box">
+						
+						<div class="bottom_food_outer fl">
+							<div class="bottom_food_list">
+								
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="day_wap_outer">
+					<ul class="day_inner clearfix">
+						
+					</ul>
+				</div>
+			</div>
+			<!-- 日历模式老版本end -->
+
+			<!-- 日历模式新版 start  -->
+			<div id="datebox" class="new_calendar_pat calendar">
+			<div class="datebox_inner day_wap_outer clearfix">
+			<div class="daytit_bg"><div class="day_ctrl"><span class="dayPrev dis"></span><span class="dayNext"></span></div></div>
+			<div class="time_line fl">
+				<div class="tit1">天</div>
+				<div class="tit2">用车</div>
+				<ul class="timelist">
+					<li>05:00</li>
+					<li>06:00</li>
+					<li>07:00</li>
+					<li>08:00</li>
+					<li>09:00</li>
+					<li>10:00</li>
+					<li>11:00</li>
+					<li>12:00</li>
+					<li>13:00</li>
+					<li>14:00</li>
+					<li>15:00</li>
+					<li>16:00</li>
+					<li>17:00</li>
+					<li>18:00</li>
+					<li>19:00</li>
+					<li>20:00</li>
+					<li>21:00</li>
+					<li>23:00</li>
+					<li>24:00</li>
+				</ul>
+				<!-- <div class="tit3">酒店</div> -->
+			</div>
+			<ul class="datelist_box day_inner clearfix fl">
+			<!-- <li class="daylist fl">
+				<div class="daytit">
+					<div class="daynum">第1天</div>
+					<div class="tit_city">01-18 周一 | 南京 - 杭州</div>
+				</div>
+				<div class="distance">里程 · 10公里 <span class="traffic_type">包车</span></div>
+				<div class="no_with">
+				</div>
+				<div class="block">
+					<div class="block_in traff">
+						<div class="in_title">南京 — 杭州</div>
+						<div class="tip">铁路 · 3小时</div>
+						<i class="ico date_train"></i>	
+					</div>
+					<div class="toBook">
+						<div class="book_tit">南京 — 杭州</div>
+						<div class="tips">1月15日 | 火车·400公里·2时2分 | ¥300起</div>
+						<div class="clearfix">
+							<span class="fl book_btn">去预定</span>
+							<span class="fr ico date_train"></span>
+							<span class="close_info"></span>
+						</div>
+					</div>
+				</div>
+				<div class="no_with" style="height: 38px;"></div>
+				<div class="block">
+					<div class="gai block_in clearfix">
+						<div class="block_in_left fl">
+							<div class="in_title_s"><span>1.</span>杭州白沙泉美食街</div>
+							<div class="tip_s">适玩 4 小时</div>
+							<i class="ico sport"></i>	
+						</div>
+						<div class="block_in_right fr">
+							<div class="in_title_s dis_none">咬不得高祖生煎</div>
+							<div class="tip_s dis_none">美食 · 人均 ¥20 起</div>
+							<i class="ico cy"></i>	 
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="daylist fl">
+				<div class="daytit">
+					<div class="daynum">第2天</div>
+					<div class="tit_city">01-18 周一 | 南京 - 杭州</div>
+				</div>
+				<div class="distance">里程 · 10公里 <span class="traffic_type">包车</span></div>
+				<div class="no_with"  style="height: 0px;">
+				</div>
+				<div class="block" style="height: 196px;">
+					<div class="block_in gai">
+						<div class="block_in_up" style="height:132px;">
+							<div class="in_title"><span>1.</span>杭州白沙泉美食街</div>
+							<div class="tip">景点 · 适玩 4 小时</div>
+							<i class="ico sport"></i>	
+						</div>
+						<div class="block_in_down">
+							<div class="in_title_s">咬不得高祖生煎</div>
+							<div class="tip_s">美食 · 人均 ¥20 起</div>
+							<i class="ico cy"></i>	
+						</div>
+						
+					</div>
+				</div>
+				<div class="no_with" style="height: 38px;"></div>
+				<div class="block" style="height: 38px;">
+					<div class="block_in">
+						<div class="in_title title_s"><span>2.</span>林隐寺</div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<i class="ico sport"></i>	
+						<i class="ico cy"></i>
+					</div>
+					<div class="fixed_info">
+						<span class="close_info"></span>
+						<div class="in_title"><span>3.</span>杭州白沙泉美食街 <span class="arr_r"></span></div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<div class="info_info">
+							<div>适玩时间：1.5小时</div>
+							<div>景点门票：成人票:80元/人  优惠票：40元/人</div>
+							<div>开放时间：1-12月：9:00-17:30</div>
+							<div>附近美食：深井烧鹅</div>
+						</div>
+						<div class="spotFoot">
+							<i class="ico sport"></i>	
+							<i class="ico cy"></i>	
+			
+						</div>
+						
+					</div>
+				</div>
+			</li>
+			<li class="daylist fl">
+				<div class="daytit">
+					<div class="daynum">第3天</div>
+					<div class="tit_city">01-18 周一 | 南京 - 杭州</div>
+				</div>
+				<div class="distance">里程 · 10公里 <span class="traffic_type">包车</span></div>
+				<div class="no_with"  style="height: 38px;"></div>
+				<div class="block">
+					<div class="block_in ">
+						<div class="in_title"><span>1.</span>杭州白沙泉美食街</div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<i class="ico sport"></i>	
+						<i class="ico cy"></i>	
+					</div>
+				</div>
+				<div class="no_with" style="height: 38px;"></div>
+				<div class="block">
+					<div class="block_in">
+						<div class="in_title"><span>2.</span>杭州白沙泉美食街</div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<i class="ico sport"></i>	
+						<i class="ico cy"></i>	
+					</div>
+				</div>
+			</li>
+			<li class="daylist fl">
+				<div class="daytit">
+					<div class="daynum">第4天</div>
+					<div class="tit_city">01-18 周一 | 南京 - 杭州</div>
+				</div>
+				<div class="distance">里程 · 10公里 <span class="traffic_type">包车</span></div>
+				<div class="no_with">
+				</div>
+				<div class="block">
+					<div class="block_in">
+						<div class="in_title"><span>1.</span>杭州白沙泉美食街</div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<i class="ico sport"></i>	
+						<i class="ico cy"></i>	
+					</div>
+				</div>
+				<div class="no_with" style="height: 38px;"></div>
+				<div class="block">
+					<div class="block_in">
+						<div class="in_title"><span>2.</span>杭州白沙泉美食街</div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<i class="ico sport"></i>	
+						<i class="ico cy"></i>	
+					</div>
+				</div>
+			</li>
+			
+			<li class="daylist fl">
+				<div class="daytit">
+					<div class="daynum">第4天</div>
+					<div class="tit_city">01-18 周一 | 南京 - 杭州</div>
+				</div>
+				<div class="distance">里程 · 10公里 <span class="traffic_type">包车</span></div>
+				<div class="no_with">
+				</div>
+				<div class="block">
+					<div class="block_in">
+						<div class="in_title"><span>1.</span>杭州白沙泉美食街</div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<i class="ico sport"></i>	
+						<i class="ico cy"></i>	
+					</div>
+				</div>
+				<div class="no_with" style="height: 38px;"></div>
+				<div class="block">
+					<div class="block_in">
+						<div class="in_title"><span>2.</span>杭州白沙泉美食街</div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<i class="ico sport"></i>	
+						<i class="ico cy"></i>	
+					</div>
+				</div>
+			</li>
+			
+			<li class="daylist fl">
+				<div class="daytit">
+					<div class="daynum">第4天</div>
+					<div class="tit_city">01-18 周一 | 南京 - 杭州</div>
+				</div>
+				<div class="distance">里程 · 10公里 <span class="traffic_type">包车</span></div>
+				<div class="no_with">
+				</div>
+				<div class="block">
+					<div class="block_in">
+						<div class="in_title"><span>1.</span>杭州白沙泉美食街</div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<i class="ico sport"></i>	
+						<i class="ico cy"></i>	
+					</div>
+				</div>
+				<div class="no_with" style="height: 38px;"></div>
+				<div class="block">
+					<div class="block_in">
+						<div class="in_title"><span>2.</span>杭州白沙泉美食街</div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<i class="ico sport"></i>	
+						<i class="ico cy"></i>	
+					</div>
+				</div>
+			</li>
+			
+			<li class="daylist fl">
+				<div class="daytit">
+					<div class="daynum">第7天</div>
+					<div class="tit_city">01-18 周一 | 南京 - 杭州</div>
+				</div>
+				<div class="distance">里程 · 10公里 <span class="traffic_type">包车</span></div>
+				<div class="no_with">
+				</div>
+				<div class="block">
+					<div class="block_in">
+						<div class="in_title"><span>1.</span>杭州白沙泉美食街</div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<i class="ico sport"></i>	
+						<i class="ico cy"></i>	
+					</div>
+				</div>
+				<div class="no_with" style="height: 38px;"></div>
+				<div class="block">
+					<div class="block_in">
+						<div class="in_title"><span>2.</span>杭州白沙泉美食街</div>
+						<div class="tip">景点 · 适玩 4 小时</div>
+						<i class="ico sport"></i>	
+						<i class="ico cy"></i>	
+					</div>
+				</div>
+			</li> -->
+		</ul>
+	</div>
+		
+		
+		<div class="bottom_hotel clearfix">
+			<div class="tit3 fl">酒店</div>
+			<div class="hotel_ul_box fl">
+				<div class="hotel_ul clearfix"></div>
+			</div>
+		</div>
+		<div class="remark">
+			<div class="remarkText"></div>
+			<span class="tips"><i class="remark_ico"></i>添加备注</span>
+		</div>
+	</div>
+	<!-- 日历模式新版  end-->	
+				
+	
+	<!-- 地图模式start -->
+	<div id="mapBox" class="clearfix">
+		<div id="leftList" class="fl">
+				<!-- 总览start -->
+			<div class="allPrv ">
+				<div class="top_tips">
+					<div class="leftList_tit">行程总览</div>
+					<div class="date_line"></div>
+				</div>
+				<div class="list_container">
+						<div class="list start">
+							<div class="circle cf"></div>
+							<div class="cityName"></div>
+							<div class="right_pos"><span class="fz12">出发城市</span></div>
+						</div>
+					 	<div class="allPrvstr"></div>
+						
+					 	<div class="list fh end">
+							<div class="circle fh"></div>
+							<div class="cityName"></div>
+							<div class="right_pos"><span class="fz12">返回城市</span></div>
+						</div>
+				</div>
+			</div>
+			<!-- 总览end -->
+			<!-- 城市 start-->
+			<div class="forCity hide">
+				<div class="top_tips">
+					<div class="leftList_tit"></div>
+					<div class="date_line"></div>
+				</div>
+				<div class="list_container">
+				</div>
+			</div>
+			<!-- 城市 end-->
+			<!-- 每天 start -->
+			<div class="forDay hide">
+				<div class="top_tips">
+					<div class="leftList_tit"></div>
+					<div class="date_line"></div>
+				</div>
+				<div class="list_container">
+						<div class="big_traffic clearfix">
+							
+						</div>
+						<div class="hotel_str"></div>
+						<div class="day_str">
+							
+						</div>
+					 	
+				</div>
+			</div>
+			<!-- 每天 end -->
+		</div>
+		<div id="mapContainer" class="fr">
+				
+		</div>
+		<div class="cityBar">
+			<div class="cityAll active">总<br>览</div>
+			<ul class="citycon clearfix">
+				
+			</ul>
+			<div class="mapctrl">
+				<span  class="prev"></span>
+				<span  class="next"></span>
+			</div>	
+		</div>
+	</div>	
+	<!-- 地图模式end -->
+
+	</div>
+	</div>
+	<div class="hotelmsg">
+            <div class="toBook">
+                <div class="book_tit"></div>
+                <div class="tips"></div>
+                <div class="clearfix">
+                    <span class="fl book_btn">去预定</span>
+                    <span class="fr ico hotel_ico"></span>
+                    <span class="close_info"></span>
+                </div>
+            </div>
+	</div>
+	<!-- 备注弹窗 start	 -->
+	<div class="remark_mask">
+		<div class="remark_box">
+			<div class="title">添加备注 <span class="fr save">保存备注</span><span class="fr cancel">取消</span></div>
+			<div class="remark_putin">
+				<textarea placeholder="在此输入行程备注内容..." name="" id="" cols="30" rows="10"></textarea>
+			</div>
+		</div>
+	</div>
+	<!-- 备注弹窗 end	 -->
+	<!-- attractions details 景点详情弹窗 start -->
+    <div class="details_popup_box rw_details_popup_box js_details_popup_box">
+        <div class="auto_details"><div class="details_popup">
+            <div class="details_popup_top js_details_popup_top">
+                <div class="top_details_text rw_top_details_text">
+                    <p class="p1"></p>
+                    <div class="p2_hotelprice dis_none"></div>
+                    <p class="p2">适玩约 
+                        <span class="details_time"></span> |
+                        <span class="suit_season"></span>适玩 |
+                        <span class="suit_time">00:00-24:00</span>开放</p>
+                    <p class="p3 clearfix">
+                        <i class="tel_icon fl"></i>
+                        <span class="tel fl">0571-</span>
+                        <i class="pos_icon fl"></i>
+                        <span class="address fl"> </span>
+                    </p>
+                    <div class="hotel_info_right">
+						
+					</div>
+                    <div class="popup_img_box">
+                    <ul class="popup_img_url clearfix">  
+                    </ul>
+                        <div class="last_li_img">
+                            <div class="more">
+                                <i class="more_icon"></i>
+                                <p>更多图片</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="popup_go">我想去</div> -->
+                <div class="shut_down"></div>
+            </div>
+            <div class="details_popup_main js_details_popup_main">
+                <div class="details_popup_tab">
+                    <ul class="clearfix">
+                        <li class="tab_tit" type="1">简要介绍</li>
+                        <li class="tab_tit js_cultural" type="2">景区景点</li>
+                        <li class="tab_tit" type="3">附近推荐</li>
+                        <li class="tab_tit hotel" type="4">酒店介绍</li>
+                    </ul>
+                    <i class="details_popup_tab_active"></i>
+                </div>
+                <div class="tab_content_box">
+                    <!-- .........tab1........ -->
+                    <div class="tab_content rwpopup_tab1">
+                        <div class="spot_Introduction">
+                        
+                        </div>
+                        <div>所属类型
+                            <span class="type">人文景观</span>
+                        </div>
+                        <div>适玩季节
+                            <span class="suit_season"></span>
+                        </div>
+                        <div>开放时间
+                            <span class="suit_time"></span>
+                        </div>
+                        <div>适玩时间
+                            <span class="play_time"></span>
+                        </div>
+                        <div>联系电话
+                            <span class="phone"></span>
+                        </div>
+                        <div>详细地址
+                            <span class="address_name"></span>
+                        </div>
+                        <div class="attractions_tickets_div clearfix">
+                            <p class="fl">景点门票</p>
+                            <span class="attractions_tickets fl">免费</span>
+                        </div>
+                        <div class="update_time_div">信息更新时间：
+                            <span class="update_time"> </span>
+                        </div>
+                    </div>
+                    <!-- ..........tab2............ -->
+                    <div class="tab_content rwpopup_tab2 dis_none">
+						<ul>
+							<li class="clearfix">
+								<div class="img_box">
+									<img src="http://www.dailuer.com/upload/spot/20180522/336ef774a55fb518867ba59e7e3af741.jpg" alt="">
+								</div>
+								<div class="popup_tab_content">
+									<div>
+										<span class="spot_name"></span>
+										<span class="spot_time">适玩小时</span>
+									</div> 
+									<div class="spot_details"></div>
+									<div class="spot_address">地址：<span></span></div>
+								</div>
+							</li>
+						</ul>
+                    </div>
+                    <!-- .........tab3........ -->
+                    <div class=" tab_content rwpopup_tab3 dis_none">
+                    	<ul class="rwpopup_tab3_ul">
+                    		
+                    		
+                    	</ul>
+                    </div>
+                      <!-- .........tab4........ -->
+                    <div class="tab_content rwpopup_tab4">
+                        <div class="spot_Introduction">
+                  
+                        </div>
+                        <div>联系电话
+                            <span class="phone"></span>
+                        </div>
+                        <div>详细地址
+                            <span class="address"></span>
+                        </div>
+                        <div>入离时间
+                            <span class="suit_time">入住时间:12点以后，离店时间:12点以前</span>
+                        </div>
+                        <div>酒店房型
+                            <span class="room"></span>
+                        </div>
+                        <div>酒店设施
+                            <span class="hotelset"></span>
+                        </div>
+                        <div>周边交通
+                            <span class="hotel_traffic"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div></div>
+        <i class="mask"></i>
+    </div>
+	<!-- 酒店详情 end -->
+	<!-- 更多图片弹窗 start -->
+		<div class="more_pic_box more_pic_box_spot clearfix dis_none">
+        <div class="picture_box fl">
+            <div class="pic_box">
+                <div class="swiper-container gallery-top"></div>
+                <div class="swiper-button-next swiper-button-white"></div>
+                <div class="swiper-button-prev swiper-button-white"></div>
+                <div class="swiper-container gallery-thumbs"></div>
+            </div>
+        </div>
+        <div class="content_box fl">
+            <div class="content_name"></div>
+            <p class="content_p"></p>
+            <i class="pic_hide"></i>
+        </div>
+    </div>
+
+    <!-- 更多图片弹窗 end -->
+	<!-- 更多酒店图片弹窗 start -->
+		<div class="more_pic_box clearfix dis_none more_pic_hotel">
+        <div class="picture_box fl">
+            <div class="pic_box">
+                <div class="swiper-container gallery-top"></div>
+                <div class="swiper-button-next swiper-button-white"></div>
+                <div class="swiper-button-prev swiper-button-white"></div>
+                <div class="swiper-container gallery-thumbs"></div>
+            </div>
+        </div>
+        <div class="content_box fl">
+            <div class="content_name"></div>
+            <p class="content_p"></p>
+            <div class="hotel_content_info" >
+                <div class="bt_1">联系电话：<span class="content_phone"></span></div>
+                <div>详细地址：<span class="content_adress"></span></div>
+                <div>入离时间：<span class="content_hotel">上午12：00之后，下午12:00之前</span></div>
+                <div>酒店房型：<span class="content_room"></span></div>
+            </div>
+            <i class="pic_hide"></i>
+        </div>
+    </div>
+
+    <!-- 更多酒店图片弹窗 end -->
+
+</body>
+<script type="text/javascript" charset="UTF-8" src="http://ditu.google.cn/maps/api/js?sensor=false&language=zh-CN&key=AIzaSyCHN56rgx83Aov8o308nMSePnx_6miAVHk"></script>
+<script src="/static/common/js/turn/modernizr.2.5.3.min.js"></script>
+<script src='/static/common/js/echarts.min.js'></script>
+<script src="/static/common/js/turn/turn.js"></script>
+<script src="/static/common/layer3.1.1/layer.js"></script>
+<script src="/static/common/js/jquery.easing.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/swiper/swiper.js"></script>
+<script type="<?php AutoVersion('text/javascript"  src="/static/common/js/common.js');?>"></script>
+<script src="<?php AutoVersion('/static/v1/js/itinerary/books.js');?>"></script>
+<!-- <script src="<?php AutoVersion('/static/v1/js/itinerary/modeldate.js');?>"></script> -->
+</html>

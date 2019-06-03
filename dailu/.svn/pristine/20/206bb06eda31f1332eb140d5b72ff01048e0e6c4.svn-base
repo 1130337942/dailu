@@ -1,0 +1,82 @@
+.left_wap {
+	width: 240px;
+	min-height: 360px;
+}
+.person_prv {
+	text-align: center;
+	width: 240px;
+	height: 360px;
+	background: #fff url(/static/v1/img/user_bg.png) center bottom no-repeat;
+	border-radius: 4px;
+}
+.person_prv .headerPic{
+	margin-top: 40px;
+	width: 85px;
+	height: 85px;
+	border-radius: 50%;
+	background-color: #cccccc;
+	box-shadow: 0px 1px 8px 0px 
+		rgba(0, 0, 0, 0.12);
+	border: solid 3px #ffffff;
+}
+.person_prv  .uname {
+	margin-top: 15px;
+	font-weight: 700;
+}
+.person_prv .sign {
+	margin-top: 5px;
+	height: 55px;
+	font-size: 14px;
+	color:#b3b3b3;
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow:hidden;
+
+}
+.design {
+	margin: 0 auto;
+	display: block;
+	width: 136px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #659ff5;
+	box-shadow: 0px 2px 16px 0px 
+		rgba(101, 159, 245, 0.16);
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+}
+.center_list {
+	width: 100%;
+	background-color: #fff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+	margin-top: 8px;
+}
+.center_list .tit {
+	padding: 0 20px;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 50px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.center_list li {
+	font-size: 16px;
+	color:#666;
+	line-height: 45px;
+}
+.center_list li a {
+	box-sizing: border-box;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	padding: 0 20px;
+}
+.center_list li a:hover,
+.center_list li a.active {
+	border-left: 3px solid #659ff5;
+	background-color: #fafafa;
+}

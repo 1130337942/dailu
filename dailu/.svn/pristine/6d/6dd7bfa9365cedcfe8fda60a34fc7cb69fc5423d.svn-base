@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/static/v1/public/css/public_personal_center.css">
+<div class="left_wap fl">
+	<div class="person_prv">
+		<img class="headerPic" src="/static/v1/img/header.jpg" alt="">
+		<div class="uname"></div>
+		<div class="sign"></div>
+		<a class="design" href="/portal/addStrokeform/addStrokeform.html">设计行程</a>
+	</div>
+	<!-- <div class="center_list">
+		<div class="tit">常用信息</div>
+		<ul>
+			<li><a class="active" href="javascript:;">常用出行人</a></li>
+			<li><a href="javascript:;">常用收获地址</a></li>
+		</ul>
+	</div> -->
+
+	<div class="center_list">
+		<div class="tit">账户设置</div>
+		<ul>
+			<li><a href="javascript:;">基本信息</a></li>
+			<li><a href="javascript:;">账号安全</a></li>
+			<!-- <li><a href="javascript:;">第三方绑定</a></li> -->
+		</ul>
+	</div>
+</div>

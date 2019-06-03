@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/static/v1/public/css/public_personalBanner.css">
+<div class="publicBanner">
+	<img class="bannerImg" src="/static/v1/img/personalBanner.png" alt="">
+	<div class='userInfo'>
+		<div class="headerImg">
+			<img src="/static/v1/img/header.jpg" alt="">
+		</div>
+		<div class="user"></div>
+		<div class="personInfo">这个人很懒，什么都没有写</div>
+	</div>
+	<!-- <span class="upload">上传封面</span> -->
+</div>  
+<div class="navBox clearfix">
+		<ul class="leftBar clearfix fl">
+			<i class="b_border"></i>
+			<li class='fl active'><a href="/portal/aboutuser/personal_addTour.html">发布行程</a></li>
+			<li class='fl'><a href="/portal/aboutuser/personal_planTour.html">行程计划</a></li>
+			<li class='fl'><a href="/portal/aboutuser/personal_collectTour.html">我的收藏</a></li>
+			<li class='fl'><a href="/portal/aboutuser/personal_spot.html">我的景点</a></li>
+			<!-- <li class='fl'><a href="/portal/aboutuser/personal_recordTour.html">我的游记</a></li>
+			<li class='fl'><a href="#">我的分享</a></li> -->
+		</ul>
+		<div class="fr rightBar">
+			<!-- <span class="num">2400</span>经验值 <strong></strong>	<span class="num">600</span>U币 -->
+		</div>
+</div>

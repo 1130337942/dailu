@@ -1,0 +1,837 @@
+$(function($){
+//配置turn.json
+           
+            var day_list_img = [];
+            var daylist=[];
+            var trip = getUrlParam('trip');
+            var u = getUrlParam('them');
+            var this_uid = getCookie('uid');   
+            var ewm_url = window.location.href.replace('books','tripinfoshare');
+            ewm_url ='../store/getarcode?url='+ encodeURIComponent(ewm_url);
+            var issue = false ;
+            var travelHotelArr=[];
+            var travelFoodArr=[];
+            $('.phone_img .ewm,.hard_last .ewm').attr('src',ewm_url);
+            $.post('BooksData',{'collect_uid':this_uid,'uid':u,'trip_id':trip},function(res){
+                if(!res.Schedufing) return false ;
+
+                if(res.gailan.old_new && res.gailan.old_new == 'new'){//判断是不是老单
+                    $('.calendar.calendar_pat').remove()
+                }else{
+                    $('.calendar.new_calendar_pat').remove()
+
+                }
+
+
+                if(res.status!=0) {//未发布
+                    $('.issue').addClass('disabled').removeClass('issue');
+                    issue = true;
+                }
+                if(!res.hotel_money) res.hotel_money = [];
+                $(res.gailan.go_city_array).each(function(i,ele){
+                    switch(this.city_trc_name.trim())
+                    {
+                        case '铁路交通':
+                        this.traffic_ico = 'train'
+                        this.use_time = this.trainTime
+                        break;
+                        case '飞机交通':
+                        this.traffic_ico = 'plane';
+                        this.use_time = this.flightTime
+                        break;
+                        default:
+                        this.traffic_ico  = 'bus'
+                        this.use_time = '';
+                    }
+                    res.Schedufing[i].city_trc_name = this.city_trc_name;
+                    res.Schedufing[i].traffic_ico = this.traffic_ico;
+                    res.Schedufing[i].dis = this.dis;
+                    res.Schedufing[i].use_time = this.use_time;
+                })
+
+                /*行程线路部分 start*/
+                
+                var lineTitle = res.gailan.departure_city+'/';
+                var mainMaparr = [{lat:res.gailan.dep_lat,lng:res.gailan.dep_lng}];
+                var gailan = '';
+                var first_day  = 0;
+                $(res.gailan.go_city_array).each(function(i,ele){
+                    mainMaparr.push(this.position);
+                    lineTitle += this.city_name+'/';
+                    var city_daynum_arr = [];
+                    for(var k=0;k<this.city_daynum;k++){
+                        first_day ++
+                        city_daynum_arr.push(first_day);
+                    }
+                    this.city_daynum_arr = city_daynum_arr;
+                });
+               
+                lineTitle = lineTitle + res.gailan.return_city;
+                $('.overview .header_line').text(lineTitle);
+                $('.city_catalog_box .start_catalog span').text(res.gailan.departure_city)
+                $('.city_catalog_box .start_catalog .day').text(res.gailan.date)
+                $('.city_catalog_box .city_catalog_last span').text(res.gailan.return_city)
+                $('.city_catalog_box .city_catalog_last .day').text(res.xianlu.return_date)
+                var overviewRender = template.compile(overviewTemplate);
+                var overview_str = overviewRender(res.gailan);
+                    $('.city_catalog_last').before(overview_str);
+                renderMap(mainMaparr,$('.main_map img'),true)
+
+                /*行程链路部分 end*/
+
+
+                /*行程概览 start*/
+                var traffiCost  = res.traffic_money; 
+                var trafficTot = 0;
+                var traffic_table = '';
+                var bus_num  = 0 ; 
+                var plane_num = 0 ; 
+                var train_num = 0 ; 
+                $(traffiCost).each(function(i,ele) {
+                    this.line_cros = this.start_city +'—'+this.city_name;
+                    trafficTot += this.price*this.people;
+                    switch(this.city_trc_name.trim())
+                    {
+                        case '铁路交通':
+                        this.traffic_ico = 'train'
+                        train_num++;
+                        break;
+                        case '飞机交通':
+                        this.traffic_ico = 'plane'
+                        plane_num++;
+                        break;
+                        default:
+                        this.traffic_ico = 'bus'
+                        bus_num ++ ;
+                    }
+                    traffic_table +='<div class="list">'+
+                                   '    <span class="wap_1">'+
+                                   '        <i class="wap_ico '+this.traffic_ico+'"></i>'+ this.line_cros+
+                                   '    </span>'+
+                                   '    <span class="wap_2">¥'+ this.price +'起</span>'+
+                                   '    <span class="wap_3">x'+ this.people +'</span>'+
+                                   '    <span class="wap_3">¥'+this.price*this.people +'起</span>'+
+                            '</div>'
+                });
+                $('.wap_content_traffic').html(traffic_table);
+
+                var p_str = plane_num>0?'飞机'+plane_num+'次，':'';
+                var t_str = train_num>0?'铁路'+train_num+'次，':'';
+                var b_str = bus_num>0?'其它交通'+bus_num+'次，':'';
+                var  traffic_num =  p_str+t_str+b_str ;
+                $('.overview').find('.person_num').text(res.gailan.adult+'成人，'+res.gailan.children+'儿童').end()
+                .find('.day_num').text(res.gailan.day_num+'天').end()
+                .find('.start_city').text(res.gailan.departure_city).end()
+                .find('.last_city').text(res.gailan.return_city).end()
+                .find('.start_date').text(res.gailan.date).end()
+                .find('.hotel_num').text('共'+res.hotel_money.length).end()
+                .find('.traffic_num').text(traffic_num.substring(0,traffic_num.length-1));
+                /*行程概览 end*/
+
+                /*right_bar start*/
+                var right_bar_str = '';
+                    for(var i= 0; i<res.gailan.day_num;i+=2){
+                        var D2 = (i+2)>res.gailan.day_num?'':'/D'+(i+2);
+                        right_bar_str += '<li index='+(6+i) +' class="bar dayindex">D'+ (i+1)+D2+'</li>'
+                    }
+                    $('.book_right_bar ul').append(right_bar_str);
+                /*right_bar end*/
+
+                /*费用清单 start*/
+                    var hotel_tot =0;
+                    var hotel_table =''
+
+                        $(res.hotel_money).each(function(i,ele){
+                        hotel_tot += this.LowRate*this.number_night;
+                        hotel_table += '<div class="list">'+
+                                   '   <span class="wap_1">'+
+                                   '        <i class="wap_ico hotel"></i>'+this.hotel_name+
+                                   '    </span>'+
+                                   '    <span class="wap_2">¥'+(this.LowRate*1).toFixed(1)+'起</span>'+
+                                   '    <span class="wap_3">x'+this.number_night+'</span>'+
+                                   '    <span class="wap_3">¥'+(this.number_night*this.LowRate).toFixed(1)+'起</span>'+
+                            '</div>'
+                        })
+                        $('.wap_content_hotel').html(hotel_table);             
+                                   
+                    var eat_tot =0;
+                    var eat_table =''
+
+                        $(res.eat_money).each(function(i,ele){
+                        eat_tot += this.price*this.people;
+                        eat_table += '<div class="list">'+
+                                   '   <span class="wap_1">'+
+                                   '        <i class="wap_ico hotel"></i>'+this.name+
+                                   '    </span>'+
+                                   '    <span class="wap_2">¥'+(this.price*1).toFixed(1)+'起</span>'+
+                                   '     <span class="wap_3">x'+this.people+'</span>'+
+                                   '    <span class="wap_3">¥'+(this.price*this.people).toFixed(1)+'起</span>'+
+                            '</div>'
+                        })
+                        $('.wap_content_eat').html(eat_table);  
+                        $('.travel_tot_money').text((eat_tot+hotel_tot+trafficTot).toFixed(2))         
+                        var priceArr =[{value:eat_tot, name:'餐饮费用'},
+                                        {value:trafficTot, name:'交通费用'},
+                                        {value:hotel_tot, name:'住宿费用'}]
+                        renderEchats(priceArr)
+                        var p_right_str = '';
+                        for(var i=0;i<priceArr.length;i++){
+                            p_right_str += '<li class="fl"><span></span>'+priceArr[i].name +' '+(priceArr[i].value).toFixed(2)+'元</li>'
+                        }
+                        $('.percentBox .p-right ul').html(p_right_str);
+                /*费用清单 end*/
+
+                /*daylist start*/
+                 daylist = [];
+                day_list_img =[];
+                $(res.Schedufing).each(function(i,ele){
+                    var that =this;
+                    var sch_length = res.Schedufing.length-1;
+                    var foodTemp ={};
+                        foodTemp.len = this.day_arry.length;
+                        foodTemp.food =[];
+                    if(i<sch_length){
+                        this.day_arry[this.day_arry.length-1].hotel=res.Schedufing[i+1].prevHotel?res.Schedufing[i+1].prevHotel.hotel:this.day_arry[this.day_arry.length-1].hotel;
+                    }; //本城市最后一天的hotel
+                    $(that.day_arry).each(function(k,ele){
+                        var temp =this;
+                        var dayMapoint = [];
+                        travelHotelArr.push(this.hotel);
+                        if(this.eat){
+                            foodTemp.food.push(this.eat)
+                        }
+                        $(temp.day).each(function(){
+                            dayMapoint.push({'lng':this.this_lng,'lat':this.this_lat})
+                        })
+                        temp.use_time = that.use_time;
+                        temp.traffic_ico = that.traffic_ico;
+                        temp.city_trc_name = that.city_trc_name;
+                        temp.dis = that.dis;
+                        temp.mapPosition = dayMapoint;
+                        temp.city_image_url = that.city_image_url;
+                        temp.two_city = this.two_city?this.two_city:that.day_arry[0].two_city;
+                        temp.two_city_Introduction = that.city_Introduction;
+                        temp.two_city_abbreviation = that.city_abbreviation;
+                        temp.one_city_abbreviation = daylist.length>0?daylist[daylist.length-1].two_city_abbreviation :'';
+                        temp.one_city_Introduction = daylist.length>0?daylist[daylist.length-1].two_city_Introduction :'';
+                        daylist.push(temp);
+                        day_list_img.push(dayMapoint);
+                    })
+                    travelFoodArr.push(foodTemp);
+                })
+
+                    
+
+                 switch(res.gailan.return_cityInfo.city_trc_name.trim())
+                    {
+                        case '铁路交通':
+                        res.gailan.return_cityInfo.use_time = res.gailan.return_cityInfo.trainTime;
+                        break;
+                        case '飞机交通':
+                        res.gailan.return_cityInfo.use_time = res.gailan.return_cityInfo.flightTime;
+                        break;
+                        default:
+                        res.gailan.return_cityInfo.use_time = res.gailan.return_cityInfo.trafficTime;
+                    }
+                daylist[daylist.length-1].one_city_Introduction =res.Schedufing[res.Schedufing.length-1].city_Introduction;
+                daylist[daylist.length-1].one_city_abbreviation =res.Schedufing[res.Schedufing.length-1].city_abbreviation;
+                daylist[daylist.length-1].two_city_Introduction ='';
+                daylist[daylist.length-1].two_city_abbreviation ='';
+                daylist[daylist.length-1].city_trc_name =res.gailan.return_cityInfo.city_trc_name;
+                daylist[daylist.length-1].dis =res.gailan.return_cityInfo.dis;
+                daylist[daylist.length-1].use_time =res.gailan.return_cityInfo.use_time;
+                var dayListObj = {};
+                dayListObj.daylist = daylist;
+                var dayListRender = template.compile(dayListTemplate);
+                var html = dayListRender(dayListObj);
+                    tot_day= daylist.length;
+                $('.calender_left .day_num').text(tot_day+'天')
+                var calendarRender = template.compile(calendarTemplate);
+                var calendarHtml = calendarRender(dayListObj);
+                $('.flag_before').before(html)
+                $('.day_wap_outer .day_inner').html(calendarHtml);
+                var calendarHotelStr = '';
+                var calendarFoodStr = '';
+                $(travelHotelArr).each(function(i,ele){
+                      calendarHotelStr+= '<div class="bottom_hotel_outer fl">'+
+                        '<div class="bottom_hotel_list">';
+                        if(this.hotel_name!=''){
+                            calendarHotelStr += '<span>住</span>'+ this.hotel_name 
+                        }
+                        if(i==travelHotelArr.length-1){
+                            calendarHotelStr += '<span>住</span>温馨的家'
+                        }
+                       calendarHotelStr+='</div></div>';
+                });
+
+                $(travelFoodArr).each(function(){
+                        var _self = this;
+                         calendarFoodStr+='<div style="width:'+(228*this.len+this.len)+'px;" class="bottom_food_outer fl">'+
+                            '<div class="bottom_food_list">'
+                                $(this.food).each(function(i,ele){
+                                   calendarFoodStr+=  i<_self.food.length-1?this.store_name+'、':this.store_name
+                                   
+                                })
+                               calendarFoodStr+='</div></div>';
+                })
+
+                $('.calendar_pat .bottom_hotel_box ,.new_calendar_pat .bottom_hotel_box').html(calendarHotelStr);
+                $('.calendar_pat .bottom_food_box').html(calendarFoodStr);
+                    calcspotHeight()
+                    loadApp()
+
+                  $('.book_right_bar').on('click','.bar',function(){
+                        if($(this).hasClass('active')) return false;
+                        $(this).addClass('active').siblings().removeClass('active');
+                        var index = $(this).attr('index');
+                         $("#flipbook").turn("page",index);
+                  })
+                $('.day_list .map img').each(function(i,ele){
+                    renderMap(day_list_img[i],$(this))
+
+                })
+
+                     $('#flipbook .page').each(function(i,ele){
+                    
+                    if(i%2 ==!0){ 
+                        $(this).css({'backgroundColor':'#f0f0f0'})
+                    }else{
+                        $(this).find('.page_tit').css({'textAlign':'right'})
+                    }
+                })
+               
+                /*daylist end*/
+                /*f发布行程*/
+                $('.issue').on('click',function(){
+                    if(issue) return false ;
+                    $.post('publish_trip',{'uid':u,'trip_id':trip},function(res){
+                        if(res.status=='ok'){
+                            $('.issue').addClass('disabled')
+                             issue = true ;
+                             window.location.href= '/portal/itinerary/tripInfo.html?them='+u + '&trip='+trip;
+                        }else{
+                             alert('行程发布失败');
+                        }
+                        
+                      
+                    },'json')
+                })
+     },'json')
+        
+       
+                                      
+                // loadApp()
+                function loadApp() {
+                    $('#flipbook').turn({
+                        // Width
+                        width: 1100,
+                        // Height
+                        height: 660,
+                        // Elevation
+                        elevation: 300,
+                        display: 'double',
+                        page:2,//初始页面
+                        // pages:10,
+                        // Enable gradients
+                        gradients: true,
+                        // Auto center this flipbook
+                        autoCenter: true,
+                        when: {
+                            turning: function (e, page, view) {
+                                var totPage = $("#flipbook").turn("pages")
+                                if(page<2||page>(totPage-1)) {
+                                    return false;
+                                }
+                                 $('.day_list .map img').each(function(i,ele){
+                                     var index =  $(this).attr('index')
+                                     renderMap(day_list_img[index],$(this))
+
+                                })  
+                                
+                            },
+                            turned: function (e, page, view) {
+                                $('.book_right_bar .bar').each(function(){
+                                    if(page == $(this).attr('index')||page==($(this).attr('index')*1+1)){
+                                        $(this).addClass('active').siblings().removeClass('active');
+                                    }
+                                })
+                                var total = $("#flipbook").turn("pages");//总页数                        
+                          
+                            }
+                        }
+                    })
+                }
+
+		$(window).on('keydown',function(e){
+			if(e.keyCode==37){
+				$('#flipbook').turn('previous');
+			}
+			if(e.keyCode==39){
+				$('#flipbook').turn('next');
+			}
+		})
+        
+        $('.new_calendar_pat .day_wap_outer,.calendar_pat .day_wap_outer').on('click','.day_list_title',function(){
+            var index = $(this).parent('.day_list').attr('index');
+           renderMap(day_list_img[index],$('.cimgMask img'));
+           $('.cimgMask').show().on('click',function(){
+                $(this).hide();
+           })
+           $(window).on('keyup',function(event){
+                if(event.keyCode==27){
+                   $('.cimgMask').hide();
+                }
+           })
+        })
+         
+
+
+
+         var dayListTemplate = '{{each daylist as value i}}\
+                    <div class="page">\
+                        <div class="page_inner page_list">\
+                            <div class="page_head clearfix">\
+                                <span class="fl">日程安排</span><span class="fr">袋鹿旅游</span>\
+                            </div>\
+                            {{if i==0}}\
+                            <div class="page_tit">\
+                                <div class="book_title">日程安排</div>\
+                                <div class="">\
+                                    <span>SCHEDULE</span>\
+                                </div>\
+                            </div>\
+                            {{/if}}\
+                            <div class="day_list">\
+                                <div class="day_list_tit city">\
+                                    <span class="day_num">D{{i+1}}</span>\
+                                    <span class="city_line">{{if value.one_city}}{{value.one_city}} —— {{/if}}{{value.two_city}}</span>\
+                                    {{if value.start_time}}\
+                                    <span class="time_line">{{value.start_time + " - " + value.end_time }}</span>\
+                                    {{else}}\
+                                    <span class="time_line">{{if i==0}}13:00{{else}}09:00{{/if}} -19:00</span>\
+                                    {{/if}}\
+                                    <span class="date fr">{{value.date}}</span>\
+                                </div>\
+                                <div class="map">\
+                                    <img index = "{{i}}" src="" alt="">\
+                                </div>\
+                                <div class="inner_box">\
+                                    {{if value.one_city}}\
+                                    <div class="inner_tit circle">\
+                                        <span class="cityName">{{value.one_city}}</span> <span class="tip">{{value.one_city_abbreviation}}</span>\
+                                    </div>\
+                                    <div class="inner_msg">{{value.one_city_Introduction}}</div>\
+                                    <div class="point city2city">\
+                                        <i class="wap_ico {{value.traffic_ico}}"></i>\
+                                        <span class="p_line">{{value.one_city}}-{{value.two_city}}</span> | {{value.city_trc_name}}.{{value.dis}}公里·{{value.use_time}}小时\
+                                    </div>\
+                                    <div class="inner_tit circle">\
+                                        <span class="cityName">{{value.two_city}}</span> <span class="tip">{{value.two_city_abbreviation}}</span>\
+                                    </div>\
+                                    <div class="inner_msg">{{value.two_city_Introduction}}</div>\
+                                    <div class="p_line" style="margin:20px 0">\
+                                        <i class="wap_ico taxi"></i>\
+                                        接{{value.city_trc_name}}服务\
+                                    </div>\
+                                    {{/if}}\
+                                    {{if value.hotel.hotel_name}}\
+                                    <div class="hotel_wap">\
+                                        <div class="inner_tit point">\
+                                            <span class="cityName hotel">{{value.hotel.hotel_name}}</span> \
+                                        </div>\
+                                        <div class="deeptime">\
+                                            入住日期 {{value.date}}\
+                                        </div>\
+                                        <div class="">联系电话：<span>{{value.hotel.tel}}</span></div>\
+                                        <div class="">详细地址：<span>{{value.hotel.address}}</span></div>\
+                                    </div>\
+                                    {{/if}}\
+                                    <div class="spot_wap">\
+                                        {{each value.day as item k}}\
+                                        <div class="spot_list">\
+                                            <div class="inner_tit">\
+                                                <em>{{k+1}}</em>\
+                                                <span class="cityName">{{item.info.spot_name}}</span> <span class="tip">适玩{{item.info.play_time}}</span>\
+                                            </div>\
+                                            <div class="spot_info">\
+                                                <div class="clearfix" style="margin-bottom: 10px;">\
+                                                    <div class="img_box fl">\
+                                                        <img src="{{item.info.spot_image_url}}" alt="">\
+                                                    </div>\
+                                                    <div class="fr spot_msg">\
+                                                        <div class="on_time">营业时间：<span>{{item.info.business_hours}}</span></div>\
+                                                        <div class="one_pay">人均消费：{{#item.info.attractions_tickets}}</div>\
+                                                        <div class="address">详细地址：<span>{{item.info.address}}</span></div>\
+                                                        <div class="phone">联系电话：<span>{{item.info.phone}}</span></div>\
+                                                    </div>\
+                                                </div>\
+                                                <div>{{item.info.absture}}</div>\
+                                            </div>\
+                                        </div>\
+                                        {{/each}}\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </div>\
+                    {{/each}}'
+        var overviewTemplate = '{{each go_city_array as value i}}\
+                                    <div class="city_catalog">\
+                                    <i class="zxq_ico">{{i+1}}</i>\
+                                    <span>{{value.city_name}}</span>\
+                                        <div class="day fr">\
+                                        {{each value.city_daynum_arr as item k}}\
+                                            <span>D{{item}}</span>\
+                                        {{/each}}\
+                                        </div>\
+                                    </div>\
+                                {{/each}}'
+
+        var calendarTemplate =  '{{each daylist as value i}}\
+                        <li class="day_list fl" index={{i}}>\
+                            <div class="day_list_title clearfix" start_time={{value.start_time}}>\
+                                <div class="day_index fl">D{{i+1}}</div>\
+                                <div class="day_tit_r fl">\
+                                    {{if i==daylist.length-1}}\
+                                      <div class="day_city">{{value.one_city}}</div>\
+                                    {{else}}\
+                                      <div class="day_city">{{value.two_city}}</div>\
+                                    {{/if}}\
+                                    <div class="day_date">{{value.date}}</div>\
+                                </div>\
+                            </div>\
+                            {{if i==0}}\
+                             <div class="spot_list">\
+                                <div class="list_type traffic">\
+                                    <div class="tit">{{value.one_city}} — {{value.two_city}}</div>\
+                                    <div class="use_time">\
+                                        <span>{{value.city_trc_name}}</span>·<span class="time">{{value.use_time}}小时</span>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            {{/if}}\
+                            {{each value.day as item k}}\
+                            <div class="spot_list">\
+                                <div index={{k}} class="list_type {{if item.this_floor_index == 4}} shopping {{else}} spot {{/if}}">\
+                                    {{if item.eat_info&&item.eat_info.length>0}}\
+                                    <span class="sign">美食</span>\
+                                    {{/if}}\
+                                    <div class="tit">\
+                                    {{if item.this_floor_index =="4"}}<span class="type">购</span>\
+                                    {{else if item.this_floor_index =="2"}}<span class="type">夜</span>\
+                                    {{else}}<span class="type">景</span>\
+                                    {{/if}}\
+                                    {{item.info.spot_name}}</div>\
+                                    <div class="use_time">\
+                                        <span>推荐</span>·<span class="time">{{item.info.play_time}}</span>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            {{/each}}\
+                            {{if i<(daylist.length-2) && daylist[i+1].one_city }}\
+                            <div class="spot_list">\
+                                <div class="list_type traffic">\
+                                    <div class="tit">{{daylist[i+1].one_city}} — {{daylist[i+1].two_city}}</div>\
+                                    <div class="use_time">\
+                                        <span>{{daylist[i+1].city_trc_name}}</span>·<span class="time">{{daylist[i+1].use_time}}小时</span>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            {{/if}}\
+                            {{if i==daylist.length-1}}\
+                            <div class="spot_list">\
+                                <div class="list_type traffic">\
+                                    <div class="tit">{{value.one_city}} — {{value.two_city}}</div>\
+                                    <div class="use_time">\
+                                        <span>{{value.city_trc_name}}</span>·<span class="time">{{value.use_time}}小时</span>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            {{/if}}\
+                        </li>\
+                        {{/each}}'
+        /*图片地图 start*/
+       function renderMap (pointArr,selector,isCitys){
+            // var pointArr= [{'lng':109.501375,'lat':26.128291},{'lng':114.335359,'lat':30.517291},{'lng':116.378816,'lat':28.200323},{'lng':120.158113,'lat':30.004871}]
+            var lngarr=[];
+            var latarr=[];
+            for(var i=0;i<pointArr.length;i++){
+                lngarr.push(pointArr[i].lng)
+                latarr.push(pointArr[i].lat)
+            }
+            var center={}
+            center.lng =(Math.max.apply(null,lngarr )+Math.min.apply(null,lngarr))/2;
+            center.lat =(Math.max.apply(null,latarr )+Math.min.apply(null,latarr))/2;
+            var markerstr = '';
+            var pathstr = '';
+            if(isCitys){ //游玩城市概览 显示出发城市
+              markerstr = '&markers=icon:http://www.dailuer.com/static/v1/img/map/departureicon.png|'+pointArr[0].lat+','+pointArr[0].lng;
+              for(var i= 0;i<pointArr.length-1;i++){
+                markerstr += '&markers=color:red|label:'+(i +1) +'|'+pointArr[i+1].lat+','+pointArr[i+1].lng;
+                pathstr += '|'+pointArr[i+1].lat+','+pointArr[i+1].lng;
+              }
+            }else{
+              for(var i= 0;i<pointArr.length;i++){
+                markerstr += '&markers=color:red|label:'+(i +1) +'|'+pointArr[i].lat+','+pointArr[i].lng;
+                pathstr += '|'+pointArr[i].lat+','+pointArr[i].lng;
+              }
+            }
+            /*for(var i= 0;i<pointArr.length;i++){
+                markerstr += '&markers=color:red|label:'+(i+1) +'|'+pointArr[i].lat+','+pointArr[i].lng;
+                pathstr += '|'+pointArr[i].lat+','+pointArr[i].lng;
+            }*/
+            //   AIzaSyAC3WnNnGZrYPuklsqw19790DmJ99c5xNU
+            var imgsrc = 'http://maps.google.cn/maps/api/staticmap?key=AIzaSyDyRjVndlLtlpWVIg_RSfgGYLUUvclNLGw&center='+center.lat+','+center.lng +'zoom=15&size=678x400&maptype=roadmap'+markerstr+'&path=color:0xFF0000|weight:5'+pathstr;
+            // var imgsrc = 'http://maps.google.cn/maps/api/staticmap?center='+center.lat+','+center.lng +'zoom=1&size=678x400&maptype=roadmap'+markerstr+'&path=color:0xFF0000|weight:5'+  pathstr +'&key=AIzaSyBcGy-zXcXLVGAmVvG3IJsnw_WVVIH8cOY&signature=VWWPUMyKSepuBHEedSs7bSGC0Y0=';
+                imgsrc = encodeURI(imgsrc)
+                // var keystr ='&signature=KVcIQXhgPfSLBY-FQZjznrpuYvg='
+                // imgsrc = imgsrc + keystr
+            selector.attr('src',imgsrc)
+    }
+
+     /*图片地图end*/
+
+      function renderEchats(priceArr){
+             // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('p-left'));
+ 
+        // 指定图表的配置项和数据
+
+                    var option = {
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b}: {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            x: 'right',
+                            data:['餐饮费用','交通费用','住宿费用']
+                        },
+                        color:['#975ee4','#fbd336','#3aa0ff'],
+                        series: [
+                        {
+                            name:'费用类型',
+                            type:'pie',
+                            radius:['50%', '65.5%'],
+                            avoidLabelOverlap: false,
+                            label: {
+                             normal: {
+                                show: true,
+                                z:1,
+                                position: 'center',
+                                formatter:function(){
+                                    return '总费用\n '+(priceArr[0].value+priceArr[1].value+priceArr[2].value).toFixed(2)
+                                },
+                                textStyle: {
+                                    fontSize: '20',
+                                    fontWeight: 'bold',
+                                    backgroundColor:'#fff',
+                                    textAlign:'center',
+
+                                }
+
+                            },
+                            emphasis: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: '20',
+                                    fontWeight: 'bold',
+                                    backgroundColor:'#fff',
+                                    padding: 20
+                                },
+                                formatter:function(p){
+                                    return p.data.name
+                                },
+                                z:2
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data:priceArr
+                    }
+                    ]
+                };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }
+    $('.app_btn,.ewm').on('click',function(){
+        $('.ewm').toggleClass('scale');
+    })
+     
+    $('.left_tab span').on('click',function(){
+        $('.spotmsg').hide();
+        if($(this).hasClass('active')) return false;
+        $(this).addClass('active').siblings().removeClass('active');
+        switch($(this).attr('tar'))
+                    {
+                        case 'books':
+                       $('.book_box').show().siblings().hide()
+                        break;
+                        case 'share':
+                       $('.down2share').show().siblings().hide()
+                        break;
+                        case 'date':
+                       $('.calendar').show().siblings().hide()
+                        break;
+                    }
+    })
+    
+     $('.download').on('click',function(){
+            window.open('/portal/itinerary/downpdf.html?them='+u + '&trip='+trip);
+    })
+
+     /*日历模式*/
+     var calendarIndex = 0;
+     var tot_day ;
+     $('.calendar_pat .next_btn ,.new_calendar_pat .next_btn').on('click',function(){
+        if(calendarIndex >= (tot_day-5)) return false;
+        calendarIndex ++
+        var range = -calendarIndex* 229 +'px';
+        // console.log(range)
+        $('.day_inner').css({'transform':'translateX('+range+')'})
+        $('.calendar_pat .bottom_food .bottom_food_box').css({'transform':'translateX('+range+')'})
+        $('.bottom_hotel_box').css({'transform':'translateX('+range+')'})
+     })
+     $('.calendar_pat .prev_btn ,.new_calendar_pat .prev_btn').on('click',function(){
+        if (calendarIndex ==0) return false ;
+        calendarIndex --
+        var range = -calendarIndex* 229 +'px';
+          // console.log(range)
+        $('.day_inner').css({'transform':'translateX('+range+')'})
+        $('.calendar_pat .bottom_food .bottom_food_box').css({'transform':'translateX('+range+')'})
+        $('.bottom_hotel_box').css({'transform':'translateX('+range+')'})
+     })
+
+     $('.day_inner').on('click','.list_type ',function(){
+        $('.spotmsg').hide();
+        var d_index = $(this).parents('.day_list').attr('index');
+        var s_index = $(this).attr('index');
+        var bgc = $(this).css('backgroundColor');
+        var top = $(this).offset().top;
+        var left = $(this).offset().left+229;
+        if(!s_index) return false ;
+        var foodStr = '';
+        var foodArr = daylist[d_index].day[s_index].eat_info? daylist[d_index].day[s_index].eat_info:[];
+            $(foodArr).each(function(){
+                foodStr+=this.name+' ';
+            })
+            foodStr = foodStr?foodStr:'不详';
+        $('.spotmsg .title .tit_m').html(daylist[d_index].day[s_index].info.spot_name);
+        if(daylist[d_index].day[s_index].info.suit_season==''){
+            $('.spotmsg .play_suit').hide();
+        }
+        var attractions_tickets = daylist[d_index].day[s_index].info.attractions_tickets?daylist[d_index].day[s_index].info.attractions_tickets:'免费';
+        $('.spotmsg .play_time').html('适玩时间：'+daylist[d_index].day[s_index].info.play_time);
+        $('.spotmsg .play_suit').html('适玩月份：'+daylist[d_index].day[s_index].info.suit_season);
+        $('.spotmsg .play_cost').html('景点门票：'+attractions_tickets);
+        $('.spotmsg .play_open').html('开放时间：'+daylist[d_index].day[s_index].info.business_hours);
+        $('.spotmsg .foodlist').html('附近美食：'+foodStr);
+        $('.spotmsg').show().css({'top':top,'left':left}).find('.title').css({'backgroundColor':bgc});
+     })
+     $('.close').on('click',function(){
+            $(this).parents('.spotmsg').hide();
+     })
+
+    $('.day_wap_outer').on('scroll',function(){
+        $('.spotmsg').hide();
+        if($(this).scrollTop()>0){
+            $('.new_calendar_pat .prev_btn,.new_calendar_pat .next_btn').hide();
+        }else{
+            $('.new_calendar_pat .prev_btn,.new_calendar_pat .next_btn').show();
+        }
+    });
+
+     function calcspotHeight (){
+        var oneMinute = 47/60;
+        var reg = /[\u4e00-\u9fa5]/g; //截取时间单位
+        var names = name.match(reg);
+      
+
+        $('.calendar_pat .use_time .time').each(function(){
+            var this_time = $(this).html(); 
+            var this_height = 0;
+            var unit = this_time.match(reg)
+            if(unit){
+                unit = unit.join("");
+                switch(unit)
+                {
+                    case '小时':
+                    this_height = parseFloat(this_time)*60*oneMinute ;
+                    break;
+                    case '天':
+                     this_height = parseFloat(this_time)*10*60*oneMinute ;
+                    break;
+                    default:
+                    this_height = parseFloat(this_time)*10*60*oneMinute ;
+                }
+            }else{
+               this_height =63 ;
+            }
+
+           $(this).parents('.list_type').css({'height':this_height+'px'});
+           if(this_height>=54){
+                $(this).parents('.list_type').find('.tit').css({paddingTop:'10px'});
+           }
+           if(this_height<=44){
+
+           }
+
+        })
+
+        $('.new_calendar_pat .day_list_title ').each(function(){
+            var mbt = getHour('05:00:00',$(this).attr('start_time'))*46;
+            $(this).css('marginBottom',mbt+'px');
+        })
+
+         $('.new_calendar_pat .use_time .time').each(function(){
+            var this_time = $(this).html(); 
+            var this_height = 0;
+            var unit = this_time.match(reg)
+            if(unit){
+                unit = unit.join("");
+                switch(unit)
+                {
+                    case '小时':
+                    this_height = parseFloat(this_time)*60*oneMinute ;
+                    break;
+                    case '天':
+                     this_height = parseFloat(this_time)*10*60*oneMinute ;
+                    break;
+                    default:
+                    this_height = parseFloat(this_time)*10*60*oneMinute ;
+                }
+            }else{
+               this_height =63 ;
+            }
+
+           $(this).parents('.list_type').css({'height':this_height+'px'});
+           if(this_height>=54){
+                $(this).parents('.list_type').find('.tit').css({paddingTop:'10px'});
+           }
+           if(this_height<=44){
+                $(this).parents('.list_type').find('.tit').addClass('ellip');
+           }
+
+        })
+
+     }
+
+     function getHour(s1, s2) {
+        s1= s1+':00'
+        s2= s2+':00'
+        var reDate = /\d{4}-\d{1,2}-\d{1,2} /;
+        s1 = new Date((reDate.test(s1) ? s1 : '2017-1-1 ' + s1 ).replace(/-/g, '/'));
+        s2 = new Date((reDate.test(s2) ? s2 : '2017-1-1 ' + s2 ).replace(/-/g, '/'));
+        var ms = s2.getTime() - s1.getTime();
+        if (ms < 0) return 0;
+        return ms / 1000 / 60 / 60;
+    }
+    //自己注意传递要么都带日期，要么都不带，否则计算出来的不对
+    // console.log(getHour('2017-8-23 12:05:05', '2017-8-25 10:05:05'))
+    // console.log(getHour('05:00:00', '08:30:00'))
+})

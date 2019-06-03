@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>生成海报</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/aboutUser/create_poster.css');?>">
+</head>
+<body>
+
+	<include file="public@publicHeader"/>
+		<div class="main clearfix">
+			<div class="left_wap fl">
+				<div class="downPicBox">
+					<img id="hh" class="hide" src="/static/v1/img/logo2.png" alt="">
+					<div class="trip_ewmbox">
+						<div id="trip_ewm"></div>
+					</div>
+					<div class="poster_img_box hide">
+						<div class="editImg">
+						<input class="file_input" type="file" id="file">
+						重新上传</div>
+						<img class="poster_img" src="" alt="">
+					</div>
+					<div class="inner">
+						<input class="file_input" type="file" id="file">
+						<img class="poster1" src="/static/v1/img/poster_1.png" alt="">
+						<div class="t_poster">
+							单击上传海报底图
+
+						</div>
+						
+					</div>
+				</div>
+					
+			</div>
+			<div class="right_wap fr">
+				<div class="cover-wrap" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center;">	
+						<div class="" style="width:900px;height:600px;margin:100px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+							<div id="clipArea" style="margin:10px;height: 520px;"></div>
+							<div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+								<button id="clipBtn" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;">保存背景</button>
+							</div>
+						</div>
+				</div>
+				<div class="write_info">
+					<div class="title_info">
+						<input type="text" placeholder="请输入要导出海报的文件名">
+					</div>
+					<div class="tips">出团信息（展示在移动端行程单中）</div>
+					<div class="wap">
+						<span class="name">出团人数</span><input id="peopleNum" type="text" placeholder="只填写数字，如12">
+					</div>
+					<div class="wap">
+						<span class="name">出团价格</span><input id="team_price" type="text" placeholder="只填写数字，如99或9.9">
+					</div>
+					<div class="wap">
+						<span class="name">出团日期</span><input id="departure_date" type="text" placeholder="">
+					</div>
+					<div class="cover_wap clearfix">
+						<div class="cover_left fl">
+							<div class="waplist">上传行程封面 <span>上传封面 <input type="file" id="coverfile"></span></div>
+							<div class="file_tip">格式：JPG、PNG，尺寸：290*198PX</div>
+							<div class="waplist">
+								上传自定义Logo <span>上传Logo <input type="file" id="logofile"></span>
+							</div>
+							<div class="file_tip">格式：JPG、PNG，尺寸：290*198PX</div>
+
+						</div>
+						<div class="cover_right fr">
+							<img class="coverimg" src="" alt="">
+							<img class="logo" src="" alt="">
+						</div>
+					</div>
+					<div class="ctrl_wap">
+						<span class="up_btn disabled">
+						<!-- <input type="file" id="file"> -->保存海报
+						</span>
+						<span class="down_btn">下载海报</span>
+						<span class="tphone_btn">导出到手机
+							<div class="pic_ewm">
+							</div>
+							
+						</span>
+					</div>
+					<div class="gs">格式：JPG、PNG，小于 1M，尺寸：640*1008PX</div>
+				</div>
+				<div class="zy_poster">
+					<img src="/static/v1/img/zy_poster.png" alt="">
+					<div class="zn">
+						操作指南：二维码可自由拖动至图片任意位置
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="coverLoad">
+			<div class="logo_file" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center;">	
+						<div class="" style="width:900px;height:600px;margin:100px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+							<div id="clipArea_logo" style="margin:10px;height: 520px;"></div>
+							<div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+								<button id="clipBtn_logo" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;">保存logo</button>
+							</div>
+						</div>
+			</div>
+			<div class="cover_file" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center;">	
+						<div class="" style="width:900px;height:600px;margin:100px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+							<div id="clipArea_cover" style="margin:10px;height: 520px;"></div>
+							<div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+								<button id="clipBtn_cover" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;">保存封面</button>
+							</div>
+						</div>
+			</div>
+		</div>
+	
+
+	<include file="public@publicFooter"/>
+
+	
+
+</body>
+<!-- <script src="http://code.jquery.com/jquery-1.7.0.min.js"></script> -->
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript"  src="/static/common/js/pdf.js/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="/static/common/js/pdf.js/canvas2image.js"></script>
+<script type="text/javascript"  src="/static/common/js/pdf.js/html2canvas.min.js"></script>
+<script src="/static/common/js/cover_js/iscroll-zoom.js"></script>
+<script src="/static/common/js/cover_js/hammer.js"></script>
+<script src="/static/common/js/cover_js/lrz.all.bundle.js"></script>
+<script src="/static/common/js/cover_js/jquery.photoClip.min.js"></script>
+<script src="/static/common/layer3.1.1/layer.js"></script>
+<script src="/static/common/laydate/laydate.js"></script>
+<script type="text/javascript"  src="<?php AutoVersion('/static/common/js/common.js');?>"></script>
+
+<script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/aboutUser/create_poster.js');?>"></script>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>机票列表</title>
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/css/swiper.min.css"> -->
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/airList.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_store"/>
+	<div class="searchwap clearfix">
+		<div class="fl city">
+			<div class="tip"><span>出发城市</span><span class="change"></span><span>到达城市</span></div>
+			<div class="put_in">
+				<input id='leave_city' type="text" value="{$_COOKIE['start_city']}" size="15" name="leave_city" mod="address|notice" mod_address_source="hotel" mod_address_suggest="" mod_address_reference="cityid" mod_notice_tip="中文/拼音" autocomplete="off"/>
+				<input id="cityid" name="cityid" type="hidden" value="" />
+				<input id='dest_city' type="text" value="{$_COOKIE['end_city']}" size="15" name="dest_city" mod="address|notice" mod_address_source="hotel" mod_address_suggest="" mod_address_reference="cityid" mod_notice_tip="中文/拼音" autocomplete="off"/>
+				<input id="cityid" name="cityid" type="hidden" value="" />
+				<!-- <input type="text" id="leave_city" value={$_COOKIE['start_city']}><input type="text" id="dest_city" value={$_COOKIE['end_city']}> -->
+			</div>
+		</div>
+		<div class="fl type">
+			<div class="dan"><i class="checkBox on"></i>单程</div>
+			<div class="wangfan"><i class="checkBox"></i>往返 </div>
+		</div>
+		<div class="fl leave_day">
+			<div class="tip">出发日期</div>
+			<div class="put_in"><input id="leave_day" type="text" value={$_COOKIE['date']}></div>
+		</div>
+		<div class="fl dest_day dan">
+			<div class="tip">返程日期</div>
+			<if condition="(empty($_COOKIE['rdate'])) ">
+				<div class="put_in"><input id="dest_day" type="text" value=''></div>	
+			<else />
+				<div class="put_in"><input id="dest_day" type="text" value={$_COOKIE['rdate']}></div>	
+			</if>
+		</div>
+		<div class="fr search_btn">搜 索</div>
+	</div>
+	<!-- <div class="sale">
+		<div class="sale_box">
+			<ul class="clearfix daylist_box">
+				
+			</ul>
+		</div>
+		<i class="prev"></i>
+		<i class="next"></i>
+		<div class="saleDate">
+			展开特价日历
+		</div>
+	</div> -->
+	<div class="filter_box">
+		<span class="tit">筛选</span>
+		<ul  class="clearfix">
+			<li class="filter fl">
+				<span>起飞时段</span>
+				<div class="child_f hide">
+					<p><i class="checkBox on"></i>00:00-10:00</p>
+					<p><i class="checkBox"></i>10:00-14:00</p>
+					<p><i class="checkBox"></i>14:00-19:00</p>
+					<p><i class="checkBox"></i>19:00-24:00</p>
+				</div>
+			</li>
+			<li class="filter fl">
+				<span>航空公司</span>
+				<div class="child_f hide">
+					<p><i class="checkBox on"></i>厦门航空</p>
+					<p><i class="checkBox"></i>海南航空</p>
+					<p><i class="checkBox"></i>首都航空</p>
+					<p><i class="checkBox"></i>上海航空</p>
+					<p><i class="checkBox"></i>长龙航空</p>
+					<p><i class="checkBox"></i>中国国航</p>
+				</div>
+			</li>
+			<li class="filter fl">
+				<span>舱位类型</span>
+				<div class="child_f hide">
+					<p><i class="checkBox on"></i>经济舱</p>
+					<p><i class="checkBox"></i>头等/商务舱</p>
+				</div>
+			</li>
+			<li class="filter fl">
+				<span>机型</span>
+				<div class="child_f hide">
+					<p><i class="checkBox on"></i>中型</p>
+					<p><i class="checkBox"></i>大型</p>
+				</div>
+			</li>
+		</ul>
+		
+	</div>
+	<div class="listWap">
+		<div class="title">
+			<span class="flight_info">航班信息</span>
+			<span class="departure">起飞时间</span>
+			<span class="arrive">到达时间</span>
+			<span class="rate">准点率</span>
+			<span class="flight_price">价格</span>
+		</div>
+		<div class="airList">
+			<ul>
+				<volist name="flight_list_info" id="vo">
+					<li class="list">
+						<div class="clearfix">
+							<div class="fl flight_info">
+								<div class="airname">{$vo.airlines}</div>
+								<div class="airtype">{$vo.flightNum} {$vo.flightTypeFullName}</div>
+							</div>
+							<div class="fl departure">
+								<div class="time">{$vo.dptTime}</div>
+								<div class="place">{$vo.dptAirport}{$vo.dptTerminal}</div>
+							</div>
+							<div class="fl arr"></div>
+							<div class="fl arrive">
+								<div class="time">{$vo.arrTime}</div>
+								<div class="place">{$vo.arrAirport}{$vo.arrTerminal}</div>
+							</div>
+							<div class="fl rate">--</div>
+							<div class="fl flight_price">
+								<div class="price">
+									<strong>¥ {$vo.barePrice}</strong>起
+								</div>
+								<div class="reb">{$vo.cabin}{$vo.discount}折</div>
+							</div>
+							<div class="ctrl_bar fl"  flight_num="{$vo.flightNum}">订 票</div>
+
+						</div>
+						<div class="list_box hide">
+							<div class="tit">
+								<span class="pro_name">产品名称</span>
+								<span class="rule">规则简介</span>
+								<span class="air_price">机票价格</span>
+							</div>
+							<div class="info_list">
+								
+							</div>
+						<!-- 	<div class="air_info">
+								<span class="pro_name">经济舱精选</span>
+								<span class="rule">退改¥138起  直营  行李额说明</span>
+								<span class="air_price"><strong>¥ 460 </strong><a href="javascript:;">立即预定</a></span>
+								<div class="ruleInfo hide">
+									<div class="rule_tit"><span>退改签规则</span> (以下为成人退改签规则说明)</div><div>舱位(Z)：票面¥460
+									同舱更改条件：航班起飞前2小时之前，改期手续费为票面价的30%；航班起飞前2小时之后，改期手续费为票面价的50%
+									退票条件：航班起飞前2小时之前，退票手续费为票面价的50%；航班起飞前2小时之后，只退机建和燃油
+									签转条件：不可签转
+									折扣说明：经济舱折扣以标准经济舱全价为基础计算得出
+									*以上均为乘客自愿退改签规则，非自愿退改签规则以可适用法律及航空公司规定为准。航空公司规定以各航空公司官方网站的公示为准。
+									*申请改签，同舱位变更时，如变更前后的票面价之间存在差价，则补足差价；如同时存在改期手续费和升舱费，则需同时收取改期手续费和舱位差额。已办理完变更、签转的客票，后续再发生退、改、签业务时，所收取的变更费一律不再退回。</div>
+								</div>
+							</div> -->
+						</div>
+					</li>
+				</volist>
+			</ul>
+			<div class="testify">
+				<div>航班信息免责声明:</div>
+				袋鹿旅行网提供的各类航班相关的信息，包括但不限于舱位价格、餐食、起降准点率等，来源于中国航信、全国各大机场、航空公司及相关部门公布数据。由于这些信息可能随时
+				变化，以及网络传输问题，携程提供的此类信息可能并非最新或存在误差，因此仅供旅客作为一般参考，任何公司或个人不能将此作为携程做出任何承诺或做出任何保证的依据。
+			</div>
+		</div>
+	</div>
+	<div class="longTimemask hide">
+		<div class="msg_box">
+			<div class="message_header">温馨提示</div>
+			<div class="msg_body">
+				距离您上一次查询已超过<strong>10分钟</strong>，请您重新查询最新报价哦～
+			</div>
+			<div class="msg_ctrl">
+				<span class="search">重新查询</span>
+				<span class="cancel">取消</span>
+			</div>
+		</div>
+	</div>
+	<div class="virtue clearfix">
+		<div class="vir_list fl">
+			<div class="img_l">
+				
+			</div>
+			<div class="info_r">
+				<div class="tit">价格透明</div>
+				<div class="info">价格信息全部展示，透明比价</div>
+			</div>
+		</div>
+		<div class="vir_list fl">
+			<div class="img_l">
+				
+			</div>
+			<div class="info_r">
+				<div class="tit">价格透明</div>
+				<div class="info">价格信息全部展示，透明比价</div>
+			</div>
+		</div>
+		<div class="vir_list fl">
+			<div class="img_l">
+				
+			</div>
+			<div class="info_r">
+				<div class="tit">价格透明</div>
+				<div class="info">价格信息全部展示，透明比价</div>
+			</div>
+		</div>
+	</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/storecity/fixdiv.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/storecity/address.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/airList.js"></script>
+</html>

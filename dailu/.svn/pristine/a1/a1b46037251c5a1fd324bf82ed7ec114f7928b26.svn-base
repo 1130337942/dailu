@@ -1,0 +1,381 @@
+var page_array = []
+//垂直
+var swiperV = new Swiper('.swiper-container-v', {
+    direction: 'vertical',
+    followFinger: false,
+    slidesPerView: 'auto',
+    keyboard : true,
+    speed: 800,
+    mousewheel: true,
+    pagination: {
+        el: '.swiper-pagination-v',
+        clickable: true,
+        renderBullet: function (index, className) {
+            
+            // console.log(index)
+            if (index < 3) {
+
+                return '<span class="' + className + '">' + "0" + (index + 1) + '</span>';
+            }  else {
+                return '';
+            }
+
+        },
+    },
+
+    on: {
+        init: function () {
+            swiperAnimateCache(this); //隐藏动画元素 
+            swiperAnimate(this); //初始化完成开始动画
+            
+            //初始化第一次
+            slide = this.slides.eq(0);
+            slide.addClass('ani-slide');
+        },
+        transitionStart: function () {
+            for (i = 0; i < this.slides.length; i++) {
+                slide = this.slides.eq(i);
+                slide.removeClass('ani-slide');
+            }
+            if(this.activeIndex == 0){
+                $(".down_gif").show();
+            }
+            
+            
+        },
+        transitionEnd: function () {
+            swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+            slide = this.slides.eq(this.activeIndex);
+            slide.addClass('ani-slide');
+            switch (this.activeIndex) {
+                case 1:
+                    accordion();
+                    break;
+
+            }
+            
+        },
+        //在最后一页
+        reachEnd: function(){
+            $(".down_gif").hide()
+           
+              
+            
+        },
+    }
+});
+
+
+
+
+
+
+// ------------------------第一屏---------------------
+//遮罩层   圆 的width height
+var width_height = 180
+//第一屏轮播
+var swiperH = new Swiper('.swiper-container-h', {
+    speed: 800,
+    autoplay: {
+        delay: 4800,
+        disableOnInteraction: false,
+    },
+    effect: 'fade', //显隐
+
+    // pagination: {   //分页器
+    //     el: '.swiper-pagination-h',
+    //     clickable: true,
+    // },
+
+    on: {
+
+        init: function () {
+            //初始化第一次
+            slide = this.slides.eq(0);
+            slide.addClass('H_active');
+            var H_index = this.activeIndex
+            switch (H_index) {
+                case 0:
+                    // $("#num_1").addClass("aa")
+                    H_marsk(0, width_height);
+
+                    break;
+
+            }
+
+        },
+        transitionStart: function () {
+            // $(".down_gif").show()
+            for (i = 0; i < this.slides.length; i++) {
+                slide = this.slides.eq(i);
+                slide.removeClass('H_active');
+            }
+            var H_index = this.activeIndex;
+            //遮罩层
+            switch (H_index) {
+                case 0:
+                    // $("#num_1").addClass("aa")
+                    H_marsk(0, width_height);
+                    break;
+                case 1:
+                    // $(".banner_span span").eq(1).addClass("aa")
+                    H_marsk(1, width_height);
+
+                    break;
+                case 2:
+                    // $(".banner_span span").eq(2).addClass("aa")
+                    H_marsk(2, width_height);
+                    break;
+                case 3:
+                    H_marsk(3, width_height);
+
+                    break;
+            }
+
+        },
+        transitionEnd: function () {
+            slide = this.slides.eq(this.activeIndex);
+            slide.addClass('H_active');
+
+        },
+    }
+});
+
+//第一屏遮罩层-圆
+function H_marsk(index, wth_hei) {
+    $(".banner_span span").removeClass("numpage_ative");
+    $(".banner_span span").eq(index).addClass("numpage_ative");
+    $(".banner_text div").removeClass("banner_text_active");
+    $(".banner_text div").eq(index).addClass("banner_text_active");
+    if (index <= 2) {
+        var H_left_0 = $(".banner_span span").eq(index).position().left;
+        var H_top_0 = $(".banner_span span").eq(index).position().top;
+        var H_left_1 = $(".banner_span span").eq(index + 1).position().left;
+        var H_top_1 = $(".banner_span span").eq(index + 1).position().top;
+        var H_calc = 4000 + wth_hei;
+        setTimeout(function () {
+            $(".banner_i").animate({
+                width: wth_hei,
+                height: wth_hei,
+                left: H_left_0 + (10 - H_calc) / 2,
+                top: H_top_0 + (10 - H_calc) / 2,
+            }, 1500).animate({
+                width: wth_hei,
+                height: wth_hei,
+                left: H_left_1 + (10 - H_calc) / 2,
+                top: H_top_1 + (10 - H_calc) / 2,
+            }, 1200).animate({
+                width: 10000,
+                height: 10000,
+                left: H_left_1 + (10 - 9000) / 2,
+                top: H_top_1 + (10 - 9000) / 2,
+            }, 800);
+        }, 2800);
+    }
+
+};
+
+// $('.shares_more,.hot_route').on('click',function(){
+//     window.location.href = '/portal/travel/talentTrip.html';
+// })
+
+// ------------------------第二屏---------------------
+//第二屏 手风琴
+function accordion() {
+    setTimeout(function () {
+        $(".img_box")
+            .find(".img_1").hover(function () {
+                $(".img_1").addClass("hover1_img_1");
+                $(".img_2").addClass("hover1_img_2");
+                var v1_status = $('.img_1').find('video')[0].paused;
+                if (v1_status) {
+                    $('.img_1').find('.text_center').show()
+                }
+            }, function () {
+                $(".img_1").removeClass("hover1_img_1");
+                $(".img_2").removeClass("hover1_img_2");
+            }).end()
+            .find(".img_2").hover(function () {
+                $(".img_1").addClass("hover2_img_1");
+                $(".img_2").addClass("hover2_img_2");
+                var v2_status = $('.img_2').find('video')[0].paused;
+                if (v2_status) {
+                    $('.img_2').find('.text_center').show()
+                }
+            }, function () {
+                $(".img_1").removeClass("hover2_img_1");
+                $(".img_2").removeClass("hover2_img_2");
+            }).end()
+    }, 1500)
+
+}
+
+// $('.closeVideo').on('click',function(){
+//     $(this).siblings('video')[0].pause()
+//     $(this).parents('.video_box').hide()
+// })
+$('.section_video .center_move').on('click', function () {
+    $(this).parents('.section_video').siblings('.section_video').find('video')[0].pause();
+    $(this).parents('.section_video').find('video')[0].play()
+    $(this).parents('.section_video').find('video')[0].muted = false;
+})
+
+
+// ------------------------第三屏---------------------
+// var swiper = new Swiper('.swiper-container_3', {
+//     direction: 'vertical',
+//     slidesPerView: 'auto',
+//     freeMode: true,
+//     scrollbar: {
+//       el: '.swiper-scrollbar_3',
+//     },
+//     mousewheel: true,
+// });
+
+
+$('.online_service').on('click',function(){
+    window.open('http://www.365webcall.com/chat/ChatWin3.aspx?settings=mw7mw6XN6PNwNPz3A7mXIPz3Am00mwXz3AX6mmPm&LL=0','你的袋鹿小管家','height=530, width=730, top=100, left=50, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no')
+    
+})
+
+function get_hot_mall_top(){
+    var get_offset= $('.service_icon').offset();
+    // console.log(get_offset)
+    $('.hot_mall_box').offset({
+        top:get_offset.top,
+        left:get_offset.left-385
+    }).show()
+}
+get_hot_mall_top()
+$(window).resize(function() {
+    get_hot_mall_top()
+})
+
+$(function () {
+    var uid = getCookie('uid')
+    $.post("/portal/aboutuser/PersonalInfo",{uid:uid},function(data){
+        // console.log(data)
+        if(data.head_port != ''){
+            $('.islogIn img').attr("src",data.head_port)
+        }
+    },'json')
+
+    
+    
+
+    function browserRedirect() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+            //跳转移动端页面
+            $(".is_phone").show()
+            window.location.href='/portal/travel/talentTrip.html'
+        } else {
+            //跳转pc端页面
+            $(".is_phone").hide()
+        }
+    }
+    browserRedirect();
+
+    $.post("/portal/index/hot_planData",function(data){
+        // console.log(data)
+        if(!data) return
+        var hot_planTem1 = '{{each tourList as value i}}\
+                            {{if i <= 3 }}\
+                                <div class="item ani" swiper-animate-effect="fadeInUpx" swiper-animate-duration="0.8s" swiper-animate-delay="0s"><a href="/portal/itinerary/tripInfo/{{value.trip_id}}.html">\
+                                    <div class="item_cont">\
+                                        <div class="img_box">\
+                                            <img src="{{value.image_cover}}" alt="">\
+                                        </div>\
+                                        <div class="content_text">\
+                                            <p title="{{value.trip_name}}">{{value.trip_name}}</p>\
+                                            <p>{{each value.jindian_name as v a}}{{if a == value.jindian_name.length-1}}{{v}}{{else}}{{v}}·{{/if}}{{/each}}</p>\
+                                        </div>\
+                                    </div>\
+                                    <div class="hover_box clearfix">\
+                                        <span class="hover_bor"></span>\
+                                        <span>{{value.day_num}}天</span>\
+                                        <span>&nbsp;|&nbsp;</span>\
+                                        <span>{{value.date}}出发</span>\
+                                        <span class="span_r">\
+                                            <i></i>{{value.click_num}}</span>\
+                                    </div>\
+                                    {{if value.theme == 1}}\
+                                        <div class="cj_icon"><img src="/static/v1/img/index/CJ.png"></div>\
+                                    {{/if}}\
+                                </a></div>\
+                            {{/if}}\
+                            {{/each}}';
+        var hot_planRen1 = template.compile(hot_planTem1);
+        var hot_planHtml = hot_planRen1(data)
+        $(".swi3_wrap1").html(hot_planHtml);
+        
+        var hot_planTem2 = '{{each tourList as value i}}\
+                            {{if i > 3 && i <= 7}}\
+                                <div class="item ani" swiper-animate-effect="fadeInUpx" swiper-animate-duration="0.8s" swiper-animate-delay="0s"><a href="/portal/itinerary/tripInfo/{{value.trip_id}}.html">\
+                                    <div class="item_cont">\
+                                        <div class="img_box">\
+                                            <img src="{{value.image_cover}}" alt="">\
+                                        </div>\
+                                        <div class="content_text">\
+                                            <p title="{{value.trip_name}}">{{value.trip_name}}</p>\
+                                            <p>{{each value.jindian_name as v a}}{{if a == value.jindian_name.length-1}}{{v}}{{else}}{{v}}·{{/if}}{{/each}}</p>\
+                                        </div>\
+                                    </div>\
+                                    <div class="hover_box clearfix">\
+                                        <span class="hover_bor"></span>\
+                                        <span>{{value.day_num}}天</span>\
+                                        <span>&nbsp;|&nbsp;</span>\
+                                        <span>{{value.date}}出发</span>\
+                                        <span class="span_r">\
+                                            <i></i>{{value.click_num}}</span>\
+                                    </div>\
+                                    {{if value.theme == 1}}\
+                                        <div class="cj_icon"><img src="/static/v1/img/index/CJ.png"></div>\
+                                    {{/if}}\
+                                </a></div>\
+                            {{/if}}\
+                            {{/each}}';
+        var hot_planRen2 = template.compile(hot_planTem2);
+        var hot_planHtml2 = hot_planRen2(data)
+        $(".swi3_wrap2").html(hot_planHtml2)
+        
+        shares_hover()
+    },'json')
+    
+    function shares_hover() {
+
+        $(".content_box .item").hover(function () {
+            $(this).removeClass("animated").find(".hover_box").stop(true, true).slideToggle(200);
+            $(".swiper-slide3").css("overflow", "hidden")
+        }, function () {
+            $(this).addClass("animated").find(".hover_box").stop(true, true).slideToggle(200);
+        });
+    
+    }
+    
+    
+
+
+    $('.islogIn .workbox .user_exit').on('click', function () {
+        delCookie('uid')
+        delCookie('user_name')
+        window.location.reload();
+
+    })
+
+
+    function delCookie($name) {
+        var myDate = new Date();
+        myDate.setTime(-1000); //设置时间    
+        document.cookie = $name + "=''; expires=" + myDate.toGMTString();
+    }
+
+})

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>火车票退票</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/trainMoneyback.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@publicHeader"/>
+		<div class="stepWap">
+			<a href="javascript:;">首页</a> >
+			<a href="javascript:;">我的订单</a> >
+			<a href="javascript:;">订单详情</a> 
+			<div class="step fr">
+				<span>退票申请</span>
+				<span>受理申请</span>
+				<span>退款成功</span>
+			</div>
+		</div>
+		<div class="minWap clearfix">
+			<div class="leftWap fl">
+				<div class="trainInfo">
+					<div class="title">订单号 <i></i> 
+						<span class="tip">发车日期：5月24日</span><a class="tip fr" href="javascript:;">退改签说明</a>
+					</div>
+					<div class="train clearfix">
+						<div class="fl wap1">
+							<div class="fz24">D3126</div>
+							<div class="fz14">修改车次</div>
+						</div>
+						<div class="fl wap2">
+							<div class="leave inblock">
+								<div class="fz24">06:43</div>	
+								<div class="fz14">上海虹桥</div>								
+							</div>
+							<div class="arr inblock">
+								5时57分
+							</div>
+							<div class="deast inblock">
+								<div class="fz24">09:43</div>	
+								<div class="fz14">南京北</div>
+							</div>
+						</div>
+						<div class="fr wap3">
+							<div class="fz24 money">¥ 568</div>
+							<div class="type fz14">二等座</div>
+						</div>
+					</div>
+				</div>
+				<div class="returnInfo">
+					<div class="title">退款原因</div>
+					<div>
+						<textarea name="" id="" cols="30" rows="10" placeholder="请填写退款原因"></textarea>
+					</div>
+					<div><span class="submit_btn">提交申请</span></div>
+				</div>
+				<!-- <div class="payWap clearfix">
+					订单总金额
+					<div class="fr pay">¥ 628.00 <a class="submit_btn" href="javascript:;">确认订单</a></div>
+				</div> -->
+			</div>
+			<div class="rightWap fr">
+				
+				<div class="warm">
+					<div class="title">温馨提示</div>
+					<div class="text">
+						<p>1、若您尚未窗口取票，且在营业时间（06:00 - 23:00 ）内，可在线点击“退票”申请。</p>
+						<p>2、提交“退票”申请后，将会在1小时内完成退票及退款，款项将退还至您的付款账号中。订单详情中有“退票”提示。退票成功后有短信通知。</p>
+						<p>3、属以下情况的，请先在车站窗口办理退票手续，成功后，登陆网站，点击“退票”申请，我们将在1小时内完成退款工作。</p>
+						<p>3.1、您已窗口取票。</p>
+						<p>3.2、距离发车时间不足3小时的。</p>
+						<p>3.3、不在营业时间，但着急退票的。</p>
+						<p>4、退票失败包括的情况如下：</p>
+						<p>4.1、未在12306中查到"已退票"状态；</p>
+						<p>4.2、您虽然已经线下退票，但12306状态未同步；您只要过1天再次线上提交，即可申请退款。</p>
+						<p>4.3、您虽然已经线下退票，但12306状态始终未同步，您可以电话客服报备。此种情况只能等7-21个工作日，12306退款到账后，您才能完成退款申请。</p>
+						<p>5、退票完成后，保险自动退还（如有******）。</p>
+					</div>
+				</div>
+			</div>	
+		</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/trainMoneyback.js"></script>
+</html>

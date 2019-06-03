@@ -1,0 +1,10 @@
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="http://qn13.5199yl.com/citydata.json?v=1555922368"></script>
+<!-- <script type="text/javascript" charset="UTF-8" src="/static/common/citydata.json"></script> -->
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/InfoBox.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/lineProgressbar/jquery.lineProgressbar.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/allUrl.js"></script>
+<script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/common/js/mapNav.js');?>"></script>

@@ -1,0 +1,244 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+    .tabType.col-md-9{
+        display: none;
+    }
+    .tabType.col-md-9.active {
+        display: block;
+    }
+    .infoSubmit {
+        margin: 50px;
+        margin-left: 120px;
+        border:none;
+        background-color: #659ff5;
+        color: #fff;
+        padding: 10px 20px;
+    }
+    textarea {
+        vertical-align: middle;
+    }
+    .addPrize,.addRule{
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        border: 1px solid #e5e5e5;
+        text-align: center;
+        line-height: 16px;
+        border-radius: 50% ;
+        vertical-align: middle;
+        margin-left: 20px;
+        cursor: pointer;
+        color: #07b906;
+        font-size: 24px;
+        transition: all 0.3s;
+    }
+    .removePrize,.removeRule{
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        border: 1px solid #e5e5e5;
+        text-align: center;
+        line-height: 16px;
+        border-radius: 50% ;
+        vertical-align: middle;
+        margin-left: 20px;
+        cursor: pointer;
+        color: #e74c3c;
+        font-size: 30px;
+        transition: all 0.6s;
+    }
+    .addPrize:hover,.addRule:hover {
+        transform: rotate(90deg);
+    }
+    .removePrize:hover,.removeRule:hover{
+      transform: rotate(180deg);
+    }
+    .mt10 {
+        margin-top: 10px;
+    }
+    .imgbox {
+        display: inline-block;
+        width: 130px;
+        height: 80px;
+        border: 3px solid transparent;
+        margin-left: 5px;
+        overflow: hidden;
+    }.imgbox:hover,
+     .imgbox.active {
+        border-color: #659ff5;
+        border-top: 5px solid #659ff5;
+     }
+    .imgbox img {
+        width: 100%;
+    }
+</style>
+<body>
+<div class="wrap js-check-wrap">
+  
+        <div class="row">
+            <div class="col-md-10">
+                <div id="province" class="col-md-10 tabType active" >
+                <table class="table table-bordered">
+                    <tr>
+                        <th>活动标题</th>
+                        <td>
+                            <input type="text" name="" id="activity" placeholder="请输入标题 (最多8个字)" style="width: 300px">
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th>顶部标语</th>
+                        <td>
+                            <input type="text" name="" id="subheading" placeholder="请输入副标题(最多16个字)" style="width: 300px">
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <th>简介</th>
+                        <td>
+                            <input type="text" name="" id="info" placeholder="活动简介(最多16个字)" style="width: 300px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>活动时间</th>
+                        <td>
+                            起始时间 : <input id="start_time" type="date">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            结束时间 : <input id="end_time" type="date">
+
+                            &nbsp;&nbsp;
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <th>活动奖品</th>
+                        <td class="prize_td">
+                            <input  style="width:500px" type="text" placeholder="如：一等奖：超级惊喜大礼包（价值288元） ×2   （没有奖品可不填）">
+                            <span class="addPrize" title="增加">+</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>活动规则</th> 
+                        <td class="rules_td">
+                            <div class="mt10">
+                                <textarea name="" id="" cols="90" rows="5" placeholder="一个框写一条，需要第二条再点右边 添加按钮(必填)"></textarea>
+                            <span class="addRule" title="增加">+</span>
+                            </div>
+                            
+                        </td>
+                    </tr> 
+                     <tr>
+                        <th>活动景点</th>
+                        <td>
+                            <textarea name="" id="spot_name" cols="90" rows="5" placeholder="关键词必须以英文逗号 , 隔开请输入标题(必填)"></textarea>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>页面配色</th>
+                        <td>
+                            <span class="imgbox active" type = "1">
+                                <img src="/static/v1/img/wap/style1.png" alt="">
+                            </span>
+                            <span class="imgbox" type = "2">
+                                <img src="/static/v1/img/wap/style2.png" alt="">
+                            </span>
+                            <span class="imgbox" type = "3">
+                                <img src="/static/v1/img/wap/style3.png" alt="">
+                            </span>
+                            <span class="imgbox" type = "4">
+                                <img src="/static/v1/img/wap/style4.png" alt="">
+                            </span>
+                            <span class="imgbox" type = "5">
+                                <img src="/static/v1/img/wap/style5.png" alt="">
+                            </span>
+                            
+                        </td>
+                    </tr>
+                </table>
+                </div>
+               
+                
+            </div>
+            <div class="col-md-9">
+                     <button class="infoSubmit" type="">提交</button>
+            </div>
+        </div>
+   
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+         $('table').on('click','.addRule',function(){
+            var temp = '<div class="mt10">\
+            <textarea name="" id="" cols="90" rows="5" placeholder="一个框写一条，需要多条再点右边 添加按钮"></textarea>\
+            <span class="addRule" title="增加">+</span><span title="删除" class="removeRule">-</span>\
+            </div>'
+            $(this).parents('td').append(temp);
+            })
+
+
+         $('table').on('click','.addPrize',function(){
+            var temp = '<div class="mt10"> <input style="width:500px" type="text" placeholder="如：一等奖：超级惊喜大礼包（价值288元） ×2   （没有奖品可不填）">\
+                            <span class="addPrize" title="增加">+</span><span title="删除" class="removePrize">-</span>\
+                </div>'
+            $(this).parents('td').append(temp);
+            })
+
+         $('table').on('click','.removePrize,.removeRule',function(){
+                $(this).parents('.mt10').remove();
+            })
+
+            $('.imgbox').on('click',function () {
+               $(this).addClass('active').siblings().removeClass('active');
+            })
+        $('.infoSubmit').on('click',function(){
+            var query={};
+                query.activity = $('#activity').val();
+                query.spot_name = $('#spot_name').val();
+                query.subheading = $('#subheading').val();
+                query.info = $('#info').val();
+                query.start_time = $('#start_time').val();
+                query.end_time = $('#end_time').val();
+                query.style = $('.imgbox.active').attr('type');
+                query.prize=[];
+                query.rules=[];
+                $('.prize_td input').each(function(){
+                    if($(this).val().trim()!=''){
+                        query.prize.push($(this).val().trim())
+                    }
+                })
+                $('.rules_td textarea').each(function(){
+                    if($(this).val().trim()!=''){
+                        query.rules.push($(this).val().trim())
+                    }
+                })
+
+            $.post('/Activity/Activity/addActivity',query,function(res){
+                alert(res.msg);
+                if(res.status==true){
+                    window.location.href="/Activity/Activity/activityList.html"
+                }else{
+                    alert('上传失败请联系管理员')
+                }
+            },'json')
+        })    
+
+    });
+
+
+    
+
+</script>
+</body>
+</html>

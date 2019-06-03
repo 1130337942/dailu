@@ -1,0 +1,273 @@
+
+.hide {
+	display: none;
+}
+.checkBox{
+	cursor: pointer;
+	margin-right: 15px;
+	font-size: 14px;
+	color: #999;
+}
+.checkBox::before {
+	margin-right: 6px;
+	display: inline-block;
+	content:'';
+	vertical-align: middle;
+	width: 12px;
+	height: 12px;
+	border: 1px solid #e5e5e5;
+	background-color: #fafafa;
+}
+.on.checkBox::before {
+	background: #fff url(/static/v1/img/checked.png) center center no-repeat;
+}
+input,select{
+     appearance:none;
+    -moz-appearance:none;
+   -webkit-appearance:none;  
+	outline: none;
+	border: none;
+	font-family: 'DINMittelschriftStd';
+}
+.progress {
+	background-color: #f6f6f6;
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+	left: 0;
+	top: 28px;
+	padding-top: 2px;
+	height: 70px;
+	/*background-color: #f6f6f6;*/
+	border-bottom: 1px solid #e5e5e5;
+}
+.progress .main {
+	height: 100%;
+	width: 1200px;
+	margin: 0 auto;
+}
+.progress .logo{
+	padding-top: 13px;
+	width: 87px;
+	height: 40px;
+} 
+.progress .progress_info{
+	line-height: 70px;
+	color: #999;
+}
+.progress .progress_info i{
+	display: inline-block;
+	width: 136px;
+	height: 2px;
+	border-radius: 1px;
+	background-color: #e5e5e5;
+	margin:0 12px;
+	vertical-align: middle;
+	position: relative;
+}
+.progress .progress_info i::after {
+	position: absolute;
+	top: -2px;
+	right: 0px;
+	display: inline-block;
+	content: '';
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #e5e5e5;
+}
+.progress .progress_info .active{
+	color:#659ff5;
+}
+.progress .progress_info .active i,
+.progress .progress_info .active i::after {
+	background-color: #659ff5;
+}
+
+.main_wap{
+	width: 1200px;
+	margin: 0 auto 200px; 
+	padding-top: 110px;
+}
+.hotel_info {
+	padding: 20px 25px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.hotel_info .tit {
+	font-size: 20px;
+	font-family:  PingFang-SC-Bold;
+}
+.hotel_info .info {
+	color: #999;
+	line-height: 40px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.hotel_info .pro{
+	line-height: 40px;
+	font-size: 16px;
+	color: #999;
+}
+.hotel_info p {
+	display: block;
+	width: 1148px;
+	height: 1px;
+	background-color: #e5e5e5;
+	margin:20px 0 15px;
+}
+.hotel_info .lookout{
+	font-size: 16px;
+	line-height: 40px;
+	color: #333;
+	font-weight: 600;
+}
+.type_box {
+	margin-top: 8px;
+	padding: 20px 25px;
+	width: 1150px;
+	height: 120px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+	position: relative;
+}
+.type_box .tit {
+	font-size: 20px;
+	font-family:  PingFang-SC-Bold;
+}
+.type_box .type_list .list {
+	margin-top: 17px;
+	width: 200px;
+	height: 62px;
+	line-height: 62px;
+	border-radius: 4px;
+	border: solid 2px #e5e5e5;
+	margin-right: 16px;
+}
+.type_box .type_list .list:hover ,
+.type_box .type_list .list.active {
+	border-color:  #659ff5;
+}
+
+.pay_wap {
+	position: absolute;
+	top: 50%;
+	right: 40px;
+}
+ .pay_wap span{
+ 	color: #999;
+ }
+ .pay_wap .submit {
+	display: inline-block;
+	width: 148px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background-color: #f4a21e;
+	border-radius: 4px;
+	color: #fff;
+}
+ .pay_wap .submit:hover {
+ 	background-color: #e89309;
+ }
+ .pay_wap  strong{
+ 	font-size: 24px;
+ 	color: #f4a21e;
+ 	margin:0 24px;
+ }
+
+.type_box .alipay {
+	background: #fff url(/static/v1/img/alipay.png) 38px center no-repeat;
+}
+
+.type_box .weixin {
+	background: #fff url(/static/v1/img/weixin_pay.png) 38px center no-repeat;
+}
+
+.type_box .online {
+	background: #fff url(/static/v1/img/online_pay.png) 38px center no-repeat;
+}
+.surety {
+	margin-top: 8px;
+	padding: 20px 25px;
+	width: 1150px;
+	min-height: 120px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+	position: relative;
+}
+.surety .sur_tit {
+	font-size: 20px;
+	font-family:  PingFang-SC-Bold;
+	margin-bottom: 8px;
+}
+#credit ,
+.surety  input.card_num{
+	width: 320px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	margin-left: 10px;
+}
+input.credit_user{
+	width: 168px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	margin-left: 10px;
+}
+.surety .card_type {
+	margin-left: 10px;
+}
+.surety tr {
+	height: 45px;
+}
+.surety_info_wap {
+	position: relative;
+	padding-bottom: 50px;
+}
+.sure_paywap {
+	position: absolute;
+	bottom: 20px;
+	right: 40px;
+}
+
+.surety .sure_paywap span{
+ 	color: #999;
+ }
+ .surety .sure_paywap .submit {
+	display: inline-block;
+	width: 148px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background-color: #f4a21e;
+	border-radius: 4px;
+	color: #fff;
+}
+.surety .sure_paywap .submit:hover {
+ 	background-color: #e89309;
+ }
+.surety .sure_paywap  strong{
+ 	font-size: 24px;
+ 	color: #f4a21e;
+ 	margin:0 24px;
+ }
+ .surety select  {
+	width: 62px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	padding: 0 10px;
+ }
+  .surety select option {
+  	width: 62px;
+	height: 20px;
+	text-align: center;
+	font-size: 16px;
+  }

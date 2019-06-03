@@ -1,0 +1,33 @@
+#pagination {
+	text-align: center;
+	padding: 28px 0;
+}
+
+#pagination a,
+#pagination span {
+	line-height: 36px;
+	display: inline-block;
+	width: 38px;
+	height: 36px;
+	background-color: #ffffff;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	color: #ccc;
+	margin-right: 7px;
+}
+#pagination .prev,
+#pagination .next{
+	width: 76px;
+	height: 36px;
+	background-color: #ffffff;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+
+}
+
+#pagination .active,
+#pagination a:hover {
+	border-color: #659ff5;
+	color: #659ff5;
+}
+ 

@@ -1,0 +1,54 @@
+
+<link rel="stylesheet" href="/static/v1/public/css/publicHeader.css">
+<!-- headerstart -->
+	<div class="header">
+		<a href="/">
+			<img class='logo' src="/static/common/img/logo.png" alt="">
+		</a>
+		
+		<div class='right-wap clearfix'>
+			<!-- <div class="links fl"><a href="/">达人分享</a> -->
+			<div class="links fl">
+			<a href="/">首页</a>
+			<a href="/portal/travel/talentTrip.html">达人分享</a>
+			<a target="_blank" href="/portal/DownloadApp/downloadApp.html">APP下载</a>
+			<!-- <a href="/portal/store/index.html">DIY商城</a> -->
+			<!-- <a href="javascript:;">袋鹿商城</a> -->
+			</div>
+			<div class="personInfo fr">
+				<!-- <a class="info" href="#"></a> -->
+				
+				<if condition="!empty($Think.cookie.user_name)">
+				<div class="headPic">
+
+					<img src="/static/v1/img/header.jpg" alt="">
+					<ul class="workbox">
+						<li class="user">{$Think.cookie.user_name}</li>
+						<li class="cart user_main">
+							<a target="_blank" rel="nofollow" href="/portal/aboutuser/personal_addTour.html">个人主页</a>
+						</li>
+						<li class="cart user_invitation">
+							<a target="_blank" rel="nofollow" href="/portal/aboutuser/user_invitation.html">我的推广</a>
+						</li>
+						<li class="cart user_travel">
+							<a target="_blank" rel="nofollow" href="/portal/aboutuser/personal_planTour.html">我的行程</a>
+						</li>
+						<!-- <li class="cart user_goods">我的订单</li>
+						<li class="cart user_info">常用信息</li> -->
+						<li class="cart user_set">
+							<a target="_blank" rel="nofollow" href="/portal/aboutuser/personal_center.html">账户设置</a>
+						</li>
+						<li class="cart user_exit">退出账号</li>
+					</ul>
+				</div>
+			<else />
+				<a class="headPic" href="/portal/login/login.html" rel="nofollow" ><img src="/static/v1/img/user_circle.png" alt=""></a>
+			</if>
+				
+			</div>		
+		</div>
+	</div>
+	<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+	<script src='/static/v1/public/js/publicHeader.js'></script>
+	 
+	<!-- header end -->

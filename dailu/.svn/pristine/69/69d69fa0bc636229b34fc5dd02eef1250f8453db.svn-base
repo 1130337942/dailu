@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>消息中心</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/aboutUser/dailu_msg.css">
+</head>
+<body style='background-color:#f5f5f5 '>
+	<include file="public@publicHeader"/>
+		<div class="main" >
+			<div class="title">帮助中心 > <span>新手上路</span></div>
+			<div class="clearfix">
+				<div class="left_wap fl">
+					<img class="headerPic" src="/static/v1/img/header.jpg" alt="">
+					<div class="uname">牛米网855</div>
+					<div class="sign">这人很懒什么都没留下</div>
+					<a class="design" href="javascript:;">设计行程</a>
+				</div>
+				<div class="right_wap fr">
+					<div class="nav_tab">
+						<span index ='0' class="system active">系统消息</span><span index='1' class="message">站内通知</span><i class="bder"></i>
+					</div>
+					<div class="wap wap_system">
+						<div class="list clearfix">
+							<div class="mainPic fl">
+								<img src="/static/v1/img/1215.png" alt="">
+							</div>
+							<div class="right_con fr">
+								<div class="tit">【图片征集】寻找最美图  赢大疆掌上无人机等多重豪礼</div>
+								<div class="con">
+									在XXX有那么一群人，
+									他们每一次的分享不仅是对自己美好旅程的回忆，
+									更是在展示着这个世界最真实的美好和最实用的信息。
+									他们秉着“人人为我 我为人人”的穷游分享精神，
+									留下的一篇篇精华游记，
+									帮助着越来越多穷游er们在旅行道路上越走越远。
+								</div>
+								<div class="pushTime">2018-5-2  20:30:14</div>
+							</div>
+						</div>
+						<div class="list clearfix">
+							<div class="mainPic fl">
+								<img src="/static/v1/img/1215.png" alt="">
+							</div>
+							<div class="right_con fr">
+								<div class="tit">【图片征集】寻找最美图  赢大疆掌上无人机等多重豪礼</div>
+								<div class="con">
+									在XXX有那么一群人，
+									他们每一次的分享不仅是对自己美好旅程的回忆，
+									更是在展示着这个世界最真实的美好和最实用的信息。
+									他们秉着“人人为我 我为人人”的穷游分享精神，
+									留下的一篇篇精华游记，
+									帮助着越来越多穷游er们在旅行道路上越走越远。
+									<!-- <img style="width:200px" src="/static/v1/img/1215.png" alt=""> -->
+								</div>
+								<div class="pushTime">2018-5-2  20:30:14</div>
+							</div>
+						</div>
+
+						<div class="loadMore">暂无更多</div>
+					</div>
+					<div class="wap wap_message hide">
+						<div class="list clearfix">
+							<div class="mainPic fl">
+								<img src="/static/v1/img/1215.png" alt="">
+							</div>
+							<div class="right_con fr">
+								<div class="tit">【图片征集】寻找最美图  赢大疆掌上无人机等多重豪礼</div>
+								<div class="con">
+									在XXX有那么一群人，
+									他们每一次的分享不仅是对自己美好旅程的回忆，
+									更是在展示着这个世界最真实的美好和最实用的信息。
+									他们秉着“人人为我 我为人人”的穷游分享精神，
+									留下的一篇篇精华游记，
+									帮助着越来越多穷游er们在旅行道路上越走越远。
+								</div>
+								<div class="pushTime">2018-5-2  20:30:14</div>
+							</div>
+						</div>
+						<div class="list clearfix">
+							<div class="mainPic fl">
+								<img src="/static/v1/img/1215.png" alt="">
+							</div>
+							<div class="right_con fr">
+								<div class="tit">【图片征集】寻找最美图  赢大疆掌上无人机等多重豪礼</div>
+								<div class="con">
+									在XXX有那么一群人，
+									他们每一次的分享不仅是对自己美好旅程的回忆，
+									更是在展示着这个世界最真实的美好和最实用的信息。
+									他们秉着“人人为我 我为人人”的穷游分享精神，
+									留下的一篇篇精华游记，
+									帮助着越来越多穷游er们在旅行道路上越走越远。
+									<img style="width:300px" src="/static/v1/img/1215.png" alt="">
+								</div>
+								<div class="pushTime">2018-5-2  20:30:14</div>
+							</div>
+						</div>
+
+						<div class="loadMore">暂无更多</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/aboutUser/dailu_msg.js"></script>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<meta name="Keywords" content="{$Keywords}">
+	<meta name="description" content="{$description}">
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/common/css/common.css');?>">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/itinerary/tripInfo.css');?>">
+	<script src="<?php AutoVersion('/static/common/js/echarts.min.js');?>"></script>
+</head>
+<body>
+	<include file="public@publicHeader"/>
+	<div class="main">
+		<!-- <div class="shareTrip">分享行程
+			<div class="ewm_box hide">
+			<div class="tip">请扫描二维码分享</div>
+			<img src="" alt=""></div>
+		</div> -->
+		<div class="lineBox clearfix">
+			<div class="leftMsg fl">
+				<h4></h4>
+				<div class="place"></div>
+				<div class='ico num'>人数：0人</div>
+				<div class='ico day'>天数：0天</div>
+				<div class='ico startDay'>出发日期： </div>
+				<div class='ico totMoney'>费用：¥<span class="calc_tot"></span></div>
+				<div class="blogger clearfix">
+					<div class="headImg fl">
+						<img src="/static/v1/img/header.jpg" alt="">
+					</div>
+					<div class='msg fl'>
+						<div class='name'></div>
+						<div class='date'><span class="edit_date"></span>发布 <span class="likenum">喜欢20</span> <span class="collectnum">收藏25</span></div>
+					</div>               
+				</div>
+				<div class="shortCart clearfix">
+					<div class="fl addTrip">
+							<i class=""></i>
+							<span>添加到我的行程</span>
+					</div>
+					<span class='short fr share'>分享
+						<div class="shareBox">
+						<div class="share_code_box">
+							<img class="share_code_img" src="/static/v1/img/tripinfo/appewm.png" alt="">
+							<input id="shareTitle" type="text" placeholder="编辑分享的标题/选填">
+							<span class="titledit"></span>
+							<span class="titlesave hide">确认</span>
+							<input id="foo" readonly="true" type="text" value='dailu.com/portal/itinerary/tripinfo.html?them=53&trip=53-1537237756'>
+						<span class="copy" data-clipboard-target="#foo">复制链接</span> 
+							<span class="tip">扫一扫，分享给朋友</span>
+						</div>
+					</div>
+					</span>
+					<span class='short fr like'>喜欢</span>
+					<span class='short fr collect'>收藏</span>
+					<span class='hide short fr c_collect'>已收藏</span>
+					<span class='short fr see'>查看</span>
+					
+				</div>
+			</div>
+			<div class="rightPic fr">
+				<img src="" alt="">
+			</div>
+		</div>
+		<div class="dayWap clearfix">
+			<div class="leftLift fl">
+				<div class="tit">线路行程</div>
+				<ul>
+					
+				</ul>
+			</div>
+			<div class="rightList fr">
+				<div class="tit">
+					<div class='lemma'>行程线路</div>
+					<div class='place'></div>
+					<ul class='dayList'>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="costTable">	
+			<div class="head"><span>费用清单</span> <em> | </em> 全部费用：¥<span class="calc_tot"></span>起</div>
+			<div class="tableBox">
+				<table border="1" cellpadding="0" cellspacing="0">
+					<thead>
+						<tr>
+							<th>项目</th>
+							<th>明细</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>总价</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+					
+				</table>
+
+			</div>
+		<!-- 	<div class="openMore">展开更多</div> -->
+			<div class='percent'>费用占比</div>
+			<div class='percentBox clearfix'>
+				<div class="p-left fl" id='p-left'></div>
+				<div class="p-right fr">
+					<ul class='clearfix'>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="userComment">
+			<div class="tit">
+				1839条用户评价 <span class='fr'>我要评论</span>
+				
+			</div>
+			<ul class="com-list">
+					<li class='list clearfix'>
+						<div class='headPic fl'>
+							<img src="/static/v1/img/header.jpg" alt="">
+						</div>
+						<div class='com-info fr'>
+							<div class="name">牛大王的尔雅 <span><i>☆</i><i>★</i><i>★</i></span></div>
+							<div class='text'>
+								看到很多人喷贾小朵的，我觉得她无论是人物角色设定、演员本身特质、演技都没有问题。一、她是煤老板的女儿，意味不是大家闺秀、书香门第，个性与气质的确要稍微
+								“村儿”一点比较好。
+							</div>
+							<div class="com-img clearfix">
+								<img src="/static/v1/img/com-img.jpg" alt="">
+								<img src="/static/v1/img/com-img.jpg" alt="">
+								<img src="/static/v1/img/com-img.jpg" alt="">
+							</div>
+							<div class="com-time clearfix">
+								<div class="t-left fl">2018年3月7日  11:00:15</div>
+								<div class='short fr'><span> <i class='ico like'></i>喜欢</span><span><i class='ico report'></i>举报</span></div>
+							</div>
+						</div>
+					</li>
+					<li class='list clearfix'>
+						<div class='headPic fl'>
+							<img src="/static/v1/img/header.jpg" alt="">
+						</div>
+						<div class='com-info fr'>
+							<div class="name">牛大王的尔雅 <span><i>☆</i><i>★</i><i>★</i></span></div>
+							<div class='text'>
+								看到很多人喷贾小朵的，我觉得她无论是人物角色设定、演员本身特质、演技都没有问题。一、她是煤老板的女儿，意味不是大家闺秀、书香门第，个性与气质的确要稍微
+								“村儿”一点比较好。
+							</div>
+							<div class="com-img clearfix">
+								<img src="/static/v1/img/com-img.jpg" alt="">
+								<img src="/static/v1/img/com-img.jpg" alt="">
+								<img src="/static/v1/img/com-img.jpg" alt="">
+							</div>
+							<div class="com-time clearfix">
+								<div class="t-left fl">2018年3月7日  11:00:15</div>
+								<div class='short fr'><span> <i class='ico like'></i>喜欢</span><span><i class='ico report'></i>举报</span></div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class='more'>查看更多</div>
+		</div> -->
+	</div>
+	<include file="public@publicFooter"/>
+</body>
+	<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+	<script src='/static/common/clipboard/clipboard.min.js'></script>
+	<script src='/static/common/layer3.1.1/layer.js'></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+	<script type="<?php AutoVersion('text/javascript"  src="/static/common/js/common.js');?>"></script>
+	<script src="<?php AutoVersion('/static/v1/js/itinerary/tripInfo.js');?>"></script>
+	<script type="text/javascript">
+       
+    </script>
+</html>

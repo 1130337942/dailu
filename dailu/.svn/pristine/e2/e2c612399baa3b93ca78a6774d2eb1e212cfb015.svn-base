@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>袋鹿旅游app下载</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/animate.min.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/downloadApp/downloadApp.css');?>">
+</head>
+<body>
+	<!-- headerstart -->
+	<include file="public@publicHeader"/>
+	<!-- header end -->
+	<div class="main">
+		<img class="left_img" src="/static/v1/img/downApp/left.png" alt="">
+		<img class="right_img" src="/static/v1/img/downApp/right.png" alt="">
+		<div class="banner1">
+		<canvas id="canvas_two" class='canvas_bg'></canvas>
+			<div class="banner1_box clearfix">
+				<div class="downBox fl">
+					<div class="title">袋鹿旅行</div>
+					<div class="tips">全免费定制您的私属行程</div>
+					<div class="buton_box">
+						<a target="_blank" class="btn android" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.yyl.dailu.dailu">Android下载
+							<div class="btn_ewm">
+								<img src="/static/v1/img/android.png" alt="">
+								
+							</div>
+						</a>
+						<a target="_blank" class="btn ios" href="https://itunes.apple.com/cn/app/%E8%A2%8B%E9%B9%BF%E6%97%85%E8%A1%8C/id1436562784?mt=8">iOS下载
+							<div class="btn_ewm">
+								<img src="/static/v1/img/IosApp.png" alt="">
+								
+							</div>
+						</a>
+					</div>
+				</div>
+				<img class="fl banner1_r" src="/static/v1/img/downApp/banner1_img.png" alt="">
+			</div>
+			<div class="bottom_w">
+			</div>
+		</div>
+		<div class="text_wap">
+			<div class="wap wap1 clearfix">
+				<div class="imgbox fl">
+					<img src="/static/v1/img/downApp/wap1.png" alt="">
+					<img class="wap_s jump wap1_1" src="/static/v1/img/downApp/wap1_1.png" alt="">
+					<img class="wap_s jump wap1_2" src="/static/v1/img/downApp/wap1_2.png" alt="">
+					<img class="wap_s jump wap1_3" src="/static/v1/img/downApp/wap1_3.png" alt="">
+					<img class="wap_s jump wap1_4" src="/static/v1/img/downApp/wap1_4.png" alt="">
+				</div>
+				<div class="animated hide info_wap fr">
+					<div class="title">手机同步，一站到底</div>
+					<div class="tips">
+						电脑自由选购旅游元素，分分钟完成行前规划<br>
+						手机同步行程，随时随地查看行程安排
+					</div>
+				</div>
+			</div>	
+			<div class="wap wap2 clearfix">
+				<div class="imgbox fr">
+					<img src="/static/v1/img/downApp/wap2.gif" alt="">
+					<img class="wap_s jump wap2_1" src="/static/v1/img/downApp/wap2_1.png" alt="">
+					
+				</div>
+				<div class="animated info_wap hide fl">
+					<div class="title">实时导航，景区导览</div>
+					<div class="tips">
+						随时随地，查看您的位置，想去哪都可以<br>
+						手绘地图生动形象，凸显景区特色，轻松看懂景区
+					</div>
+				</div>
+			</div>	
+			<div class="wap wap3 clearfix">
+				<div class="imgbox fl">
+					<img src="/static/v1/img/downApp/wap3.png" alt="">
+					<img class="wap_s wap3_1" src="/static/v1/img/downApp/wap3_1.png" alt="">
+					<img class="wap_s wap3_2" src="/static/v1/img/downApp/wap3_2.png" alt="">
+				</div>
+				<div class="animated hide info_wap fr">
+					<div class="title">地理围栏，智能景讲</div>
+					<div class="tips">
+						进入近景范围内，APP提醒进入景区<br>
+						实时语音导游，深入了解景区背后动人故事
+					</div>
+				</div>
+			</div>	
+			<div class="wap wap4 clearfix">
+				<div class="imgbox fr">
+					<img src="/static/v1/img/downApp/wap4.png" alt="">
+					<img class="wap_s wap4_1" src="/static/v1/img/downApp/wap4_1.png" alt="">
+					<img class="wap_s wap4_2" src="/static/v1/img/downApp/wap4_2.png" alt="">
+					<img class="wap_s wap4_3" src="/static/v1/img/downApp/wap4_3.png" alt="">
+
+				</div>
+				<div class="hide animated info_wap fl">
+					<div class="title">实时资讯，附近推荐</div>
+					<div class="tips">
+					行中查看景点信息，避免错误景区开放时间<br>
+					实时提供周边游玩元素，更多游玩可选择
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="footer">
+			<div style="margin-top:130px;" class="">下载手机APP ，尽享管家服务</div>
+			<div><img class="appcode" src="/static/v1/img/dailuerApp.png" alt=""></div>
+			<div style="font-size:14px;">扫码下载APP</div>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/downloadApp/pc_bg.js"></script>
+<script type="text/javascript" src="<?php AutoVersion('/static/v1/js/downloadApp/downloadApp.js');?>"></script>
+</html>

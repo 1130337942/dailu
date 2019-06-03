@@ -1,0 +1,255 @@
+body {
+	background: #fff url(/static/v1/img/tripinfoShare/edit_bg.png) 0 0 no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+
+}
+html ,body {
+	/*height: 100%;*/
+	min-height: 100%;
+	color:#333;
+	
+}
+.main {
+	background-color: rgba(255,255,255,0);
+	max-width: 4.14rem;
+	box-sizing: border-box;
+	margin:0 auto;
+	padding: 0.2rem 0.18rem 0;
+	color:#333;
+	font-family: "PingFang","Lantinghei","Helvetica Neue",'Helvetica','Arial',"Microsoft YaHei","STHeitiSC-Light",'simsun',"WenQuanYi Zen Hei","WenQuanYi Micro Hei","sans-serif";
+	font-size: 0.14rem;
+	min-height: 100%;
+	/*height: 100%;*/
+}
+.p18{
+	padding: 0.18rem;
+}
+.main_box {
+	box-sizing: border-box;
+	padding:0.08rem 0.08rem 0; 
+	/*height: 100%;*/
+	min-height:100%;
+	margin:0 auto;
+	background:rgba(255,255,255,0.8);
+	box-shadow:0px 2px 5px 0px rgba(0, 0, 0, 0.06), 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
+	border-radius:5px 5px 0 0;
+}
+.article {
+	width: 100%;
+	min-height: 100%;	
+	background-color: #fff;
+	box-sizing: border-box;
+	padding: 0 0.2rem 0.27rem;
+}
+.article h4{
+	padding: 0.20rem 0;
+	color:#367CE4;
+	font-size: 0.24rem;
+	font-weight: 600;
+	text-align: center;
+}
+.article .tips {
+	color: #999;
+	font-size: 0.12rem;
+}
+.article .put {
+	font-size: 0.18rem;
+	color: #333;
+	width: 100%;
+	padding: 0.08rem 0 0.1rem;
+	border: none;
+}
+input {
+	outline:none;
+}
+input::-webkit-input-placeholder{
+    color:#ccc;
+
+}
+.input_wap {
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 0.18rem;
+}
+.submit_edit {
+	display: block;
+	width: 100%;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	font-size: 0.16rem;
+	color: #659ff5;
+	text-align: center;
+	border:1px solid rgba(101,159,245,1);
+	border-radius:4px;
+}
+.more_func {
+	box-sizing: border-box;
+	color: #367CE4;
+	width: 100%;
+	font-size: 0.12rem;
+}
+.line {
+	width: 100%;
+	height: 1px;
+	background-color: #e5e5e5;
+	margin: 0.12rem 0;
+}
+.more_func .tit{
+	text-align: center;
+	font-size: 0.14rem;
+	font-weight: 600;
+	padding: 0.15rem 0;
+}
+.more_func .func_list {
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+	color:#666;
+}
+.more_func .func_list .list{
+	margin-bottom: 0.14rem;
+}
+.more_func .func_list .list:last-child{
+	margin-right:0px
+}
+.more_func .func_list .list::before {
+	margin:0 auto 0.07rem;
+	display: block;
+	width: 0.44rem;
+	height: 0.44rem;
+	content: '';
+	background: url(/static/v1/img/tripinfoShare/bj.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
+.more_func .func_list .list.jdbj::before {
+	background: url(/static/v1/img/tripinfoShare/jdbj.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.more_func .func_list .list.xcbz::before {
+	background: url(/static/v1/img/tripinfoShare/xcbz.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.more_func .func_list .list.hbsc::before {
+	background: url(/static/v1/img/tripinfoShare/hbsc.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.more_func .func_list .list.ewmsc::before {
+	background: url(/static/v1/img/tripinfoShare/ewmsc.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.more_func .func_list .list.ysgx::before {
+	background: url(/static/v1/img/tripinfoShare/ysgx.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.more_func .func_list .list.xltj::before {
+	background: url(/static/v1/img/tripinfoShare/xltj.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.more_func .func_list .list.spsc::before {
+	background: url(/static/v1/img/tripinfoShare/spsc.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.more_func .func_list .list.jdsc::before {
+	background: url(/static/v1/img/tripinfoShare/jdsc.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.more_func .func_list .list.jsdc::before {
+	background: url(/static/v1/img/tripinfoShare/jsdc.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}.more_func .func_list .list.gx::before {
+	background: url(/static/v1/img/tripinfoShare/gx.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}.more_func .func_list .list.m::before {
+	background: url(/static/v1/img/tripinfoShare/m.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.kt{
+	font-size: 0.16rem;
+	color: #fff;
+	text-align: center;
+	display: block;
+	line-height: 0.5rem;
+	height: 0.5rem;
+	background:linear-gradient(91deg,rgba(123,173,248,1),rgba(73,137,232,1));
+	box-shadow:0px 2px 10px 0px rgba(0, 0, 0, 0.12);
+	border-radius: 0.04rem;
+	margin: 0.12rem 0 0rem;
+}
+.mask_layout {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.7);
+}
+.per_box{
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border-radius:0.06rem;
+	width: 3.24rem;
+	box-sizing: border-box;
+	padding: 0 0.2rem 0.05rem;
+	background-color: #fff;
+}
+.per_box .tit {
+	font-size: 0.18rem; 
+	height: 0.5rem;
+	line-height: 0.5rem;
+	text-align: center;
+}
+.per_box .user_info {
+	background-color: #F6F6F6;
+	padding:0 0.13rem;
+	box-sizing: border-box;
+	border-radius:0.02rem;
+}
+.per_box .user_info input {
+	font-size: 0.14rem;
+	padding: 0.16rem 0;
+	width: 100%;
+	border:none;
+	background-color: transparent;
+}
+.per_box .user_info .name {
+	border-bottom: 0.01rem solid #e5e5e5;
+}
+.submit_tj {
+	display: block;
+	width: 100%;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	text-align: center;
+	font-size: 0.16rem;
+	color:#fff;
+	background-color: #659ff5;
+	border-radius:0.04rem;
+	box-sizing: border-box;
+	margin-top: 0.09rem;
+}
+.per_box .tips{
+	color:#999;
+	font-size: 0.12rem;
+	padding: 0.08rem 0;
+}
+.per_box .tips a {
+	color: #659ff5;
+	text-decoration: underline;
+}

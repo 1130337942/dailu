@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>个人中心</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/aboutUser/personal_center.css');?>">
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="/static/common/js/cover_js/iscroll-zoom.js"></script>
+	<script src="/static/common/js/cover_js/hammer.js"></script>
+	<script src="/static/common/js/cover_js/lrz.all.bundle.js"></script>
+	<script src="/static/common/js/cover_js/jquery.photoClip.min.js"></script>
+</head>
+<body style='background-color:#f6f6f6 '>
+	<include file="public@publicHeader"/>
+		<div class="main" >
+			<div class="title">首页 > <span>个人中心</span></div>
+			<div class="clearfix">
+				<include file="public@public_personal_center"/>
+				
+				<div class="right_wap fr">
+					<div class="prev_info">
+						<div class="bg"></div>
+						<div class="info_box clearfix">
+							<div class="header_img">
+								<img class="headerPic" src="/static/v1/img/moren.png" alt="">
+								<div id="view" class="mask hide"><input type="file" id="file">修改头像</div>	
+							</div>
+							<div class="user_name">
+								<div class="user"></div>
+								<div class="autograph"></div>
+							</div>	
+							<div class="phone_email fr">
+								<div class="phone">
+									<div class="tip">手机号码</div>
+									<div class="info"></div>
+								</div>
+								<div class="email">
+									<div class="tip">电子邮箱</div>
+									<div class="info"></div>
+								</div>
+							</div>	
+							<div class="usual fr">
+								<div class="u_wap">
+									<label for="gender">性别</label>
+									<select name="" id="gender">
+										<option value="男">男</option>
+										<option value="女">女</option>
+									</select>
+								</div>
+								<div class="u_wap">
+									<label for="birth">出生年月日</label>
+									<input readonly=true id="birth" type="text" value=''>
+								</div>	
+								<!-- <div class="u_wap">
+									<label for="location">常住地址</label>
+									<input type="text" value='杭州'>
+								</div>	 -->								
+							</div>
+						</div>
+					</div> 
+					
+					<div class="cover-wrap" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center;">	
+						<div class="" style="width:900px;height:600px;margin:100px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+							<div id="clipArea" style="margin:10px;height: 520px;"></div>
+							<div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+								<button id="clipBtn" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;">保存封面</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="safety">
+						<div class="title_s">账号安全</div>
+						<div class="s_wap">
+							用户昵称 ：<span class="user_i"><input readonly="true" type="text" value=""></span>
+							<span type='user_name' class="edit fr">修改</span>
+							<span type='user_name' class="save fr hide">保存</span>
+						</div>
+						<div class="s_wap">
+							个性签名 ：<span class="autograph_i"><input readonly="true" type="text" value=""></span>
+							<span type='sign' class="edit fr">修改</span>
+							<span type='sign' class="save fr hide">保存</span>
+						</div>
+						<div class="s_wap">
+							手机账号 ：<span class="phone"><input readonly="true" type="text" value=""></span>
+							<span type='phone' class="edit fr">修改</span>
+							<span type='phone' class="save fr hide">保存</span>
+						</div>
+						<div class="s_wap">
+							邮箱账号 ：<span class="email"><input readonly="true" type="email" value=""></span>
+							<span type='email' class="edit fr">修改</span>
+							<span type='email' class="save fr hide">保存</span>
+						</div>
+						<div class="s_wap">
+							<div class="password_edit">登录密码 ：<span class="password">********</span>	<span type='user_name' class="edit_passworld fr">修改</span></div>
+							<div class="password_save hide">
+								<div class="formerly">请输入原密码：<input type="password"></div>
+								<div class="fresh hide">
+									请输入新密码：<input type="password" placeholder="建议密码至少包含字母或数字且长度超过6位">
+									<span type='password' class="p_save fr">保存</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script src="/static/common/layer3.1.1/layer.js"></script>
+<script src="/static/common/laydate/laydate.js"></script>
+<script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/aboutUser/personal_center.js');?>"></script>
+</html>

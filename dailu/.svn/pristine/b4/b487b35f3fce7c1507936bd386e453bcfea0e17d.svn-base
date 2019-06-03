@@ -1,0 +1,31 @@
+
+$(function(){
+	var page = getUrlParam('page')||1;
+	var totCount =$('.allist').attr('count');
+		setPagination(totCount,page);
+
+	
+
+		function setPagination (totnum,page){   //设置翻页
+			$("#pagination").pagination( {
+				pageCount:5,   
+				count:1,  
+				current:page-0,
+				prevContent:'上一页',  
+				nextContent:'下一页', 
+				totalData: totnum,
+				showData: 8,
+				coping: true ,
+				callback:function (api){
+					// api.getPageCount() 获取总页数
+					// api.setPageCount(page) 设置总页数
+				var index = api.getCurrent() //获取当前是第几页
+		
+			
+				window.location.href="/portal/store/storeOrderlist.html?page="+index;
+				
+			}
+		
+		})
+		};	
+})

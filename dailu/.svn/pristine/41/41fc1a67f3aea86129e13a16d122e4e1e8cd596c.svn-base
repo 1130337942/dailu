@@ -1,0 +1,289 @@
+.hide {
+	display: none;
+}
+.checkBox{
+	cursor: pointer;
+	margin-right: 15px;
+	font-size: 14px;
+	color: #999;
+}
+.checkBox::before {
+	margin-right: 6px;
+	display: inline-block;
+	content:'';
+	vertical-align: middle;
+	width: 12px;
+	height: 12px;
+	border: 1px solid #e5e5e5;
+	background-color: #fafafa;
+}
+.on.checkBox::before {
+	background: #fff url(/static/v1/img/checked.png) center center no-repeat;
+}
+input,select{
+     appearance:none;
+    -moz-appearance:none;
+   -webkit-appearance:none;  
+	outline: none;
+	border: none;
+}
+.progress {
+	background-color: #f6f6f6;
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+	left: 0;
+	top: 28px;
+	padding-top: 2px;
+	height: 70px;
+	/*background-color: #f6f6f6;*/
+	border-bottom: 1px solid #e5e5e5;
+}
+.progress .main {
+	height: 100%;
+	width: 1200px;
+	margin: 0 auto;
+}
+.progress .logo{
+	padding-top: 13px;
+	width: 87px;
+	height: 40px;
+} 
+.progress .progress_info{
+	line-height: 70px;
+	color: #999;
+}
+.progress .progress_info i{
+	display: inline-block;
+	width: 136px;
+	height: 2px;
+	border-radius: 1px;
+	background-color: #e5e5e5;
+	margin:0 12px;
+	vertical-align: middle;
+	position: relative;
+}
+.progress .progress_info i::after {
+	position: absolute;
+	top: -2px;
+	right: 0px;
+	display: inline-block;
+	content: '';
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #e5e5e5;
+}
+.progress .progress_info .active{
+	color:#659ff5;
+}
+.progress .progress_info .active i,
+.progress .progress_info .active i::after {
+	background-color: #659ff5;
+}
+
+
+
+.mainWap {
+	padding-top: 108px;
+	width: 1200px;
+	margin: 0 auto;
+	margin-bottom: 96px;
+}
+.mainWap .wap1 {
+	padding: 0 26px 15px;
+	background-color: #fff;
+}
+.wap1 .wap1_tit{
+	height: 62px;
+	font-weight: 600;
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 15px;
+}
+.wap1_tit .detail_num {
+	font-size: 18px;
+	line-height: 62px;
+}
+.wap1_tit .right_ctrl {
+	line-height: 62px;
+	font-size: 16px;
+}
+.wap1_tit .right_ctrl strong {
+	color:#f4a21e;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.wap1_tit .right_ctrl a {
+	width: 112px;
+	height: 36px;
+	background-color: #659ff5;
+	border-radius: 4px;
+	color: #fff;
+	display: inline-block;
+	line-height: 36px;
+	text-align: center;
+}
+.wap1_tit .right_ctrl .cancel:hover{
+	background-color: #74adff;
+}
+.wap1 .air_info .item {
+	float: left;
+	margin-right: 24px;
+	font-size: 14px;
+	line-height: 36px;
+
+} 
+.wap1 .air_info .item .time {
+	font-size: 24px;
+	font-weight: 600;
+	color: #333;
+}
+.wap1 .air_info .item .line{
+	width: 86px;
+	height: 36px;
+	background: #fff url(/static/v1/img/detail_air.png) center center no-repeat;
+}
+.wap1 .air_info .item .times {
+	color: #333;
+	font-weight: 600;
+}
+.wap1 .air_info .item .tot_info{
+	cursor: pointer;
+	font-weight: 600;
+	text-decoration: underline;
+	color: #f4a21e;
+}
+.wap1 .air_info .item .back_rule{
+	cursor: pointer;
+	font-weight: 600;
+	text-decoration: underline;
+	color: #659ff5;
+}
+.wap1 .air_info .item .airtype {
+	text-align: center;
+}
+.wap1 .air_info .item.start_flight {
+	text-align: right;
+}
+.wap1 .air_info .flight_name {
+	font-size: 16px;
+	font-weight: 600;
+	color: #333;
+}
+.wap1 .air_info.bb_n{
+	border-bottom: none;
+}
+.wap1 .air_info span {
+	margin-left: 10px;
+}
+.mainWap .wap2{
+	font-family: PingFang-SC-Medium;
+	margin-top: 8px;
+	padding: 0 26px 15px;
+	background-color: #fff;
+	line-height: 36px;
+	font-size: 14px;
+	color: #666;
+}
+.wap2 .wap2_tit{
+	height: 62px;
+	font-weight: 600;
+	border-bottom: 1px solid #e5e5e5;
+	line-height: 62px;
+	font-size: 16px;
+	color: #333;
+	position: relative;
+	padding-left: 11px;
+}
+
+.wap2 .wap2_tit::before {
+	display:block;
+	content:"";
+	background-color: #659ff5;
+	width: 3px;
+	height: 14px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -7px;
+}
+.wap2 .backreason p{
+	display: inline-block;
+	vertical-align: middle;
+	width: 330px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	font-family: PingFang-SC-Medium;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	padding-left: 17px;
+	position: relative;
+	margin-left:20px
+}
+.wap2 .backreason  select {
+	display: inline-block;
+	vertical-align: middle;
+	width: 330px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	font-family: PingFang-SC-Medium;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	padding-left: 17px;
+	position: relative;
+	margin-left:20px
+}
+.wap2 .backreason {
+	position: relative;
+}
+.wap2 .backreason  i{
+	display: block;
+	content: '';
+	width: 0;
+	height: 0;
+	border-bottom: 4px solid #999;
+	border-right: 4px solid #999;
+	border-top: 4px solid transparent;
+	border-left: 4px solid transparent;
+	transform: rotate(45deg);
+	position: absolute;
+	top: 10px;
+	left:400px;
+}
+
+.wap2 .backreason,.describe{
+	margin-top:20px
+}
+.describe  p {
+	display: inline-block;
+	vertical-align: top;
+	margin-left:20px
+}
+.describe  p  textarea {
+	width: 740px;
+	height: 140px;
+}
+
+.ctrl {
+	padding-left: 90px;
+}
+.ctrl a {
+	color: #659ff5;
+}
+.ctrl .submit {
+	display: inline-block;
+	text-align: center;
+	line-height: 36px;
+	color: #fff;
+	width: 112px;
+	height: 36px;
+	background-color: #659ff5;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-top: 16px;
+}
+.ctrl .submit:hover {
+	background-color: #74adff;
+}

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <include file="public@head" />
+    <link rel="stylesheet" href="/static/common/swiper/swiper.css">
+    <link rel="stylesheet" href="/static/common/jQuery-jSlider/css/jslider.css">
+    <link rel="stylesheet" href="/static/common/jQuery-jSlider/css/jslider.round.css">
+    <link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/scenerymap/cityAttractions.css');?>">
+</head>
+
+<body>
+    <div class="loading_box">
+        <div class="loading_content">
+            <img src="/static/v1/img/loading.gif" alt="">
+            <div class="loading_text">袋鹿正在努力加载...</div>
+        </div>
+    </div>
+    <div class="main_box">
+        <include file="public@nav" />
+        <div class="content">
+            <div class="con_lef">
+                <div class="con_lef_top clearfix">
+                    <div class="cf_icon"></div>
+                    <div class="city_text fl clearfix">
+                        <div class="lef_top_departure fl clearfix">
+                            <p class="fl">
+                                <span class="departure_date"></span>&nbsp;
+                                <span class="top_departure_city"></span>出发</p>
+                            <!-- <div class="editor_box fr">
+                                <i class="editor_city fl"></i>编辑城市</div> -->
+                        </div>
+                        <ul class="leftop_city_ul fl clearfix"></ul>
+                        <div class="lef_top_return fl clearfix">
+                            <p class="fl">
+                                <span class="return_date"></span>&nbsp;<span class="top_last_city"></span>返回<span class="top_return_city"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="f_main_sc">
+                    <div class="fmain_top">
+                        <div class="Three_points">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="bar_text">
+                            <div class="bar_city clearfix">
+                                <p class="bar_city_name fl"></p>
+                                <i class="daySet fl"></i>
+                                <p class="bar_city_date fr"></p>
+                            </div>
+                            <div class="progressbar_box">
+                                <div id="progressbar"></div>
+                            </div>
+                            <div class="been_rem clearfix js_endfly">
+                                <p class="fl">当前城市共
+                                    <span class="cityday_num"></span>
+                                    天</p>
+                                <p class="fr js_dengji"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ts_food dis_none">单击删除</div>
+                    <div class="f_main">
+                        <div class="f_main_main">
+                            <div class="food_box dis_none clearfix">
+                                <div class="food_title fl">美食</div>
+                                <ul class="food_box_ul fl clearfix"></ul>
+                            </div>
+                            <div class="f_prompt">
+                                <div class="f_prompt_img clearfix">
+                                    <img class="prompt_img1" src="/static/v1/img/map/click_r.gif" alt="">
+                                    <img class="prompt_img2" src="/static/v1/img/map/click_toR.png" alt="">
+                                </div>
+                                <div class="f_prompt_text">亲，到右侧挑选你想要的...</div>
+                            </div>
+                            <div class="attractions_box">
+                                <ul class="js_attractions_ul"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="f_main_sc_2">
+
+                </div> -->
+                <div class="f_main_next dis_none">选好了，要行程方案</div>
+                <div class="text_logo">DAILUER</div>
+                <div class="text_logo_bgc"></div>
+            </div>
+            <div class="city_dayset">
+                <div class="city_dayset_close"></div>
+                <div class="set_title">当前城市共
+                    <span class="cityday_num"></span>
+                    <div class="td_but"><i class="n_t"></i><i class="n_d"></i></div>天
+                </div>
+                <ul class="slider_box">
+                    <li class="slider_list">
+                        <div class="layout-slider">
+                            <div class="slider_title">
+                                <p>杭州&nbsp;&nbsp;D1</p>
+                            </div>
+                            <input id="Slider5" type="slider" name="area" value="480;1440" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="con_map">
+                <div class="map_head">
+                    <div class="map_head_l"></div>
+                    <div class="map_head_city clearfix"></div>
+                    <div class="map_head_r">
+                        <span class="js_map_service"><i class="icon_1"></i>在线客服</span>
+                        <span class="js_help"><i class="icon_2"></i>帮助</span>
+                    </div>
+                </div>
+                <div id="map"></div>
+            </div>
+            <!-- attractions  -->
+            <div class="con_rig">
+                <div class="r_top r_top_tab clearfix">
+                    <div class="r_top_tab_box fl">
+                        <ul class="r_top_tab_ul clearfix"></ul>
+                    </div>
+                    <i class="js_tab_search search_icon"></i>
+                </div>
+                <div class="r_top js_searchBox dis_none">
+                    <input id="nearby" placeholder="添加你想去的景点" type="text" autocomplete="off" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"
+                        onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                    <!-- <label for="nearby" class="search_del"></label> -->
+                    <i class="search_del"></i>
+                </div>
+                <div class="r_main js_sport_li">
+                    <ul class="js_rlist_ul"></ul>
+                </div>
+                <div class="r_main search_content_list dis_none">
+                    <ul class="js_search_ul"></ul>
+                    <div class="no_retrieval_box dis_none">
+                        <div class="warning_icon"></div>
+                        <div class="retrieval_txt">
+                            <p>您搜索的地点暂无内容</p>
+                            <p>可手动添加</p>
+                        </div>
+                        <div class="retrieval_but">
+                            <i class="ret_add_icon"></i>手动添加
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 1-5 -->
+    <div class="floor_box dis_none">
+        <div class="floor floor1 active">
+            <div>
+                <i></i>1F</div>
+            <div>人文自然</div>
+        </div>
+        <div class="floor floor2">
+            <div>
+                <i></i>2F</div>
+            <div>本土体验</div>
+        </div>
+        <div class="floor floor3">
+            <div>
+                <i></i>3F</div>
+            <div>醉美夜色</div>
+        </div>
+        <div class="floor floor4">
+            <div>
+                <i></i>4F</div>
+            <div>美食诱惑</div>
+        </div>
+        <div class="floor floor5">
+            <div>
+                <i></i>5F</div>
+            <div>购物天堂</div>
+        </div>
+    </div>
+
+    <!-- attractions   details -->
+    <div class="details_popup_box rw_details_popup_box js_details_popup_box">
+        <div class="auto_details">
+            <div class="details_popup">
+                <div class="details_popup_top js_details_popup_top">
+                    <div class="top_details_text rw_top_details_text">
+                        <p class="p1"></p>
+                        <p class="p2">适玩约
+                            <span class="details_time"></span> |
+                            <span class="suit_season"></span>适玩 |
+                            <span class="suit_time"></span>开放</p>
+                        <p class="p3 clearfix">
+                            <i class="tel_icon"></i>
+                            <span class="tel"></span>
+                            <i class="pos_icon"></i>
+                            <span class="address"></span>
+                        </p>
+                        <div class="popup_img_box">
+                            <ul class="popup_img_url clearfix"></ul>
+                            <div class="last_li_img dis_none">
+                                <div class="more">
+                                    <i class="more_icon"></i>
+                                    <p>更多图片</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="popup_go">我想去</div> -->
+                    <div class="shut_down"></div>
+                </div>
+                <div class="details_popup_main js_details_popup_main">
+                    <div class="details_popup_tab">
+                        <ul class="clearfix">
+                            <li>简要介绍</li>
+                            <li class="js_cultural dis_none">景区景点</li>
+                            <li>附近推荐</li>
+                        </ul>
+                        <i class="details_popup_tab_active"></i>
+                    </div>
+                    <div class="tab_content_box">
+                        <!-- .........tab1........ -->
+                        <div class="tab_content popup_tab1">
+                            <div class="spot_Introduction"></div>
+                            <div>所属类型
+                                <span class="type"></span>
+                            </div>
+                            <div>适玩季节
+                                <span class="suit_season"></span>
+                            </div>
+                            <div>开放时间
+                                <span class="suit_time"></span>
+                            </div>
+                            <div>适玩时间
+                                <span class="play_time"></span>
+                            </div>
+                            <div>联系电话
+                                <span class="phone"></span>
+                            </div>
+                            <div>详细地址
+                                <span class="address_name"></span>
+                            </div>
+                            <div class="attractions_tickets_div clearfix">
+                                <p class="fl">景点门票</p>
+                                <p class="attractions_tickets fl"></p>
+                            </div>
+                            <div class="update_time_div">信息更新时间：
+                                <span class="update_time"></span>
+                            </div>
+                        </div>
+                        <!-- ..........tab2............ -->
+                        <div class="tab_content rwpopup_tab2 dis_none"></div>
+                        <!-- .........tab3........ -->
+                        <div class=" tab_content rwpopup_tab3 dis_none">
+                            <ul class="rwpopup_tab3_ul"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <i class="mask"></i>
+    </div>
+    <!-- eat_goods -->
+    <div class="details_popup_box eat_goods_details_box">
+        <div class="auto_details">
+            <div class="details_popup eat_goods_details_popup">
+                <div class="details_popup_top eat_goods_popup_top">
+                    <div class="top_details_text eat_goods_top_details_text">
+                        <p class="p1"></p>
+                        <p class="p2">推荐地点:
+                            <span></span>
+                        </p>
+                        <p class="p3"></p>
+                    </div>
+                    <!-- <div class="popup_go">我想吃</div> -->
+                    <div class="shut_down"></div>
+                </div>
+                <div class="details_popup_main eat_goods_details_popup_main">
+                    <ul class="eat_goods_ul"></ul>
+                </div>
+                <div class="bigImg_box dis_none">
+                    <img src="" alt="">
+                </div>
+            </div>
+        </div>
+        <i class="mask"></i>
+    </div>
+    <!--eat 店铺 -->
+    <div class="details_popup_box f4_details_popup_box js_details_popup_box">
+        <div class="auto_details">
+            <div class="details_popup">
+                <div class="details_popup_top js_details_popup_top">
+                    <div class="top_details_text f4_top_details_text">
+                        <p class="p1"></p>
+                        <p class="p2">用餐约
+                            <span class="meal_time"></span> | 人均
+                            <span class="per_capita"></span>
+                        </p>
+                        <p class="p3 clearfix">
+                            <i class="tel_icon"></i>
+                            <span class="tel"></span>
+                            <i class="pos_icon"></i>
+                            <span class="address"></span>
+                        </p>
+                        <div class="popup_img_box">
+                            <ul class="popup_img_url clearfix"></ul>
+                            <div class="last_li_img dis_none">
+                                <div class="more">
+                                    <i class="more_icon"></i>
+                                    <p>更多图片</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="popup_go">我想去</div> -->
+                    <div class="shut_down"></div>
+                </div>
+                <div class="details_popup_main js_details_popup_main">
+                    <div class="details_popup_tab">
+                        <ul class="clearfix">
+                            <li>简要介绍</li>
+                            <li>推荐菜品</li>
+                        </ul>
+                        <i class="details_popup_tab_active"></i>
+                    </div>
+                    <div class="tab_content_box">
+                        <!-- ..........tab1............ -->
+                        <div class="tab_content popup_tab1 ">
+                            <div class="Introduction"></div>
+                            <div>所属类型
+                                <span class="type"></span>
+                            </div>
+                            <div>人均消费
+                                <span class="per_capita"></span>
+                            </div>
+                            <div>用餐时间
+                                <span class="meal_time"></span>
+                            </div>
+                            <div>营业时间
+                                <span class="business_hours"></span>
+                            </div>
+                            <div>联系电话
+                                <span class="phone"></span>
+                            </div>
+                            <div>详细地址
+                                <span class="address_name"></span>
+                            </div>
+                            <div class="recommended dis_none">特别推荐
+                                <span class="tebie_tuijian"></span>
+                            </div>
+                            <div class="update_time_div">信息更新时间：
+                                <span class="update_time"></span>
+                            </div>
+                            <div class="branch_box">
+                                <div class="branch_title">分店<span></span></div>
+                                <div>
+                                    <ul class="branch_ul"> </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .........tab2........ -->
+                        <div class="tab_content f4_tab_content1 dis_none">
+                            <ul class="f4_tab_content1_ul clearfix"></ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <i class="mask"></i>
+    </div>
+    <!-- f4 tab2 -->
+    <div class="details_popup_box f4tab2_details_popup_box js_details_popup_box">
+        <div class="auto_details">
+            <div class="details_popup">
+                <div class="details_popup_top js_details_popup_top">
+                    <div class="top_details_text f4tab2_top_details_text">
+                        <p class="p1"></p>
+                        <p class="p2">用餐约
+                            <span class="meal_time"></span> | 人均
+                            <span class="per_capita"></span>
+                        </p>
+                        <p class="p3 clearfix">
+                            <i class="tel_icon"></i>
+                            <span class="tel"></span>
+                            <i class="pos_icon"></i>
+                            <span class="address"></span>
+                        </p>
+                        <div class="popup_img_box">
+                            <ul class="popup_img_url clearfix"></ul>
+                            <div class="last_li_img dis_none">
+                                <div class="more">
+                                    <i class="more_icon"></i>
+                                    <p>更多图片</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="popup_go">我想去</div> -->
+                    <div class="shut_down"></div>
+                </div>
+                <div class="details_popup_main js_details_popup_main">
+                    <div class="details_popup_tab">
+                        <ul class="clearfix">
+                            <li>简要介绍</li>
+                            <li>推荐菜品</li>
+                        </ul>
+                        <i class="details_popup_tab_active"></i>
+                    </div>
+                    <div class="tab_content_box">
+                        <!-- ..........tab1............ -->
+                        <div class="tab_content popup_tab1 ">
+                            <div class="Introduction"></div>
+                            <div>所属类型
+                                <span class="type"></span>
+                            </div>
+                            <div>用餐时间
+                                <span class="meal_time"></span>
+                            </div>
+                            <div>人均消费
+                                <span class="per_capita"></span>
+                            </div>
+                            <div class="update_time_div">信息更新时间：
+                                <span class="update_time"></span>
+                            </div>
+                            <div class="branch_box">
+                                <div class="branch_title">分店<span></span></div>
+                                <div>
+                                    <ul class="branch_ul"> </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .........tab2........ -->
+                        <div class="tab_content f4_tab_content1 dis_none">
+                            <ul class="f4tab2_tab_content1_ul clearfix"></ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <i class="mask"></i>
+    </div>
+    <!-- foodstreet -->
+    <div class="details_popup_box foodstreet_details_popup_box js_details_popup_box">
+        <div class="auto_details">
+            <div class="details_popup">
+                <div class="details_popup_top js_details_popup_top">
+                    <div class="top_details_text foodstreet_top_details_text">
+                        <p class="p1"></p>
+                        <p class="p2">用餐约
+                            <span class="meal_time"></span> | 人均
+                            <span class="per_capita"></span>
+                        </p>
+                        <p class="p3 clearfix">
+                            <i class="tel_icon"></i>
+                            <span class="tel"></span>
+                            <i class="pos_icon"></i>
+                            <span class="address"></span>
+                        </p>
+                        <div class="popup_img_box">
+                            <ul class="popup_img_url clearfix"></ul>
+                            <div class="last_li_img dis_none">
+                                <div class="more">
+                                    <i class="more_icon"></i>
+                                    <p>更多图片</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="popup_go">我想去</div> -->
+                    <div class="shut_down"></div>
+                </div>
+                <div class="details_popup_main js_details_popup_main">
+                    <div class="details_popup_tab">
+                        <ul class="clearfix">
+                            <li>简要介绍</li>
+                        </ul>
+                        <i class="details_popup_tab_active"></i>
+                    </div>
+                    <div class="tab_content_box">
+                        <!-- .........tab1........ -->
+                        <div class="tab_content popup_tab1">
+                            <div class="spot_Introduction"></div>
+                            <div>所属类型
+                                <span class="type"></span>
+                            </div>
+                            <div>适玩时间
+                                <span class="suit_time"></span>
+                            </div>
+                            <div>营业时间
+                                <span class="business_hours"></span>
+                            </div>
+                            <div>详细地址
+                                <span class="address_name"></span>
+                            </div>
+                            <div class="recommended dis_none">特别推荐
+                                <span class="tebie_tuijian"></span>
+                            </div>
+                            <div class="update_time_div">信息更新时间：
+                                <span class="update_time"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <i class="mask"></i>
+    </div>
+    <!-- f5 tab2_3 -->
+    <div class="details_popup_box f5_details_popup_box js_details_popup_box">
+        <div class="auto_details">
+            <div class="details_popup">
+                <div class="details_popup_top js_details_popup_top">
+                    <div class="top_details_text f5_top_details_text">
+                        <p class="p1"></p>
+                        <p class="p2"></p>
+                        <p class="p3 clearfix">
+                            <i class="tel_icon"></i>
+                            <span class="tel"></span>
+                            <i class="pos_icon"></i>
+                            <span class="address"></span>
+                        </p>
+                        <div class="popup_img_box">
+                            <ul class="popup_img_url clearfix"></ul>
+                            <div class="last_li_img dis_none">
+                                <div class="more">
+                                    <i class="more_icon"></i>
+                                    <p>更多图片</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="popup_go">我想去</div> -->
+                    <div class="shut_down"></div>
+                </div>
+                <div class="details_popup_main js_details_popup_main">
+                    <div class="details_popup_tab">
+                        <ul class="clearfix">
+                            <li>简要介绍</li>
+                            <li>特色商品</li>
+                        </ul>
+                        <i class="details_popup_tab_active"></i>
+                    </div>
+                    <div class="tab_content_box">
+                        <!-- ..........tab1............ -->
+                        <div class="tab_content popup_tab1 ">
+                            <div class="Introduction"></div>
+                            <div>所属类型
+                                <span class="type"></span>
+                            </div>
+                            <div>推荐时间
+                                <span class="shopping_time"></span>
+                            </div>
+                            <div>营业时间
+                                <span class="business_hours"></span>
+                            </div>
+                            <div>联系电话
+                                <span class="phone"></span>
+                            </div>
+                            <div>详细地址
+                                <span class="address_name"></span>
+                            </div>
+                            <div class="recommended dis_none">特别推荐
+                                <span class="tebie_tuijian"></span>
+                            </div>
+                            <div class="update_time_div">信息更新时间：
+                                <span class="update_time"></span>
+                            </div>
+                        </div>
+                        <!-- .........tab2........ -->
+                        <div class="tab_content f5_tab_content1 dis_none">
+                            <ul class="f5_tab_content1_ul clearfix"></ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <i class="mask"></i>
+    </div>
+    <!--  -->
+    <div class="more_pic_box clearfix dis_none">
+        <div class="picture_box fl">
+            <div class="pic_box">
+                <div class="swiper-container gallery-top"></div>
+                <div class="swiper-button-next swiper-button-white"></div>
+                <div class="swiper-button-prev swiper-button-white"></div>
+                <div class="swiper-container gallery-thumbs"></div>
+            </div>
+        </div>
+        <div class="content_box fl">
+            <div class="content_name"></div>
+            <p class="content_p"></p>
+            <i class="pic_hide"></i>
+        </div>
+    </div>
+
+
+
+    <!-- prompt box -->
+    <div class="prompt prompt_b dis_none">
+        <div class="prompt_box">
+            <div class="prompt_content">
+                <p class="prompt_title">袋鹿提醒您~</p>
+                <p class="prompt_text"></p>
+                <div class="prompt_but">确定</div>
+            </div>
+        </div>
+    </div>
+    <div class="prompt prompt_c dis_none">
+        <div class="cancel_prompt_box">
+            <div class="prompt_content">
+                <p class="prompt_title">袋鹿提醒您~</p>
+                <p class="cancel_prompt_text"></p>
+                <div class="cancel_prompt_but clearfix">
+                    <div class="prompt_det">确定</div>
+                    <div class="prompt_cancel">取消</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="visitors visitors_eat dis_none">
+        <p class="visitors_text">正餐已达上限，无法添加更多了</p>
+    </div>
+    <div class="visitors visitors_tab dis_none">
+        <p class="visitors_text">点击切换游玩城市</p>
+        <div class="visitors_end">关闭</div>
+    </div>
+    <div class="visitors visitors_cityAttr dis_none">
+        <p class="visitors_text">选择游玩景点元素</p>
+        <div class="visitors_end">关闭</div>
+    </div>
+
+    <div class="new_spot_box">
+        <div class="details_popup_box retrieval_popup_box">
+            <div class="auto_details">
+                <div class="retrieval_content">
+                    <div class="retrieval_top clearfix">
+                        <div class="fl ret_TopDiv1">新增地点</div>
+                        <div class="fr ret_TopDiv2">
+                            <span class="ret_cancel">取消添加</span>
+                            <span class="ret_save">保存</span>
+                        </div>
+                    </div>
+                    <div class="retrieval_middle">
+                        <input type="text" placeholder="请添加地点名称" class="input_name" maxlength="20">
+                        <!-- <input type="text" placeholder="请添加地点地址" class="input_address"> -->
+                        <div class="lbsMap_box">
+                            <div id="container" class="gd_map map"></div>
+                            <div id="pickerBox">
+                                <i class="lbsMapSearch"></i>
+                                <input id="pickerInput" placeholder="输入关键字搜索地点" />
+                                <div id="poiInfo"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="retrieval_bottom clearfix">
+                        <div class="fl add_address_img">
+                            <span>上传封面</span>
+                            <input type="file" id="file">
+                        </div>
+                        <div class="fl ret_gsTxt">建议格式：JPG、PNG，小于 1M</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="" class="address_cover dis_none" alt="">
+    </div>
+
+
+    <div class="cover-wrap" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center;">
+        <div class="" style="width:750px;height:500px;margin:100px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+            <div id="clipArea" style="margin:10px;height: 420px;"></div>
+            <div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+                <button id="clipBtn" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;border:none;border-radius: 4px;">保存封面</button>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="same dis_none"></div>
+    <div class="info_text_none"></div>
+
+    <script type="text/javascript" charset="UTF-8" src="http://ditu.google.cn/maps/api/js?sensor=false&language=zh-CN&key=AIzaSyCHN56rgx83Aov8o308nMSePnx_6miAVHk"></script>
+    <script type="text/javascript" src='https://webapi.amap.com/maps?v=1.4.13&key=e343e74e5c243c04a3b03a1bc35a0327&plugin=AMap.Geocoder'></script>
+    <script type="text/javascript" src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+
+    <include file="public@scripts" />
+    <script type="text/javascript" src="/static/common/js/pdf.js/jquery.qrcode.min.js"></script>
+    <script type="text/javascript" src="/static/common/js/pdf.js/canvas2image.js"></script>
+    <script type="text/javascript" src="/static/common/js/pdf.js/html2canvas.min.js"></script>
+
+    <script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.fly.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/static/common/swiper/swiper.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/static/common/jQuery-jSlider/js/jquery.dependClass.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/static/common/jQuery-jSlider/js/jquery.slider.js"></script>
+    <script type="text/javascript" charset="UTF-8" src='/static/common/layer3.1.1/layer.js'></script>
+    <script src="/static/common/js/cover_js/iscroll-zoom.js"></script>
+    <script src="/static/common/js/cover_js/hammer.js"></script>
+    <script src="/static/common/js/cover_js/lrz.all.bundle.js"></script>
+    <script src="/static/common/js/cover_js/jquery.photoClip.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/scenerymap/cityAttractions.js');?>"></script>
+</body>
+
+</html>

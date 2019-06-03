@@ -1,0 +1,322 @@
+<include file="public@header" />
+</head>
+<style>
+        .big{
+            height:150px;
+            width:150px;
+        }
+        .dialog{
+            height:20px;
+            width:20px;
+        }
+</style>
+<style>
+        html,body {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei";
+        }
+        .dialog .dialog-header{
+            height: auto;
+        }
+        .dialog .dialog-body {
+            height: 30px;
+            padding: 20px;
+            background: #fff;
+        }
+        .wrap-dialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, .4);
+            z-index: 999;
+        }
+        .dialog {
+            position: relative;
+            margin: 15% auto;
+            width: 300px;
+            background-color: #FFFFFF;
+        }
+        .dialog .dialog-header {
+            /* height: 20px; */
+            padding: 10px;
+            background-color: lightskyblue;
+        }
+        .dialog .dialog-body {
+            height: 30px;
+            padding: 20px;
+        }
+        .dialog .dialog-footer {
+            padding: 8px;
+            background-color: whitesmoke;
+        }
+        .btn {
+            width: 70px;
+            padding: 2px;
+        }
+        .hide {
+            display: none;
+        }
+        .ml50 {
+            margin-left: 50px;
+        }
+</style>
+
+<body>
+    <div class="wrap js-check-wrap">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                    <a href="javascript:;" >已通过审核用户列表</a>
+            </li>
+            <li class="">
+                <a href="{:url('Applyagency/index')}">返回旅行社权限申请列表</a>
+            </li>
+           
+        </ul>
+        <form class="well form-inline margin-top-20" method="get" action="{:url('Applyagency/complete')}">
+            <input type="text" class="form-control" name="keyword" style="width: 200px;" value="{:input('request.keyword')}" placeholder="请输入手机号或用户名..."
+            />
+            <input type="submit" value="查询" class="btn btn-primary" />
+            <a class="btn btn-danger" href="{:url('Applyagency/complete')}">清空</a>
+        </form>
+        <form class="js-ajax-form" action="" method="post">
+            <table class="table table-hover table-bordered table-list">
+                <thead>
+                    <tr>
+                        <th width="5">uid</th>
+                        <th width="30">用户昵称</th>
+                        <th width="30">联系方式</th>    
+                        <th width="70">操作</th>
+                    </tr>
+                </thead>
+
+               <!-- 数据渲染 -->
+                <foreach name="agencyed" item="vo">
+                    <tr>
+                        <td>{$vo.uid}</td>
+                        <td>{$vo.user_name}</td>
+                        <td>{$vo.phone}</td>
+                        <td>
+                            <a href="javascript:;" class="back_apply" uid="{$vo.uid}" style='color:blue'>取消旅行社权限</a>
+                        </td>
+                    </tr> 
+                </foreach>
+
+                <tfoot>
+                    <th width="5">uid</th>
+                    <th width="30">用户昵称</th>
+                    <th width="30">联系方式</th>
+                    <th width="70">操作</th>
+                </tfoot>
+            </table>
+            <!-- <div style="text-align: center;"><span class="textcenter pagebar"></span></div> -->
+        </form>
+    </div>
+
+    <div class="wrap-dialog hide">
+            <div class="dialog">
+                <div class="dialog-header">
+                    <span class="dialog-title">权限取消确认</span>
+                </div>
+                <div class="dialog-body">
+                    <span class="dialog-message">确定取消该用户的旅行社的权限</span>
+                </div>
+                <div class="dialog-footer">
+                    <input type="button" class="btn" id="confirm" value="确认" />
+                    <input type="button" class="btn ml50" id="cancel" value="取消" />
+                </div>
+            </div>
+    </div>
+    <script src="__STATIC__/js/admin.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/jBox/Skins/Default/jbox.css" />
+    <script type="text/javascript" src="/static/jbox/jquery.jBox-2.3.min.js"></script>
+    <script src="/static/common/laydate/laydate.js"></script>
+    <script>
+        //customer用户表
+        //撤回审核(将insiders改成1,1是普通会员权限)
+        // $('.back_apply').click(function () {
+            // if(confirm('确定要取消此用户权限吗?')) 
+            // { 
+            //     var id = $(this).attr("id");
+            //     var way = 1;
+            //     $.get("applyok", {
+            //         uid: id,
+            //         way: way
+            //     }, function (data) {
+            //         if (data.status == 'ok') {
+            //             window.location.reload();
+            //         }
+            //     }, 'json');
+            // }
+        // });
+        
+        $(document).ready(function(){
+            $('.back_apply').click(function(){
+                var message = "确定取消该用户的旅行社的权限？";
+                var that = this;
+                dialogBox(message,
+                    function () {
+                        console.log("confirmed");
+                        // do something
+                        var id = $(that).attr("uid");
+                        var way = 1;
+                        $.get("applyok", {
+                            uid: id,
+                            way: way
+                        }, function (data) {
+                            if (data.status == 'ok') {
+                                window.location.reload();
+                            }
+                        }, 'json');
+                    },
+                    function(){
+                        console.log("canceled");
+                        // do something
+                    }
+                );
+            });
+
+        });
+
+        function dialogBox(message, yesCallback, noCallback){
+            if(message){
+                $('.dialog-message').html(message);
+            }
+            // 显示遮罩和对话框
+            $('.wrap-dialog').removeClass("hide");
+            // 确定按钮
+            $('#confirm').click(function(){
+                $('.wrap-dialog').addClass("hide");
+                yesCallback();
+            });
+            // 取消按钮
+            $('#cancel').click(function(){
+                $('.wrap-dialog').addClass("hide");
+                noCallback();
+            });
+        }
+
+
+       
+
+        //日历
+        laydate.render({ 
+            elem: '#feedback',
+            type: 'date' ,//默认，可不填
+            range: true //或 range: '~' 来自定义分割字符
+        });
+        $(function () {
+            //点击图片放大预览
+            $("img.dialog").each(function (i, n) {
+                $(n).click(function () {
+                    if($(n).hasClass("big")){
+                        $(n).removeClass("big").addClass("dialog")
+                    }else{
+                        $(n).addClass("big").removeClass("dialog")
+                    } 
+                });
+                
+            })
+        });
+        //刪除(将status改成0)
+        $('.del').click(function () {
+            var id = $(this).attr("id");
+            $.jBox("确定删除！！！", {
+                title: "提示消息",
+                width: 200,
+                height: 80,
+                buttons: {
+                    '确定': 1,
+                    '取消': 0
+                },
+                buttonsFocus: 0,
+                submit: function (v, h, f) {
+                    if (v == 0) {
+                        return true; // close the window  
+                    } else {
+                        $.get("DeleteAdvice", {
+                            id: id,
+                        }, function (data) {
+                            if (data.status == 'ok') {
+                                window.location.reload();
+                            }
+                        }, 'json');
+                    }
+                    return false;
+                }
+            });
+        });
+
+        function reloadPage(win) {
+            win.location.reload();
+        }
+
+        $(function () {
+            setCookie("refersh_time", 0);
+            Wind.use('ajaxForm', 'artDialog', 'iframeTools', function () {
+                //批量复制
+                $('.js-articles-copy').click(function (e) {
+                    var ids = [];
+                    $("input[name='ids[]']").each(function () {
+                        if ($(this).is(':checked')) {
+                            ids.push($(this).val());
+                        }
+                    });
+
+                    if (ids.length == 0) {
+                        art.dialog.through({
+                            id: 'error',
+                            icon: 'error',
+                            content: '您没有勾选信息，无法进行操作！',
+                            cancelVal: '关闭',
+                            cancel: true
+                        });
+                        return false;
+                    }
+
+                    ids = ids.join(',');
+                    art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=copy&ids=" +
+                        ids, {
+                            title: "批量复制",
+                            width: "300px"
+                        });
+                });
+                //批量移动
+                $('.js-articles-move').click(function (e) {
+                    var ids = [];
+                    $("input[name='ids[]']").each(function () {
+                        if ($(this).is(':checked')) {
+                            ids.push($(this).val());
+                        }
+                    });
+
+                    if (ids.length == 0) {
+                        art.dialog.through({
+                            id: 'error',
+                            icon: 'error',
+                            content: '您没有勾选信息，无法进行操作！',
+                            cancelVal: '关闭',
+                            cancel: true
+                        });
+                        return false;
+                    }
+
+                    ids = ids.join(',');
+                    art.dialog.open(
+                        "__ROOT__/index.php?g=portal&m=AdminArticle&a=move&old_term_id={$term.term_id|default=0}&ids=" +
+                        ids, {
+                            title: "批量移动",
+                            width: "300px"
+                        });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <include file="public@head" />
+    <link rel="stylesheet" href="/static/common/swiper/swiper.css">
+    <link rel="stylesheet" href="/static/common/js/pagination/pagination.css">
+    <link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/scenerymap/addHotel.css');?>">
+</head>
+
+<body>
+    <div class="loading_box">
+        <div class="loading_content">
+            <img src="/static/v1/img/loading.gif" alt="">
+            <div class="loading_text">袋鹿正在努力加载...</div>
+        </div>
+    </div>
+    <div class="main_box">
+        <include file="public@nav" />
+        <div class="content">
+            <div class="con_lef">
+                <div class="con_lef_top clearfix">
+                    <div class="cf_icon"></div>
+                    <div class="city_text fl clearfix">
+                        <div class="lef_top_departure fl clearfix">
+                            <p class="fl">
+                                <span class="departure_date"></span>&nbsp;
+                                <span class="top_departure_city"></span>出发</p>
+                            <!-- <div class="editor_box fr">
+                                <i class="editor_city fl"></i>编辑城市</div> -->
+                        </div>
+                        <ul class="leftop_city_ul fl clearfix"></ul>
+                        <div class="lef_top_return fl clearfix">
+                            <p class="fl">
+                                <span class="return_date"></span>&nbsp;
+                                <span class="top_last_city"></span>返回
+                                <span class="top_return_city"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="f_main_sc">
+                    <div class="f_main_top clearfix">
+                        <span class="fl cur_city"></span>
+                        <span class="top_date fr"></span>
+                    </div>
+                    <div class="tripBox">
+                        <ul class="item_ul"></ul>
+                    </div>
+                </div>
+                <div class="f_main_next">完成</div>
+                <div class="text_logo">DAILUER</div>
+                <div class="text_logo_bgc"></div>
+            </div>
+            <div class="con_map">
+                <div class="map_head clearfix">
+                    <div class="map_head_l"></div>
+                    <div class="map_head_r">
+                        <span class="js_map_service"><i class="icon_1"></i>在线客服</span>
+                        <span class="js_help"><i class="icon_2"></i>帮助</span>
+                    </div>
+                </div>
+
+                <div id="map"></div>
+            </div>
+            <!-- attractions  -->
+            <div class="con_rig">
+                <div class="riTop clearfix">
+                    <div class="fl"><span class="city"></span></div>
+                    <div class="fr selectPrice">
+                        <select name="" id="">
+                            <option value="0,100000">价格不限</option>
+                            <option value="0,150">¥150以下</option>
+                            <option value="150,300">¥150-300</option>
+                            <option value="300,450">¥300-450</option>
+                            <option value="450,600">¥450-600</option>
+                            <option value="600,100000">¥600以上</option>
+                        </select>
+                    </div>
+                    <div class="fr selectCanton">
+                        <select name="" id="canton">
+                            <option value="">选择行政区</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="searchBox">
+                    <input placeholder="立即搜索周边酒店" class="searchText" type="text"><span class="searchBtn"></span>
+                </div>
+                <div class="hotelBox">
+                     <ul class="hotel_box">
+                       
+                     </ul>
+                     <div class="no_hotelbox hide"> <img class="no_hotel" src="/static/v1/img/map_nohotel.png" alt="">
+                        <div class="retrieval_but">
+                            <i class="ret_add_icon"></i>手动添加
+                        </div>
+                     </div>
+                   
+                     <div id="pagination"></div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+
+    <!-- prompt box -->
+    <div class="prompt prompt_b dis_none">
+        <div class="prompt_box">
+            <p class="prompt_title">提示</p>
+            <p class="prompt_text"></p>
+            <div class="prompt_but">确定</div>
+        </div>
+    </div>
+    <div class="prompt prompt_c dis_none">
+        <div class="cancel_prompt_box">
+            <p class="prompt_title">提示</p>
+            <p class="cancel_prompt_text"></p>
+            <div class="cancel_prompt_but clearfix">
+                <div class="prompt_det">确定</div>
+                <div class="prompt_cancel">取消</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- hotel detail start -->
+    <div class="details_popup_box rw_details_popup_box js_details_popup_box" style="display: none;">
+        <div class="details_popup">
+            <div class="details_popup_top js_details_popup_top" style="height: 480px; overflow: hidden;">
+                <div class="top_details_text rw_top_details_text">
+                    <p class="p1"></p>
+                    <p class="p2"></p>
+                    <p class="p3 clearfix">
+                        <i class="tel_icon"></i>
+                        <span class="tel"></span>
+                        <i class="pos_icon"></i>
+                        <span class="address"></span>
+                    </p>
+                    <div class="popup_img_box">
+                        <ul class="popup_img_url clearfix"></ul>
+                        <div class="last_li_img dis_none">
+                            <div class="more">
+                                <i class="more_icon"></i>
+                                <p>更多图片</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotel_info_right">
+                        <div class="fz_18"></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="shut_down"></div>
+            </div>
+            <div class="details_popup_main js_details_popup_main">
+                <div class="details_popup_tab">
+                    <ul class="clearfix">
+                        <li>简要介绍</li>
+                        <!-- <li>用户评价</li> -->
+                    </ul>
+                    <i class="details_popup_tab_active" style="left: 0px;"></i>
+                </div>
+                <div class="tab_content_box">
+                    <!-- .........tab1........ -->
+                    <div class="tab_content popup_tab1" style="display: block; overflow: hidden; height: 205px;">
+                        <div class="spot_Introduction"></div>
+                        <div>联系电话
+                            <span class="phone"></span>
+                        </div>
+                        <div>详细地址
+                            <span class="address_name"></span>
+                        </div>
+                        <div>入离时间
+                            <span class="suit_time">入住时间:12点以后，离店时间:12点以前</span>
+                        </div>
+                        <div>酒店房型
+                            <span class="type"></span>
+                        </div>
+                        <div class="clearfix"><p class="fl">酒店设施</p>
+                            <span class="suit_season dx_suit_season fl"></span>
+                        </div>
+                        <div class="clearfix"><p class="fl">周边交通</p>
+                            <span class="traffic_info dx_traffic_info fl"></span>
+                        </div>
+                      
+                    </div>
+                    <!-- ..........tab2............ -->
+                    <!-- <div class=" tab_content rwpopup_tab3 dis_none" style="display: none; overflow: hidden; height: 205px;">
+                        <ul class="rwpopup_tab3_ul">暂无数据</ul>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <i class="mask"></i>
+    </div>
+    <!-- hotel detail end -->
+    <div class="more_pic_box clearfix dis_none">
+        <div class="picture_box fl">
+            <div class="pic_box">
+                <div class="swiper-container gallery-top"></div>
+                <div class="swiper-button-next swiper-button-white"></div>
+                <div class="swiper-button-prev swiper-button-white"></div>
+                <div class="swiper-container gallery-thumbs"></div>
+            </div>
+        </div>
+        <div class="content_box fl">
+            <div class="content_name"></div>
+            <p class="content_p"></p>
+            <div class="content_info">
+                <div class="bt_1">联系电话：<span class="content_phone"></span></div>
+                <div>详细地址：<span class="content_adress"></span></div>
+                <div>入离时间：<span class="content_hotel">上午12：00之后，下午12:00之前</span></div>
+                <div>酒店房型：<span class="content_room"></span></div>
+            </div>
+            <i class="pic_hide"></i>
+        </div>
+    </div>
+    <div class="info_text_none"></div>
+
+    <!-- 自定义添加酒店弹窗 start-->
+     <div class="new_spot_box">
+        <div class="details_popup_box retrieval_popup_box">
+            <div class="auto_details">
+                <div class="retrieval_content">
+                    <div class="retrieval_top clearfix">
+                        <div class="fl ret_TopDiv1">新增酒店</div>
+                        <div class="fr ret_TopDiv2">
+                            <span class="ret_cancel">取消添加</span>
+                            <span class="ret_save">保存</span>
+                        </div>
+                    </div>
+                    <div class="retrieval_middle">
+                        <div class="inputBox">
+                            <input type="text" placeholder="请添加地点名称" class="input_name" maxlength="20">
+                            <input type="text" placeholder="请输入酒店价格" class="input_price">
+                            <span class="input_date_out"><input type="text" placeholder="请输入住店日期" class="input_date"></span>
+                            <input type="text" placeholder="请添加地点地址" class="input_address" readonly="readonly">
+                        </div>
+                        <div class="lbsMap_box">
+                            <div id="container" class="gd_map map"></div>
+                            <div id="pickerBox">
+                                <i class="lbsMapSearch"></i>
+                                <input id="pickerInput" placeholder="输入关键字搜索地点" />
+                                <div id="poiInfo"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="retrieval_bottom clearfix">
+                        <div class="fl add_address_img">
+                            <span>上传封面</span>
+                            <input type="file" id="file">
+                        </div>
+                        <div class="fl ret_gsTxt">建议格式：JPG、PNG，小于 1M</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="" class="address_cover dis_none" alt="">
+    </div>
+     <div class="cover-wrap" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center;">
+        <div class="" style="width:750px;height:500px;margin:100px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+            <div id="clipArea" style="margin:10px;height: 420px;"></div>
+            <div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+                <button id="clipBtn" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;border:none;border-radius: 4px;">保存封面</button>
+            </div>
+        </div>
+    </div>
+    <!-- 自定义添加酒店弹窗 end-->
+    
+</body>
+
+
+
+
+<script type="text/javascript" charset="UTF-8" src="http://maps.google.cn/maps/api/js?sensor=false&language=zh-CN&key=AIzaSyCHN56rgx83Aov8o308nMSePnx_6miAVHk"></script>
+<script type="text/javascript" src='https://webapi.amap.com/maps?v=1.4.13&key=e343e74e5c243c04a3b03a1bc35a0327&plugin=AMap.Geocoder'></script>
+<script type="text/javascript" src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+
+<include file="public@scripts" />
+<script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/common/swiper/swiper.js');?>"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/pagination/jquery.pagination.js"></script>
+<script type="text/javascript" charset="UTF-8" src='/static/common/layer3.1.1/layer.js'></script>
+<script src="/static/common/js/cover_js/iscroll-zoom.js"></script>
+<script src="/static/common/js/cover_js/hammer.js"></script>
+<script src="/static/common/js/cover_js/lrz.all.bundle.js"></script>
+<script src="/static/common/js/cover_js/jquery.photoClip.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/scenerymap/addHotel.js');?>"></script>
+
+
+</html>

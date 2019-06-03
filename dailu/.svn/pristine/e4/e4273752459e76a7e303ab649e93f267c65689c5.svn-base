@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>机票订单填写</title>
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/airForm.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_store"/>
+		<div class="minWap clearfix">
+			<div class="formWap fl">
+				<!-- 添加乘机人 -->
+				<div class="passenger">
+					<div class="title">填写乘机人信息</div>
+					<if condition="(!empty($contacts)) ">
+						<div class="linkMam">
+							<div class="tit">常用乘机人</div>
+							<div class="list_box clearfix">
+									<volist name="contacts['contacts']" id="vo">
+										<div class="list fl" id_number="{$vo.id_number}" id_type="{$vo.id_type}"><i class="checkBox"></i>{$vo.name}</div>
+									</volist>
+							</div>
+							<div class="more">更多</div>
+						</div>	
+					<else />
+						<!-- <div class="list fl" ><i class="checkBox"></i></div> -->
+					</if>
+					<div class="per_list">
+						<div class="wap">
+							<span class="tit">姓名*</span><input class="passengerName" type="text" placeholder="请输入姓名">
+							<span class="per_type">
+								<select name="" id="" class="paType" >
+									<option value="成人">成人(大于18岁)</option>
+									<option value="婴儿">婴儿(14天-2岁)</option>
+									<option value="儿童">儿童(2岁-15岁)</option>
+								</select>
+							</span>
+						</div>
+						<div class="wap">
+							<span class="tit">证件类型*</span>
+							<span class="card_type">
+								<select name="" id="" class="cardType" >
+									<option value="身份证">身份证</option>
+									<option value="护照">护照</option>
+									<option value="学生证">学生证</option>
+								</select>
+							</span>
+						</div>
+						<div class="wap">
+							<span class="tit">证件号码*</span>
+							<input type="text" class="cardNum">
+						</div>
+						<div class="wap">
+							<span class="tit"></span>
+							<i class="checkBox add_user"></i>保存为常用乘客
+						</div>
+						<div class="delPerson hide">删除</div>
+					</div>	
+					<div class="addPerson">
+						<div class="add">添加乘客</div>
+					</div>
+				</div>
+				<!-- 添加联系人 -->
+				<div class="linkMan_info">
+					<div class="title">填写联系人信息</div>
+							<if condition="(!empty($contacts)) ">
+					<div class="linkMam">
+						<div class="tit">常用乘机人</div>
+						<div class="list_box clearfix">
+								<volist name="contacts['contacts']" id="vo">
+									<div class="list fl" id_number="{$vo.id_number}" id_type="{$vo.id_type}"><i class="checkBox"></i>{$vo.name}</div>
+								</volist>
+						</div>
+						<div class="more">更多</div>
+					</div>
+							<else />
+								<!-- <div class="list fl" ><i class="checkBox"></i></div> -->
+							</if>
+					<div class="wap">
+						<span class="tit">姓名*</span><input type="text" class="linkName" placeholder="请输入姓名">
+					</div>
+					<div class="wap">
+						<span class="tit">联系电话*</span>
+						<span class="tell_type select">
+							<select name="" id="">
+								<option value="+86">中国大陆（+86）</option>
+								<option value="+852">中国香港（+852）</option>
+								<option value="+853">中国澳门（+853）</option>
+								<option value="+886">中国台湾（+886）</option>
+							</select>
+						</span>
+						<input type="text" class="linkPhone" placeholder="手机号码接收航班信息">
+					</div>
+					<div class="wap">
+						<span class="tit">邮箱*</span><input type="text" class="email" placeholder="请输入邮箱">
+					</div>
+					<div class="wap">
+						<span class="tit"></span>
+						<i class="checkBox add_user"></i>保存为常用联系人
+					</div>
+				</div>
+				<!-- 保险信息 -->
+
+				<div class="safety">
+					<div class="title">保险信息</div>
+					<div class="wap">
+						<span class="tit">航空意外险</span>
+						<span class="suddenness select">
+							<select name="" id="">
+								<option value="0">¥30/份×0</option>
+								<option value="1">¥30/份×1</option>
+								
+							</select>
+						</span>
+						<div class="tip">最高赔付320万<strong>?</strong></div>
+					</div>
+					<div class="wap">
+						<span class="tit">航空延误险</span>
+						<span class="delay select">
+							<select name="" id="">
+								<option value="0">¥30/份×0</option>
+								<option value="1">¥30/份×1</option>
+							
+							</select>
+						</span>
+						<div class="tip">最高赔付300元<strong>?</strong></div>
+					</div>
+					<div class="wap">
+						<span class="tit">航空组合险</span>
+						<span class="group select">
+							<select name="" id="">
+								<option value="0">¥30/份×0</option>
+								<option value="1">¥30/份×1</option>
+							</select>
+						</span>
+						<div class="tip">航意+航延，双重保障更安心。<strong>?</strong></div>
+					</div>
+				</div>
+				<!-- 报销信息 -->
+				<div class="wipe">
+					<div class="title">报销信息</div>
+					<div class="wap">
+						<span class="tit">报销凭证</span>
+						<i class="checkBox" price='10'></i><span class="tip">需要报销凭证 （出发后一周内寄出）</span>					
+					</div>
+					<div class="wap">
+						<span class="tit">保险凭证</span>
+						<span style="color: #333">行程单</span>			
+					</div>
+					<div class="wap">
+						<span class="tit">快递费用</span>
+						<span style="color: #f4a21e; font-size: 16px;">¥ 10</span>			
+					</div>
+					<div class="wap">
+						<span class="tit">收件人</span>
+						<input type="text" placeholder="收件人姓名">			
+					</div>
+					<div class="wap">
+						<span class="tit">联系电话</span>
+						<span class="select">
+							<select name="" id="">
+								<option value="+86">中国大陆（+86）</option>
+								<option value="+852">中国香港（+852）</option>
+								<option value="+853">中国澳门（+853）</option>
+								<option value="+886">中国台湾（+886）</option>
+							</select>
+						</span>
+						<input type="text" placeholder="收件人联系电话">
+					</div>
+					<div class="wap">
+						<span class="tit">联系地址</span>
+						<span class="select">
+								<select name="" id="">
+									<option value="">湖北</option>
+									<option value="">广西壮族自治区</option>
+								</select>
+						</span>省
+						<span class="select">
+								<select name="" id="">
+									<option value="">湖北</option>
+									<option value="">广西壮族自治区</option>
+								</select>
+						</span>市
+						<span class="select">
+								<select name="" id="">
+									<option value="">湖北</option>
+									<option value="">广西壮族自治区</option>
+								</select>
+						</span>县/区
+					</div>
+					<div class="wap">
+						<span class="tit"></span>
+						<input style="width:405px"  type="text" placeholder="收件人详细地址">
+					</div>
+					<div class="wap">
+						<span class="tit"></span>
+						<input type="text" placeholder="请输入邮编">
+					</div>
+				</div>
+				<div class="affirm">
+					<div class="title">确认订单</div>
+					<div class="affirm_info">
+						点击提交订单表示已阅读并同意免责条款、费用扣除、退保等在内的重要事项，其中包括 <a href="javascript:;">《网络电子客票协议》</a> <a href="javascript:;">《内容声明》</a> <a href="javascript:;">《关于民航旅客行李中携带锂电池规定的公告》</a><a href="javascript:;">《预订须知》</a>  <a href="javascript:;">《电子发票须知》</a>	
+					</div>
+					<div class=" totPrice">
+						<strong>¥ 00.00</strong><a href="javascript:;">确认订单</a>
+					</div>
+				</div>
+			</div>
+			<div class="preview_wap fl hide">
+				<div class="passenger">
+					<div class="title">乘机人信息</div>
+					<ul>
+						<li class="list clearfix">
+							<div class="tit">
+								<div class="name fl">
+									乘机人姓名	
+								</div>
+								<div class="type fl">
+									乘机人类型
+								</div>
+								<div class="cardNum fl">
+									乘机人证件号
+								</div>
+							</div>
+							<div class="wap">
+								<div class="name fl">
+									赵无极	
+								</div>
+								<div class="type fl">
+									婴儿（14-2岁）
+								</div>
+								<div class="cardNum fl">
+									332624 1991 0524 2123
+								</div>
+							</div>
+						</li>
+
+						
+					</ul>
+				</div>
+				<div class="linkman">
+					<div class="title">联系人信息</div>
+					<div class=" content">
+						<div class="tit clearfix">
+							<div class="name fl">联系人姓名</div>
+							<div class="tel fl">联系人电话</div>
+							<div class="email fl">联系人邮箱</div>
+						</div>
+						<div class="wap link_man clearfix">
+							<div class="name fl">王尼玛</div>
+							<div class="tel fl">15872522205</div>
+							<div class="email fl">iwusc@163.com</div>
+						</div>
+					</div>
+				</div>
+				<div class="safety">
+					<div class="title">保险信息</div>
+					<div>
+						<div class="zuhexian">
+							<span style="color: #666;">组合险</span>
+							<span>赵无极x1</span>
+							<span>王尼玛x1</span>
+						</div>
+						<div class="yanwuxian">
+							<span style="color: #666;">延误险</span>
+							<span>赵无极x0</span>
+							<span>王尼玛x0</span>
+						</div>
+						<div class="yiwaixian">
+							<span style="color: #666;">意外险</span>
+							<span>赵无极x1</span>
+							<span>王尼玛x1</span>
+						</div>
+					</div>
+				</div>
+				<div class="totmoney clearfix">
+					<span>订单总金额</span>
+					<div class="fr">
+						<span class="price">¥ 1628.00</span>
+						<span class="totSubmit">提交订单</span>
+					</div>
+				</div>
+			</div>
+			<div class="air_infoWap fr">
+				<div class="airInfo">
+					<div class="temp">
+						<div class="title"><span class="city"></span></div>
+						<div class="info"></div>
+						<div class="port clearfix">
+							<div class="leave fl">
+								<div class="time"></div>
+								<div class="place"></div>
+							</div>
+							<div class="dest fr">
+								<div class="time"></div>
+								<div class="place"></div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="price_info">
+						<div class="wap"><span class="list">成人票</span><span class="ticket_price price">¥ --/<em>人</em></span><span class="num">x1</span></div>
+						<div class="wap"><span class="list">机建+燃油</span><span class="price">¥ 50/<em>成人</em></span><span class="num">x1</span></div>
+						<div class="wap "><span class="list">航空延误险</span><span class="price">¥ 40/<em>成人</em></span><span class="num">x1</span></div>
+						<div class="wap "><span class="list">航空意外险</span><span class="price">¥ 40/<em>成人</em></span><span class="num">x1</span></div>
+						<div class="wap"><span class="list">航空组合险</span><span class="price">¥ 40/<em>成人</em></span><span class="num">x1</span></div>
+					</div>
+					<div class="tot_wap clearfix">
+						<span class="fl">订单总金额</span>	<span class="totPrice fr">¥ 1628.00</span>
+					</div>
+				</div>
+				<div class='virtue'>
+					<div class="vir_list">
+						<div class="img_l">
+
+						</div>
+						<div class="info_r">
+							<div class="tit">价格透明</div>
+							<div class="info">价格信息全部展示，透明比价</div>
+						</div>
+					</div>
+					<div class="vir_list">
+						<div class="img_l">
+
+						</div>
+						<div class="info_r">
+							<div class="tit">价格透明</div>
+							<div class="info">价格信息全部展示，透明比价</div>
+						</div>
+					</div>
+					<div class="vir_list">
+						<div class="img_l">
+
+						</div>
+						<div class="info_r">
+							<div class="tit">价格透明</div>
+							<div class="info">价格信息全部展示，透明比价</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/airForm.js"></script>
+</html>

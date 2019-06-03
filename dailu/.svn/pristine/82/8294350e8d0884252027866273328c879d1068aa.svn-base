@@ -1,0 +1,47 @@
+#Paginator{
+	/*display: inline-block;*/
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 0;
+	text-align: center;
+	line-height: 36px;
+}
+#Paginator .first ,
+#Paginator .last {
+	display: none;
+}
+#Paginator li {
+	margin-right: 7px;
+	display: inline-block;
+}
+#Paginator .prev ,
+#Paginator .next {
+	width: 76px;
+	height: 36px;
+	background-color: #ffffff;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	color: #999;
+}
+#Paginator .next:hover,
+#Paginator .prev:hover{
+	transition: 0.2s;
+	color: #659ff5;
+	border: solid 1px #659ff5;
+}
+#Paginator .disabled,
+#Paginator .disabled a{
+	cursor: not-allowed;
+}
+#Paginator .page {
+	color: #ccc;
+	width: 38px;
+	height: 36px;
+	background-color: #ffffff;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+}
+#Paginator .active{
+	border: solid 1px #659ff5;
+	color: #659ff5;
+}

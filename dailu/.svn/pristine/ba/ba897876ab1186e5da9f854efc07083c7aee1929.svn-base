@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>袋鹿商城</title>
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/swiper/swiper.css">
+	<link rel="stylesheet" href="/static/common/swiper/animate.min.css">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/css/swiper.min.css"> -->
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/index.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_store"/>
+	<div class="bannerWap clearfix">
+		<div class="leftForm fl">
+			<ul class="formList">
+				<li class="list active">
+					<div class="tit">国内酒店</div>
+					<div class="input_list">
+						<div class="tip">目的地</div>
+						<div class="input_box">
+							<input id='des' type="text" value="杭州 Hangzhou">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">入住日期</div>
+						<div class="input_box">
+							<input id="arr_time" type="text" value="2018-05-04">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">离店日期</div>
+						<div class="input_box">
+							<input id="leave_time" type="text" value="2018-05-06">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">酒店位置</div>
+						<div class="input_box">
+							<input id="loca" type="text" value="景点附近">
+						</div>
+					</div>
+					<button class="searchBtn hotelSubmit">搜 索</button>
+				</li>
+				<li class="list air">
+					<div class="tit">飞机票</div>
+					<div class="input_list clearfix">
+						<div class="leave fl">
+							<div class="tip">出发城市</div>
+							<div class="city"><input type="text" id='lea_city' value="杭州（HGH）"></div>	
+						</div>
+						<div class="change fl"><span></span></div>
+						<div class="arrive fr">
+							<div class="tip">出发城市</div>
+							<div class="city"><input type="text" id='arr_city' value="北京（BJS）"></div>
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">出发日期</div>
+						<div class="input_box">
+							<input id="air_arr_time" type="text" value="2018-05-04">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">返回日期</div>
+						<div class="input_box">
+							<input id="air_leave_time" type="text" value="2018-05-06">
+						</div>
+					</div>
+					<div class="input_list choice">
+						<span class="checkBox on">单程</span>
+						<span class="checkBox">往返</span>
+					</div>
+					<button class="searchBtn airSubmit">搜 索</button>
+				</li>
+				<li class="list train">
+					<div class="tit">火车票</div>
+					<div class="input_list clearfix">
+						<div class="leave fl">
+							<div class="tip">出发城市</div>
+							<div class="city"><input type="text" id='train_lea_city' value="杭州（HGH）"></div>	
+						</div>
+						<div class="change fl"><span></span></div>
+						<div class="arrive fr">
+							<div class="tip">出发城市</div>
+							<div class="city"><input type="text" id='train_arr_city' value="北京（BJS）"></div>
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">出发日期</div>
+						<div class="input_box">
+							<input id="train_arr_time" type="text" value="2018-05-04">
+						</div>
+					</div>
+					<div class="input_list choice">
+						<span class="checkBox on">不限</span>
+						<span class="checkBox">只看高铁动车</span>
+					</div>
+					<button class="searchBtn trainSubmit">搜 索</button>
+				</li>
+				
+				<li class="list meet">
+					<div class="tit">接送机</div>
+					<div class="input_list">
+						<div class="tip">所在城市</div>
+						<div class="input_box">
+							<input id='meet_city' type="text" value="杭州 Hangzhou">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">选择航站楼</div>
+						<div class="input_box">
+							<input id="meet_leave_place" type="text" value="萧山国际机场T3航站楼">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">送达地点</div>
+						<div class="input_box">
+							<input id="meet_arrive_place" type="text" placeholder="必填，填写送达地址">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">用车时间</div>
+						<div class="input_box meetBox  clearfix">
+							<div class="time_left fl">
+								<input id='meet_day' type="text"  value="2019-5-9">
+							</div>
+							<div class="time_right fr">
+								<span class="hour">
+									16				
+								</span>
+								<span class="minute">
+									20
+								</span>
+							</div>
+						</div>
+					</div>
+					<button class="searchBtn meetSubmit">搜 索</button>
+				</li>
+				<li class="list private">
+					<div class="tit">包车</div>
+					<div class="input_list">
+						<div class="tip">出发城市</div>
+						<div class="input_box">
+							<input id='private_city' type="text" value="杭州 Hangzhou">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">用车时间</div>
+						<div class="input_box">
+							<input id="private_time" type="text" value="一天">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">用车时间</div>
+						<div class="input_box meetBox  clearfix">
+							<div class="time_left fl">
+								<input id='private_day' type="text"  value="2019-5-9">
+							</div>
+							<div class="time_right fr">
+								<span class="hour">
+									16				
+								</span>
+								<span class="minute">
+									20
+								</span>
+							</div>
+						</div>
+					</div>
+					<button class="searchBtn privateSubmit">搜 索</button>
+				</li>
+				<li class="mask"></li>
+			</ul>
+			<div class="type">
+				<div index = '0' class="type_list active">酒店</div>
+				<div index = '1' class="type_list">飞机票</div>
+				<div index = '2' class="type_list">火车票</div>
+				<div index = '3' class="type_list">接送机</div>
+				<div index = '4' class="type_list">包车</div>
+			</div>
+		</div>
+		<div class="rightBanner fr">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+				<div class="swiper-slide"><img src="/static/v1/img/aboutdailuer.png" alt=""></div>
+				<div class="swiper-slide"><img src="/static/v1/img/storeBanne2.png" alt=""></div>
+				<div class="swiper-slide"><img src="/static/v1/img/storeBanne2.png" alt=""></div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hotel_advice wap">
+		<div type='hotel' class="title clearfix">
+			<div class="tit_left fl">酒店特选推荐</div>	
+			<div class="tit_right fr">
+				<span class="active">{$city_name}</span>  
+				<span>上海</span>  
+				<span>北京</span>  
+				<span>广州</span>  
+				<span>三亚</span>  
+				<span><a href="javascript:;">查看更多<i class="ico_r">></i>  </a></span>
+			</div>
+		</div>
+		<ul class="hotel_box clearfix">
+			<volist name="hotel_list_info" id="vo">
+				<li class="list fl">
+					<a href="javascript:;">
+						<img src="{$vo.Detail.ThumbNailUrl}" alt="">
+						<div class="bottom_info">
+							<div class="tit clearfix"><span class="name fl">{$vo.Detail.HotelName}</span><span class="price fr">¥{$vo.LowRate}<i>起</i></span></div>
+							<div class="loac">{$vo.Detail.Address}</div>
+						</div>	
+					</a>
+				</li>
+			</volist>
+		</ul>
+	</div>
+	<div class="wap saleTicket">
+		<div class="title clearfix">
+			<div class="tit_left fl">特价机票</div>	
+			<div class="tit_right fr">
+				<span><a href="javascript:;">查看更多<i class="ico_r">></i>  </a></span>
+			</div>
+		</div>
+		<ul class="sale_box clearfix">
+			<volist name="flight_list_info" id="vo">
+				<li class="list fl">
+					<div class="cityBox clearfix">
+						<div class="fl leave">
+							<div class="city">{$vo.dpt_city}</div>
+							<div class="tip"> 出发城市 </div>
+						</div>
+						<div class="fl line"></div>
+						<div class="fl arrive">
+							<div class="city">{$vo.arr_city}</div>
+							<div class="tip">抵达城市</div>
+						</div>
+					</div>
+					<div class="infoBox">
+						<div class="fl time">
+							<div class="tip">出发时间</div>
+							<div class="date">{$vo.date}</div>
+						</div>
+						<div class="fr price">
+							<div class="tip">最低价格</div>
+							<div class="pri">¥{$vo.barePrice}</div>
+						</div>
+					</div>
+				</li>
+			</volist>
+		</ul>
+	</div>
+	<div class="airServer wap">
+		<div type='airServer' class="title clearfix">
+			<div class="tit_left fl">接送机</div>	
+			<div class="tit_right fr">
+				<span class="active">杭州</span>  
+				<span>上海</span>  
+				<span>北京</span>  
+				<span>广州</span>  
+				<span>三亚</span>  
+				<span><a href="javascript:;">查看更多<i class="ico_r">></i>  </a></span>
+			</div>
+		</div>
+		<ul class="car_box clearfix">
+			<volist name="bus_list_info" id="vo">
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="carType">
+							<img src="{$vo.CarPic}" alt="">
+						</div>
+						<div class="infoBox">
+							<div class="tit">{$vo.CarTypeName}</div>
+							<div class="tips">{$vo.BrandName}</div>
+							<div class="price">¥ {$vo.Price} <i>起</i></div>
+						</div>
+					</a>
+				</li>
+			</volist>
+		</ul>
+	</div>
+
+	<!-- <div class="carServer airServer wap">
+		<div type='carServer' class="title clearfix">
+			<div class="tit_left fl">包车</div>	
+			<div class="tit_right fr">
+				<span class="active">杭州</span>  
+				<span>上海</span>  
+				<span>北京</span>  
+				<span>广州</span>  
+				<span>三亚</span>  
+				<span><a href="javascript:;">查看更多<i class="ico_r">></i>  </a></span>
+			</div>
+		</div>
+		<ul class="car_box clearfix">
+			<li class="list fl">
+				<a href="javascript:;">
+					<div class="carType">
+						<img src="/static/v1/img/car.png" alt="">
+					</div>
+					<div class="infoBox">
+						<div class="tit">经济实用之选</div>
+						<div class="tips">丰富车型，专业司机</div>
+						<div class="price">¥ 68.00 <i>起</i></div>
+					</div>
+				</a>
+			</li>
+			<li class="list fl">
+				<a href="javascript:;">
+					<div class="carType">
+						<img src="/static/v1/img/car.png" alt="">
+					</div>
+					<div class="infoBox">
+						<div class="tit">商务接送必备</div>
+						<div class="tips">丰富车型，专业司机</div>
+						<div class="price">¥ 68.00 <i>起</i></div>
+					</div>
+				</a>
+			</li>
+			<li class="list fl">
+				<a href="javascript:;">
+					<div class="carType">
+						<img src="/static/v1/img/car2.png" alt="">
+					</div>
+					<div class="infoBox">
+						<div class="tit">舒服出行最优</div>
+						<div class="tips">丰富车型，专业司机</div>
+						<div class="price">¥ 68.00 <i>起</i></div>
+					</div>
+				</a>
+			</li>
+			<li class="list fl">
+				<a href="javascript:;">
+					<div class="carType">
+						<img src="/static/v1/img/car3.png" alt="">
+					</div>
+					<div class="infoBox">
+						<div class="tit">豪华出行之选</div>
+						<div class="tips">丰富车型，专业司机</div>
+						<div class="price">¥ 68.00 <i>起</i></div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div> -->
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/swiper/swiper.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/swiper/swiper.animate1.0.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/index.js"></script>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>电子围栏删除</title>
+	<style>
+		ul,li {
+			padding: 0;
+			list-style: none;
+		}
+		.title {
+			font-size: 24px;
+		}
+		.list {
+			border-bottom: 1px solid #ccc;
+			color:#333;
+			line-height: 50px;
+		}
+		.list .spot {
+			width: 100px;
+			margin-right: 50px;
+		}
+		.list span {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.list input {
+			width: 60px;
+		}
+		.list .enclousure {
+			padding-left: 20px;
+			width: 200px;
+			margin-right: 50px;
+		}
+		.list .ctrl {
+			margin-right: 200px;
+		}
+		.list .type {
+			width: 100px;
+		}
+		.list button,.list a {
+			border:none;
+			width: 50px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 16px;
+			background-color: #6ea3d4;
+			color: #fff;
+			border-radius: 4px;
+			margin-left: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="title">电子围栏列表</div>
+
+	<ul class="point_box">
+		<li class="list" listId ='123' >
+			<span class="enclousure">围栏名称 </span>
+			<!-- <span class="spot">景点id </span> -->
+			<!-- <span class="type">分类</span> -->
+			<span class="ctrl"> 操作 </span>
+		</li>
+		<volist name="info" id="vo">
+			<li class="list" listId ="{$vo.id}" >
+				<span class="enclousure">{$vo.name} </span>
+				<!-- <span class="spot"><input  value="{$vo.view_id}" ></input></span> -->
+				<!-- <span class="type"><input  value="{$vo.type}" ></input></span> -->
+				<span class="ctrl"> 
+					<a href="/portal/enclosure/circlePreview.html?listId={$vo.id}" class="edit">编辑</a>	
+					<button class="del">删除</button>
+				</span>
+				
+			</li>
+		</volist>
+	</ul>
+
+</body> 
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+<script>
+	$(function(){
+
+		var listId = ''; 
+		$('.list .del').on('click',function(){
+			listId = $(this).parents('.list').attr('listId');
+
+			$.post('coordDel',{'listId':listId},function(data){
+				console.log(data)
+				if(data.status == 'ok'){
+					alert('删除成功')
+					$('.point_box .list').each(function(i,ele){
+						if($(this).attr('listId')==listId){
+							$(this).remove();
+							return false;
+						}
+					})
+				}else{
+					alert('删除失败')
+				}
+
+
+			},'json')
+		})
+		$('.list .edit').on('click',function(){
+			var query = {};
+
+			var id = $(this).parents('.list').attr('listId');
+			var view_id = $(this).parent('.ctrl').siblings('.spot').find('input').val();
+			var type = $(this).parent('.ctrl').siblings('.type').find('input').val();
+				query.id= id;
+				query.view_id= view_id;
+				query.type= type;
+			$.post('enclosure',{'id':id,'view_id':view_id,'type':type},function(data){
+				console.log(data)
+				if(data.status == 'ok'){
+					alert('修改成功')
+				}else{
+					alert('修改失败')
+				}
+
+
+			},'json')
+
+		})
+
+		
+	})
+</script>
+</html>

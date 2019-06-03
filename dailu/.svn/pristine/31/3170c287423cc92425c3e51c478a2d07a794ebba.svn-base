@@ -1,0 +1,62 @@
+
+<link rel="stylesheet" href="<?php AutoVersion('/static/v1/public/css/publicFooter.css');?>">
+<!-- public footer start -->
+	<div class="pub_footer">
+		<div class="footer_all clearfix">
+			<ul class="about fl">
+				<div class="tit">关于我们</div>
+				<li><a rel="nofollow" target="_blank" href="/portal/aboutuser/aboutUs.html">了解我们</a></li>
+				<li><a rel="nofollow" target="_blank" href="/portal/aboutuser/contactUs.html">联系我们</a></li>
+				<li><a rel="nofollow" target="_blank" href="/portal/aboutuser/advice.html">意见反馈</a></li>
+			</ul>
+			<ul class="help fl">
+				<div class="tit">帮助中心</div>
+				<li><a rel="nofollow" target="_blank" href="/portal/helpcenter/greenhand.html">新手上路</a></li>
+				<li><a rel="nofollow" target="_blank" href="/portal/helpcenter/questions.html">常见问题</a></li>
+			</ul>
+			<ul class="server fl">
+				<div class="tit">资讯中心</div>
+				<li><a rel="nofollow" target="_blank" href="/portal/news/newslist.html?type=1">企业资讯</a></li>
+				<li><a rel="nofollow" target="_blank" href="/portal/news/newslist.html?type=2">旅游指南</a></li>
+				<li><a rel="nofollow" target="_blank" href="/portal/news/newslist.html?type=3">粉丝互动</a></li>
+				<li><a rel="nofollow" target="_blank" href="/portal/news/newslist.html?type=4">媒体聚焦</a></li>
+			</ul>
+			<ul class="server fl">
+				<div class="tit">平台协议</div>
+				<li><a rel="nofollow" target="_blank" href="/portal/dailuTreaty/treaty.html?type=deal">服务协议</a></li>
+				<li><a rel="nofollow" target="_blank" href="/portal/dailuTreaty/treaty.html?type=assert">版权声明</a></li>
+				<li><a rel="nofollow" target="_blank" href="/portal/dailuTreaty/treaty.html?type=duty">免责条款</a></li>
+			</ul>
+			<ul class="downLoad fl">
+				<div class="tit">移动客户端</div>
+				<li><a rel="nofollow" target="_blank" href="/portal/DownloadApp/downloadApp.html">袋鹿APP</a></li>
+				<li><a rel="nofollow" target="_blank" href="https://itunes.apple.com/cn/app/%E8%A2%8B%E9%B9%BF%E6%97%85%E8%A1%8C/id1436562784?mt=8">iOS下载</a></li>
+				<li><a rel="nofollow" target="_blank" href="http://www.dailuer.com/upload/portal/袋鹿旅行.apk">Android下载</a></li>
+			</ul>
+			<div class="wechat fr">
+				<img src="/static/v1/img/wx-ewm.png" alt="">
+				<div style='font-size: 14px;margin-top: 5px;'>袋鹿微信公众号</div>
+			</div>
+			
+			
+		</div>
+		<div style="text-align: left;" class="friendlyLink">友情链接：<a target="_blank" href="http://www.nanhutravel.com">南湖国旅</a><a target="_blank" href="http://www.jinmalvyou.com">金马国旅</a><a target="_blank" href="http://www.youxiake.com">游侠客旅游网</a><a target="_blank" href="http://www.zouyouyn.com">云南国际旅行社</a><a target="_blank" href="http://www.syly114.com">神羊互联旅游网</a><a target="_blank" href="http://www.baozumei.cn">包租妹短租网</a>
+		</div>
+		<div class="copyRight">
+			copyright©杭州优瑞创网络科技版权所有 2018 all right | 浙ICP备16004581号-5  <a style="margin-left:0;" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010802009427" rel="nofollow" target="_blank">浙公网安备 33010802009427号</a>  
+		</div> 
+		<!-- <div style="width:300px;margin:0 auto; padding:20px 0;">
+		 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010802009427" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">浙公网安备 33010802009427号</p></a>
+		 </div> -->
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "https://hm.baidu.com/hm.js?c546aa992ebbfb2ccc57220ee155004b";
+				var s = document.getElementsByTagName("script")[0]; 
+				s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+	</div>
+	<!-- public footer end -->
+

@@ -1,0 +1,108 @@
+.main {
+	width: 1200px;
+	margin: 0 auto;
+	margin-top: 68px;
+	margin-bottom: 96px;
+}
+.main_title {
+	height: 56px;
+	line-height: 56px;
+	font-family: PingFang-SC-Medium;
+	font-size: 14px;
+	position: relative;
+	padding-left: 11px;
+}
+.main_title::before {
+	display:block;
+	content:"";
+	background-color: #659ff5;
+	width: 3px;
+	height: 14px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -7px;
+}
+.main .wap1 {
+	padding: 0 26px 15px;
+	background-color: #fff;
+}
+.wap1 .wap1_tit{
+	height: 62px;
+	font-family: PingFang-SC-Bold;
+	border-bottom: 1px solid #e5e5e5;
+}
+.wap1_tit .detail_num {
+	font-size: 18px;
+	line-height: 62px;
+}
+.wap1_tit .right_ctrl {
+	line-height: 62px;
+	font-size: 16px;
+}
+.wap1_tit .right_ctrl strong {
+	font-weight: normal;
+	color:#f4a21e;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.wap1_tit .right_ctrl a {
+	width: 112px;
+	height: 36px;
+	background-color: #659ff5;
+	border-radius: 4px;
+	color: #fff;
+	display: inline-block;
+	line-height: 36px;
+	text-align: center;
+}
+.wap1_tit .right_ctrl .cancel:hover{
+	background-color: #74adff;
+}
+.wap1 .hotel_info {
+	padding: 10px 0; 
+	font-family: PingFang-SC-Medium;
+	color: #666;
+	line-height: 36px;
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 14px;
+}
+.wap1 .hotel_info.bb_n{
+	border-bottom: none;
+}
+.wap1 .hotel_info span {
+	margin-left: 10px;
+}
+.main .wap2 ,
+.main .wap3{
+	font-family: PingFang-SC-Medium;
+	margin-top: 8px;
+	padding: 0 26px 15px;
+	background-color: #fff;
+	line-height: 36px;
+	font-size: 14px;
+	color: #666;
+}
+.wap2 .wap2_tit,
+.wap3 .wap3_tit{
+	height: 62px;
+	font-family: PingFang-SC-Bold;
+	border-bottom: 1px solid #e5e5e5;
+	line-height: 62px;
+	font-size: 16px;
+	color: #333;
+	position: relative;
+	padding-left: 11px;
+}
+.wap3 .wap3_tit:before,
+.wap2 .wap2_tit::before {
+	display:block;
+	content:"";
+	background-color: #659ff5;
+	width: 3px;
+	height: 14px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -7px;
+}

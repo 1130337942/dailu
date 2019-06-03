@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>火车票订单确定</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/trainFormprev.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_store"/>
+		<div class="minWap clearfix">
+			<div class="leftWap fl">
+				<div class="trainInfo">
+					<div class="title">车次信息展示 <i></i> 
+						<span class="tip">发车日期：5月24日</span><a class="tip fr" href="javascript:;">退改签说明</a>
+					</div>
+					<div class="train clearfix">
+						<div class="fl wap1">
+							<div class="fz24">D3126</div>
+							<div class="fz14">修改车次</div>
+						</div>
+						<div class="fl wap2">
+							<div class="leave inblock">
+								<div class="fz24">06:43</div>	
+								<div class="fz14">上海虹桥</div>								
+							</div>
+							<div class="arr inblock">
+								5时57分
+							</div>
+							<div class="deast inblock">
+								<div class="fz24">09:43</div>	
+								<div class="fz14">南京北</div>
+							</div>
+						</div>
+						<div class="fr wap3">
+							<div class="fz24 money">¥ 568</div>
+							<div class="type fz14">二等座</div>
+						</div>
+					</div>
+				</div>
+				<div class="passenger">
+					<div class="title">乘客信息</div>
+					<ul class="passenger_list clearfix">
+						<li class="list fl">
+							<div class="info">找大牛 | 成人</div>
+							<div class="info">332615 199895 6215 478</div>		
+						</li>
+						<li class="list fl">
+							<div class="info">找大牛 | 成人</div>
+							<div class="info">332615 199895 6215 478</div>		
+						</li>
+						<li class="list fl">
+							<div class="info">找大牛 | 成人</div>
+							<div class="info">332615 199895 6215 478</div>		
+						</li>
+					</ul>				
+				</div>
+				<div class="linkMan">
+					<div class="title">联系人信息</div>
+					<div class="linkMan_info">
+						<div class="tit">
+							<span class="name">联系人姓名</span>
+							<span class="tel">联系人电话</span>
+							<span class='email'>联系人邮箱</span>
+						</div>
+						<div class="info">
+							<span class="name">张铁柱</span>
+							<span class="tel">15872522205</span>
+							<span class='email'>iwuscy@163.com</span>
+						</div>
+					</div>
+					<div class="title">保险信息</div>
+					<div class="safety_info">
+						<div class="safetyBox clearfix">
+							<div class="tit">火车意外险</div>
+							<div class="list fl">赵大牛（1份保险共20元)</div>
+							<div class="list fl">赵大牛（1份保险共20元)</div>
+
+						</div>
+						<div class="s_invoice"><i class="checkBox"></i>不需要保险发票，为环保一份贡献</div>
+
+					</div>
+				</div>
+				<div class="payWap clearfix">
+					订单总金额
+					<div class="fr pay">¥ 628.00 <a class="submit_btn" href="javascript:;">确认订单</a></div>
+				</div>
+			</div>
+			<div class="rightWap fr">
+				
+				<div class="warm">
+					<div class="title">购票说明</div>
+					<div class="text">
+					因火车票实名制购买规定，我司只为真实的消费者代购火车票，我方有权在核实购票人身份时，要求客户提供身份证复印件核实购票人的身份，购票人身份核实通过后，才能完成购票退票及退款，否则我司不提供售后服务。若行为严重违反铁路机关相关规定的，我司将主动配合公安机关进行查处。
+					</div>
+				</div>
+			</div>	
+		</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/trainFormprev.js"></script>
+</html>

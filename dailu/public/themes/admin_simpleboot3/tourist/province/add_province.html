@@ -1,0 +1,157 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+    .tabType.col-md-9{
+    	display: none;
+    }
+    .tabType.col-md-9.active {
+    	display: block;
+    }
+</style>
+<script type="text/html" id="photos-item-tpl">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names[]" value="{name}"
+               style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;"
+             onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs" id="myTab">
+        <li><a href="{:url('Province/index')}">省份列表</a></li>
+        <li class="active"><a href="{:url('Province/add_province')}">添加省份详情</a></li>
+    </ul>   
+    <form action="{:url('province/do_add_province')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+        <div class="row">
+            <div class="col-md-9">
+                <div id="province" class="col-md-9 tabType active" >
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="100">省份名称</th>
+                        <td>
+                            <div class="form-control">
+                                    <select class="pro" name="province_id">
+                                        <option value="">省/直辖市</option>
+                                        <volist name="area" id="vo">
+                                                <option value="{$vo['area_id']}">{$vo.area_name}</option>
+                                        </volist>
+                                    </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>简要介绍</th>
+                        <td>
+                            <script type="text/plain" id="content" name="province_Introduction"></script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>封面</th>
+                        <td>
+                                <ul id="photos" class="pic-list list-unstyled form-inline"></ul>
+                                <a href="javascript:uploadMultiImage('图片上传','#photos','photos-item-tpl');" class="btn btn-default btn-sm">选择图片</a>
+                        </td>
+                </tr>
+                </table>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+                        <a class="btn btn-default" href="{:url('Province/index')}">{:lang('BACK')}</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //调用编辑器
+        editorcontent = new baidu.editor.ui.Editor();
+        //多次调用时，传参数
+        function editorRunder(){
+            for (var i =0; i<arguments.length;i++){
+                editorcontent.render(arguments[i]);
+            }
+        }
+        editorRunder('content','content2')
+        
+        try {
+            editorcontent.sync();
+        } catch (err) {
+        }
+
+        $('.btn-cancel-thumbnail').click(function () {
+            $('#thumbnail-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+            $('#thumbnail').val('');
+        });
+
+    });
+
+    function doSelectCategory() {
+        var selectedCategoriesId = $('#js-categories-id-input').val();
+        openIframeLayer("{:url('AdminCategory/select')}?ids=" + selectedCategoriesId, '请选择分类', {
+            area: ['700px', '400px'],
+            btn: ['确定', '取消'],
+            yes: function (index, layero) {
+                //do something
+
+                var iframeWin          = window[layero.find('iframe')[0]['name']];
+                var selectedCategories = iframeWin.confirm();
+                if (selectedCategories.selectedCategoriesId.length == 0) {
+                    layer.msg('请选择分类');
+                    return;
+                }
+                $('#js-categories-id-input').val(selectedCategories.selectedCategoriesId.join(','));
+                $('#js-categories-name-input').val(selectedCategories.selectedCategoriesName.join(' '));
+                //console.log(layer.getFrameIndex(index));
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            }
+        });
+    }
+    
+    //省份切换到城市
+    $(".pro").on("change",function(){
+            var area_id = $(this).val();
+            $('.city option').each(function(){
+                if($(this).text()!='城市'){
+                    $(this).remove();
+                }
+            });
+            $('.area option').each(function(){
+                if($(this).text()!='地区'){
+                    $(this).remove();   
+                }
+            });
+            $.get("__ROOT__/index.php/tourist/City/getCityLink",{area_type:2,area_id:area_id},function(data){
+                    var json = $.parseJSON(data);
+                    var option="";
+                    $.each(json,function(key,val){
+                        option += '<option value="'+val.area_id+'">'+val.area_name+'</option>';
+                    });
+                    $(".city").append(option);
+            });
+            
+    });
+    $('.nav-tabs li a').on('click',function(){
+    	var id = $(this).attr('href');
+    	$(id).addClass('active').siblings('.col-md-9').removeClass('active');
+    })
+</script>
+</body>
+</html>

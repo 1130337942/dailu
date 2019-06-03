@@ -1,0 +1,155 @@
+
+.hide{
+	display: none;
+}
+.on{
+	display: block;
+}
+.main {
+	margin: 0 auto;
+	margin-top: 68px;
+	margin-bottom: 110px;
+	width: 1200px;
+}
+
+.main .title {
+	font-size: 14px;
+	/*font-weight: 600;*/
+	padding-left: 12px;
+	position: relative;
+	height: 58px;
+	line-height: 58px;
+}
+.main .title::before {
+	display: block;
+	content: '';
+	width: 3px;
+	height: 14px;
+	background-color: #659ff5;
+	position: absolute;
+	top: 50%;
+	margin-top: -7px;
+	left: 0;
+}
+.left_wap {
+	text-align: center;
+	width: 240px;
+	height: 360px;
+	background: #fff url(/static/v1/img/user_bg.png) center bottom no-repeat;
+	border-radius: 4px;
+}
+.left_wap .headerPic{
+	margin-top: 40px;
+	width: 85px;
+	height: 85px;
+	border-radius: 50%;
+	background-color: #cccccc;
+	box-shadow: 0px 1px 8px 0px 
+		rgba(0, 0, 0, 0.12);
+	border: solid 3px #ffffff;
+}
+.left_wap  .uname {
+	margin-top: 15px;
+	font-weight: 700;
+}
+.left_wap .sign {
+	margin-top: 5px;
+	height: 55px;
+	font-size: 14px;
+	color:#b3b3b3;
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow:hidden;
+
+}
+.design {
+	margin: 0 auto;
+	display: block;
+	width: 136px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #659ff5;
+	box-shadow: 0px 2px 16px 0px 
+		rgba(101, 159, 245, 0.16);
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+}
+.right_wap {
+	width: 940px;
+	min-height: 360px;
+	background-color: #ffffff;
+	border-radius: 4px;
+
+}
+.right_wap .nav_tab{
+	padding-left: 40px;
+	height: 59px;
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 16px;
+	color: #999;
+	line-height: 58px;
+	position: relative;
+}
+.right_wap .nav_tab span{
+	cursor: pointer;
+	margin-right: 55px;
+	font-weight: 600px;
+}
+.right_wap .nav_tab span:hover {
+	color: #333;
+}
+.right_wap .nav_tab .active {
+	color: #333;
+	font-weight: 700;
+}
+.right_wap .nav_tab .bder{
+	position: absolute;
+	display: block;
+	width: 68px;
+	height: 3px;
+	background-color: #659ff5;
+	left: 40px;
+	bottom: 0;
+}
+
+.right_wap .wap {
+	padding:0 38px 60px;
+	position: relative;
+}
+.right_wap .wap .loadMore{
+	position: absolute;
+	bottom: 24px;
+	left: 50%;
+	margin-left: -28px;
+	color: #b3b3b3;
+	font-size: 14px;
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+}
+.right_wap .wap .list {
+	padding: 26px 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+.right_wap .wap .list .right_con{
+	width: 750px;
+}
+.right_wap .wap .list .mainPic{
+	width: 88px;
+	height: 88px;
+	overflow: hidden;
+}
+.right_wap .wap .list .tit {
+	font-size: 18px;
+	margin-bottom: 15px;
+}
+.right_wap .wap .list  .con {
+	color: #999;
+}
+.right_wap .wap .list .pushTime {
+	font-size: 14px;
+	margin-top: 15px;
+}

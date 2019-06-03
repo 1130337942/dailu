@@ -1,0 +1,194 @@
+<include file="public@header" />
+</head>
+<style>
+    .user_mask {
+    	position: fixed;
+    	top:0px;
+    	left: 0;
+    	width: 100%;
+    	height: 100%;
+    	overflow: scroll;
+    	background-color: rgba(0,0,0,0.6);
+    }
+
+    .user_mask .table_box {
+    	width: 80%;
+    	background-color: #fff;
+    	margin: 50px auto;
+		padding: 30px 30px 100px;
+		position: relative;
+    }
+    .user_mask .table_box .mask_table {
+		width: 100%;
+    }
+	.user_mask .mask_table td  ,
+	.user_mask .mask_table th  {
+		padding: 5px;
+	}
+	.user_mask  .close_mask {
+		width: 30px;
+		height: 30px;
+		background-color: #3590db;
+		color: #fff;
+		position: absolute;
+		top:0;
+		right:-32px;
+		text-align: center;
+		line-height: 30px;
+		font-weight: bold;
+		font-size: 20px;
+		cursor: pointer;
+	}
+  .prom_info {
+    cursor: pointer;
+  }
+</style>
+<body>
+    <div class="wrap js-check-wrap">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="javascript:;">用户推广列表</a>
+            </li>
+        </ul>
+        <form class="well form-inline margin-top-20" method="get" action="">
+            用户名:
+            <input type="text" class="form-control" name="text" style="width: 200px;" value="" placeholder="请输入用户名..."
+            />
+            <input type="submit" value="查询" class="btn btn-primary" />
+            <a class="btn btn-danger" href="javascript:;">清空</a>
+        </form>
+        <form class="js-ajax-form" action="" method="post">
+            <table class="table table-hover table-bordered table-list">
+                <thead>
+                    <tr>
+                        <notempty name="category">
+                            <th width="50">{:lang('SORT')}</th>
+                        </notempty>
+                        <th width="15">用户uid</th>
+                        <th width="50">用户名</th>
+                        <th width="50">推荐注册人数</th>
+                        <th width="40">发布且审核通过人数</th>
+                        <th width="40">邀请码</th>
+                        <th width="40">注册奖励（元/人）</th>
+                        <th width="40">审核奖励（元/人）</th>
+                        <th width="40">操作</th>
+                        <th width="40">总推广所得（元/人）</th>
+                        <th width="40">个人推广详情</th>
+                    </tr>
+                </thead>
+				
+                <!-- 数据展示位置 -->
+                <if condition="isset($result)">
+                <foreach name="result" item="vo">
+                    <tr>
+                        <td class="uid">{$vo.uid}<input type="hidden" value="{$vo.uid}"></td>
+                        <td class="u_name">{$vo.user_name}<input type="hidden" value="{$vo.user_name}"></td>
+                        <td class="reg_num">{$vo.register_data}<input type="hidden" value="{$vo.register_data}"></td>
+                        <td class="aud_num">{$vo.auditNum}<input type="hidden" value="{$vo.auditNum}"></td>
+                        <td class="ref_code">{$vo.refer_code}<input type="hidden" value="{$vo.refer_code}"></td>
+                        <td class='reg_price'><input min='0' class='deit_price' type='number' value="{$vo.reg_price}"></td>
+                        <td class='audit_price'><input min='0' class='deit_price' type='number' value="{$vo.audit_price}"></td>
+                        <td class="edit"><a href="javascript:;">提交</a></td>
+                        <td class="tot" value="">{$vo.total_price}</td>
+                        <td class="prom_info_td"><span class="prom_info">查看详情</span></td>
+                    </tr>
+                </foreach>
+                <else />
+                    <tr><td class="textcenter red" colspan="9" style='text-align:center'> <font color="red">列表为空！</font></td></tr>
+                </if>
+					
+                <tfoot>
+                  
+                </tfoot>
+            </table>
+        </form>
+    </div>
+
+	<div class="user_mask" style="display: none">
+            <div class="table_box"> 
+                <div class="close_mask">x</div>
+                <table class="mask_table" border='1'>
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>注册人数</th>
+                            <th>审核通过条数</th>
+                            <th>注册奖励（元/人）</th>
+                            <th>审核奖励（元/人）</th>
+                            <th>当天推广收入</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                    </tbody>
+                </table>
+                
+            </div>
+    </div>
+   
+
+</body>
+    <script src="__STATIC__/js/admin.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/jBox/Skins/Default/jbox.css" />
+    <script type="text/javascript" src="/static/jbox/jquery.jBox-2.3.min.js"></script>
+    <script src="/static/common/layer3.1.1/layer.js"></script>
+    <script>
+       	$(function(){
+       		$('.close_mask').on('click',function(){
+       			$(this).parents('.user_mask').hide()
+       		})
+
+       		$('.prom_info').on('click',function(){
+            $(this).parents('table').find('.tot').removeClass('selected');
+            $(this).parent('td').siblings('.tot').addClass('selected');
+       			var query = {};
+       				query.uid =$(this).parent('td').siblings('.uid').find('input').val();
+              query.isEdit =$(this).hasClass('isEdit')?true:false;
+              query.register_data =$(this).parent('td').siblings('.reg_num').find('input').val();
+              query.is_audit =$(this).parent('td').siblings('.aud_num').find('input').val();
+       				$.post('promote_price',query,function(res){
+       					if(res.status=='ok'){
+                  var table_str = '';
+                  $(res.list).each(function(){
+                    table_str +=" <tr>"+
+                    "<td class='date' timeStr="+this.date+" >"+this.date_of+"</td>"+
+                    "<td class='zc_num'>"+ this.zhuce_number +"</td>"+
+                    "<td class='sh_num'>"+ this.shenhe_number +"</td>"+
+                    "<td class='sh_num'>"+ this.reg_price +"</td>"+
+                    "<td class='sh_num'>"+ this.audit_price +"</td>"+
+                    "<td>"+ this.day_total_price +"</td>"+
+                    "</tr>"
+                  })
+                  $('.mask_table tbody').html(table_str);
+       						$('.user_mask').show();
+       					}
+
+       				},'json')
+       			
+       		})
+
+          $('.edit a').on('click',function(){
+              var _self = this;
+              var query = {};
+                  query.uid = $(this).parent('td').siblings('.uid').find('input').val();
+                  query.user_name =$(this).parent('td').siblings('.u_name').find('input').val();
+                  query.register_data =$(this).parent('td').siblings('.reg_num').find('input').val();
+                  query.is_audit =$(this).parent('td').siblings('.aud_num').find('input').val();
+                  query.reg_price = $(this).parent().siblings('.reg_price').find('input').val();
+                  query.audit_price = $(this).parent().siblings('.audit_price').find('input').val();
+              $.post('submitData',query,function(res){
+                //   if (!res) return false; 
+                    $(_self).parent('td').siblings('.prom_info_td').find('.prom_info').addClass('isEdit');
+                    $(_self).parent('td').siblings('.tot').text(res.total_price)
+                    layer.msg('成功提交价格信息',{
+                      time:2000,
+                      offset:'200px'
+                    })
+
+              },'json')
+          })
+
+       	})
+    </script>
+</html>

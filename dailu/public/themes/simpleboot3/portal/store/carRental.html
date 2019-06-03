@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>包车首页</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/swiper/swiper.css">
+	<link rel="stylesheet" href="/static/common/swiper/animate.min.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/carRental.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_store"/>
+	<div class="bannerWap clearfix">
+		<div class="leftForm fl">
+			<ul class="formList">
+				<!-- <li class="list train active">
+					<div class="tit">包车</div>
+					<div class="input_list clearfix">
+						<div class="leave fl">
+							<div class="tip">出发城市</div>
+							<div class="city"><input type="text" id='train_lea_city' value="杭州（HGH）"></div>	
+						</div>
+						<div class="change fl"><span></span></div>
+						<div class="arrive fr">
+							<div class="tip">出发城市</div>
+							<div class="city"><input type="text" id='train_arr_city' value="北京（BJS）"></div>
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">出发日期</div>
+						<div class="input_box">
+							<input id="train_arr_time" type="text" value="2018-05-04">
+						</div>
+					</div>
+					<div class="input_list choice">
+						<span class="checkBox on">不限</span>
+						<span class="checkBox">只看高铁动车</span>
+					</div>
+					<button class="searchBtn trainSubmit">搜 索</button>
+				</li> -->
+				<li class="list private active">
+					<div class="tit">包车</div>
+					<div class="input_list">
+						<div class="tip">出发城市</div>
+						<div class="input_box">
+							<input id='private_city' type="text" value="杭州 Hangzhou">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">用车时间</div>
+						<div class="input_box">
+							<input id="private_time" type="text" value="一天">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">用车时间</div>
+						<div class="input_box meetBox  clearfix">
+							<div class="time_left fl">
+								<input id='private_day' type="text"  value="2019-5-9">
+							</div>
+							<div class="time_right fr">
+								<span class="hour">
+									16				
+								</span>
+								<span class="minute">
+									20
+								</span>
+							</div>
+						</div>
+					</div>
+					<button class="searchBtn privateSubmit">搜 索</button>
+				</li>
+			</ul>
+			
+		</div>
+		<div class="rightBanner fr">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+				<div class="swiper-slide"><img src="/static/v1/img/storeBanner.png" alt=""></div>
+				<div class="swiper-slide"><img src="/static/v1/img/storeBanne2.png" alt=""></div>
+				<div class="swiper-slide"><img src="/static/v1/img/storeBanne2.png" alt=""></div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 国内包车推荐  start-->		
+	<div class="main clearfix">
+		<div class="left_wap fl">
+			<div class="title clearfix">
+				<h4 class="fl">国内热门包车推荐</h4>
+				<div class="fr hotcity">
+					<a class="active" href="javascript:;">杭州</a>
+					<a href="javascript:;">上海</a>
+					<a href="javascript:;">北京</a>
+					<a href="javascript:;">广州</a>
+					<a href="javascript:;">三亚</a> 
+					<a class="more" href="javascript:;">查看更多</a>
+				</div>
+			</div>
+			<div class="listBox">
+				<div class="list">
+					<div class="wap1">
+						<img src="/static/v1/img/dsa.png" alt="">
+					</div>
+					<div class="wap2">
+						<div class="carName">大众斯柯达明锐</div>
+						<div class="carType">经济型</div>
+					</div>
+					<div class="wap3">
+						<div>3小时服务时长</div>
+						<div>100公里里程</div>
+						<div>最大乘客书x6</div>
+					</div>
+					<div class="wap4">
+						<div class="price">¥ <strong>2200</strong>起</div>
+						<div class="buy">
+							<a href="/portal/store/rentalDetail.html">立即预定</a>
+						</div>
+					</div>
+				</div>
+				<div class="list">
+					<div class="wap1">
+						<img src="/static/v1/img/dsa.png" alt="">
+					</div>
+					<div class="wap2">
+						<div class="carName">大众斯柯达明锐</div>
+						<div class="carType">经济型</div>
+					</div>
+					<div class="wap3">
+						<div>3小时服务时长</div>
+						<div>100公里里程</div>
+						<div>最大乘客书x6</div>
+					</div>
+					<div class="wap4">
+						<div class="price">¥ <strong>2200</strong>起</div>
+						<div class="buy">
+							<a href="/portal/store/rentalDetail.html">立即预定</a>
+						</div>
+					</div>
+				</div>
+				<div class="list">
+					<div class="wap1">
+						<img src="/static/v1/img/dsa.png" alt="">
+					</div>
+					<div class="wap2">
+						<div class="carName">大众斯柯达明锐</div>
+						<div class="carType">经济型</div>
+					</div>
+					<div class="wap3">
+						<div>3小时服务时长</div>
+						<div>100公里里程</div>
+						<div>最大乘客书x6</div>
+					</div>
+					<div class="wap4">
+						<div class="price">¥ <strong>2200</strong>起</div>
+						<div class="buy">
+							<a href="/portal/store/rentalDetail.html">立即预定</a>
+						</div>
+					</div>
+				</div>
+				<div class="list">
+					<div class="wap1">
+						<img src="/static/v1/img/dsa.png" alt="">
+					</div>
+					<div class="wap2">
+						<div class="carName">大众斯柯达明锐</div>
+						<div class="carType">经济型</div>
+					</div>
+					<div class="wap3">
+						<div>3小时服务时长</div>
+						<div>100公里里程</div>
+						<div>最大乘客书x6</div>
+					</div>
+					<div class="wap4">
+						<div class="price">¥ <strong>2200</strong>起</div>
+						<div class="buy">
+							<a href="/portal/store/rentalDetail.html">立即预定</a>
+						</div>
+					</div>
+				</div>
+				<div class="list">
+					<div class="wap1">
+						<img src="/static/v1/img/dsa.png" alt="">
+					</div>
+					<div class="wap2">
+						<div class="carName">大众斯柯达明锐</div>
+						<div class="carType">经济型</div>
+					</div>
+					<div class="wap3">
+						<div>3小时服务时长</div>
+						<div>100公里里程</div>
+						<div>最大乘客书x6</div>
+					</div>
+					<div class="wap4">
+						<div class="price">¥ <strong>2200</strong>起</div>
+						<div class="buy">
+							<a href="/portal/store/rentalDetail.html">立即预定</a>
+						</div>
+					</div>
+				</div>
+				<div class="list">
+					<div class="wap1">
+						<img src="/static/v1/img/dsa.png" alt="">
+					</div>
+					<div class="wap2">
+						<div class="carName">大众斯柯达明锐</div>
+						<div class="carType">经济型</div>
+					</div>
+					<div class="wap3">
+						<div>3小时服务时长</div>
+						<div>100公里里程</div>
+						<div>最大乘客书x6</div>
+					</div>
+					<div class="wap4">
+						<div class="price">¥ <strong>2200</strong>起</div>
+						<div class="buy">
+							<a href="/portal/store/rentalDetail.html">立即预定</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="loadMore">点击加载更多</div>
+		</div>
+		<div class="right_wap fr">
+			<div class="virtue">
+				<div class="virtueList clearfix">
+					<div class="left_ico fl">
+						<img src="/static/v1/img/touming.png" alt="">
+					</div>
+					<div class="fl rightInfo">
+						<div class="info1">价格全透明</div>
+						<div class="info2">价格信息全部展示，透明比价</div>
+					</div>
+				</div>
+				<div class="virtueList clearfix">
+					<div class="left_ico fl">
+						<img src="/static/v1/img/kf_tel.png" alt="">
+					</div>
+					<div class="fl rightInfo">
+						<div class="info1">专业服务</div>
+						<div class="info2">专业客服解答一切疑问，温馨服务</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="flow">
+				<div class="tit">常见问题预订流程</div>
+				<div class="q">1、可以提供发票吗？</div>
+				<div class="a">答：提供专业的发票服务，在订单完成后的订单详情
+					中进行信息填写申请。
+				</div>
+
+				<div class="q">2、更改或取消需要收取费用吗？</div>
+				<div class="a">答：若需要修改订单（包括乘车人，用车时间，上车/
+					下车地址信息），距约定用车时间1小时前可免费进
+
+				</div>
+				<div class="more">查看更多</div>
+			</div>
+
+			<div class="tips">
+				<p></p>
+				<div class="booking">预定流程</div>
+				<div class="line">车型&服务商选择 → 用车信息提交 →       订单支付 → 预订成功预订流程</div>
+				<div class="booking">用车流程</div>
+				<div class="line">
+					网上订车      接收车辆安排信息      司机就位等候
+					安全送达目的地
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 国内包车推荐  end-->
+	
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/swiper/swiper.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/carRental.js"></script>
+</html>

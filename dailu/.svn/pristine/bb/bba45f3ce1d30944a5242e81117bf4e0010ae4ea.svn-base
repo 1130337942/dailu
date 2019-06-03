@@ -1,0 +1,218 @@
+.hide {
+	display: none;
+}
+.on{
+	display: block ;
+}
+
+.contentWap {
+	width: 100%;
+	min-width: 1200px;
+	background-color: #f6f6f6;
+}
+.contentWap .main {
+	padding-bottom: 20px;
+	width: 1200px;
+	margin: 0 auto;
+	min-height: 830px;
+	position: relative;
+}
+.contentWap .main .tot_rout {
+	font-size: 14px;
+	height: 48px;
+	line-height: 48px;
+	color: #999;
+	position: absolute;
+	top: 0;	
+	right: 0;
+} 
+.contentWap .main .tot_rout .num {
+	color: #333;
+	font-weight: 600;
+}
+.contentWap .main .monthWap .month {
+	height: 48px;
+	line-height: 48px;
+	font-size: 14px;
+	color:#999;
+}
+.contentWap .main .monthWap .month span {
+	font-weight: 600;
+	font-size: 18px;
+	color:#333;
+}
+.contentWap .main .routeList .list{
+	padding: 8px;
+	width: 272px;
+	height: 292px;
+	background-color: #ffffff;
+	border-radius: 4px;
+	
+}
+.contentWap .main .routeList >li {
+	margin-right: 16px;
+}
+.contentWap .main .routeList >li:nth-child(n+5){
+	margin-top: 25px;
+}
+.contentWap .main .routeList >li:nth-child(n+1):hover {
+	transition: 0.4s;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08);
+}
+.contentWap .main .routeList >li:nth-child(4n+4){
+	margin-right: 0;
+}
+.contentWap .main .routeList .list .picBox {
+	width: 272px;
+	height: 186px;
+	border-radius: 4px;
+	margin: 0 auto;
+	position: relative;
+}
+.contentWap .main .routeList .list .picBox:hover .imgMask{
+	transition: all 0.5s;
+	transition: 0.5s;
+	background: rgba(0,0,0, 0.7);
+}
+.contentWap .main .routeList .list .picBox:hover .line{
+	display: block;
+}
+
+.contentWap .main .routeList .list .picBox:hover .cart{
+	opacity: 1;
+}
+.contentWap .main .routeList .list .picBox:hover .day{
+	display: none;
+}
+.contentWap .routeList .list .picBox .imgMask{
+	transition: 0.4s;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	background: rgba(0,0,0, 0.0);
+}
+.routeList .list .picBox .imgMask .cart{
+	opacity: 0;
+	width: 100%;
+	height: 40px;
+	margin-top: 74px;
+}
+.routeList .list .picBox .imgMask .cart>span {
+	cursor: pointer;
+	display: inline-block;
+	width: 38px;
+	height: 38px;
+	background-color: #fff;
+	box-shadow: inset 0px 0px 6px 0px 
+		rgba(0, 0, 0, 0.3);
+	border-radius: 50%;	
+	position: relative;	
+}
+.routeList .list .picBox .imgMask .cart .cart_hide{
+	opacity: 0;
+}
+.routeList .list .picBox .imgMask .cart>span:hover strong{
+	transition: 0.5s;
+	opacity: 1;
+}
+.routeList .list .picBox .imgMask .cart>span:hover{
+	background-color: #f9f9f9;
+}
+.routeList .list .picBox .imgMask .cart .edit {
+	margin-left: 59px;
+	background: #fff url(/static/v1/img/bianji.png) center center no-repeat;
+}
+.routeList .list .picBox .imgMask .cart .copy {
+	margin-left: 20px;
+	background: #fff url(/static/v1/img/shizhi.png) center center no-repeat;
+}
+.routeList .list .picBox .imgMask .cart .del {
+	margin-left: 20px;
+	background: #fff url(/static/v1/img/shanchu.png) center center no-repeat;
+}
+.routeList .list .picBox .imgMask .cart>span strong {
+	width: 36px;
+	height: 24px;
+	background-color: #fff;
+	position: absolute;
+	top: -30px;
+	left: 50%;
+	margin-left: -18px;
+	border-radius: 3px;
+	font-size: 12px;
+	color: #659ff5;
+	text-align: center;
+	line-height: 24px;
+	opacity: 0;
+}
+.routeList .list .picBox .imgMask .cart>span::before{
+	display: block;
+
+}
+.routeList .list .picBox .imgMask .cart>span strong::after{
+	display: block;
+	content: '';
+	width: 0px;
+	height: 0px;
+	border-right: 4px solid #fff;
+	border-bottom: 4px solid #fff;
+	transform: rotate(45deg);
+	position: absolute;
+	bottom: -2px;
+	left: 50%;
+	margin-left: -3px;
+}
+.routeList .list .picBox .line {
+	transition: 0.5s;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+	position: absolute;
+	bottom: 5px;
+	left: 0px;
+	height: 40px;
+}
+.routeList .list .picBox .day {
+	color: #fff;
+	position: absolute;
+	right: 10px;
+	bottom: 0;
+}
+.routeList .list .picBox .day strong {
+	margin-right: 2px;
+	font-weight: normal;
+	font-family: dl;
+	font-size: 24px;
+}
+.routeList .list .info  {
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+.routeList .list .info .con{
+	height: 30px;
+	line-height: 30px;	
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow:hidden;
+}
+.routeList .list .info .date{
+	height: 20px;
+	font-size: 14px;
+	color: #999;
+}
+.routeList .list .up_user {
+	color: #999;
+	font-size: 14px;
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow:hidden;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>导出PDF行程单</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/v1/css/itinerary/downloadpdf2.css">	
+</head>
+<body>
+	<div class="mask">
+		<div class="tip_content">
+			<img src="/static/v1/img/loading.gif" alt="">
+			<div>PDF文件生成中</div>
+		</div>
+	</div>
+	<div class="main">
+		<!-- <div class="download_pdf">导出PDF</div> -->
+		<div class="sur">
+			<img class="travel_img" src="" alt="">
+			<div class="line_tit">合肥·芜湖2城市5日游</div>
+			<div class="line_cros">杭州/苏州/湖州/上海/杭州</div>
+			<div class="line_time">2017.8.10-2017.8.17</div>
+			<div class="clearfix">
+				<div class="fl user">作者：<span>牛魔王</span></div>
+				<div class="fr ewm_box">
+					<img class="line_ewm" src="" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="summarize">
+			<div class="sum_title">
+				行程概览
+			</div>
+			<ul>
+				<li class="list clearfix">
+					<span class="fl">出行人数</span><span class="fr person_num">成人1，儿童0</span>
+				</li>
+				<li class="list clearfix">
+					<span class="fl">出行天数</span><span class="fr day_num">8天</span>
+				</li>
+				<li class="list clearfix">
+					<span class="fl">出发城市</span><span class="fr start_city">南京</span>
+				</li>
+				<li class="list clearfix">
+					<span class="fl">返回城市</span><span class="fr last_city">杭州</span>
+				</li>
+				<li class="list clearfix">
+					<span class="fl">出发时间</span><span class="fr start_date">2018-08-10</span>
+				</li>
+				<li class="list clearfix">
+					<span class="fl">酒店数量</span><span class="fr hotel_num">共2</span>
+				</li>
+				<li class="list clearfix">
+					<span class="fl">城际交通</span><span class="fr traffic_num">飞机1次，铁路2次</span>
+				</li>
+				<li class="list clearfix">
+					<span class="fl">预估费用</span><span class="fr ">¥ 656元</span>
+				</li>
+			</ul>
+		</div>
+		<div class="travel_line">
+			<div class="travel_title">
+				Travel line
+			</div>
+			<div class="line_img city_map">
+				<img src="" alt="">
+			</div>
+			<div style="margin-top: 30px;">
+				<div class="city_catalog start_catalog">
+					<i class="zxq_ico"></i><span></span>
+					<div class="day fr"></div>
+				</div>
+				
+				<div class="city_catalog city_catalog_last">
+					<i class="zxq_ico"></i><span></span>
+					<div class="day fr"></div>
+				</div>
+
+			</div>
+		</div>
+		<div class="clost">
+			<div class="title">
+				<span class="t">费用清单</span>
+				<span class="num fr">总费用：<em>¥1200</em> 起</span>
+			</div>
+			<div class="cost_tab">
+				<div class="cost_list">
+					<div class="cost_list_tit">
+						<span class="tab_head"><i></i>酒店费用</span>
+						<span class="tab_price">单价</span>
+						<span class="tab_num">数量</span>
+						<span class="tab_tot">总价</span>
+					</div>
+					<div class="cost_list_hotel">
+						
+
+					</div>
+					
+				</div>
+				<div class="cost_list">
+					<div class="cost_list_tit">
+						<span class="tab_head"><i></i>交通费用</span>
+						<span class="tab_price">单价</span>
+						<span class="tab_num">数量</span>
+						<span class="tab_tot">总价</span>
+					</div>
+					<div class="cost_list_traffic">
+
+					</div>
+					
+				</div>
+				<div class="cost_list">
+					<div class="cost_list_tit">
+						<span class="tab_head"><i></i>餐饮费用</span>
+						<span class="tab_price">单价</span>
+						<span class="tab_num">数量</span>
+						<span class="tab_tot">总价</span>
+					</div>
+					<div class="cost_list_eat">
+					</div>
+					
+				</div>
+			</div>
+			<!-- 饼状图 -->
+			<div class="eahart">
+				<div class="tit">费用占比</div>
+				<div id='p-left'></div>
+				<ul></ul>
+			</div>
+		</div>
+		<div class="day_wap">
+			<div class="title">日程安排</div>
+			
+		</div>
+	</div>
+</body>
+<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+<script src='/static/common/js/pdf.js/html2canvas.js'></script>
+<script src='/static/common/js/pdf.js/jsPdf.debug.js'></script>
+<script src='/static/common/js/echarts.min.js'></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+<script type="text/javascript"  src="/static/common/js/common.js"></script>
+<script src='/static/v1/js/itinerary/downloadpdf2.js'></script>
+</html>

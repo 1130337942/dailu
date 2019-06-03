@@ -1,0 +1,652 @@
+.hide {
+	display: none;
+}
+.checkBox{
+	cursor: pointer;
+	margin-right: 15px;
+	font-size: 14px;
+	color: #999;
+}
+.checkBox::before {
+	margin-right: 6px;
+	display: inline-block;
+	content:'';
+	vertical-align: middle;
+	width: 12px;
+	height: 12px;
+	border: 1px solid #e5e5e5;
+	background-color: #fafafa;
+}
+.on.checkBox::before {
+	background: #fff url(/static/v1/img/checked.png) center center no-repeat;
+}
+
+input,select{
+     appearance:none;
+    -moz-appearance:none;
+   -webkit-appearance:none;  
+	outline: none;
+	border: none;
+	margin-left: 0;
+}
+
+.minWap{
+	padding-top: 112px;
+	width: 1200px;
+	margin: 0 auto;
+}
+.formWap{
+	width: 800px;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.air_infoWap {
+	width: 392px;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.air_infoWap .airInfo{
+	background-color: #fff;
+}
+.formWap .passenger {
+	width: 728px;
+	padding: 0 36px;
+	background-color: #ffffff;
+}
+.formWap .title{
+	font-size: 16px;
+	height: 50px;
+	line-height: 50px;
+	font-family:PingFang-SC-Bold;
+	border-bottom: 1px solid #e5e5e5;
+	position: relative;
+}
+.formWap .title::before {
+	display: block;
+	content: '';
+	position: absolute;
+	width: 3px;
+	height: 16px;
+	background-color: #659ff5;
+	top: 50%;
+	margin-top: -8px;
+	left: -10px;
+}
+.formWap  .linkMam{
+	font-family:PingFang-SC-Bold;
+	margin-top: 18px;
+	font-size: 14px;
+	width: 558px;
+	height: 36px;
+	overflow: hidden;
+	line-height: 36px;
+	background-color: #fafafa;
+	border-radius: 4px;
+	color: #999;
+	padding:0 50px 0 90px;
+	position: relative;
+	margin-bottom: 15px;
+}
+.formWap  .linkMam .tit {
+	position: absolute;
+	top: 0;
+	left: 15px;
+}
+.formWap  .linkMam .list{
+	margin-left: 30px;
+}
+.formWap  .linkMam .more {
+	position: absolute;
+	top: 0;
+	right: 15px;
+	cursor: pointer;
+}
+
+.passenger .per_list {
+	margin-top: 15px;
+	color: #666;
+	font-family: PingFang-SC-Bold;
+	border-bottom: 1px solid #e5e5e5;
+	position: relative;
+}
+.passenger .per_list .delPerson{
+	position: absolute;
+	top: 0;
+	right: 15px;
+	font-size: 14px;
+	color: #659ff5;
+}
+.passenger .per_list .tit{
+	display: inline-block;
+	width: 97px;
+	vertical-align: middle;
+}
+.passenger .per_list .wap {
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+.passenger .per_list .wap input {
+	width: 162px;
+	height: 30px;
+	padding: 0 13px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	/*margin-left: 3px;*/
+}
+.passenger .per_list .wap .cardNum{
+	margin-left: 0;
+}
+.passenger .per_list .wap .per_type select,
+.passenger .per_list .wap .gender select{
+	margin-left: 12px;
+	width: 66px;
+	padding-left: 12px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	color: #999;
+}
+.passenger .per_list  .per_type,
+.passenger .per_list  .gender{
+	position: relative;
+}
+.passenger .per_list  .gender::after,
+.passenger .per_list  .per_type::after {
+	position: absolute;
+	top: 5px;
+	right: 14px;
+	display: block;
+	content: '';
+	width: 0;
+	height: 0;
+	border-right: 3px solid #999;
+	border-bottom: 3px solid #999;
+	border-left: 3px solid transparent;
+	border-top: 3px solid transparent;
+	transform: rotate(45deg);
+}
+.passenger .per_list .wap .card_type select{
+	width: 188px;
+	height: 30px;
+	padding-left: 12px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+}
+.passenger .per_list .wap .card_type{
+	position: relative;
+}
+.passenger .per_list  .card_type::after {
+	position: absolute;
+	top: 5px;
+	right: 8px;
+	display: block;
+	content: '';
+	width: 0;
+	height: 0;
+	border-right: 3px solid #999;
+	border-bottom: 3px solid #999;
+	border-left: 3px solid transparent;
+	border-top: 3px solid transparent;
+	transform: rotate(45deg);
+}
+.passenger .addPerson{
+	padding: 24px 0;
+	/*border-bottom: 1px solid #e5e5e5;*/
+}
+.passenger .addPerson .add {
+	width: 285px;
+	text-align: center;
+	height: 48px;
+	line-height: 48px;
+	background-color: #f0f6ff;
+	border-radius: 4px;
+	color: #659ff5;
+	cursor: pointer;
+}
+
+/*添加联系人*/
+.linkMan_info{
+	width: 728px;
+	padding:0 36px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+	margin-top: 8px;
+	padding-bottom: 25px;
+}
+
+.formWap .wap {
+	color: #666;
+	font-size: 14px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.formWap .wap .tit {
+	color: #666;
+	font-family: PingFang-SC-Bold;
+	display: inline-block;
+	width: 95px;
+	vertical-align: middle;
+}
+.formWap .wap input{
+	padding: 0;
+	width: 176px;
+	padding-left: 12px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	margin-left: 3px;
+}
+.formWap .wap .receiverTitle,
+.formWap .wap .taxpayerId{
+	width: 380px;
+}
+.formWap .wap select {
+	width: 192px;
+	padding-left:12px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+}
+.formWap .wap.place select{
+	width: 160px;
+	margin-left: 5px;
+} 
+.formWap .wap .tell_type select{
+	width: 140px;
+}  
+/*保险信息*/
+.formWap .safety {
+	margin-top: 8px;
+	width: 728px;
+	padding:0  36px 20px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+
+.formWap .select{
+	position: relative;
+}
+.formWap .select::after {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	display: block;
+	content: '';
+	width: 0;
+	height: 0;
+	border-right: 3px solid #999;
+	border-bottom: 3px solid #999;
+	border-left: 3px solid transparent;
+	border-top: 3px solid transparent;
+	transform: rotate(45deg);
+}
+.formWap .wap .tip{
+	margin-left: 10px;
+	color: #666;
+	display: inline-block;
+	vertical-align: middle;
+}
+.formWap .wap .tip strong {
+	display: inline-block;
+	vertical-align: middle;
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	text-align: center;
+	border: solid 1px #cccccc;
+	border-radius: 50%;
+	color: #ccc;
+	margin-left: 5px;
+}
+.safety .wap {
+	margin-top: 10px;
+}
+
+/*报销信息*/
+.formWap .wipe{
+	margin-top: 8px;
+	width: 728px;
+	padding:0 36px 30px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.formWap .wipe .wap {
+	margin-top: 25px;
+}
+.formWap .wipe .tip {
+	color: #999;
+}
+
+.affirm {
+	width: 728px;
+	padding:0 36px 30px;
+	height: 196px;
+	margin: 8px 0 68px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+
+}
+.affirm .affirm_info{
+	font-size: 14px;
+	line-height: 18px;
+	margin-top: 19px;
+	color: #999;
+}
+.affirm .affirm_info a {
+	color: #659ff5;
+}
+.affirm .totPrice{
+	margin-top: 25px;
+	text-align: right;
+	font-family: DINMittelschriftStd;
+}
+.affirm .totPrice strong {
+	color:#f4a21e;
+	font-size: 24px;
+	font-weight: normal;
+} 
+.affirm .totPrice a {
+	display: inline-block;
+	vertical-align: middle;
+	color: #fff;
+	width: 120px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	background-color: #f4a21e;
+	border-radius: 4px;
+	margin-left: 36px;
+}
+.affirm .totPrice a:hover{
+	background-color: #dc8e12;
+}
+
+
+/*rightWap*/
+
+.air_infoWap  .airInfo {
+	width: 340px;
+	padding:20px 26px;
+}
+.air_infoWap  .airInfo .title {
+	text-align: center;
+	font-size: 14px;
+	font-family: PingFang-SC-Bold;
+}
+.air_infoWap  .airInfo .title .city {
+	margin-left: 20px;
+}
+
+.air_infoWap  .airInfo .info{
+	color: #999;
+	font-size: 12px;
+	line-height: 24px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.air_infoWap  .airInfo  .leave {
+	width: 115px;
+	text-align: right;
+}
+.air_infoWap  .airInfo  .dest{
+	width: 115px;
+}
+.air_infoWap  .airInfo  .time{
+	font-family: DINMittelschriftStd;
+	font-size: 28px;
+}
+.air_infoWap  .airInfo  .place {
+	font-size: 12px;
+	color: #999;
+}
+.air_infoWap  .airInfo .middle{
+	width: 110px;
+	height: 50px;
+	background: #fff url(/static/v1/img/airformInfo.png) center center no-repeat;
+}
+
+.air_infoWap .airInfo .price_info{
+	margin-top: 30px;
+	padding: 20px 0;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	line-height: 24px;
+}
+.air_infoWap .airInfo .price_info .list{
+	font-size: 14px;
+	color: #666;
+	width: 234px;
+	display: inline-block;
+}
+.air_infoWap .airInfo .price_info .price{
+	font-family: DINMittelschriftStd;
+	font-size: 16px;
+	color: #f4a21e;
+}
+.air_infoWap .airInfo .price_info .price em {
+	font-size: 14px;
+	font-style: normal;
+}
+.air_infoWap .airInfo .price_info .num {
+	font-size: 14px;
+	color: #999;
+	margin-left: 8px;
+}
+.air_infoWap .airInfo .tot_wap{
+	margin-top: 20px;
+	font-size: 18px;
+	font-family: PingFang-SC-Bold;
+}
+.air_infoWap .airInfo .totPrice{
+	font-family: DINMittelschriftStd;
+	font-size: 24px;
+	color: #f4a21e;
+}
+
+.virtue {
+	overflow: hidden;
+	margin-top: 8px;
+	width: 392px;
+	height: 332px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.virtue .vir_list{
+	margin-left: 35px;
+	margin-top: 40px;
+}
+.virtue .img_l ,
+.virtue .info_r {
+	display: inline-block;
+	height: 60px;
+	vertical-align: middle;
+}
+
+.virtue .img_l {
+	width: 60px;
+	background: #fff url(/static/v1/img/touming.png) center 0 no-repeat;
+}
+
+.virtue .vir_list:nth-child(2) .img_l {
+	width: 60px;
+	background: #fff url(/static/v1/img/kf_tel.png) center 0 no-repeat;
+}
+.virtue .vir_list:nth-child(3) .img_l {
+	width: 60px;
+	background: #fff url(/static/v1/img/jisu.png) center 0 no-repeat;
+}
+.virtue .info_r {
+	margin-left: 15px;
+	width: 250px;
+	color: #999;
+}
+.virtue .info_r .tit {
+	margin-bottom: 5px;
+	color: #333;
+	font-family: PingFang-SC-Bold;
+	font-size: 20px;
+}
+
+.preview_wap {
+	width: 800px;
+}
+.preview_wap .title {
+	font-family: PingFang-SC-Bold;
+	position: relative;
+	height: 46px;
+	line-height: 46px;
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 29px;
+}
+.preview_wap .title::before {
+	display: block;
+	content: '';
+	width: 3px;
+	height: 16px;
+	background-color: #659ff5;
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	left: -15px;
+}
+.preview_wap .passenger,
+.preview_wap .linkman ,
+.preview_wap .safety {
+	width: 728px;
+	padding:0 36px 30px; 
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.preview_wap .passenger .list{
+	margin-top: 12px;
+	width: 728px;
+	height: 42px;
+	padding: 20px 0;
+	color: #fff;
+	background: #659ff5;
+	background-image: linear-gradient(0deg, 
+		#659ff5 0%, 
+		#87b5f8 100%), 
+	linear-gradient(
+		#fafafa, 
+		#fafafa);
+	background-blend-mode: normal, 
+		normal;
+	border-radius: 4px;
+}
+.preview_wap .passenger .list .tit {
+	font-size: 14px;
+	font-family: PingFang-SC-Bold;
+}
+.preview_wap .passenger .list .name {
+	width: 166px;
+	padding-left: 32px;
+}
+.preview_wap .passenger .list .type {
+	width: 168px;
+}
+.preview_wap .passenger .list .cardNum {
+	width: 235px;
+}
+.preview_wap .linkman {
+	margin-top: 8px;
+}
+.preview_wap .linkman .content {
+	background-color: #fafafa;
+	border-radius: 4px;
+	width: 590px;
+	padding: 20px 0;
+	line-height: 30px;
+}
+.preview_wap .linkman .content .tit {
+	color: #999;
+	font-size: 14px;
+	font-family: PingFang-SC-Bold;
+}
+.preview_wap .linkman .name {
+	width: 166px;
+	padding-left: 32px;
+}
+.preview_wap .linkman .tel{
+	width: 168px;
+}
+.preview_wap .linkman .email{
+	width: 222px;
+}
+
+.preview_wap .safety {
+	margin-top: 8px;
+	font-size: 14px;
+	line-height: 30px;
+}
+.preview_wap .safety span {
+	margin-right: 20px;
+}
+.preview_wap .totmoney {
+	margin-top: 8px;
+	margin-bottom: 96px;
+	width: 728px;
+	padding: 30px 36px; 
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+	line-height: 36px;
+}
+.preview_wap .totmoney .totSubmit {
+	width: 120px;
+	height: 38px;
+	background-color: #f4a21e;
+	border-radius: 4px;
+	color:#fff;
+	display: inline-block;
+	text-align: center;
+	line-height: 38px;
+}
+.preview_wap .totmoney .totSubmit:hover {
+	background-color: #ea9710;
+	cursor: pointer;
+}																																															
+.preview_wap .totmoney .price {
+	font-family: DINMittelschriftStd;
+	font-size: 24px;
+	color: #f4a21e;
+	margin-right: 24px;
+}
+.cantBook {
+	display: none;
+	z-index: 100;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(255,255,255,0.8);
+}
+.cantBook  .tips {
+	margin: 300px auto;
+	text-align: center;
+}
+.cantBook  .tips  a {
+	color:#659ff5;
+	font-size: 14px;
+}
+.cantBook  .tips  a:hover {
+	text-decoration: underline;
+	color: #2f72d6;
+}

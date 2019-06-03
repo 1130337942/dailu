@@ -1,0 +1,219 @@
+<include file="public@header" />
+</head>
+<style>
+        .big{
+            height:150px;
+            width:150px;
+        }
+        .dialog{
+            height:20px;
+            width:20px;
+        }
+    </style>
+<body>
+    <div class="wrap js-check-wrap">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="javascript:;">当季热门城市管理</a>
+            </li>
+        </ul>
+        <form class="well form-inline margin-top-20" method="get" action="{:url('make/index')}">
+            <select class="problem_go" name="problem_go" style="height: 25px;">
+                <option value=""></option>
+                <option value="wellcity">当季热门城市列表</option>
+                <option value="nowell">非热门城市列表</option>
+                
+            </select>
+            城市名称:
+            <input type="text" class="form-control" name="keyword" style="width: 200px;" value="{$keyword|default=''}" placeholder="请输入城市名称..."
+            />
+            <input type="submit" value="查询" class="btn btn-primary" />
+            <a class="btn btn-danger" href="{:url('make/index')}">清空</a>
+
+        </form>
+        <form class="js-ajax-form" action="" method="post">
+            <div class="table-actions">
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('Make/recommend',array('yes'=>1))}"
+                    data-subcheck="true">设置为当季热门城市
+                </button>
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('Make/recommend',array('no'=>1))}"
+                    data-subcheck="true">取消热门
+                </button>
+            </div>
+            <table class="table table-hover table-bordered table-list">
+                <thead>
+                    <tr>
+                        <th width="10">设置勾选</th>
+                        <th width="10">ID</th>
+                        <th width="10">城市名称</th>
+                        <th width="20">状态</th>
+                    </tr>
+                </thead>
+
+
+               <!-- 数据渲染 -->
+                <foreach name="cityData" item="vo">
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]" value="{$vo.id}" title="ID:{$vo.id}">
+                        </td>
+                        <notempty name="category">
+                            <td>
+                                <input name="list_orders[{$vo.post_category_id}]" class="input-order" type="text" value="{$vo.list_order}">
+                            </td>
+                        </notempty>
+                        <td>{$vo.id}</td>
+                        
+                        <td>{$vo.city_name}</td>
+                        <td>
+                            <if condition="$vo.wellcity eq 1">
+                                <label href="javascript:;" class="apply"><font color="red">当季热门</font></label>
+                                
+                                <else/>
+                                <label href="javascript:;" class="back_apply"><font color="blue">否</font></label>
+                            </if>
+                        </td>
+                    </tr>
+                </foreach>
+                <tfoot>
+                    <tr>
+                        <th width="10">设置勾选</th>
+                        <th width="10">ID</th>
+                        <th width="10">城市名称</th>
+                        <th width="20">状态</th>
+                    </tr>
+                </tfoot>
+            </table>
+        <div class="table-actions">
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('Make/recommend',array('yes'=>1))}"
+                    data-subcheck="true">设置为当季热门城市
+                </button>
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('Make/recommend',array('no'=>1))}"
+                    data-subcheck="true">取消热门
+                </button>
+            </div>
+            <div style="text-align: center;"><span class="textcenter pagebar">{$page}</span></div>
+        </form>
+    </div>
+    <script src="__STATIC__/js/admin.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/jBox/Skins/Default/jbox.css" />
+    <script type="text/javascript" src="/static/jbox/jquery.jBox-2.3.min.js"></script>
+    <script src="/static/common/laydate/laydate.js"></script>
+    <script>
+        //日历
+        laydate.render({ 
+            elem: '#feedback',
+            type: 'date' ,//默认，可不填
+            range: true //或 range: '~' 来自定义分割字符
+        });
+        $(function () {
+            //点击图片放大预览
+            $("img.dialog").each(function (i, n) {
+                $(n).click(function () {
+                    if($(n).hasClass("big")){
+                        $(n).removeClass("big").addClass("dialog")
+                    }else{
+                        $(n).addClass("big").removeClass("dialog")
+                    } 
+                });
+                
+            })
+        });
+        //刪除(将status改成0)
+        $('.del').click(function () {
+            var id = $(this).attr("id");
+            $.jBox("确定删除！！！", {
+                title: "提示消息",
+                width: 200,
+                height: 80,
+                buttons: {
+                    '确定': 1,
+                    '取消': 0
+                },
+                buttonsFocus: 0,
+                submit: function (v, h, f) {
+                    if (v == 0) {
+                        return true; // close the window  
+                    } else {
+                        $.get("DeleteAdvice", {
+                            id: id,
+                        }, function (data) {
+                            if (data.status == 'ok') {
+                                window.location.reload();
+                            }
+                        }, 'json');
+                    }
+                    return false;
+                }
+            });
+        });
+
+        function reloadPage(win) {
+            win.location.reload();
+        }
+
+        $(function () {
+            setCookie("refersh_time", 0);
+            Wind.use('ajaxForm', 'artDialog', 'iframeTools', function () {
+                //批量复制
+                $('.js-articles-copy').click(function (e) {
+                    var ids = [];
+                    $("input[name='ids[]']").each(function () {
+                        if ($(this).is(':checked')) {
+                            ids.push($(this).val());
+                        }
+                    });
+
+                    if (ids.length == 0) {
+                        art.dialog.through({
+                            id: 'error',
+                            icon: 'error',
+                            content: '您没有勾选信息，无法进行操作！',
+                            cancelVal: '关闭',
+                            cancel: true
+                        });
+                        return false;
+                    }
+
+                    ids = ids.join(',');
+                    art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=copy&ids=" +
+                        ids, {
+                            title: "批量复制",
+                            width: "300px"
+                        });
+                });
+                //批量移动
+                $('.js-articles-move').click(function (e) {
+                    var ids = [];
+                    $("input[name='ids[]']").each(function () {
+                        if ($(this).is(':checked')) {
+                            ids.push($(this).val());
+                        }
+                    });
+
+                    if (ids.length == 0) {
+                        art.dialog.through({
+                            id: 'error',
+                            icon: 'error',
+                            content: '您没有勾选信息，无法进行操作！',
+                            cancelVal: '关闭',
+                            cancel: true
+                        });
+                        return false;
+                    }
+
+                    ids = ids.join(',');
+                    art.dialog.open(
+                        "__ROOT__/index.php?g=portal&m=AdminArticle&a=move&old_term_id={$term.term_id|default=0}&ids=" +
+                        ids, {
+                            title: "批量移动",
+                            width: "300px"
+                        });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

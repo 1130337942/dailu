@@ -1,0 +1,243 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+    .tabType.col-md-9{
+    	display: none;
+    }
+    .tabType.col-md-9.active {
+    	display: block;
+    }
+</style>
+<script type="text/html" id="photos-item-tpl">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names[]" value="{name}"
+               style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;"
+             onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+<script type="text/html" id="photos-item-tpl2">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls2[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names2[]" value="{name}" style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;" onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs" id="myTab">
+        <li><a href="{:url('food/dishes_recommended')}">菜品列表</a></li>
+        <li class="active"><a href="">修改菜品</a></li>
+    </ul>   
+    <form action="{:url('food/do_edit_dishes_recommended')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+        <input type="hidden" name="id" value="{$dishes_recommendedData.id}">
+        <input type="hidden" name="page" value="{$page}">
+        <div class="row">
+            <div class="col-md-9">
+                <div id="province" class="col-md-9 tabType active" >
+                <table class="table table-bordered">
+                        <tr>
+                                <th width="100">省份名称</th>
+                                <td>
+                                    <div class="form-control">
+                                        <select class="pro province_id" name="province_id">
+                                            <option value="">省/直辖市</option>
+                                            <volist name="area" id="vo">
+                                                <option value="{$vo['area_id']}" {$vo.status}>{$vo.area_name}</option>
+                                            </volist>
+                                        </select>
+                                        <select class="city city_id" name="city_id">
+                                            <option value="$vo['area_id']">城市</option>
+                                            <volist name="cityList" id="vo">
+                                                <option value="{$vo['area_id']}" {$vo.status}>{$vo.area_name}</option>
+                                            </volist>
+                                        </select>
+                                        <select class="area area_id" name="area_id">
+                                            <option value="$vo['area_id']">区域</option>
+                                            <volist name="areaList" id="vo">
+                                                <option value="{$vo['area_id']}" {$vo.status}>{$vo.area_name}</option>
+                                            </volist>
+                                        </select>
+        
+                                    </div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <th>店铺名称</th>
+                        <td>
+                                <input class="form-control" placeholder="请输入店铺名称(非必吃美食时可选填)" name="store_name" type="text" id="store_name" value="{$dishes_recommendedData.store_name}" />
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th>菜品名称</th>
+                        <td>
+                                <input class="form-control" placeholder="请输入菜品名称" name="dishes_name" type="text" id="" value="{$dishes_recommendedData.dishes_name}" />
+                        </td>
+                    </tr>
+                    <tr>
+                            <th>菜品摘要</th>
+                            <td>
+                                <input class="form-control" placeholder="请输入菜品摘要(非必吃美食时可选填)" name="absture" type="text" id="" value="{$dishes_recommendedData.absture}" />
+                            </td>
+                            </tr>
+                        <tr>
+                            <th>菜品简介</th>
+                            <td>
+                                <script type="text/plain" id="content" name="spot_Introduction">{$dishes_recommendedData.spot_Introduction}</script>
+                            </td>
+                        </tr>
+                    <tr>
+                        <th>封面</th>
+                        <td>
+                            <ul id="photos" class="pic-list list-unstyled form-inline">
+                                <foreach name="dishes_recommendedData.pic11" item="vo">
+                                    <php>$img_url=cmf_get_image_preview_url($vo['url']);</php>
+                                    <li id="saved-image{$key}">
+                                        <input id="photo-{$key}" type="hidden" name="photo_urls[]"
+                                               value="{$vo.url}">
+                                        <input class="form-control" id="photo-{$key}-name" type="text"
+                                               name="photo_names[]"
+                                               value="{$vo.name|default=''}" style="width: 200px;" title="图片名称">
+                                        <img id="photo-{$key}-preview"
+                                             src="{:cmf_get_image_preview_url($vo['url'])}"
+                                             style="height:36px;width: 36px;"
+                                             onclick="parent.imagePreviewDialog(this.src);">
+                                        <a href="javascript:uploadOneImage('图片上传','#photo-{$key}');">替换</a>
+                                        <a href="javascript:(function(){$('#saved-image{$key}').remove();})();">移除</a>
+                                    </li>
+                                </foreach>
+                             </ul>
+                             <a href="javascript:uploadMultiImage('图片上传','#photos','photos-item-tpl');"
+                                        class="btn btn-sm btn-default">选择图片</a>
+                       </td>
+                </tr>
+                    <tr>
+                        <th>推荐地点</th>
+                        <td>
+                                <input class="form-control" placeholder="推荐地点(多个用顿号隔开,非必吃美食时可选填)" name="recom_sites" type="text" id="recom_sites" value="{$dishes_recommendedData.recom_sites}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>是否必吃</th>
+                        <td class="set_frozen">
+                            <if condition="($dishes_recommendedData.is_hot_have eq 0)">
+                                <span class="cb-enable">
+                                    <label class="cb-enable cb-enable-label ">  
+                                        <span>是</span>
+                                        <input class="is_hot_have" type="radio" name="is_hot_have" value="1" />
+                                    </label>
+                                </span>
+                                <span class="cb-disable">
+                                    <label class="cb-disable  selected ">
+                                        <span>否</span>
+                                        <input class="is_hot_have" type="radio" name="is_hot_have" value="0" checked="checked" />
+                                    </label>
+                                </span>
+                            <else /> 
+                                <span class="cb-enable">
+                                    <label class="cb-enable cb-enable-label ">  
+                                        <span>是</span>
+                                        <input class="is_hot_have" type="radio" name="is_hot_have" value="1" checked="checked"/>
+                                    </label>
+                                </span>
+                                <span class="cb-disable">
+                                    <label class="cb-disable  selected ">
+                                        <span>否</span>
+                                        <input class="is_hot_have" type="radio" name="is_hot_have" value="0"/>
+                                    </label>
+                                </span>
+                            </if>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <b>更新时间</b>
+                        </th>
+                        <td>
+                            <input class="form-control js-bootstrap-datetime" type="text" name="update_time" value="{:date('Y-m-d H:i:s',time())}">
+                        </td>
+                    </tr>
+                </table>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('EDIT')}</button>
+                        <a class="btn btn-default" href="{:url('food/dishes_recommended')}">{:lang('BACK')}</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //调用编辑器
+        //多次调用时，传参数
+        function editorRunder() {
+            for(var i = 0; i < arguments.length; i++) {
+                    var editorcontent = new baidu.editor.ui.Editor();
+                    editorcontent.render(arguments[i]);
+
+                    try {
+                            editorcontent.sync();
+                    } catch(err) {
+                            //				console.log(err);
+                    }
+            }
+        }
+        editorRunder('content', 'content2', 'content3')
+
+        $('.btn-cancel-thumbnail').click(function () {
+            $('#thumbnail-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+            $('#thumbnail').val('');
+        });
+
+    });
+
+    function doSelectCategory() {
+        var selectedCategoriesId = $('#js-categories-id-input').val();
+        openIframeLayer("{:url('AdminCategory/select')}?ids=" + selectedCategoriesId, '请选择分类', {
+            area: ['700px', '400px'],
+            btn: ['确定', '取消'],
+            yes: function (index, layero) {
+                //do something
+
+                var iframeWin          = window[layero.find('iframe')[0]['name']];
+                var selectedCategories = iframeWin.confirm();
+                if (selectedCategories.selectedCategoriesId.length == 0) {
+                    layer.msg('请选择分类');
+                    return;
+                }
+                $('#js-categories-id-input').val(selectedCategories.selectedCategoriesId.join(','));
+                $('#js-categories-name-input').val(selectedCategories.selectedCategoriesName.join(' '));
+                //console.log(layer.getFrameIndex(index));
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            }
+        });
+    }
+       
+    $('.nav-tabs li a').on('click',function(){
+    	var id = $(this).attr('href');
+    	$(id).addClass('active').siblings('.col-md-9').removeClass('active');
+    })
+</script>
+</body>
+</html>

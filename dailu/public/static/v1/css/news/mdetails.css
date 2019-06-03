@@ -1,0 +1,105 @@
+.main{
+	max-width: 4.14rem;
+	margin:0 auto;
+}
+.main .header{
+	width: 100%;
+	height: 0.44rem;
+	border-bottom: 0.01rem solid #e5e5e5;
+	/*padding:0 0.18rem; */
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 0.3rem;
+} 
+.main .header .logo {
+	width: 0.5rem;
+	height: 0.24rem;
+	margin-top: 0.11rem;
+	margin-left: 0.18rem;
+}
+.main .header .downApp{
+	width:0.49rem;
+	height:0.25rem;
+	line-height: 0.25rem;
+	border:1px solid #659FF5;
+	border-radius:0.04rem;
+	color: #659FF5;
+	font-size:0.14rem;
+	font-family:PingFang-SC-Medium;
+	text-align: center;
+	margin-top: 0.11rem;
+	margin-right: 0.18rem;
+}
+.main .title {
+	font-family: PingFang-SC-Bold;
+	padding:0 0.18rem;
+	margin:0 0 0.3rem 0;		
+}
+.main .title .tit_con {
+	font-size: 0.2rem;
+	margin-bottom: 0.12rem;
+}
+.main .title .tips {
+	font-size: 0.14rem;
+	display: flex;
+	justify-content: space-between;
+}
+.main .title .tips .date {
+	color: #999;
+	font-family: PingFang-SC-Regular;
+}
+.main .content {
+	font-family:PingFang-SC-Regular;
+	padding:0 0.18rem;	
+}
+
+.main .footer {
+	padding:0 0.18rem; 
+}
+.main .footer .line {
+	width: 100%;
+	height: 1px;
+	background-color: #e5e5e5;
+	margin: 0.3rem 0;
+	position: relative;
+}
+.main .footer .line::before {
+	content: '分享到';
+	display:block;
+	position: absolute;
+	top: -10px;
+	left: 41%;
+	background-color: #fff;
+	font-family:PingFang-SC-Bold;
+	font-weight:bold;
+	font-size: 0.14rem;
+	padding: 0 0.12rem;
+}
+.main .footer .shareBox {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 0.55rem;
+}
+.main .footer .shareBox > a{
+	width: 0.4rem;
+	height: 0.4rem;
+	margin-left: 0.3rem;
+}
+.main .footer .shareBox > a:first-child{
+	margin-left: 0;
+}
+.main .footer .shareBox .qzone {
+	background: #fff url(/static/v1/img/news/qzonex2.png) 0 0 no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.main .footer .shareBox .weibo {
+	background: #fff url(/static/v1/img/news/weibox2.png) 0 0 no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.main .footer .shareBox .wechat {
+	background: #fff url(/static/v1/img/news/wechatx2.png) 0 0 no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}

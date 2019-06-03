@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>机票申请退款</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/store/airMoneyback.css');?>">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_storeForm"/>
+	<div class="progress">
+		<div class="main clearfix">
+			<div class="logo fl"><a href="/"><img src="/static/common/img/logo.png" alt="袋鹿"></a></div>
+			<div class="fr progress_info">
+				<span class="step1 active">申请退款<i></i></span>
+				<span class="step2">在线支付<i></i></span>
+				<span class="step3">订单完成</span>
+			</div>
+		</div>
+	</div>
+	<div class="mainWap clearfix">
+		<div class="wap1">
+			<div class="wap1_tit clearfix">
+					<p class="detail_num fl">订单号 <span>DL5451348484151</span></p>
+					<p class="right_ctrl fr">订单总金额 <strong>¥450.00</strong></p>
+			</div>
+			<div class="air_info clearfix">
+				<div class="item">
+					
+				</div>
+				<div class="item flight">
+					<div class="flight_name">中国国航CA1886</div>
+					<div class="tip">波音 777-300ER(大型)</div>
+				</div>
+				<div class="item start_flight">
+					<div class="time">21:55</div>
+					<div class="airport">萧山国际机场T2</div>
+				</div>
+				<div class="item">
+					<div class="line"></div>
+					<div class="airtype">经济舱</div>
+				</div>
+				<div class="item">
+					<div class="time">00:55</div>
+					<div class="airport">三峡嗯但是多机场k23</div>
+				</div>
+				<div class="item">
+					<div class="times">出发时间  2017-12-04  21:55</div>
+					<div class="times">出发时间  2017-12-04  21:55</div>
+				</div>
+				<div class="item">
+					<div class="tot_info">总金额明细</div>
+					<div class="back_rule">退改签规则</div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="wap2">
+			<div class="wap2_tit">
+				退款填写
+			</div>
+			<div class="backreason">
+				取消原因*:
+				<select name="" id="">
+					<option value="自愿取消">自愿取消（行程变化）</option>
+					<option value="其它">其它</option>
+				</select>
+				<i></i>
+			    <!-- <p>
+			    					<span>自愿取消（行程变化）</span>			
+			    				</p> -->
+			</div>
+			<div class="describe">
+				取消说明*
+				<p>
+					<textarea name="" id="" cols="30" rows="10"></textarea>
+				</p>
+			</div>
+			<div class="ctrl">
+				<p><i class="checkBox on"></i>本人已阅读并同意以下条款<a href="javascript:;">《我也不知道什么条款》</a></p>
+				<span class="submit">提交申请</span>
+			</div>
+		</div>
+	</div>
+
+	<include file="public@publicFooter"/>
+	
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<!-- <script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/hotelForm.js"></script> -->
+</html>

@@ -1,0 +1,163 @@
+html body {
+	min-width: 1500px;
+	background-color: #fff;
+	color: #333;
+}
+
+
+
+/*wap one*/
+.wapOne {
+	position: relative;
+	height: 816px;
+	background: #fff url(/static/v1/img/aboutUs_1.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 1                          00% 100%;
+}
+
+
+.wapOne .wap1_fix {
+	font-weight: 600;
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+}
+
+.wapOne .wap1_fix .logo {
+	margin: 0 auto;
+	width: 76px;
+	height: 37px;	
+}
+.wapOne .wap1_fix .do {
+	font-size: 20px;
+	padding: 7px;
+	position: relative;
+}
+.wapOne .wap1_fix .do::after{
+	display: block;
+	width: 30px;
+	height: 3px;
+	background-color: #333;
+	content: '';
+	position: absolute;
+	bottom: 1px;
+	left: 50%;
+	margin-left: -15px;
+}
+
+.wapOne .wap1_fix .info_zh {
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+.wapOne .wap1_fix .info_en {
+	font-size: 18px;
+}
+
+
+.wapTwo .info {
+	color: #333;
+	text-align: center;
+	font-size: 16px;
+	line-height: 22px;
+	padding:27px 0 48px;
+}
+.wapTwo .cart  {
+	text-align: center;
+}
+.wapTwo .cart .cart-list{
+	display: inline-block;
+	widows: 100px; 
+	height: 100px;
+	margin:0 40px;
+	font-size: 16px;
+	cursor: pointer;
+}
+.wapTwo .cart .cart-list:hover {
+	color: #659ff5;
+}
+.wapTwo .cart .cart-list::before {
+	display: block;
+	height: 80px;
+	content: '';
+	position: relative;
+}
+.wapTwo .cart .cart_one::before{
+	background: url(/static/v1/img/smartDiy.png) center top no-repeat;
+}
+.wapTwo .cart .cart_two::before{
+	background: url(/static/v1/img/smartMap.png) center top no-repeat;
+}
+.wapTwo .cart .cart_thr::before{
+	background: url(/static/v1/img/share.png) center top no-repeat;
+	
+}
+.wapTwo .cart .cart_for::before{
+	background: url(/static/v1/img/kf_tel.png) center top no-repeat;
+	
+}
+.derive {
+	text-align: center;
+	padding-top: 230px;
+	position: relative;
+}
+
+.derive .about_l{
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 228px;
+	left: 0;
+}
+
+.derive .about_r{
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 500px;
+	right: 150px;
+}
+
+.title {
+	font-weight: 600;
+}
+.title .tit_zh {
+	font-size: 28px;
+	color: #008cd6;
+}
+.title .tit_en{
+	color: #f5a21d;
+	font-size: 20px;
+}
+.derive .info {
+	margin-top: 40px;
+	line-height: 32px;
+	color: #666;
+}
+.wedo {
+	margin-top: 200px;
+	text-align: center;
+	background:  url(/static/v1/img/wedo_bg.png) center 0 no-repeat;
+}                       
+.wedo .info{
+	padding-bottom: 120px;
+	padding-top: 100px;
+	line-height: 32px;
+	color: #fff;     
+}
+.expect {
+	margin-top: 120px;
+	text-align: center;
+
+}
+.expect img {
+	width:auto;
+	height:auto;
+	margin: 40px 0 180px    ;
+}
+.expect .info{
+	margin-top: 40px;
+	line-height: 32px;
+	color: #666;     
+}

@@ -1,0 +1,226 @@
+$(function(){
+	 var dateInput = ['#leave_day','#dest_day']
+		$(dateInput).each(function(i,ele){
+			$(ele).datepicker({
+				minDate: 0,
+				dateFormat: "yy-mm-dd"
+			});
+
+		})	
+
+	//search airlistInfo
+	var canSearch = true ;	
+	var start_city = $('#leave_city').val().trim();
+	var end_city = $('#dest_city').val().trim();
+	var date = $('#leave_day ').val();
+	var rdate = $('#dest_day ').val().trim();
+	$('.airList').on('click','.ctrl_bar',function(){
+		var _self = this;
+		var slideUp = $(this).parents('.list').find('.list_box').hasClass('hide');
+		var query = {};
+			query.start_city = start_city;
+			query.end_city = end_city;
+			query.date = date;
+			query.flight_num =$(this).attr('flight_num');
+			query.rdate = rdate;
+
+			if(canSearch&&slideUp){
+				canSearch = false ;
+				$.post('searchPrice',query,function(res){
+					$(_self).siblings('.rate').text(res.correct)
+					var infoList = res.vendors;
+					var listStr = '';
+					for(var i=0; i<infoList.length; i++){
+						var type= matchingSet(infoList[i].cabinType)
+						listStr+='<div class="air_info">'+
+						'<span class="pro_name">'+type+'</span>'+
+						'<span class="rule">退改¥138起  直营  行李额说明</span>'+
+						'<span class="air_price"><strong>¥ '+infoList[i].barePrice+' </strong><a href="javascript:;" index='+i+'>立即预定</a></span>'+
+						'<div class="ruleInfo hide">'+
+						'<div class="rule_tit"><span>退改签规则</span> (以下为成人退改签规则说明)</div>'+
+						'<div>'+
+						'舱位(Z)：票面¥460同舱更改条件：航班起飞前2小时之前，改期手续费为票面价的30%；航班起飞前2小时之后，改期手续费为票面价的50%退票条件：航班起飞前2小时之前，退票手续费为票面价的50%；航班起飞前2小时之后，只退机建和燃油签转条件：不可签转折扣说明：经济舱折扣以标准经济舱全价为基础计算得出*以上均为乘客自愿退改签规则，非自愿退改签规则以可适用法律及航空公司规定为准。航空公司规定以各航空公司官方网站的公示为准。*申请改签，同舱位变更时，如变更前后的票面价之间存在差价，则补足差价；如同时存在改期手续费和升舱费，则需同时收取改期手续费和舱位差额。已办理完变更、签转的客票，后续再发生退、改、签业务时，所收取的变更费一律不再退回。'+
+						'</div>'+
+						'</div>'+
+						'</div>'
+					}
+					$(_self).parents('.list').find('.info_list').html(listStr)
+					$(_self).data('listData',res);
+
+					canSearch = true;
+					// $(_self).parent('.clearfix').attr('slideUp','false')
+				},'json')
+			}
+			$(_self).parents('.list').find('.list_box').toggleClass('hide');
+
+
+
+		 
+	})
+
+	$('#leave_day,#dest_day').on('change',function(event){
+		if(event.target.id=='leave_day'){
+			var initDay = $(this).val();
+			$('#dest_day').val(getDateAfter_n(initDay,1,'-'))
+			return false;
+		}
+		var date1 = new Date($('#leave_day').val().replace(/-/g,'/'))
+		var date2 = new Date($('#dest_day').val().replace(/-/g,'/'))
+		day	= (date2-date1)/86400000;
+		if(day<=0){
+			alert('机票返回日期须大于出发日期1天')
+			$('#dest_day').val(getDateAfter_n($('#leave_day').val(),1,'-'));	
+		}
+	})
+
+	$('.listWap').on('click','.air_price a',function(){
+		var data = $(this).parents('.list').find('.ctrl_bar').data('listData');
+		var index = $(this).attr('index');
+		var query ={};
+			query.vppr = data.vendors[index].vppr;
+			query.barePrice = data.vendors[index].barePrice;
+			query.basePrice = data.vendors[index].basePrice;
+			query.price = data.vendors[index].price;
+			query.businessExt = data.vendors[index].businessExt;
+			query.prtag = data.vendors[index].prtag;
+			query.carrier = data.carrier;
+			query.code = data.code;
+			query.depCode = data.depCode;
+			query.arrCode = data.arrCode;
+			query.cabin = data.vendors[index].cabin;
+			query.policyType = data.vendors[index].policyType;
+			query.policyId = data.vendors[index].policyId;
+			query.btime = data.btime;
+			query.date = data.date;
+			query.airtype = $(this).parents('.list').find('.airtype').text();
+			var msg = JSON.stringify(query)
+			sessionStorage.setItem("airMsg", msg); 
+			window.location.href ='/portal/store/airform.html'
+	})
+
+	//searchData
+	//
+	$('.searchwap .search_btn').on('click',function(){
+		searchData()
+	})
+
+
+	$('.airList').on('mouseover','.rule',function(){
+		$(this).siblings('.ruleInfo').removeClass('hide')
+	}).on('mouseout ','.rule',function(){
+		$(this).siblings('.ruleInfo').addClass('hide')
+	})
+
+	$('.msg_ctrl .cancel').on('click',function(){
+		$('.longTimemask').hide(300);
+	})
+
+	timeout10()
+	//toggle searchType
+	$('.searchwap .type .checkBox').on('click',function(){
+		if($(this).hasClass('on')) return false;
+		$(this).toggleClass('on').parent('div').siblings('div').find('.checkBox').removeClass('on');
+		if($('.wangfan').find('.checkBox').hasClass('on')){
+			$('.dest_day').removeClass('dan');
+		}else{
+			$('.dest_day').addClass('dan');
+		}
+	})
+
+	$('.child_f').on('click','.checkBox',function(){
+		if($(this).hasClass('on')) return false;
+		$(this).addClass('on').parent('p').siblings().find('.checkBox').removeClass('on');
+	})
+
+	function timeout10(){
+		setTimeout(function(){
+			$('.longTimemask').show()
+
+		},10*60*1000)	
+	}
+
+
+	function searchData () {
+		start_city = $('#leave_city').val().trim();
+		end_city = $('#dest_city').val().trim();
+		date = $('#leave_day ').val();
+		rdate = $('#dest_day ').val().trim();
+		var query ={};
+		query.start_city =start_city;
+		query.end_city = end_city;
+		query.date = date;
+		query.rdate = rdate;
+		$.post('searchFlight',query,function(res){
+			var listTemplate = '{{each flight as value i}}\
+									<li class="list">\
+									<div class="clearfix">\
+									<div class="fl flight_info">\
+									<div class="airname">{{value.airlines}}</div>\
+									<div class="airtype">{{value.flightNum}} {{value.flightTypeFullName}}</div>\
+									</div>\
+									<div class="fl departure">\
+									<div class="time">{{value.dptTime}}</div>\
+									<div class="place">{{value.dptAirport}}{{value.dptTerminal}}</div>\
+									</div>\
+									<div class="fl arr"></div>\
+									<div class="fl arrive">\
+									<div class="time">{{value.arrTime}}</div>\
+									<div class="place">{{value.arrAirport}}{{value.arrTerminal}}</div>\
+									</div>\
+									<div class="fl rate">--</div>\
+									<div class="fl flight_price">\
+									<div class="price">\
+									<strong>¥ {{value.barePrice}}</strong>起\
+									</div>\
+									<div class="reb">{{value.cabin}}{{value.discount}}折</div>\
+									</div>\
+									<div class="ctrl_bar fl"  flight_num="{{value.flightNum}}">订 票</div>\
+									</div>\
+									<div class="list_box hide">\
+									<div class="tit">\
+									<span class="pro_name">产品名称</span>\
+									<span class="rule">规则简介</span>\
+									<span class="air_price">机票价格</span>\
+									</div>\
+									<div class="info_list">\
+									</div>\
+									</div>\
+									</li>\
+								{{/each}}';
+					var airlistRender = template.compile(listTemplate);
+					var html = airlistRender(res);
+					$('.airList ul').html(html);
+	
+		},'json')
+	}
+
+	 
+	function matchingSet(n){
+		switch(n)
+		{
+			case 0:
+			return '经济舱'
+			break;
+			case 1:
+			return '头等舱'
+			break;
+			case 2:
+			return '商务舱'
+			break;
+			case 3:
+			return '精选经济舱'
+			break;
+			case 4:
+			return '经济舱Y舱'
+			break;
+			case 5:
+			return '超值头等舱'
+			break;	
+		}
+	}
+
+
+
+
+
+})

@@ -1,0 +1,308 @@
+.publicBanner {
+  margin-top: 68px;
+  min-width: 1200px;
+  height: 380px;
+  position: relative;
+}
+.banner_text {
+  position: absolute;
+  left: calc( 50% - 384px );
+  top: 90px;
+  width: 768px;
+  text-align: center;
+  text-shadow: -0.347px 1.97px 6px rgba(0, 0, 0, 0.12);
+}
+.banner_text .title1 {
+  font-size: 32px;
+  color: #ffffff;
+}
+.banner_text .title2 {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 3px;
+  display: block;
+}
+.banner_text .search_box {
+  width: 768px;
+  height: 48px;
+  line-height: 48px;
+  margin-top: 36px;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(250, 250, 250, 0.45) 18%, rgba(245, 245, 245, 0.45) 22%, rgba(250, 250, 250, 0.45) 36%, rgba(255, 255, 255, 0.45) 100%), linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+  background-blend-mode: multiply, 
+            normal;
+  box-shadow: 0px 2px 14px 0px rgba(0, 0, 0, 0.07);
+  border-radius: 4px;
+  position: relative;
+}
+.banner_text #shares_search {
+  border: none;
+  background: rgba(0, 0, 0, 0);
+  height: 48px;
+  line-height: 48px;
+  margin-top: -1px;
+  margin-left: 28px;
+  width: 618px;
+}
+.banner_text ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #b3b3b3;
+}
+.banner_text :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #b3b3b3;
+}
+.banner_text ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #b3b3b3;
+}
+.banner_text :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #b3b3b3;
+}
+.banner_text .line {
+  width: 2px;
+  height: 18px;
+  background-color: #659ff5;
+  margin-left: -25px;
+  margin-top: 15px;
+}
+.banner_text .button {
+  padding: 0px 32px 0px 25px;
+  color: #659ff5;
+  cursor: pointer;
+}
+.banner_text .search_list {
+  position: absolute;
+  top: 52px;
+  left: 0px;
+  width: 720px;
+  height: 0px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 14px 0px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  opacity: 0;
+  text-align: left;
+  padding: 0px 24px;
+  z-index: 1;
+  font-size: 14px;
+  color: #b3b3b3;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.banner_text .search_list li {
+  line-height: 40px;
+  height: 40px;
+  border-bottom: solid 1px #e5e5e5;
+}
+.banner_text .search_list li:last-child {
+  border-bottom: none;
+}
+.banner_text .search_list li:hover {
+  color: #659ff5;
+}
+.banner_text .s_list_show {
+  opacity: 0.9;
+  transition: 0.3s;
+  height: auto;
+}
+.main_box {
+  width: 1200px;
+  margin: -60px auto 96px auto;
+  position: relative;
+  min-height: 567px;
+}
+.main_box .filter_box {
+  width: 1200px;
+  height: 102px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 16px 0px rgba(51, 51, 51, 0.1);
+  border-radius: 4px;
+}
+.main_box .filter_box li {
+  float: left;
+  height: 24px;
+  line-height: 24px;
+  text-indent: 8px;
+  cursor: pointer;
+  padding-right: 20px;
+}
+.main_box .trip_day,
+.main_box .trip_months {
+  margin-left: 30px;
+  font-size: 14px;
+  color: #999999;
+}
+.main_box .trip_day .title,
+.main_box .trip_months .title {
+  color: #333333;
+  font-weight: bold;
+}
+.main_box .trip_day ul,
+.main_box .trip_months ul {
+  margin-left: 45px;
+}
+.main_box .trip_day .active,
+.main_box .trip_months .active {
+  background-color: #659ff5;
+  border-radius: 4px 12px 12px 4px;
+  color: #ffffff;
+  position: relative;
+}
+.main_box .trip_day {
+  padding-top: 25px;
+}
+.main_box .trip_day li {
+  margin-right: 40px;
+}
+.main_box .trip_months {
+  margin-top: 12px;
+}
+.main_box .trip_months li {
+  margin-right: 20px;
+  height: auto;
+}
+.main_box .trip_list {
+  color: #999999;
+  margin-top: 20px;
+}
+.main_box .trip_list ul {
+  padding-bottom: 65px;
+}
+.main_box .trip_list li {
+  width: 288px;
+  margin-right: 16px;
+  cursor: pointer;
+  float: left;
+  height: 370px;
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
+  margin-top: 10px;
+}
+.main_box .trip_list li:nth-child(4n) {
+  margin-right: 0px;
+}
+.main_box .trip_list img {
+  width: auto;
+  height: 288px;
+  border-radius: 6px;
+  margin-left: -70px;
+}
+.main_box .trip_list .img_box {
+  position: absolute;
+  width: 278px;
+  height: 278px;
+  border: solid 5px #ffffff;
+  top: 0px;
+  left: 0px;
+  right: 0;
+  transition: 0.1s;
+  opacity: 0;
+  border-radius: 6px;
+}
+.main_box .trip_list .img_box div {
+  position: absolute;
+  bottom: 5px;
+  font-size: 14px;
+  color: #fff;
+}
+.main_box .trip_list .img_box .sport_name {
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  left: 15px;
+}
+.main_box .trip_list .img_box .day_num {
+  bottom: 0px;
+  right: 15px;
+}
+.main_box .trip_list .img_box .day_num span {
+  font-family: benMo;
+  font-weight: normal;
+  font-size: 22px;
+}
+.main_box .trip_list .title1,
+.main_box .trip_list .title2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.main_box .trip_list .title1 {
+  color: #333333;
+  font-weight: bold;
+}
+.main_box .trip_list .title_box {
+  text-align: center;
+  margin-top: 18px;
+  transition: 0.2s;
+}
+.main_box .trip_list .title_box .title2 {
+  font-size: 14px;
+  margin-top: -1px;
+}
+.main_box .trip_list li:hover {
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.main_box .trip_list li:hover .img_box {
+  opacity: 1;
+  transition: 0.1s;
+  overflow: hidden;
+  border-radius: 0px;
+}
+.main_box .trip_list li:hover .title_box {
+  margin-top: 0px;
+  height: 0px;
+  opacity: 0;
+  transition: 0.3s;
+}
+.main_box .trip_list li:hover .h_content {
+  height: auto;
+  opacity: 1;
+  transition: 0.3s;
+}
+.main_box .trip_list .h_content {
+  padding: 5px 15px 0px 15px;
+  opacity: 0;
+  height: 0;
+  transition: 0.2s;
+}
+.main_box .trip_list .h_content .top {
+  border-bottom: solid 1px #e5e5e5;
+}
+.main_box .trip_list .h_content .go_time {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.main_box .trip_list .h_content .bottom {
+  margin-top: 2px;
+  font-size: 14px;
+}
+.main_box .trip_list .h_content .user {
+  font-size: 12px;
+}
+.main_box .trip_list .h_content i {
+  float: left;
+  width: 10px;
+  height: 12px;
+  margin-top: 4px;
+  margin-right: 5px;
+}
+.main_box .trip_list .h_content .user_icon {
+  background: #fff url(/static/v1/img/user.png) no-repeat;
+}
+.main_box .trip_list .h_content .see_icon {
+  margin-top: 5px;
+  width: 15px;
+  background: #fff url(/static/v1/img/see.png) no-repeat;
+}
+.main_box .talentTrip_none {
+  width: 360px;
+  height: 210px;
+  text-align: center;
+  margin: 125px auto 0px;
+  color: #999999;
+}
+.main_box img{
+  margin-bottom: 5px;
+}

@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>点标记</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <style>
+        .marker {
+            color: #ff6600;
+            padding: 4px 10px;
+            border: 1px solid #fff;
+            white-space: nowrap;
+            font-size: 12px;
+            font-family: "";
+            background-color: #0066ff;
+        }
+
+        .point_putin{
+            width: 400px;
+            height: 30px;  
+            position: fixed;
+            top: 50px;
+            right: 300px;
+        }
+        .pointName {
+            width: 300px;
+            height: 30px;  
+            position: fixed;
+            top: 50px;
+            right: 750px;
+        }
+        .ctr_bar {
+            position: fixed;
+            top: 55px;
+            right: 50px;
+            /*width: 100px;*/
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            color: #fff;
+        }
+        .ctr_bar span ,
+          .ctr_bar .list{
+            cursor: pointer;
+            padding: 5px 20px;
+            background-color: #4d85d9;
+            border-radius:4px;
+            color: #fff;
+      }
+      .view_id_box {
+            width: 300px;
+            height: 30px;
+            display: inline-block;
+            margin-left: 20px;
+            position: relative;
+            position: fixed;
+            top: 50px;
+            right: 1100px;
+        }
+         .view_id_box input {
+            width: 100%;
+            height: 100%;
+         }
+        .view_id_box ul {
+            padding-left: 0;
+            width: 100%;
+            max-height: 500px;
+            overflow: auto;
+            display: none;
+            position: absolute;
+            top: 25px;
+            left: 0;
+            background-color: #fff;
+            color: #666;
+        }
+         .view_id_box ul li {
+            /*width: 100%;*/
+            padding: 3px 10px;
+            cursor: pointer;
+         }
+         .view_id_box ul li:hover {
+            background-color: #88ace8;
+            color: #fff;
+         }
+         #layerChange {
+            border-radius: 3px;
+            height: 36px;
+            position: fixed;
+            top: 50px;
+            right: 1400px;
+            background-color: #4d85d9;
+            color: #fff;
+            border:none;
+         }
+    </style>
+    <script src="http://webapi.amap.com/maps?v=1.4.6&key=e854e3e37416034bf934488d82c31a36"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<div  class="button-group">
+    <div class="ctr_bar">
+         <span class="pass">确定</span>
+        <span class="submit">提交</span>
+        <a class="list" href="/portal/enclosure/coordinate.html" target="_blank">列表</a>
+    </div>
+     <div class="view_id_box">
+                <input  id="view_id" type="text" placeholder='景区名称'>
+                <ul>
+                </ul>
+    </div>
+    <input type="text" class="pointName" placeholder="电子围栏名称">
+    <input class="point_putin" type="text" placeholder="请输入经纬度用英文逗号隔开(仅限一组)">
+    <button id='layerChange' style='margin-right: 5px' class='Satellite'>切换卫星/常规地图</button>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var marker, map = new AMap.Map("container", {
+        resizeEnable: true,
+        center: [116.397428, 39.90923],
+        zoom: 13
+    });
+    var submitArr=[];
+    var pass = false ;
+
+    $.post('view',{},function(res){
+    var view_list =res;   
+    $('.view_id_box input').on('keyup',function(){
+     $('.view_id_box ul').html('');
+     var this_value = $(this).val().trim();
+     if(!this_value) return false;
+     var showList = [];
+     $(view_list).each(function(i,ele){
+        if(this.spot_name.indexOf(this_value)!=-1){
+           showList.push(this); 
+       }
+   })
+     var str ='';
+     for(var i=0;i<showList.length;i++){        
+        str+= '<li class="view_list" view_id='+showList[i].id +' type='+showList[i].type+'>'+showList[i].spot_name+'</li>'
+    }
+    $('.view_id_box ul').html(str).show()
+    $('.view_id_box ul li').on('click',function(){
+        $('.view_id_box input').val($(this).text()).attr('view_id',$(this).attr('view_id')).attr('view_type',$(this).attr('type'));
+        $(this).parent('ul').hide()
+    })
+})
+},'json')
+    document.getElementsByClassName('pass')[0].addEventListener('click',function(){
+        var put_val = document.getElementsByClassName('point_putin')[0].value.trim();
+        var point = put_val.split(',');
+        var lng , //经度
+            lat; //纬度
+         // console.log(point)
+        addMarker(point);
+        map.setCenter(point);
+        pass = true;
+        var temp = {};
+            temp.Lng= point[0]
+            temp.Lat= point[1]
+        submitArr.push(temp);
+    })
+   
+    $('.submit').on('click',function(){
+        if($('.pointName').val()!=''&&pass){
+            var query={};
+           query.type = $('#view_id').attr('view_type');
+            query.view_id = $('#view_id').attr('view_id').trim();
+            query.scenery = $('.pointName').val().trim();
+            query.coord = submitArr;
+            $.post('getMap',query,function(data){
+                if(data.status==true){
+                    alert('提交成功');
+                    window.location.reload();
+                }
+            },'json')
+        }else{
+            alert('请填写景点名称,或者确定坐标是否正确');
+         }
+    })
+
+    $('#layerChange').on('click',function(){
+      
+       if($(this).hasClass('Satellite')){  
+         var satellite = new AMap.TileLayer.Satellite();
+         map.setLayers([satellite]);
+         $(this).toggleClass('Satellite');
+       }else{
+            var normal = new AMap.TileLayer({})
+             map.setLayers([normal]);
+            $(this).toggleClass('Satellite');
+       }    
+      
+ })
+
+    // AMap.event.addDomListener(document.getElementById('addMarker'), 'click', function() {
+    //     addMarker();
+    // }, false);
+    // AMap.event.addDomListener(document.getElementById('updateMarker'), 'click', function() {
+    //     marker && updateMarker();
+    // }, false);
+    // AMap.event.addDomListener(document.getElementById('clearMarker'), 'click', function() {
+    //     if (marker) {
+    //         marker.setMap(null);
+    //         marker = null;
+    //     }
+    // }, false);
+
+    // 实例化点标记
+ function addMarker(point) {
+        marker = new AMap.Marker({
+            icon: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+            position:point
+        });
+        console.log(point)
+        marker.setMap(map);
+    }
+
+    function updateMarker() {
+        // 自定义点标记内容
+        var markerContent = document.createElement("div");
+
+        // 点标记中的图标
+        var markerImg = document.createElement("img");
+        markerImg.className = "markerlnglat";
+        markerImg.src = "http://webapi.amap.com/theme/v1.3/markers/n/mark_r.png";
+        markerContent.appendChild(markerImg);
+
+        // 点标记中的文本
+        var markerSpan = document.createElement("span");
+        markerSpan.className = 'marker';
+        markerSpan.innerHTML = "Hi，我换新装备啦！";
+        markerContent.appendChild(markerSpan);
+
+        marker.setContent(markerContent); //更新点标记内容
+        marker.setPosition([116.391467, 39.927761]); //更新点标记位置
+    }
+</script>
+</body>
+</html>

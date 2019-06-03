@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>酒店预订</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/swiper/swiper.css">
+	<link rel="stylesheet" href="/static/common/swiper/animate.min.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/hotel_index.css">
+	<link rel="stylesheet" href="/static/v1/css/store/doubleDate.css">
+
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_store"/>
+	<div class="bannerWap clearfix">
+		<div class="leftForm fl">
+			<ul class="formList">
+				<li class="list active hotelSearch" id="doubledate">
+					<div class="tit">国内酒店</div>
+					<div class="input_list">
+						<div class="tip">目的地</div>
+						<div class="input_box">
+							<input type="text" value="杭州" size="15" id="des" name="des" mod="address|notice" mod_address_source="hotel" mod_address_suggest="" mod_address_reference="cityid" mod_notice_tip="中文/拼音" autocomplete="off"/>
+							<input id="cityid" name="cityid" type="hidden" value="" />
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">入住日期</div>
+						<div class="input_box">
+							<input class="doubledate" id="arr_time" type="text" value="">
+						</div>
+					</div>
+					<div class="input_list">
+						<div class="tip">离店日期</div>
+						<div class="input_box">
+							<input class="doubledate" id="leave_time" type="text" value="">
+						</div>
+					</div>
+					<div class="input_list business">
+						<div class="tip">酒店位置</div>
+						<div class="input_box">
+							<input id="loca" type="text" value="" placeholder="如位置/酒店名/品牌">
+						</div>
+						<div class="businessBox">
+							<div class="b_wap">
+								<div class="tit"></div>
+								<div class=""></div>
+							</div>
+						</div>
+					</div>
+					<button class="searchBtn hotelSubmit">搜 索</button>
+				</li>
+			</ul>
+			
+		</div>
+		<div class="rightBanner fr">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+				<div class="swiper-slide"><img src="/static/v1/img/storeBanner.png" alt=""></div>
+				<div class="swiper-slide"><img src="/static/v1/img/storeBanne2.png" alt=""></div>
+				<div class="swiper-slide"><img src="/static/v1/img/storeBanne2.png" alt=""></div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hot_hotel wap">
+		<div type='hotel' class="title clearfix">
+			<div class="tit_left fl">酒店特选推荐</div>	
+			<div class="tit_right fr">
+				<span class="active">杭州</span>  
+				<span>上海</span>  
+				<span>北京</span>  
+				<span>广州</span>  
+				<span>三亚</span>  
+				<!-- <span><a href="javascript:;">查看更多<i class="ico_r">></i>  </a></span> -->
+			</div>
+		</div>
+		<div class=" clearfix">
+			<ul class="hot_box clearfix fl">
+				<volist name = "hotel_list_info" id= "vo">
+					<li class="list fl" hotel_id="{$vo.HotelId}">
+						<a href="javascript:;">
+							<div class="listImg">
+								<img src="{$vo.Detail.ThumbNailUrl}" alt="袋鹿">
+							</div>
+							<div class="info">
+								<div class="tit">{$vo.Detail.HotelName} <span>¥<strong>{$vo.LowRate}</strong>起</span></div>
+								<div class="con">地址：{$vo.Detail.Address}</div>
+							</div>
+						</a>
+					</li>
+				</volist>
+			</ul>
+			<div class="right_banner fr">
+				<a href="javascript:;">
+					<img src="/static/v1/img/hotel_banner.png" alt="">
+				</a>
+			</div>
+		</div>
+		
+	</div>
+	<div class="hotel_advice wap">
+		<div type='hotel' class="title clearfix">
+			<div class="tit_left fl">目的地推荐</div>
+			<div class="dest_city fl">
+				<select name="" id="">
+					<option value="杭州">杭州</option>
+					<option value="上海">上海</option>
+					<option value="北京">北京</option>
+				</select>
+			</div>	
+			<div class="tit_right fr">
+				<foreach name="theme" id="vo">
+					<span <if condition="$key == 0"> class="active" <else /> </if> type="{$vo.Id}">{$vo.Name}</span> 
+				</foreach> 
+			</div>
+		</div>
+			<ul class="advice_box clearfix">
+				<volist name="hotel_list" id="vo">
+					<li class="list fl" hotel_id="{$vo.HotelId}">
+						<a href="javascript:;">
+							<div class="listImg">
+								<img src="{$vo.Detail.ThumbNailUrl}" alt="袋鹿">
+							</div>
+							<div class="info">
+								<div class="tit">{$vo.Detail.HotelName} <span>¥<strong>{$vo.LowRate}</strong>起</span></div>
+								<div class="con">地址：{$vo.Detail.Address}</div>
+							</div>
+						</a>
+					</li>
+				</volist>
+			</ul>
+	</div>
+	<div class="wap hotel_list">
+		<div type='hotel' class="title clearfix">
+			<div class="tit_left fl">酒店目录</div>
+			<div class="tit_right fr">
+				<span class="active">杭州</span>  
+				<span>北京</span>  
+				<span>上海</span>  
+				<span>广州</span>  
+				<!-- <span>南京</span>  
+				<span>深圳</span>
+				<span>武汉</span> -->
+			</div>
+		</div>
+		<div class="hotelLsit_box">
+			<div class="title">
+				热<br>门<br>商<br>圈
+			</div>	
+			<ul class="clearfix">
+				<volist name="city" id="vo">
+					<li class="list fl">
+						<div class="tit" dis_id={$vo.dis_id}>{$vo.dis_name}</div>
+						<div class="place_box">
+							<volist name="vo.business" id="voo">
+								<span class="place" zone_id={$voo.bus_id}>{$voo.bus_name}</span>
+							</volist>
+						</div>
+					</li>
+				</volist>
+			</ul>
+		</div>
+	</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/swiper/swiper.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/storecity/fixdiv.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/storecity/address.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/doubleDate2.0.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/hotel_index.js"></script>
+</html>

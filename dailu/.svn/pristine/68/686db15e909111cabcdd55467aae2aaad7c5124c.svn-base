@@ -1,0 +1,1595 @@
+// console.log(form_data)
+var citypolyOptions;
+var polyOptions_array = [];
+var map;
+var day_list_id_arry = [];
+var day_obj = {}
+var day_arry = [];
+var spotPolyOptions;
+var spot_markers_arry = []
+var spotPolyline_array = [];
+var icon_style = {};
+var hover_marker_array = [];
+var eat_marker_array =  [];
+
+var nextObj = {};
+var nextDay_arry = [];
+
+var get_thiscity_index = getUrlParam("thisCity");
+var havI = getUrlParam("havI");
+
+$(function () {
+    var mapFn = {
+        initMap: function (center, first_city_name, first_provinceNames) {
+            
+            // console.log(center)
+            map = new google.maps.Map(document.getElementById('map'), {
+                // zoom: 8,
+                gestureHandling: 'greedy',
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                scaleControl: true,
+                streetViewControl: false,
+                center: center
+            });
+
+            mapFn.mapPolyOptions(first_provinceNames, first_city_name);
+
+
+        },
+        mapPolyOptions: function (provinceName, cityName) {
+            // console.log(provinceName,cityName)
+            switch (provinceName) {
+                case "北京":
+                    provincesCity(1)
+                    break;
+                case "上海":
+                    provincesCity(1)
+                    break;
+                case "天津":
+                    provincesCity(1)
+                    break;
+                case "重庆":
+                    provincesCity(1)
+                    break;
+                default:
+                    provincesCity(0)
+            }
+
+            function provincesCity(iszxs) {
+                var get_index = getArrIndex(iszxs == 0 ? cityData.provinces : cityData.municipalities, {
+                    n: provinceName
+                });
+                var zoom ;
+                // console.log(iszxs)
+                if (iszxs == 0) {
+                    var cityData_cities = cityData.provinces[get_index].cities;
+                    
+                    var get_city_index = getArrIndex(cityData_cities, {
+                        n: cityName
+                    });
+                    // console.log(cityName)
+                    if(cityData_cities[get_city_index] != undefined){
+                        var get_city_b = cityData_cities[get_city_index].b;
+                        citypolyOptions(get_city_b);
+                        zoom = cityData_cities[get_city_index].z;
+                    }
+                    
+
+                } else {
+                    var zxs_b = cityData.municipalities[get_index].b
+                    citypolyOptions(zxs_b);
+                    zoom = cityData.municipalities[get_index].sz;
+                }
+                
+                if(zoom){
+                    map.setZoom(zoom)
+                }else{
+                    map.setZoom(9)
+                }
+            };
+
+            function citypolyOptions(path) {
+                for (var i = 0; i < polyOptions_array.length; i++) {
+                    polyOptions_array[i].setMap(null)
+                }
+
+                var paths = mapPaths(path);
+                // console.log(paths)
+                citypolyOptions = new google.maps.Polygon({
+                    paths: paths,
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 1,
+                    strokeWeight: 1,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.1
+
+                });
+                polyOptions_array.push(citypolyOptions);
+                citypolyOptions.setPaths(paths)
+                citypolyOptions.setMap(map);
+            };
+        },
+        //第一次景点连线
+        first_spot_polyFn: function (day_arry, hover_i) {
+            // console.log(day_arry)
+            // var day_path_arry = []
+            for (var i = 0; i < day_arry.length; i++) {
+                var day_path_arry = []
+                var dayNum = $(".day_box .day_list").eq(i).find(".day_num").html();
+                if(day_arry[i].day){
+                    for (var a = 0; a < day_arry[i].day.length; a++) {
+                        var spot_latlng = {};
+                        var lat = parseFloat(day_arry[i].day[a].this_lat);
+                        var lng = parseFloat(day_arry[i].day[a].this_lng);
+                        spot_latlng.lat = lat;
+                        spot_latlng.lng = lng;
+                        var spot_pos = new google.maps.LatLng(lat, lng);
+                        day_path_arry.push(spot_pos);
+                        var spot_num = (a + 1).toString();
+                        if (i == hover_i) {
+                            isBlue(dayNum, spot_num,a);
+                        } else {
+                            isGray(dayNum, spot_num,a)
+                        };
+                        var this_name = day_arry[i].day[a].this_name
+                        // console.log(day_arry[i].day[a])
+                        spotMarker(spot_pos, this_name)
+                        
+    
+                    };
+                    // console.log(day_path_arry[i])
+                    // console.log(day_path_arry)
+                    spotPolyline(day_path_arry);
+                }
+                
+            };
+            function spotMarker(location, name) {
+                // console.log(day_arry)
+                var markers = new google.maps.Marker({
+                    position: location,
+                    icon: {
+                        url: "/static/v1/img/map/" + icon_style.url + ".png",
+                        labelOrigin: new google.maps.Point(icon_style.point_left, icon_style.point_top),
+                    },
+                    map: map,
+                    label: {
+                        text: icon_style.num,
+                        color: icon_style.color,
+                        fontWeight: "800",
+                    }
+
+                });
+                spot_markers_arry.push(markers);
+                //鼠标放上去
+                google.maps.event.addListener(markers, "mouseover",
+                    function () {
+                        mapFn.styleInfowindow(name,markers)
+                    });
+                google.maps.event.addListener(markers, "mouseout",
+                    function () {
+                        ib.open(null,markers);
+                    });
+
+
+            };
+
+            function spotPolyline(path) {
+                spot_polyline = new google.maps.Polyline({
+                    path: path,
+                    //多线段
+                    geodesic: true,
+                    strokeColor: icon_style.color,
+                    strokeOpacity: 1.0,
+                    strokeWeight: 4,
+                });
+                spot_polyline.setMap(map);
+                spotPolyline_array.push(spot_polyline);
+            };
+
+            function isBlue(dayNum, spot_num,a) {
+
+                icon_style.color = "#7daff9";
+                if (a == 0) {
+                    icon_style.url = "iconnum1";
+                    icon_style.num = dayNum;
+                    icon_style.point_left = 15;
+                    icon_style.point_top = 17;
+                } else {
+                    icon_style.url = "spot_1";
+                    icon_style.num = spot_num;
+                    icon_style.point_left = 13;
+                    icon_style.point_top = 14;
+                }
+            };
+
+            function isGray(dayNum, spot_num,a) {
+                icon_style.color = "#b3b3b3";
+                if (a == 0) {
+                    icon_style.url = "iconnum0";
+                    icon_style.num = dayNum;
+                    icon_style.point_left = 15;
+                    icon_style.point_top = 17;
+                } else {
+                    icon_style.url = "spot_0";
+                    icon_style.num = spot_num;
+                    icon_style.point_left = 13;
+                    icon_style.point_top = 14;
+                }
+            }
+        },
+        del_spot_marker: function () {
+
+            for (var i = 0; i < spot_markers_arry.length; i++) {
+                spot_markers_arry[i].setMap(null);
+            }
+            for (var i = 0; i < spotPolyline_array.length; i++) {
+                spotPolyline_array[i].setMap(null);
+            }
+            spot_markers_arry = [];
+            potPolyline_array = [];
+
+        },
+        eat_marker: function (location, this_name) {
+            var eat_Marker = new google.maps.Marker({
+                position: location,
+                icon: "/static/v1/img/map/mark" + 3 + ".png",
+                map: map
+            });
+            eat_marker_array.push(eat_Marker)
+            //定义信息窗口
+            mapFn.styleInfowindow(this_name,eat_Marker)
+        },
+        //自定义Infowindow
+        styleInfowindow: function (name, marker) {
+            var boxText = document.createElement("div");
+            boxText.classList.add("info")
+
+            boxText.innerHTML = name;
+            var myReg = /^[\u4e00-\u9fa5]+$/; //判断是否有英文
+            if(!myReg.test(name)){
+                $(".info_text_none").css("font-size","13px")
+            }else{
+                $(".info_text_none").css("font-size","14px")
+            }
+            var info_top ;
+            if(marker.label != undefined){
+                var marker_text = marker.label.text;
+                if(marker_text.indexOf("D")){
+                    info_top = -60
+                }else{
+                    info_top = -75
+                }
+            }else{
+                info_top = -70
+            }
+            
+            $(".info_text_none").html(name)
+            var info_width = $(".info_text_none").innerWidth();
+            var myOptions = {
+                content: boxText,
+                disableAutoPan: true, 
+                maxWidth: 0,
+                pixelOffset: new google.maps.Size(-(info_width / 2), info_top),
+                zIndex: null,
+                boxStyle: {
+                    background: "", //窗口的背景图 "url('tipbox.gif') no-repeat"
+                    opacity: 1,
+                },
+                closeBoxURL: "", // x关闭 的图 图片路径
+                infoBoxClearance: new google.maps.Size(1, 1),
+                isHidden: false,
+                pane: "floatPane",
+                enableEventPropagation: false
+            };
+            ib = new InfoBox(myOptions);
+            ib.open(map, marker);
+        },
+        del_hover_marker:function(markerArray){
+            for(var i = 0;i<markerArray.length;i++){
+                markerArray[i].setMap(null)
+            };
+            markerArray = [];
+            $(".infoBox").each(function(i,n){
+                $(this).remove()
+            })
+        }
+
+    }
+    var initFn = {
+        initialization: function () {
+            document.onselectstart = function () {
+                event.returnValue = false;
+            };
+             //表单保存
+            $(".save").on("click", function () {
+                $('.madeTravelMask').fadeOut();
+            });
+
+            var newDate = new Date();
+            newDate = new Date(newDate.getYear()+1900,newDate.getMonth(),newDate.getDate());
+            newDate = newDate.toString();
+            if(localStorage.visitors_spot_drag == undefined){
+                $(".visitors_spot_drag").fadeIn();
+                $(".visitors_spot_drag").on("click", ".visitors_end", function () {
+                    $(".visitors_spot_drag").fadeOut();
+                    var visitors_spot_drag = new Date;
+                    visitors_spot_drag = new Date(visitors_spot_drag.getYear()+1900,visitors_spot_drag.getMonth(),visitors_spot_drag.getDate());
+                    visitors_spot_drag.setDate(visitors_spot_drag.getDate() + 3);
+                    localStorage.setItem("visitors_spot_drag", visitors_spot_drag);
+                });
+            }
+
+            //拖拽列表渲染数据
+            $.ajax({
+                url: "plan",
+                type: "post",
+                dataType: "JSON",
+                success: function (data) {
+                    // console.log(data)
+                    if(!data){
+                        return false
+                    }else{
+                        $(".loading_box").fadeOut();
+                        // $(".prompt_b").fadeIn();
+                    }
+                    _global_data = data;
+                    
+                    var mouse_data = data.result
+                    var fitst_center_latlng = {
+                        lat: parseFloat(mouse_data.this_city_lat),
+                        lng: parseFloat(mouse_data.this_city_lng)
+                    };
+                    var first_city_name = mouse_data.this_city;
+
+                    var go_city_array = data.r_spot.city_data.go_city_array;
+                    var first_provinceNames = go_city_array[get_thiscity_index].provinceNames;
+                    // console.log(google)
+                    
+                    google.maps.event.addDomListener(window, "load", mapFn.initMap(fitst_center_latlng, first_city_name, first_provinceNames));
+
+                    //表单我的行程计划
+                    plan(data.r_spot.city_data)
+
+                    //右边列表
+                    var data_sport = data.r_spot
+                    templateFn.r_list_temFn(data_sport);
+                    
+                    //详情
+                    var this_city_id = data_sport.spot_data.this_cityid;
+                    _this_city_id = this_city_id;
+                    initFn.details_popup(this_city_id);
+                    initFn.hover_rilist();
+                    
+                    var mouse_data = data.result;
+                    templateFn.mouse_temFn(mouse_data,first_provinceNames);
+
+                    mapFn.first_spot_polyFn(mouse_data.day_arry, 0)
+
+                    initFn.hover_eat(data_sport.spot_data.eat_name_arry)
+                    
+                    //拖拽排序
+                    initFn.draggableFn();
+                    
+
+                    var only_marker_array = []
+                    $(".day_box .day_list").each(function (i, n) {
+                        $(n).hover(function () {
+                            mapFn.del_spot_marker()
+                            mapFn.first_spot_polyFn(mouse_data.day_arry, i);
+                          
+                        }, function () {
+                            for (var i = 0; i < only_marker_array.length; i++) {
+                                only_marker_array[i].setMap(null);
+                            };
+                            only_marker_array = [];
+                            $(".infoBox").each(function(i,n){
+                                $(".infoBox").eq(i).remove()
+                            })
+                        });
+
+                    });
+                    
+                    var hover_icon_style = {}
+                    $(".day_box li").hover(function () {
+                        // map.setZoom(8)
+                        var this_name = $(this).find(".spot_name").html();
+                        var lat = parseFloat($(this).attr("data-lat"));
+                        var lng = parseFloat($(this).attr("data-lng"));
+                        var this_index = $(this).index();
+                        var day_list = $(this).find(".spot_list_num").html();
+                        var day_num = $(this).parents(".day_list").find(".day_num").html();
+                        if (this_index == 0) {
+                            hover_icon_style.this_num = day_num;
+                            hover_icon_style.icon_url = "iconnum1";
+                            hover_icon_style.point_left = 15;
+                            hover_icon_style.point_top = 17;
+                        } else {
+                            hover_icon_style.this_num = day_list;
+                            hover_icon_style.icon_url = "spot_1";
+                            hover_icon_style.point_left = 13;
+                            hover_icon_style.point_top = 14
+                        }
+                        var location = {
+                            lat: lat,
+                            lng: lng
+                        }
+                        // var center_pos = new google.maps.LatLng(lat, lng);
+                        // map.setCenter(center_pos);
+                        var Marker = new google.maps.Marker({
+                            position: location,
+                            icon: {
+                                url: "/static/v1/img/map/" + hover_icon_style.icon_url + ".png",
+                                labelOrigin: new google.maps.Point(hover_icon_style.point_left, hover_icon_style.point_top),
+                            },
+                            label: {
+                                text: hover_icon_style.this_num,
+                                color: "#7daff9",
+                                fontWeight: "800",
+                            },
+                            map: map
+                        });
+
+                        mapFn.styleInfowindow(this_name,Marker)
+                        hover_marker_array.push(Marker);
+                    }, function () {
+                        for (var i = 0; i < hover_marker_array.length; i++) {
+                            hover_marker_array[i].setMap(null);
+                        };
+                        hover_marker_array = [];
+                        $(".infoBox").remove()
+                        
+                    });
+
+
+                }
+            });
+            function plan (data){
+                form_data = data
+                // 我的出行计划弹窗部分satrt
+                $("#custom_title").val(form_data.custom_title).attr("placeholder", form_data.custom_title)
+                $(".wap1_day_num").html(form_data.day_num);
+                $(".wap2_adult_num").html(form_data.adult);
+                $(".wap2_childrent_num").html(form_data.children);
+                $(".wap2_traffic").html(form_data.traffic_tools);
+                $('#wap3_date').val(form_data.date);
+                $(".start_name").html(form_data.departure_city);
+                $(".end_name").html(form_data.return_city);
+                if (form_data.traffic_tools == "铁路交通") {
+                    $("#js_traffic_ico").css("background-image", "url(/static/v1/img/addStrokeform/train.png)");
+                } else if (form_data.traffic_tools == "汽车交通") {
+                    $("#js_traffic_ico").css("background-image", "url(/static/v1/img/addStrokeform/otherJT.png)");
+                } else {
+                    $("#js_traffic_ico").css("background-image", "url(/static/v1/img/addStrokeform/air.png)");
+                };
+            }
+            //详情
+            //弹出关闭
+            $(".shut_down").on("click", function () {
+                $(".details_popup_box .tab_content").eq(0).fadeIn();
+                $(".details_popup_tab_active").css({
+                    left: 0
+                });
+                $(".details_popup_box").fadeOut();
+            });
+
+            hoverDetailsPopup()
+
+            //相册
+            $(".popup_img_box").on('click', ".last_li_img,li", function () {
+                $(".more_pic_box").fadeIn();
+                initFn.morePictures(_dataspot);
+            });
+            $(".pic_hide").click(function () {
+                $(".more_pic_box").fadeOut();
+                $(".gallery-top").html("");
+                $(".gallery-thumbs").html("");
+            });
+
+
+            //完成
+            initFn.nextFn();
+
+            //上一步
+            $(".f_main_next").on("click", ".pre", function () {
+                if(havI == null){
+                    window.location.href = "/portal/scenerymap/cityAttractions.html";
+                }else{
+                    window.location.href = "/portal/scenerymap/cityAttractions.html?tI="+get_thiscity_index+"&havI="+havI;
+                }
+                
+            });
+        },
+        //拖拽
+        draggableFn: function () {
+            $(".day_box .day_list").each(function (i, n) {
+                var day_list_id = "#" + $(n).find("ul").attr("id");
+                day_list_id_arry.push(day_list_id)
+
+            });
+            var day_list_id_str = day_list_id_arry.toString();
+
+            $(day_list_id_str).sortable({
+                connectWith: ".connectedSortable",
+                items: "li:not(.ui-state-disabled)"
+            }).disableSelection();
+
+
+            $(".day_box .day_list").find("li").on("mouseup", function () {
+
+                mapFn.del_spot_marker()
+                var li_this = $(this)
+                $('.hover_foot_box').hide()
+                setTimeout(function () {
+                    mouseupFn();
+                    var this_index = li_this.parents(".day_list").index();
+                    mapFn.first_spot_polyFn(day_arry, this_index)
+                    
+                }, 10);
+
+            });
+
+            $(".day_box .day_list").find("li,li .foodBox").on("mousedown", function () {
+                $('.hover_foot_box').hide()
+            });
+            function mouseupFn() {
+                day_arry = []
+                // console.log(_global_data) 
+                $(".day_box .day_list").each(function (i, n) {
+                    var day_div_obj = {};
+                    day_div_obj.day = []
+                    day_arry.push(day_div_obj);
+                    day_obj.day_arry = day_arry;
+                    var day = [];
+                    $(".day_box .day_list").eq(i).find("li").each(function (a, b) {
+                        var day_list_obj = {};
+                        var this_tag_time = $(b).attr("data-this_tag_time");
+                        var list_name = $(b).find(".spot_name").html();
+                        var list_lat = parseFloat($(b).attr("data-lat"));
+                        var list_lng = parseFloat($(b).attr("data-lng"));
+                        if (this_tag_time != undefined) {
+                            day_list_obj.this_tag_time = this_tag_time;
+                            day_list_obj.this_name = list_name;
+                            day_list_obj.this_lat = list_lat;
+                            day_list_obj.this_lng = list_lng;
+                            day.push(day_list_obj)
+                            // console.log(day_obj)
+                            day_obj.day_arry[i].day = day;
+                            // console.log(day)
+                        }
+
+                    })
+
+                });
+
+                forListFn()
+            };
+            // 当前是拖拽之后
+            function forListFn() {
+                for (var i = 0; i < day_arry.length; i++) {
+                    //拖拽之后要按照要加0.5的计算
+                    var time = getSum(day_arry[i].day);
+                    var tag_startTime = Number($('.day_list').eq(i).find('.star_time').attr('data-tag_starttime'));
+                    var EndTime = initFn.tagEnd_timeFn(tag_startTime,time);
+                    $('.day_list').eq(i).find('.end_time').html(EndTime);
+                    for (var a = 0; a < day_arry[i].day.length; a++) {
+                        $(".day_box .day_list").eq(i).find("li").eq(a).find(".spot_list_num").html(a + 1);
+                    }
+
+                }
+
+                // console.log(day_arry)
+              
+                $(".day_box .day_list").each(function (i, n) {
+                    $(n).hover(function () {
+                        mapFn.del_spot_marker()
+                       
+                        mapFn.first_spot_polyFn(day_arry, i);
+                    });
+                    // var end_time = $(n).find(".end_time").html();
+                    // var endtime_array = end_time.split(":");
+                    // if (endtime_array[0] > 24) {
+                    //     var get_offset = $(".day_box .day_list").eq(i).find(".day_date").offset();
+                    //     $(".visitors_time").css({
+                    //         left: get_offset.left + 110,
+                    //         top: get_offset.top
+                    //     }).show().find("span").html("D" + Number(i + 1));
+                    //     setTimeout(function () {
+                    //         $(".visitors_time").fadeOut()
+                    //     }, 900);
+                    // }
+                });
+
+            };
+
+        },
+        hover_rilist:function(){
+            var hover_rmarkers_arry = [];
+            $(".r_main li").hover(function(){
+                // map.setZoom(8)
+                var lat = parseFloat($(this).attr("data-lat"));
+                var lng = parseFloat($(this).attr("data-lng"));
+                var hotelName = $(this).find(".attractions_name").html();
+                var hover_location = {
+                    lat: lat,
+                    lng: lng
+                };
+
+                var hover_rmarkers = new google.maps.Marker({
+                    position: hover_location,
+                    icon: "/static/v1/img/map/tm.png",
+                    map: map
+                });
+                hover_rmarkers_arry.push(hover_rmarkers);
+
+                //定义信息窗口
+               
+                mapFn.styleInfowindow(hotelName,hover_rmarkers)
+            },function(){
+                mapFn.del_hover_marker(hover_rmarkers_arry)
+            })
+        },
+        hover_eat:function(data){
+            // map.setZoom(8)
+            $(".food_box span").hover(function(){
+                var lat = Number($(this).attr("data-lat"));
+                var lng = Number($(this).attr("data-lng"));
+                var location = {
+                    lat:lat,
+                    lng:lng
+                }
+                var name = $(this).text()
+                mapFn.eat_marker(location,name)
+            },function(){
+                mapFn.del_hover_marker(eat_marker_array)
+            })
+           
+            $(".food_box .food_item").find(".fen_list").hover(function(){
+                var this_fenData = data[$(this).index()].fen_data;
+                for(var i = 0;i<this_fenData.length;i++){
+                    var location ={
+                        lat : parseFloat(this_fenData[i].latitude),
+                        lng : parseFloat(this_fenData[i].longitude) 
+                    }
+                    var name = this_fenData[i].branch_name;
+                    mapFn.eat_marker(location,name)
+                }
+                
+            },function(){
+                mapFn.del_hover_marker(eat_marker_array);
+            })
+    
+            
+        },
+        //景点详情 弹出程
+        details_popup: function (this_city_id) {
+
+            $(".js_rlist_ul .list").on("click", ".introduce,.list_l", function () {
+
+                var list = $(this).parents(".list");
+                var name = list.find(".attractions_name").text();
+                var lat = list.attr("data-lat");
+                var lng = list.attr("data-lng");
+                var this_floor = Number(list.attr("data-this_floor"));
+
+                
+                // var this_type_arry = this_type.split("_");
+                // var type = this_type_arry[0];
+                // console.log(type)
+                var post_data = {
+                    city_id: this_city_id,
+                    spot_name: name,
+                    lat: lat,
+                    lng: lng
+                }
+                var type = list.attr("data-this_type")
+                post_data.type =type ;
+                var detail_ajax_url;
+                switch (this_floor) {
+                    case 0:
+                        detail_ajax_url = "renwen_detail";
+                        break;
+                    case 1:
+                        detail_ajax_url = "local_detail";
+                        break;
+                    case 2:
+                        detail_ajax_url = "night_detail";
+                        break;
+                    case 3:
+                        post_data.store_type = 0;
+                        detail_ajax_url = "food_detail";
+                        break;
+                    case 4:
+                        detail_ajax_url = "shop_detail";
+                        break;
+                }
+
+
+                $.ajax({
+                    url: detail_ajax_url,
+                    type: "post",
+                    dataType: "JSON",
+                    data: post_data,
+                    success: function (data) {
+                        // console.log(data);
+                        // var tab_text = $(".r_top_tab_box").find("li.active").text();
+                        if (detail_ajax_url == "food_detail" || detail_ajax_url == "shop_detail") {
+                            if (type == "必吃美食") {
+                                details_popup_show(".f4_details_popup_box");
+                                templateFn.f4_store_detailsPopup(data);
+                                _dataspot = data.spot.store;
+                            } else if (type == "本土美食") {
+                                details_popup_show(".f4tab2_details_popup_box");
+                                templateFn.f4tab2_detailsPopup(data);
+                                _dataspot = data.store;
+                            } else if (type == "美食街区") {
+                                details_popup_show(".foodstreet_details_popup_box");
+                                templateFn.foodstreet_detailsPopup(data.spot);
+                                _dataspot = data.spot;
+                            } else {
+                                // console.log("aaa")
+                                details_popup_show(".f5_details_popup_box");
+                                templateFn.f5_tab2_3_detailsPopup(data);
+                                _dataspot = data.spot;
+                                return
+                            }
+                        } else {
+                            details_popup_show(".rw_details_popup_box");
+                            _dataspot = data.spot;
+                            templateFn.detailsPopup(data);
+                            return;
+                        }
+
+                        function details_popup_show(details) {
+                            $(details).fadeIn();
+                            tabSwitch(details);
+                            $(details).find('.details_popup_tab_active').css({
+                                left: 0
+                            });
+                            $(details).find(".tab_content_box .tab_content").hide();
+                            $(details).find(".tab_content_box").find(".tab_content").eq(0).show();
+                        };
+
+                    }
+                });
+            });
+        },
+        //相册
+        morePictures: function (spot_data) {
+            // console.log(spot_data)
+            $(".swiper-wrapper").removeAttr("style")
+            $(".gallery-thumbs").html("");
+            $(".gallery-top").html("");
+            var img_data = spot_data.image_url;
+            var img_length = img_data.length;
+            var tab_text = $(".r_top_tab_box").find("li.active").text();
+            if (tab_text == "美食街区") {
+                $(".content_name").html(spot_data.food_court_name);
+                $(".content_p").html(spot_data.absture);
+            } else if (tab_text == "本土特产") {
+                $(".content_name").html(spot_data.shopping_name);
+                $(".content_p").html(spot_data.absture);
+            } else {
+                $(".content_name").html(spot_data.spot_name);
+                $(".content_p").html(spot_data.absture);
+            }
+
+            var img_top_tem = '<div class="swiper-wrapper">\
+                                    {{each image as value i}}\
+                                    <div class="swiper-slide" style="background-image:url({{value.url}})">\
+                                        <div class="img_text_box">上传于&nbsp{{release_time}}&nbsp·by&nbsp;&nbsp;{{value.name}}<span class="js_byName"></span></div>\
+                                    </div>\
+                                    {{/each}}\
+                                </div>\
+                                <div class="img_text_box"><div class="swiper-pagination"></div></div>';
+            var img_top_render = template.compile(img_top_tem);
+            var img_top_html = img_top_render(spot_data);
+            $(".gallery-top").html(img_top_html);
+
+            var img_thumbs_tem = '<div class="swiper-wrapper">\
+                                    {{each image_url as value i}}\
+                                        <div class="swiper-slide" style="background-image:url({{value}})"></div>\
+                                    {{/each}}\
+                                 </div>';
+            var img_thumbs_render = template.compile(img_thumbs_tem);
+            var img_thumbs_html = img_thumbs_render(spot_data);
+            $(".gallery-thumbs").html(img_thumbs_html);
+
+            var galleryTop = new Swiper('.gallery-top', {
+                spaceBetween: 5,
+                loop: true,
+                allowTouchMove: false,
+
+                loopedSlides: img_length, //looped slides should be the same
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    type: 'fraction',
+                },
+            });
+
+            var galleryThumbs = new Swiper('.gallery-thumbs', {
+                spaceBetween: 9,
+                slidesPerView: img_length >= 8 ? 8 : img_length,
+                touchRatio: 0.2,
+                loop: true,
+                centeredSlides: false,
+                allowTouchMove: false,
+                loopedSlides: img_length, //looped slides should be the same
+                slideToClickedSlide: true,
+            });
+
+            galleryTop.controller.control = galleryThumbs;
+            galleryThumbs.controller.control = galleryTop;
+        },
+        //完成
+        nextFn: function () {
+            $(".f_main_next").on("click", ".next", function () {
+                nextDay_arry = []
+                var _cityData = _global_data.result;
+                var _spotData = _global_data.r_spot.spot_data;
+                nextObj.this_city = _cityData.this_city;
+                nextObj.this_city_lat = _cityData.this_city_lat;
+                nextObj.this_city_lng = _cityData.this_city_lng;
+                nextObj.departure_city = _cityData.departure_city;
+                nextObj.return_city = _cityData.return_city;
+                nextObj.eat_len = _spotData.eat_len;
+                nextObj.shop_len = _spotData.shop_len;
+                nextObj.spot_len = _spotData.spot_len;
+                nextObj.middle_city = $(".day_box .day_list:last").find(".js_end_city").html();
+                nextObj.status = _cityData.status; 
+                nextObj.province = $(".day_box").attr("data-pname");
+                nextObj.eat_data = _cityData.eat_data;
+                nextObj.city_id = _this_city_id;
+                $(".day_box .day_list").each(function (i, n) {
+                    var day_date = $(n).find(".day_date").html();
+                    var start_time = $(n).find(".star_time").html();
+                    var end_time = $(n).find(".end_time").html();
+                    var day_div_obj = {};
+                    day_div_obj.date = day_date;
+                    day_div_obj.start_time = start_time.slice(0,start_time.length-1);
+                    day_div_obj.end_time = end_time;
+                    day_div_obj.time = Number($(n).attr("data-time"));
+                    day_div_obj.hotel = {hotel_name:"",lat:"",lng:"",tel:"",address:"",LowRate:"",BusinessZoneName:"",ThumbNailUrl:"",Features:"",hotel_id:""};
+                    day_div_obj.betw_time = $(n).attr('data-betw_time')
+                    nextDay_arry.push(day_div_obj);
+                    nextObj.day_arry = nextDay_arry;
+                    nextObj.day_arry[i].day = [];
+                    $(".day_box .day_list").eq(i).find("li").each(function (a, b) {
+                        var eat_info = []
+                        
+
+                        var day_list_obj = {};
+                        var stored_data = $(b).find(".js_stored_data")
+                        var this_tag_time = $(b).attr("data-this_tag_time");
+                        var list_name = $(b).find(".spot_name").text();
+                        var list_lat = parseFloat($(b).attr("data-lat"));
+                        var list_lng = parseFloat($(b).attr("data-lng"));
+                       
+                        day_list_obj.this_floor_index = $(b).find(".js_stored_data").attr("data-this_floor_index");
+                        day_list_obj.this_tag_time = this_tag_time;
+                        day_list_obj.this_name = list_name;
+                        day_list_obj.this_lat = list_lat;
+                        day_list_obj.this_lng = list_lng;
+                        day_list_obj.this_img_src = stored_data.attr("data-this_img_src");
+                        day_list_obj.this_playtime = stored_data.attr("data-this_playtime");
+                        day_list_obj.default_playtime = stored_data.attr("data-default_playtime");
+                        day_list_obj.distance = stored_data.attr("data-distance");
+                        day_list_obj.this_type = stored_data.attr("data-this_type");
+                        day_list_obj.ranking = stored_data.attr("data-ranking");
+
+                        day_list_obj.js_sport_eat = stored_data.attr("data-js_sport_eat");
+                        day_list_obj.not_modifity = stored_data.attr("data-not_modifity");
+                        day_list_obj.period_time = stored_data.attr("data-period_time");
+                        day_list_obj.city_id = _this_city_id;
+                        $(b).find('.foodList').each(function(index,food){
+                            var eat_obj = {}
+                            var get_foodI = $(food).find('.set_foodD')
+                            eat_obj.name = $(food).find('.foods_name').text();
+                            
+                            eat_obj.lat = $(food).attr('data-lat');
+                            eat_obj.lng = $(food).attr('data-lng');
+                            eat_obj.address = get_foodI.attr('data-address');
+                            eat_obj.business_hours = get_foodI.attr('data-business_hours');
+                            eat_obj.city_id = get_foodI.attr('data-city_id');
+                            eat_obj.dianpu_image = get_foodI.attr('data-dianpu_image');
+                            eat_obj.eat_to_spot = get_foodI.attr('data-eat_to_spot');
+                            eat_obj.js_sport_eat = get_foodI.attr('data-js_sport_eat');
+                            eat_obj.meal_time = get_foodI.attr('data-meal_time');
+                            eat_obj.per_capita = get_foodI.attr('data-per_capita');
+                            eat_obj.tag_time = get_foodI.attr('data-tag_time');
+                            eat_obj.store_Introduction = get_foodI.text();
+                            eat_info.push(eat_obj)
+                            
+                        })
+                        day_list_obj.eat_info = eat_info;
+                       
+                        nextObj.day_arry[i].day.push(day_list_obj);
+
+                    })
+
+                });
+
+
+                var iArry = [];
+                $(".day_box .day_list").each(function (i, n) {
+                    var endTime = $(n).find(".end_time").html();
+                    var str_endTime = endTime.split(":");
+                    // console.log(str_endTime)
+                    if (str_endTime[0] > 24) {
+                        $(".prompt_c").fadeIn().find("span").html("D" + Number(i + 1));
+                    }else{
+                        iArry.push(i); 
+                    }
+                });
+                $(".prompt_c").on("click", ".prompt_det", function () {
+                    nextPost();
+                });
+                // console.log(iArry);
+                if(iArry.length == $(".day_box .day_list").length){
+                   nextPost();
+                }
+                // nextPost()
+                function nextPost (){
+                     // console.log(form_data);
+                    var post_formData = {};
+                    post_formData.adult = $(".cartBox").find(".wap2_adult_num").html();
+                    post_formData.children = $(".cartBox").find(".wap2_childrent_num").html();
+                    post_formData.custom_title = $(".cartBox").find("#custom_title").val();
+                    
+                    post_formData.date = $(".cartBox").find("#wap3_date").val();
+                    post_formData.day_num =$(".cartBox").find(".wap1_day_num").html();
+                    post_formData.departure_city = $(".cartBox").find(".start_name").html();
+                    post_formData.return_city = $(".cartBox").find(".end_name").html();
+                    post_formData.traffic_tools = $(".cartBox").find(".wap2_traffic").html();
+                    post_formData.return_traffic = form_data.return_traffic;
+                    post_formData.departure_latlng = form_data.departure_latlng;
+                    // post_formData.go_city_array = form_data.go_city_array;
+                    post_formData.return_latlng = form_data.return_latlng;
+                    // console.log(post_formData)
+                    // console.log(nextObj)
+                    nextObj.formData = post_formData;
+                    $.ajax({
+                        url: "overview",
+                        type: "post",
+                        dataType: "json",
+                        contentType:"application/json;charset=utf-8",
+                        data:JSON.stringify(nextObj), 
+                        success: function (data) {
+                            // console.log(data)
+                            if(havI == null){
+                                window.location.href="/portal/scenerymap/tripOverview.html";
+                            }else{
+                                window.location.href="/portal/scenerymap/tripOverview.html?havI="+havI;
+                            }
+                            
+                        }
+                    })
+                }
+            })
+
+        },
+        tagEnd_timeFn:function(tag_startTime,time){
+            // console.log(tag_startTime,time)
+            var tag_endfTime =(tag_startTime+time).toString().split(".")
+            // console.log(tag_endfTime)
+            var end_hours = tag_endfTime[0]>=10?tag_endfTime[0]:'0'+tag_endfTime[0];
+            // var isEnd_hours = end_hours>=24?24:end_hours;
+            // var isEnd_hours ;
+            var EndTme ;
+            if(end_hours >= 24){
+                EndTme = '24:00'
+            }else{
+                EndTme = tag_endfTime[1]?end_hours+':30':end_hours+':00';
+            }
+            return EndTme
+        }
+    }
+
+    var templateFn = {
+        mouse_temFn: function (data,province_name) {
+            // console.log(data)
+            // console.log(_global_data)
+            var mouse_tem = '<div class="dbox">{{each day_arry as value i}}\
+                                <div class="day_list" data-time = "{{value.time}}" data-betw_time ="{{value.betw_time}}">\
+                                    <div class="day_list_top"><span class="day_num"></span></i><span class="star_time">{{value.start_clock}}-</span><span class="end_time"></span></span><span class="day_date">{{value.date}}</span></div>\
+                                    <div class="first_div_city dis_none"><i class="c_depart"></i><span class="js_star_city"></span><i class="city_line"></i><span class="js_this_city"></span></div>\
+                                    <ul id="sortable{{i}}" class="connectedSortable">\
+                                        {{each value.day as v n}}\
+                                            <li class="spot_list"  data-lat="{{v.this_lat}}" data-lng="{{v.this_lng}}" data-this_tag_time={{v.this_tag_time}}>\
+                                                <span class="spot_list_num">{{n+1}}</span><span class="spot_name name_{{v.this_floor_index}}" title="{{v.this_name}}">{{v.this_name}}</span>\
+                                                <i class="spot_list_i floor_{{v.this_floor_index}} {{v.period_time}}"></i>\
+                                                <i class="foodBox">\
+                                                    <div class="food_item dis_none">\
+                                                        {{each v.eat_info as foodData i}}\
+                                                            <div class="foodList" data-lat={{foodData.lat}} data-lng={{foodData.lng}}><span class="foods_name">{{foodData.name}}</span>\
+                                                                <i class="set_foodD dis_none" \
+                                                                data-address={{foodData.address}} data-business_hours={{foodData.business_hours}}\
+                                                                data-city_id={{foodData.city_id}} data-dianpu_image={{foodData.dianpu_image}}\
+                                                                data-eat_to_spot={{foodData.eat_to_spot}} data-js_sport_eat={{foodData.js_sport_eat}}\
+                                                                data-meal_time={{foodData.meal_time}} data-per_capita={{foodData.per_capita}}\
+                                                                data-tag_time={{foodData.tag_time}}>{{foodData.store_Introduction}}</i>\
+                                                            </div>\
+                                                        {{/each}}\
+                                                    </div>\
+                                                </i>\
+                                                <span class="hours_num">{{v.this_playtime}}</span>\
+                                                <i class ="js_stored_data dis_none" data-distance="{{v.distance}}" data-ranking="{{v.ranking}}"\
+                                                data-this_floor_index="{{v.this_floor_index}}" data-this_id="{{v.this_id}}"  \
+                                                data-this_img_src = "{{v.this_img_src}}" data-this_playtime = "{{v.this_playtime}}" data-default_playtime = "{{v.default_playtime}}"\
+                                                data-this_type = "{{v.this_type}}" data-period_time="{{v.period_time}}" \
+                                                data-not_modifity="{{v.not_modifity}}" data-js_sport_eat="{{v.js_sport_eat}}"></i>\
+                                            </li>\
+                                        {{/each}}\
+                                    </ul>\
+                                    <div class="last_div_city dis_none"><i class="c_depart"></i><span class="js_this_city"></span><i class="city_line"></i><span class="js_end_city"></span></div>\
+                                </div>\
+                                {{/each}}';
+
+            var mouse_render = template.compile(mouse_tem);
+            var mouse_html = mouse_render(data);
+            $(".day_box").html(mouse_html).attr("data-pName",province_name)
+
+
+            var this_city_daynum = Number(_global_data.r_spot.city_data.go_city_array[get_thiscity_index].city_d_1);
+            // console.log(_global_data.r_spot.city_data.go_city_array)
+            var data_status = data.status;
+            var data_info = data.day_arry;
+
+            //第一次时间计算，按照后台时间，（还要加上实际距离的时间）
+            for(var i = 0; i < data_info.length; i++){
+                var time = Number(data_info[i].time);
+                var start_clock = data_info[i].start_clock.split(".");
+                var hour = Number(start_clock[0].split(":")[0]);
+                var minute = start_clock[0].split(":")[1];
+                // console.log(minute)
+                var tag_startTime ;
+                if(minute == "00"){
+                    tag_startTime = hour
+                }else{
+                    tag_startTime = Number(hour+'.'+5)
+                };
+                $('.day_list').eq(i).find('.star_time').attr('data-tag_startTime',tag_startTime)
+                var EndTime = initFn.tagEnd_timeFn(tag_startTime,time)
+                $('.day_list').eq(i).find(".end_time").html(EndTime);
+                $(".day_box").find(".day_list").eq(i).find(".day_num").html("D"+this_city_daynum++);
+                var day_info = data_info[i].day
+                if(day_info){
+                    for(var a = 0;a<day_info.length;a++){
+                        // console.log()
+                        if(day_info[a].eat_info){
+                            if(day_info[a].eat_info.length!=0){
+                                $(".day_box").find(".day_list").eq(i).find('.spot_list').eq(a).find('.foodBox').show();
+                                $(".day_box").find(".day_list").eq(i).find('.spot_list').eq(a).find('.spot_name').addClass('name_width')
+                            }
+                        }
+                    }
+                };
+                
+            };
+            //美食显隐
+            $('.foodBox').unbind().hover(function(){
+                var str = ''
+                $(this).find('.foodList').each(function(i,n){
+                    var name = $(n).find('.foods_name').html();
+                    var lat = $(n).attr('data-lat')
+                    var lng = $(n).attr('data-lng')
+                    str += '<p data-lat="'+lat+'" data-lng="'+lng+'">'+name+'</p>'
+                })
+                $('.hover_foot_box').html(str)
+                var offset = $(this).offset()
+                $('.hover_foot_box').show().offset({
+                    left:offset.left,
+                    top:offset.top+20
+                });
+                 //美食左hover显示icon
+                $('.hover_foot_box').unbind().find('p').hover(function(){
+                    $('.hover_foot_box').show()
+                    var lat = Number($(this).attr("data-lat"));
+                    var lng = Number($(this).attr("data-lng"));
+                    var location = {
+                        lat:lat,
+                        lng:lng
+                    }
+                    var name = $(this).text()
+                    // console.log(lat)
+                    mapFn.eat_marker(location,name)
+                },function(){
+                    mapFn.del_hover_marker(eat_marker_array)
+                    $('.hover_foot_box').hide()
+                })
+            });
+           
+            $('.day_box').scroll(function(){
+                $('.hover_foot_box').hide()
+            })
+
+
+            $(".day_box .day_list").find(".js_this_city").html(data.this_city);
+            if (data_status == "1") {
+                depart_city(data.departure_city);
+                return_traffic(data.middle_city);
+            } else if (data_status == "2") {
+                return_traffic(data.return_city);
+            } else if (data_status == "3") {
+                depart_city(data.departure_city);
+                return_traffic(data.return_city);
+            } else {
+                return_traffic(data.middle_city);
+            };
+
+            function depart_city(data_city) {
+                $(".day_box .day_list").eq(0).find(".first_div_city").addClass("cs_time").show().end()
+                    .find(".js_star_city").html(data_city);
+            };
+
+            function return_traffic(data_city) {
+                $(".day_box .day_list:last").find(".js_end_city").html(data_city)
+            };
+        },
+        r_list_temFn: function (data) {
+            // console.log(data)
+            var spot_data = data.spot_data;
+            if(spot_data.eat_len == 0){
+                $(".food_box").hide();
+            }else{
+                $(".food_box").show();
+                if($(window).width()<=1440){
+                    if($(".food_box").height() >= 64){
+                        $(".r_main").css("height","77.5%")
+                    }else{
+                        $(".r_main").css("height","84%")
+                    }
+                }else if($(window).width()>1440 && $(window).width()<=1560){
+                    if($(".food_box").height() >= 64){
+                        $(".r_main").css("height","77%")
+                    }else{
+                        $(".r_main").css("height","84%")
+                    }
+                }else if($(window).width()>1560 && $(window).width()<=1600){
+                    if($(".food_box").height() >= 64){
+                        $(".r_main").css("height","78%")
+                    }else{
+                        $(".r_main").css("height","84%")
+                    }
+                }else{
+                    if($(".food_box").height() >= 64){
+                        $(".r_main").css("height","82.5%")
+                    }else{
+                        $(".r_main").css("height","88%")
+                    }
+                }
+            }
+            var food_list_tem = '<span class="food_title">美食</span><div class="food_item">{{each eat_name_arry as value i}}\
+                                    {{if value.fen_data == undefinde}}\
+                                        <span data-lat={{value.lat}} data-lng={{value.lng}}>{{value.name}}<i></i></span>\
+                                    {{else}}\
+                                        <span class="fen_list" data-lat={{value.lat}} data-lng={{value.lng}}>{{value.name}}<i></i></span>\
+                                    {{/if}}\
+                                {{/each}}</div>'
+            var food_list_render = template.compile(food_list_tem);
+            var food_list_html = food_list_render(data.spot_data);
+            $(".con_rig .food_box").html(food_list_html)
+            // console.log($(".food_box").height())
+            
+           
+
+
+            var r_list_tem = '{{each addgo_arry as value i}}\
+                                <li class="list clearfix" data-lat = "{{value.this_lat}}" data-lng = "{{value.this_lng}}" data-this_floor = "{{value.this_floor_index}}" data-this_type = "{{value.this_type}}">\
+                                    <div class="list_l fl">\
+                                        <img src="{{value.this_img_src}}" alt="">\
+                                    </div>\
+                                    <div class="list_r fl">\
+                                        <div class="text">\
+                                            <p class="css_r_name"><span class="attractions_name">{{value.this_name}}</span></p>\
+                                            <p class="time_distance">适玩时长：<span class="time_num">{{value.this_playtime}}</span></p>\
+                                            {{if value.this_floor_index != ""}}\
+                                                <p class="introduce">点击查看介绍</p>\
+                                            {{/if}}\
+                                        </div>\
+                                        <div class="num dis_none"></div>\
+                                        <div class="list_day"></div>\
+                                    </div>\
+                                </li>\
+                            {{/each}}';
+            var r_list_render = template.compile(r_list_tem);
+            var r_list_html = r_list_render(spot_data);
+            $(".js_rlist_ul").html(r_list_html);
+            if (spot_data.eat_name_arry == undefined) {
+                $(".js_food_num").html(0)
+            } else {
+                $(".js_food_num").html(spot_data.eat_name_arry.length)
+            }
+
+            $(".js_sport_num").html(spot_data.addgo_arry.length)
+        },
+        detailsPopup: function (data) {
+            var spot_data = data.spot
+            // var img_length = spot_data.image_url.length;
+            //top
+            $(".rw_top_details_text").find(".p1").html(spot_data.spot_name).end()
+                .find(".details_time").html(spot_data.play_time).end()
+                .find(".suit_season").html(spot_data.suit_season).end()
+                .find(".suit_time").html(spot_data.suit_time).end()
+                .find(".tel").html(spot_data.phone).end()
+                .find(".address").html(spot_data.address).end();
+            //图片
+            templateFn.popup_img(spot_data)
+            //摘要介绍
+            $(".rw_details_popup_box .popup_tab1").find(".spot_Introduction").html(spot_data.introduction).end()
+                .find(".type").html(spot_data.type).end()
+                .find(".suit_season").html(spot_data.suit_season).end()
+                .find(".suit_time").html(spot_data.suit_time).end()
+                .find(".play_time").html(spot_data.play_time).end()
+                .find(".phone").html(spot_data.phone).end()
+                .find('.address_name').html(spot_data.address).end()
+                .find(".attractions_tickets").html(spot_data.attractions_tickets).end()
+                .find(".update_time").html(spot_data.release_time);
+            //景区景点
+            if (data.cultural != undefined) {
+                if (data.cultural.length > 0) {
+                    $(".js_cultural").show();
+                } else {
+                    $(".js_cultural").hide();
+                };
+            } else {
+                $(".js_cultural").hide();
+            }
+
+            var rwpopup_tab2_tem = '<ul>\
+                                        {{each cultural as value i}}\
+                                        <li class="clearfix">\
+                                            <div class="img_box">\
+                                                <img src="{{value.img_url}}" alt="">\
+                                            </div>\
+                                            <div class="popup_tab_content">\
+                                                <div><span class="spot_name">{{value.spot_name}}</span><span class="spot_time">适玩{{value.play_time}}</span></div>\
+                                                <div class="spot_details">{{value.introduction}}</div>\
+                                                <div class="spot_address">地址：<span>{{value.address}}</span></div>\
+                                            </div>\
+                                        </li>\
+                                        {{/each}}\
+                                    </ul>';
+            var rwpopup_tab2_render = template.compile(rwpopup_tab2_tem);
+            var rwpopup_tab2_html = rwpopup_tab2_render(data);
+            $(".rwpopup_tab2").html(rwpopup_tab2_html)
+            //附近景点
+            var tuijian_data = data.tuijian
+            var rwpopup_tab3_tem = '{{each food as value i}}\
+                                    <li class="clearfix js_tj_food_list"  data-lat="{{value.latitude}}" data-lng="{{value.longitude}}">\
+                                        <div class="img_box">\
+                                            <img src="{{value.img_url}}" alt="">\
+                                        </div>\
+                                        <div class="popup_tab_content">\
+                                            <div><span class="spot_name">{{value.store_name}}</span></div>\
+                                            <div class="type_box">\
+                                                <div class="foot">{{value.type}}</div>\
+                                                <div class="per">人均￥<span class="js_pernum">{{value.per_capita}}</span></div>\
+                                                <div class="distance">距离<span class="js_distance">{{value.distance}}</span></div>\
+                                            </div>\
+                                            <div>地址：<span class="jsaddress">{{value.address}}</span></div>\
+                                            <div>电话：<span class="jstel">{{value.phone}}</span></div>\
+                                            <div>营业时间：<span class="jstime">{{value.business_hours}}</span></div>\
+                                        </div>\
+                                    </li>\
+                                    {{/each}}\
+                                    {{each jingdian as value i}}\
+                                    <li class="clearfix tj_jDshop_list" data-time = "{{value.tag_time}}"  data-lat="{{value.latitude}}" data-lng="{{value.longitude}}">\
+                                        <div class="img_box">\
+                                            <img src="{{value.img_url}}" alt="">\
+                                        </div>\
+                                        <div class="popup_tab_content">\
+                                            <div><span class="spot_name">{{value.spot_name}}</span></div>\
+                                            <div class="dis_none time_num">{{value.play_time}}</div>\
+                                            <div class="type_box">\
+                                                <div class="foot">人文景观</div>\
+                                                <div class="distance">距离<span class="js_distance">{{value.distance}}</span></div>\
+                                            </div>\
+                                            <div>地址：<span class="jsaddress">{{value.address}}</span></div>\
+                                            <div>电话：<span class="jstel">{{value.phone}}</span></div>\
+                                            <div>开放时间：<span class="jstime">{{value.meal_time}}</span></div>\
+                                        </div>\
+                                    </li>\
+                                    {{/each}}\
+                                    {{each shop as value i}}\
+                                    <li class="clearfix tj_jDshop_list" data-time = "{{value.tag_time}}"  data-lat="{{value.latitude}}" data-lng="{{value.longitude}}">\
+                                        <div class="img_box">\
+                                            <img src="{{value.img_url}}" alt="">\
+                                        </div>\
+                                        <div class="popup_tab_content">\
+                                            <div><span class="spot_name">{{value.shopping_name}}</span></div>\
+                                            <div class="dis_none time_num">{{value.shopping_time}}</div>\
+                                            <div class="type_box">\
+                                                <div class="foot">{{value.type}}</div>\
+                                                <div class="distance">距离<span class="js_distance">{{value.distance}}</span></div>\
+                                            </div>\
+                                            <div>地址：<span class="jsaddress">{{value.address}}</span></div>\
+                                            <div>电话：<span class="jstel">{{value.phone}}</span></div>\
+                                            <div>营业时间：<span class="jstime">{{value.business_hours}}</span></div>\
+                                        </div>\
+                                    </li>\
+                                    {{/each}}';
+            var rwpopup_tab3_render = template.compile(rwpopup_tab3_tem);
+            var rwpopup_tab3_html = rwpopup_tab3_render(tuijian_data);
+            if (tuijian_data.food.length == 0 && tuijian_data.jingdian.length == 0 && tuijian_data.shop.length == 0) {
+                $(".rwpopup_tab3_ul").html("暂无数据");
+            } else {
+                $(".rwpopup_tab3_ul").html(rwpopup_tab3_html);
+            };
+
+
+
+
+        },
+        //必吃美食——本土特产
+        eatgoods_detailsPopup: function (data, tab_text) {
+            if (tab_text == "必吃美食") {
+                $(".eat_goods_top_details_text").find(".p1").html(data.dishes_name);
+            } else {
+                $(".eat_goods_top_details_text").find(".p1").html(data.goods_name);
+            }
+            $(".eat_goods_top_details_text").find(".p2 span").html(data.recom_sites).end()
+                .find(".p3").html(data.spot_Introduction);
+            var eat_goods_details = ' {{each image_url as value i}}\
+                                        {{if i <= 3}}\
+                                        <li>\
+                                            <img src="{{value}}" alt="">\
+                                        </li>\
+                                        {{/if}}\
+                                    {{/each}}';
+            var eat_goods_render = template.compile(eat_goods_details);
+            var eat_goods_html = eat_goods_render(data);
+            $(".eat_goods_ul").html(eat_goods_html);
+        },
+        f4_store_detailsPopup: function (data) {
+            // console.log(data)
+            var data_sport = data.spot.store;
+            $(".f4_top_details_text").find(".p1").html(data_sport.store_name).end()
+                .find(".meal_time").html(data_sport.meal_time).end()
+                .find(".per_capita").html(data_sport.per_capita).end()
+                .find(".tel").html(data_sport.phone).end()
+                .find(".address").html(data_sport.address).end();
+            templateFn.popup_img(data_sport);
+            $(".f4_details_popup_box .popup_tab1").find(".Introduction").html(data_sport.Introduction).end()
+                .find(".type").html(data_sport.type).end()
+                .find(".per_capita").html(data_sport.per_capita).end()
+                .find(".meal_time").html(data_sport.meal_time).end()
+                .find(".business_hours").html(data_sport.business_hours).end()
+                .find(".phone").html(data_sport.phone).end()
+                .find(".address_name").html(data_sport.address).end()
+                .find(".update_time").html(data_sport.release_time).end();
+            if (data_sport.tebie_tuijian != '') {
+                $(".recommended").show().find(".tebie_tuijian").html(data_sport.tebie_tuijian);
+            } else {
+                $(".recommended").hide().find(".tebie_tuijian").html("");
+            };
+
+            var f4_tab1_tem = ' {{each dishes as value i}}\
+                                    <li>\
+                                        <div class="img_box">\
+                                            <img src="{{value.image_url}}" alt="">\
+                                        </div>\
+                                        <div class="store_text">\
+                                            <span class="goods_name">{{value.dishes_name}}</span>\
+                                        </div>\
+                                    </li>\
+                                {{/each}}';
+            var f4_tab1_render = template.compile(f4_tab1_tem);
+            var f4_tab1_html = f4_tab1_render(data);
+            if (data.dishes.length == 0) {
+                $(".f4_tab_content1_ul").html("暂无数据");
+            } else {
+                $(".f4_tab_content1_ul").html(f4_tab1_html);
+            }
+        },
+        f4tab2_detailsPopup: function (data) {
+            // console.log(data)
+            var data_sport = data.store;
+            $(".f4tab2_top_details_text").find(".p1").html(data_sport.store_name).end()
+                .find(".meal_time").html(data_sport.meal_time).end()
+                .find(".per_capita").html(data_sport.per_capita).end()
+                .find(".tel").html(data_sport.phone).end()
+                .find(".address").html(data_sport.address).end();
+            templateFn.popup_img(data_sport);
+            $(".f4tab2_details_popup_box .popup_tab1").find(".Introduction").html(data_sport.Introduction).end()
+                .find(".type").html(data_sport.type).end()
+                .find(".per_capita").html(data_sport.per_capita).end()
+                .find(".meal_time").html(data_sport.meal_time).end()
+                .find(".update_time").html(data_sport.release_time).end();
+            if (data_sport.tebie_tuijian != '') {
+                $(".recommended").show().find(".tebie_tuijian").html(data_sport.tebie_tuijian);
+            } else {
+                $(".recommended").hide().find(".tebie_tuijian").html("");
+            };
+
+            var f4_tab1_tem = ' {{each tj as value i}}\
+                                    <li>\
+                                        <div class="img_box">\
+                                            <img src="{{value.image_url}}" alt="">\
+                                        </div>\
+                                        <div class="store_text">\
+                                            <span class="goods_name">{{value.dishes_name}}</span>\
+                                        </div>\
+                                    </li>\
+                                {{/each}}';
+            var f4_tab1_render = template.compile(f4_tab1_tem);
+            var f4_tab1_html = f4_tab1_render(data);
+            if (data.tj.length == 0) {
+                $(".f4tab2_tab_content1_ul").html("暂无数据");
+            } else {
+                $(".f4tab2_tab_content1_ul").html(f4_tab1_html);
+            }
+
+            //分店
+            $(".branch_title span").html("(" + data.fen.length + ")");
+            var branch_tem = '{{each fen as value i}}\
+                                <li>\
+                                    <div class="img_box">\
+                                        <img src="{{value.image_url}}" alt="">\
+                                    </div>\
+                                    <div class="branch_text">\
+                                        <div class="branch_name">{{value.branch_name}}</div>\
+                                        <div class="branch_address">地址：{{value.address}}</div>\
+                                        <div class="">电话：{{value.phone}}</div>\
+                                        <div>营业时间：{{value.business_hours}}</div>\
+                                    </div>\
+                                </li>\
+                            {{/each}}';
+            var branch_render = template.compile(branch_tem);
+            var branch_html = branch_render(data);
+            if (data.fen.length == 0) {
+                $(".branch_ul").html("");
+            } else {
+                $(".branch_ul").html(branch_html);
+            }
+
+        },
+        foodstreet_detailsPopup: function (data) {
+            $(".foodstreet_top_details_text").find(".p1").html(data.food_court_name).end()
+                .find(".meal_time").html(data.meal_time).end()
+                .find(".per_capita").html(data.per_capita).end()
+                .find(".tel").html(data.phone).end()
+                .find(".address").html(data.address).end();
+
+            $(".foodstreet_details_popup_box .popup_tab1").find(".spot_Introduction").html(data.Introduction).end()
+                .find(".type").html(data.type).end()
+                .find(".suit_time").html(data.suit_time).end()
+                .find(".business_hours").html(data.business_hours).end()
+                .find(".address_name").html(data.address).end()
+                .find(".update_time").html(data.release_time).end()
+            if (data.tebie_tuijian != '') {
+                $(".recommended").show().find(".tebie_tuijian").html(data.tebie_tuijian);
+            } else {
+                $(".recommended").hide().find(".tebie_tuijian").html("");
+            }
+            //图片
+            templateFn.popup_img(data);
+        },
+        f5_tab2_3_detailsPopup: function (data) {
+            var data_sport = data.spot;
+            $(".f5_top_details_text").find(".p1").html(data_sport.shopping_name).end()
+                .find(".p2").html(data_sport.type).end()
+                .find(".tel").html(data_sport.phone).end()
+                .find(".address").html(data_sport.address).end();
+            templateFn.popup_img(data_sport);
+            $(".f5_details_popup_box .popup_tab1").find(".Introduction").html(data_sport.Introduction).end()
+                .find(".type").html(data_sport.type).end()
+                .find(".shopping_time").html(data_sport.shopping_time).end()
+                .find(".business_hours").html(data_sport.business_hours).end()
+                .find(".phone").html(data_sport.phone).end()
+                .find(".address_name").html(data_sport.address).end()
+                .find(".update_time").html(data_sport.release_time).end();
+            if (data_sport.tebie_tuijian != '') {
+                $(".recommended").show().find(".tebie_tuijian").html(data_sport.tebie_tuijian);
+            } else {
+                $(".recommended").hide().find(".tebie_tuijian").html("");
+            };
+            // console.log(data_sport)
+            var f5_tab1_tem = ' {{each features_goods as value i}}\
+                                    <li>\
+                                        <div class="img_box">\
+                                            <img src="{{value.image_url}}" alt="">\
+                                        </div>\
+                                        <div class="store_text">\
+                                            <span class="goods_name">{{value.goods_name}}</span>\
+                                        </div>\
+                                    </li>\
+                                {{/each}}';
+            var f5_tab1_render = template.compile(f5_tab1_tem);
+            var f5_tab1_html = f5_tab1_render(data);
+            if (data.features_goods.length == 0) {
+                $(".f5_tab_content1_ul").html("暂无数据");
+            } else {
+                $(".f5_tab_content1_ul").html(f5_tab1_html);
+            }
+
+        },
+        popup_img: function (spot_data) {
+            // console.log(spot_data.image_url.length)
+            //图片
+            var img_length = spot_data.image_url.length;
+            var popup_img_tem = '{{each image_url as value i}}\
+                                {{if i <= 4}}\
+                                <li><img src={{value}} alt=""></li>\
+                                {{/if}}\
+                                {{/each}}';
+            var popup_img_render = template.compile(popup_img_tem);
+            var popup_img_html = popup_img_render(spot_data);
+            $(".popup_img_url").html(popup_img_html);
+            if (img_length >= 5) {
+                $(".last_li_img").show();
+
+            } else {
+                $(".last_li_img").hide();
+            };
+        }
+    }
+    var cityAttractions = {
+        //进度条
+        Progressbar: function (percentage) {
+            $('#progressbar').LineProgressbar({
+                percentage: percentage,
+                fillBackgroundColor: percentage <= 100 ? '-webkit-linear-gradient(right,#c4dcff,#659ff5)' : '-webkit-linear-gradient(right,#ea3e3e,#659ff5)',
+                height: '10px',
+                radius: '5px'
+            });
+        },
+       
+        //添加我想去动画
+        addflyer: function (list, $this) {
+            $(".u-flyer").eq(0).remove();
+            var img_src = $(list).find(".list_l img").attr("src");
+            var city_postion = $this.offset();
+            var left = city_postion.left
+            var top = city_postion.top;
+            var end_postion = $(".js_endfly").eq(0).offset(),
+                end_width = $(".js_endfly").width() / 2,
+                end_height = $(".js_endfly").height() + 50;
+            var flyer = $('<img class="u-flyer" src=' + img_src + ' />')
+            flyer.fly({
+                start: {
+                    left: left,
+                    top: top
+                },
+                end: {
+                    left: end_postion.left + end_width,
+                    top: end_postion.top + end_height,
+                    width: 0,
+                    height: 0
+                },
+                speed: 1.4, //动画时间 
+            });
+        },
+        downFn: function () {
+            //提示框关闭
+            $(".prompt_but").on("click", function () {
+                $(".prompt").fadeOut();
+            });
+            //取消
+            $(".prompt_cancel").on("click", function () {
+                $(".prompt").fadeOut();
+            });
+            //确定
+            $(".prompt_det").on("click", function () {
+                // window.location.href = "/portal/scenerymap/attractionsArrange.html";
+            });
+        }
+    };
+
+    initFn.initialization();
+    cityAttractions.Progressbar(0);
+    cityAttractions.downFn();
+
+    //数组数字相加
+    var getSum = function (array) {
+        var sum = 0;
+        for (var i = 0; i < array.length; i++) {
+            sum += Number(array[i].this_tag_time)+0.5;
+        }
+        return sum
+    };
+
+});

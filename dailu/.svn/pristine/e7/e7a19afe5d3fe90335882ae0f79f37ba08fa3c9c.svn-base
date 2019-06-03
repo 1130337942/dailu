@@ -1,0 +1,159 @@
+$(function(){
+	var passengerNum =  $('.passenger .per_list').length;
+	var airMsg = sessionStorage.getItem("airMsg"); 
+		airMsg = JSON.parse(airMsg);
+		var ticket_price;
+	$.post('flightBK',airMsg,function(res){
+		    ticket_price = res.result.extInfo.ticketPirce-0;
+			var str = '<div class="title">'+ res.result.extInfo.startTime+' <span class="city">'+res.result.flightInfo[0].dptCity+'-'+res.result.flightInfo[0].arrCity+'</span></div>'+
+				'<div class="info">'+res.result.flightInfo[0].carrierName+ ' ' +airMsg.airtype+'  |  '+res.result.flightInfo[0].bcbcn+'</div>'+
+				'<div class="port clearfix">'+
+					'<div class="leave fl">'+
+					'<div class="time">'+res.result.flightInfo[0].dptTime+'</div>'+
+					'<div class="place">'+res.result.flightInfo[0].dptAirport + res.result.flightInfo[0].dptTerminal +'</div>'+
+				'</div>'+
+				'<div class="middle fl">'+
+				'</div>'+
+				'<div class="dest fr">'+
+					'<div class="time">'+res.result.flightInfo[0].arrTime +'</div>'+
+					'<div class="place">'+res.result.flightInfo[0].arrAirport  + res.result.flightInfo[0].arrTerminal+'</div>'+
+					'</div>'+
+				'</div>'
+				$('.airInfo .temp').html(str)
+				$('.price_info .ticket_price').html('¥ '+ res.result.extInfo.ticketPirce+'/<em>人</em>')
+				calcPrice()
+	},'json')
+
+	$('.linkMam .list_box').height()==0?$('.linkMam').css({'height':'auto'}):'';
+	$('.addPerson .add').on('click',function(){
+		var str = '<div class="per_list">'+
+						'<div class="wap">'+
+						'	<span class="tit">姓名*</span><input type="text" class="passengerName" placeholder="请输入姓名">'+
+						'	<span class="per_type">'+
+						'		<select name="" id="" class="paType" >'+
+						'			<option value="成人">成人(大于18岁)</option>'+
+						'			<option value="婴儿">婴儿(14天-2岁)</option>'+
+						'			<option value="儿童">儿童(2岁-15岁)</option>'+
+						'		</select>'+
+						'	</span>'+
+						'</div>'+
+						'<div class="wap">'+
+						'	<span class="tit">证件类型*</span>'+
+						'	<span class="card_type">'+
+						'		<select name="" id="" class="cardType" >'+
+						'			<option value="身份证">身份证</option>'+
+						'			<option value="护照">护照</option>'+
+						'			<option value="学生证">学生证</option>'+
+						'		</select>'+
+						'	</span>'+
+						'</div>'+
+						'<div class="wap">'+
+						'	<span class="tit">证件号码*</span>'+
+						'	<input type="text" class="cardNum">'+
+						'</div>'+
+						'<div class="wap">'+
+						'	<span class="tit"></span>'+
+						'	<i class="checkBox add_user"></i>保存为常用乘客'+
+						'</div>'+
+						'<div class="delPerson">删除</div>'+
+					'</div>	'
+			$(this).parent('.addPerson').before(str);
+			$('.passenger .per_list .delPerson').removeClass('hide');
+			safetyWap();
+			calcPrice();
+	})
+
+	$('.formWap').on('click','.per_list .delPerson',function(){
+		$(this).parent('.per_list').remove();
+		passengerNum =  $('.passenger .per_list').length;
+		safetyWap();
+		calcPrice();
+		if(passengerNum<=1){
+			$('.passenger .per_list .delPerson').addClass('hide');
+			return false;
+		}
+		
+	})
+
+	$('.formWap').on('click','.wap .checkBox',function(){
+		$(this).toggleClass('on');
+		calcPrice();
+	})
+
+	$('.safety select').on('change',function(){
+		calcPrice();
+
+	})
+
+	$('.affirm  .totPrice a').on('click',function(){
+		var personInfo = {};
+			personInfo.passenger= [];
+			personInfo.linkMan ={};
+			personInfo.linkMan.name= $('.linkMan_info input.linkName').val();
+			personInfo.linkMan.phone= $('.linkMan_info input.linkPhone').val();
+			personInfo.linkMan.email= $('.linkMan_info input.email').val();
+			$('.passenger .per_list').each(function(i,ele){
+				var temp={};
+					temp.name = $(this).find('input.passengerName').val();
+					temp.type = $(this).find('select.paType').val();
+					temp.cardType = $(this).find('select.cardType').val();
+					temp.cardNum = $(this).find('input.cardNum').val();
+					personInfo.passenger.push(temp);
+			})
+			console.log(personInfo)
+			var perStr='';
+			for(var i=0;i<personInfo.passenger.length;i++){
+					perStr +=' <li class="list clearfix">'+
+						'	<div class="tit">'+
+						'		<div class="name fl">'+
+						'			乘机人姓名	'+
+						'		</div>'+
+						'		<div class="type fl">'+
+						'			乘机人类型'+
+						'		</div>'+
+						'		<div class="cardNum fl">'+
+						'			乘机人证件号'+
+						'		</div>'+
+						'	</div>'+
+						'	<div class="wap">'+
+						'		<div class="name fl">'+personInfo.passenger[i].name+
+						'		</div>'+
+						'		<div class="type fl">'+personInfo.passenger[i].type+
+						'		</div>'+
+						'		<div class="cardNum fl">'+personInfo.passenger[i].cardNum+
+						'		</div>'+
+						'	</div>'+
+						'</li>'
+			}
+			$('.preview_wap  .passenger ul').html(perStr);
+			$('.preview_wap .link_man .name').text(personInfo.linkMan.name).siblings('.tel').text(personInfo.linkMan.phone).siblings('.email').text(personInfo.linkMan.email);
+			$(window).scrollTop(0)
+			$('.preview_wap').removeClass('hide').siblings('.formWap').addClass('hide');
+	})
+
+	function safetyWap (){
+		passengerNum =  $('.passenger .per_list').length;
+		var selectStr = '';
+		for(var i =0; i<passengerNum; i++){
+			selectStr += ' <option value='+ i +'>¥30/份×'+ (i+1)  +'</option>'
+		}
+		$('.safety select').html(selectStr)
+
+	}
+
+
+	function calcPrice (){
+		var totmoney = 0;
+		passengerNum =  $('.passenger .per_list').length;
+		totmoney = passengerNum * ticket_price   + $('.suddenness  select').val() * 40 + $('.delay  select').val() * 40 +  $('.group  select').val() * 40 +passengerNum*50;
+		var wipe = $('.wipe .checkBox.on').attr('price')-0;  
+		if(wipe){
+			totmoney += wipe ;
+		}
+		totmoney = totmoney.toFixed(2);
+		$('.affirm .totPrice strong').html('¥ '+totmoney)
+		$('.tot_wap .totPrice').html('¥ '+totmoney)
+		$('.totmoney .price').html('¥ '+totmoney)
+	}
+	
+})

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>我的推广</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/aboutUser/user_basic.css">
+</head>
+<body style='background-color:#f5f5f5 '>
+	<include file="public@publicHeader"/>
+		<div class="main" >
+			<div class="title">个人中心 > <span>我的推广</span></div>
+			<div class="clearfix">
+				<div class="left_wap fl">
+					<img class="headerPic" src="/static/v1/img/header.jpg" alt="">
+					<div class="uname"></div>
+					<div class="sign">这人很懒什么都没留下</div>
+					<a class="design" href="/portal/addStrokeform/addStrokeform.html">设计行程</a>
+				</div>
+				<div class="right_wap fr">
+					<div class="nav_tab">
+						<span index ='0' class="system active">推广链接</span>
+						<span index='1' class="message">推广详情</span>
+						<span index="2" class="invation_code">推广码</span>
+						<i class="bder"></i>
+					</div>
+					<div class="wap wap_system">
+						<div class="invitation">
+							<span>我的推广链接</span>
+							<input  id="foo" class="url" readonly="true" type="url" value=''>
+							<span id='copy' class="copy" data-clipboard-target="#foo">复制</span>
+						</div>
+					</div>
+					<div class="wap wap_message hide">
+						<table class="invitation_table"> 
+							<thead>
+								<tr class="bb_1">
+									<th>成功注册数（人）</th>
+									<th>行程审核通过数（条）</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="user_num">0</td>
+									<td class="tot_travel_pass">0</td>
+								</tr>
+							</tbody>
+						</table>
+						
+					</div>
+					<div class="wap invitation_code hide">
+						<span>我的推广码</span>
+						<input  id="foo2" class="user_code" readonly="true" type="text" value=''>
+						<span id='copy2' class="copy" data-clipboard-target="#foo2">复制</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript"  src="/static/common/js/common.js"></script>
+<script src='/static/common/clipboard/clipboard.min.js'></script>
+<script src='/static/common/layer3.1.1/layer.js'></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/aboutUser/user_basic.js"></script>
+</html>

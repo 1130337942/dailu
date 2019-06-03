@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>付款完成</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/hotel_pay_success.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_storeForm"/>
+	<div class="progress">
+		<div class="main clearfix">
+			<div class="logo fl"><a href="/"><img src="/static/common/img/logo.png" alt="袋鹿"></a></div>
+			<div class="fr progress_info">
+				<span class="step1 active">填写订单<i></i></span>
+				<span class="step2 active">在线支付<i></i></span>
+				<span class="step3 active">订单完成</span>
+			</div>
+		</div>
+	</div>
+	<div class="main_wap">
+		<div class="pointOut">
+			<span class="ico_check"></span>
+			<div class="success">机票预定成功</div>
+			<div class="tip">
+				订单信息详情已发送到联系人预留手机号码<br>
+				（<span class="phone">15584565456556</span>）中，请注意查收！
+			</div>
+			<a class="btn to_list" href='javascript:;'>查看订单</a>
+			<a class="btn to_homepage" href='javascript:;'>返回商城首页</a>
+		</div>
+	</div>
+	<div class="virtue clearfix">
+		<div class="vir_list fl">
+			<div class="img_l">
+				
+			</div>
+			<div class="info_r">
+				<div class="tit">价格透明</div>
+				<div class="info">价格信息全部展示，透明比价</div>
+			</div>
+		</div>
+		<div class="vir_list fl">
+			<div class="img_l">
+				
+			</div>
+			<div class="info_r">
+				<div class="tit">价格透明</div>
+				<div class="info">价格信息全部展示，透明比价</div>
+			</div>
+		</div>
+		<div class="vir_list fl">
+			<div class="img_l">
+				
+			</div>
+			<div class="info_r">
+				<div class="tit">价格透明</div>
+				<div class="info">价格信息全部展示，透明比价</div>
+			</div>
+		</div>
+	</div>
+	<include file="public@publicFooter"/>
+	
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/hotel_pay_success.js"></script>
+</html>

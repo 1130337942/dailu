@@ -1,0 +1,138 @@
+$(function () {
+    /*分页*/
+    var initFn = {
+        talentTripFn:function(){
+            if(document){
+                document.onselectstart= function(){return false;}; //for ie
+            }else{
+                document.onmousedown= function(){return false;};
+                document.onmouseup= function(){return true;};
+            }
+            document.onselectstart = new Function('event.returnValue=false;');
+             
+            initFn.filterFn()
+            initFn.pageFn('first')
+        },
+        filterFn:function(){
+            //天
+            $('.trip_day li').on('click',function(){
+                $(this).addClass('active').siblings('li').removeClass('active')
+                initFn.pageFn('day')
+            });
+            // 月
+            $('.trip_months li').on('click',function(){
+                $(this).addClass('active').siblings('li').removeClass('active');
+                initFn.pageFn('month')
+                
+            });
+            //收索
+            $("#shares_search").on('input propertychange', function () {
+                initFn.pageFn('search')
+            });
+            $(".search_but").on('click', function () {
+                initFn.pageFn('search')
+            });
+
+        },
+        pageFn:function(triptype){
+            $('#Paginator').jqPaginator({
+                totalPages: 1,
+                visiblePages: 5,
+                currentPage: 1,
+                prev: '<li class="prev"><a href="javascript:void(0);">上一页</a></li>',
+                next: '<li class="next"><a href="javascript:void(0);">下一页</a></li>',
+                page: '<li class="page"><a href="javascript:void(0);">{{page}}</a></li>',
+                onPageChange: function (num, type) {
+                    var month =  '-'+$('.trip_months .active').attr('data-month')+'-';
+                    var day =  $('.trip_day .active').attr('data-day');
+                    var city_name = $("#shares_search").val();
+                    // console.log(triptype)
+                    var post_url ;
+                    var post_data = {}
+                    post_data.page = num;
+                    
+                    if(triptype == 'first'){
+                        post_url = 'TalentShow';
+                    }else if( triptype == 'month' || triptype == 'day' || triptype == 'search'){
+
+                        if(month == '-all-' && day == 'all' && city_name =='' ){
+                            post_url = 'TalentShow';
+                        }else{
+                            post_url = 'SearchTalent';
+                            post_data.month = month;
+                            post_data.day_num = day;
+                            post_data.city_name = city_name;
+                        }
+                        
+                    };
+                    $.post(post_url,post_data,function(data){
+                        // console.log(data)
+                        if (data.status == 'true'){
+                            if(data.pagecount == 1){
+                                $('#Paginator').hide()
+                            }else{
+                                $('#Paginator').show()
+                            }
+                            $('#Paginator').jqPaginator('option',{
+                                totalPages: data.pagecount//总页数
+                            });
+                            initFn.trip_temFn(data)
+                        }else{
+                            $('#Paginator').hide()
+                            $('.trip_list').html('').siblings('.talentTrip_none').show()
+                        };
+                    },'json'); 
+                }
+            });
+        },
+        click_tripFn:function(){
+            $(".trip_list li").on("click", function () {
+                var uid = $(this).attr("data-uid");
+                var trip_id = $(this).attr("data-trip_id");
+                // var clickdata = {
+                //     uid:uid,
+                //     trip_id:trip_id,
+                //     clickQuantity:1
+                // }
+                // $.post("ClickData",clickdata,function(){
+                    window.location.href = "/portal/itinerary/tripInfo.html?them="+uid+"&trip="+trip_id;
+                // })
+            })
+        },
+        trip_temFn:function (data){
+        	// console.log(data)
+            var trip_tem = '<ul class="clearfix">\
+                                {{each tourList as value i}}\
+                                    <li data-uid="{{value.uid}}" data-trip_id="{{value.trip_id}}">\
+                                        <img src="{{value.image_cover}}" alt="">\
+                                        <div class="img_box">\
+                                            <div class="sport_name">{{each value.jindian_name as v s}}{{v}}·{{/each}}</div>\
+                                            <div class="day_num"><span>{{value.day_num}}</span>&nbsp;天</div>\
+                                        </div>\
+                                        <div class="title_box">\
+                                            <div class="title1">{{value.trip_name}}</div>\
+                                            <div class="title2">{{each value.jindian_name as v s}}{{v}}·{{/each}}</div>\
+                                        </div>\
+                                        <div class="h_content">\
+                                            <div class="top">\
+                                                <div class="title1">{{value.trip_name}}</div>\
+                                                <div class="go_time"><span class="time">{{value.date}}</span>&nbsp;|&nbsp;出发</div>\
+                                            </div>\
+                                            <div class="bottom clearfix">\
+                                                <div class="fl"><i class="user_icon"></i><span class="user">{{value.user_name}}</span></div>\
+                                                <div class="fr"><i class="see_icon"></i><span class="see">{{value.click_num}}</span></div>\
+                                            </div>\
+                                        </div>\
+                                    </li>\
+                                {{/each}}\
+                            </ul>';
+            var trip_render = template.compile(trip_tem);
+            var trip_thml = trip_render(data);
+            $('.trip_list').html(trip_thml).siblings('.talentTrip_none').hide();
+            initFn.click_tripFn()
+        }
+    }
+    
+    
+    initFn.talentTripFn()
+})

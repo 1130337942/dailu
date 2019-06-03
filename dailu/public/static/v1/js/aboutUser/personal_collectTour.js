@@ -1,0 +1,61 @@
+$(function(){
+	var tot_tour = 0;
+	var u_name = getCookie('user_name');
+	var u_id = getCookie('uid');     
+	$('.navBox .leftBar li').removeClass('active').eq(2).addClass('active');
+	$.post('CollectData',{uid:u_id},function(res){
+		if(!res) return fasle ;
+		var data ={};
+			data.tourList = res;
+		$('.collect_wap .cur').text(res.length);
+		var tourListRender = template.compile(tourListTemplate);
+		var html = tourListRender(data);
+		$('.contentWap .main .routeList ').html(html);
+
+
+
+
+	},'json')
+
+		var  tourListTemplate ='{{each tourList as value i}}\
+			<li class="list fl">\
+				<a href="/portal/itinerary/tripInfo/{{value.collect_id}}.html">\
+					<div class="picBox">\
+						<img src="{{value.image_cover}}" alt="">\
+						<div class="imgMask">\
+							<div class="cart hide">\
+								<span class="copy"><strong>复制</strong> </span>\
+								<span class="del"><strong>删除</strong></span>\
+							</div>\
+						</div>\
+						<div class="line">\
+							{{each value.jindian_name as item key}}\
+								{{item}}\
+								{{if key<value.jindian_name.length-1}}\
+									·\
+								{{/if}}\
+							{{/each}}\
+							<span class="day"><strong>{{value.info.day_num}}</strong>天</span>\
+						</div>\
+					</div>\
+					<div class="info">\
+						<div class="con">{{value.info.trip_name}}</div>	\
+						<div class="date">\
+							{{value.info.date}} | 出发\
+						</div>\
+					</div>\
+					<div class="up_user clearfix">\
+						<div class="up_fl fl">\
+							{{if value.info.head_port}}\
+								<img class="up_Pic" src="{{value.info.head_port}}" alt="">\
+							{{else}}\
+								<img class="up_Pic" src="/static/v1/img/header.jpg" alt="">\
+							{{/if}}\
+							{{value.info.user_name}}\
+						</div>\
+						<div class="up_ri fr">{{value.info.submitDate}}</div>\
+					</div>\
+				</a>\
+			</li>\
+		{{/each}}'
+})

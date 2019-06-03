@@ -1,0 +1,599 @@
+$(function(){
+        var collect_status ='';
+        var like_status ='';
+        var trip = getUrlParam('trip');
+        var u = getUrlParam('them');
+        var this_uid = getCookie('uid');
+        var collect_num =0 ;
+        var like_num= 0;
+        var ewm_url = window.location.href.replace('tripInfo','tripinfoshare');
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = ewm_url;
+            return false;
+        }
+        ewm_url ='../store/getarcode?url='+ encodeURIComponent(ewm_url)
+        $('.shareBox .share_code_img').attr('src',ewm_url);
+        $('#foo').val(window.location.href);
+        var clipboard = new ClipboardJS('.copy');   //一键复制
+        clipboard.on('success', function(e) {
+            e.clearSelection();
+            layer.msg('复制成功',{
+                time:600,
+                offset:'200px'
+            })
+
+        });
+
+        clipboard.on('error', function(e) {
+            layer.msg('复制失败请手动复制',{
+                time:600,
+                offset:'200px'
+            })
+        });
+
+        // 更换h5行程单二维码 START
+        $('#shareTitle').on('focus',function(){
+            $('.titledit').hide().siblings('.titlesave').show();
+        })
+
+        $('.titledit').on('click',function(){
+             $(this).hide().siblings('.titlesave').show();
+             $('#shareTitle').focus();
+        })
+
+        $('.titlesave').on('click',function(){
+            $(this).hide().siblings('.titledit').show();
+              var shareEwm = window.location.href.replace('tripInfo','tripinfoshare')+'&shareTitle='+$('#shareTitle').val();
+                shareEwm ='../store/getarcode?url='+ encodeURIComponent(shareEwm);
+                $('.shareBox .share_code_img').attr('src',shareEwm);
+        })
+
+        // 更换h5行程单二维码 END
+
+        $('.shortCart .addTrip').on('click',function(){
+            if(!this_uid){
+                window.location.href="/portal/login/login.html"
+            }
+            var _self =  this ;
+            if($(this).children('i').hasClass('active')) return false;
+            var query = {};
+                query.uid = this_uid ;
+                query.them = u ;
+                query.trip_id = trip ;
+                $.post('CopyTrip',query,function(res){
+                    if(res.status == true){
+                        $(_self).children('i').toggleClass('active');
+                        if($(_self).children('i').hasClass('active')){
+                            $(_self).children('span').text('已添加到我的行程');
+                        }else{
+                            $(_self).children('span').text('添加到我的行程');
+
+                        }
+                    }else{
+                        alert('添加失败');
+                    }
+                    
+                },'json')
+
+            
+        })
+
+        $('.shareTrip').on('click',function(){
+            $('.ewm_box').hasClass('hide')?$('.ewm_box').show(300).toggleClass('hide'):$('.ewm_box').hide(300).toggleClass('hide')
+        })
+
+        $('.short.collect,.short.c_collect').on('click',function(){
+            if(!this_uid){
+                window.location.href='/portal/login/login.html';
+                return false;
+            }
+            var _self = this;
+            var query ={};
+                query.uid=this_uid;
+                query.uid_trip=u;
+                query.trip_id=trip;
+                query.collect_status =collect_status;
+            $.post('collect',query,function(res){
+                    if(res.status=='ok'){
+                        collect_num = collect_status=='no_collect'?collect_num+1:collect_num-1;
+                        collect_status = collect_status=='no_collect'?'collected':'no_collect';
+                        var collect_text = collect_num ==0?'收藏':'已收藏';
+                        $(_self).addClass('hide').siblings('.hide').removeClass('hide');
+                        $('.blogger .collectnum').text('收藏'+collect_num);
+                    }
+            },'json')   
+        })
+        $('.short.like').on('click',function(){
+            if(!this_uid){
+                window.location.href='/portal/login/login.html';
+                return false;
+            }
+            var _self = this;
+            if($(this).hasClass('is_like')) return false;
+            var query ={};
+                query.uid=this_uid;
+                query.uid_trip=u;
+                query.trip_id=trip;
+                query.like_status =like_status;
+            $.post('CareFor',query,function(res){
+                    if(res.status=='ok'){
+                        like_status = 'liked';
+                        $(_self).addClass('is_like').text('已喜欢');
+                        $('.blogger .likenum').text('喜欢'+(like_num+1));
+                    }
+            },'json')   
+        })
+
+
+        $.post('BooksData',{'collect_uid':this_uid,'uid':u,'trip_id':trip},function(res){
+            $('.blogger .name').text(res.gailan.user_name);
+            if(!res) return false;
+
+            //收藏状态
+            collect_status = res.collect_status;
+            if(collect_status=='no_collect'){
+                $('.short.collect').removeClass('hide');
+                $('.short.c_collect').addClass('hide');
+            }else{
+                $('.short.collect').addClass('hide');
+                $('.short.c_collect').removeClass('hide');
+            }
+           
+                like_num = res.gailan.like_num;  
+                collect_num = res.gailan.collect_num ;  
+            var like_text = res.gailan.like_num == 0?'喜欢':'已喜欢';
+            res.gailan.click_num = res.gailan.click_num == 0?1:res.gailan.click_num;
+            $('.short.like').text(like_text);
+            $('.short.see').text(res.gailan.click_num+'查看');
+            $('.blogger .likenum').text('喜欢'+res.gailan.like_num);
+            $('.blogger .collectnum').text('收藏'+res.gailan.collect_num);
+            if(res.gailan.head_port){
+                $('.blogger .headImg img').attr('src',res.gailan.head_port);
+            }
+             //喜欢状态
+            like_status = res.like_status;
+            if(like_status!='no_like'){
+                $('.short.like').addClass('is_like');
+            }
+
+            if(res.copy_status == 'copied'){
+                $('.addTrip i').addClass('active').siblings('span').text('已添加到我的行程');
+            }
+
+            if(!res.hotel_money) res.hotel_money = [];
+
+            /*行程详情部分 start*/
+            var lineCity = '';
+            var lineTitle = res.gailan.departure_city+' — ';
+            var leftBar = '';
+            var pointArr = [{lat:res.gailan.dep_lat,lng:res.gailan.dep_lng}];
+                $(res.gailan.go_city_array).each(function(i,ele){
+                     pointArr.push(this.position);
+                     lineCity+=this.city_name+'·';
+                     lineTitle += this.city_name+' — ';
+                });
+
+                lineTitle = lineTitle + res.gailan.return_city;
+                for(var i=0; i<res.gailan.day_num;i++){
+                    leftBar+="<li type='day"+i+" '><a href='javascript:;'>第"+ (i+1) +"天</a></li>"
+                }
+            renderMap(pointArr);
+
+            $('.lineBox').find('.leftMsg h4').text(res.gailan.trip_name).end()
+                         .find('.leftMsg .place').text(lineCity.substring(0,lineCity.length-1)).end()
+                         .find('.leftMsg .num').text('人数：'+ (Number(res.gailan.adult)+Number(res.gailan.children))+'人').end()
+                         .find('.leftMsg .startDay').text('出发日期：'+res.gailan.date.replace(/-/g,'.')).end()
+                         .find('.leftMsg .day').text('天数：'+res.gailan.day_num+'天');
+            $('.dayWap').find('.rightList .place').text(lineTitle).end()
+                        .find('.leftLift ul').html(leftBar);
+            $('.blogger .edit_date').text(res.gailan.creat_time.replace(/-/g,'.'))
+            var renderArr = [];
+           $(res.Schedufing).each(function(i,ele){
+                var that =  this;
+                if(i>0&&this.prevHotel){
+                    renderArr[(renderArr.length-1)].hotel =this.prevHotel.hotel; 
+                }
+                $(this.day_arry).each(function(k,value){
+                    this.thisCity =  that.this_city;
+                    this.city_abbreviation =  that.city_abbreviation
+                    renderArr.push(this)
+                })
+            })
+
+            var data = {};
+                data.dayArray = renderArr;
+            var hotelListRender = template.compile(hotelListTemplate);
+            var html = hotelListRender(data);
+            $('.rightList .dayList').html(html);
+            $('.main .dayWap .leftLift li').first().find('a').addClass('on');
+
+            /*费用清单部分 start */
+            var ticketCost = [];
+            var ticketTot = 0 ;
+            $(renderArr).each(function(i,ele){
+                $(ele.day).each(function(){
+                    var temp ={};
+                    var strt,end,price;
+                       start = this.info.attractions_tickets.indexOf("成人票：");
+                       end = this.info.attractions_tickets.indexOf("元/人"); 
+                       price =  (start=="-1"||end=="-1")?0:parseFloat(this.info.attractions_tickets.substring(start+4,end));
+                      
+                       temp.ticket=Boolean(price)?price:0;
+                       temp.spotName=this.info.spot_name;
+                       temp.type="门票费用";
+                       temp.totmoney = res.gailan.adult * temp.ticket;
+                       temp.peopleNum = res.gailan.adult+"(成人)x" + res.gailan.children +"(儿童)";
+                       ticketTot+=res.gailan.adult * temp.ticket;
+                       ticketCost.push(temp);
+                })
+            })
+
+            var foodCost = res.eat_money;
+            var hotelCost = res.hotel_money;
+            var traffiCost = res.traffic_money;
+            var foodStr = hotelStr = trafficStr= '';
+            var trafficTot = foodTot = hotelTot= 0;
+            $(traffiCost).each(function(i,ele) {
+                this.line_cros = this.start_city +'—'+this.city_name;
+              
+                switch(this.city_trc_name.trim())
+                {
+                    case '铁路交通':
+                    this.traffic_ico = 'train'
+                    trafficTot += (this.price*res.gailan.adult)+(this.price/2*res.gailan.children);
+                    break;
+                    case '飞机交通':
+                    this.traffic_ico = 'plane';
+                    trafficTot += this.price*this.people;
+                    break;
+                    default:
+                   this.traffic_ico = 'bus'
+                   trafficTot += this.price*this.people;
+                }
+            })
+            $(hotelCost).each(function(){
+                hotelTot += this.LowRate*this.number_night*(Math.round((res.gailan.children/2+res.gailan.adult*1)/2));
+            })
+            $(foodCost).each(function(){
+                foodTot += this.price*this.people;
+            })
+            $('.calc_tot').text(hotelTot+foodTot+trafficTot+ticketTot);
+             var per_hotel = (hotelTot/(hotelTot+foodTot+trafficTot+ticketTot)).toFixed(2)
+             var per_food = (foodTot/(hotelTot+foodTot+trafficTot+ticketTot)).toFixed(2)
+             var per_traffic = (trafficTot/(hotelTot+foodTot+trafficTot+ticketTot)).toFixed(2)
+             var per_ticket = (ticketTot/(hotelTot+foodTot+trafficTot+ticketTot)).toFixed(2)
+            var echartsArr = [
+                    {value:foodTot, name:'餐饮费用'},
+                    {value:trafficTot, name:'交通费用'},
+                    {value:hotelTot, name:'住宿费用'},
+                    {value:ticketTot, name:'门票费用'}
+                ]
+            var per_info_str = '';
+            $(echartsArr).each(function(i,ele){
+                per_info_str+= '<li class="fl"><span></span> '+this.name+(this.value).toFixed(2) +'元</li>'
+            })
+            $('.percentBox .p-right ul').html(per_info_str);
+            var peopleInfo = {};
+                peopleInfo.child = res.gailan.children;
+                peopleInfo.adult = res.gailan.adult;
+
+            trafficStr =  renderCostTable(traffiCost,'交通费用','traffic','line_cros','price','people',peopleInfo);  
+            hotelStr =  renderCostTable(hotelCost,'酒店费用','hotel','hotel_name','LowRate','number_night',peopleInfo);  
+            foodStr =  renderCostTable(foodCost,'餐饮费用','eat','name','price','people',peopleInfo);  
+            ticketStr =  renderCostTable(ticketCost,'门票费用','ticket','spotName','ticket','peopleNum',peopleInfo);  
+            var tableStr = foodStr +hotelStr +trafficStr+ticketStr;
+            $('tbody').html(tableStr)
+            $('tbody td').each(function(){
+                if($(this).text()==="¥0起"){
+                    $(this).text('不详')
+                }
+            })
+            renderEchats(echartsArr);
+        },'json')
+
+       $(window).scroll(function() {  
+                var barTop,barLeft,maxTop;
+                barTop =  $('.rightList').offset().top-$(window).scrollTop(); 
+                barLeft = $('.leftLift').offset().left-$(window).scrollLeft();
+                maxTop = $('.costTable').offset().top;
+                var  minTop = $('.rightList ').height() - $('.leftLift').height()+80;
+                if(barTop<=100){
+                  $('.leftLift').css({position:'fixed',top:'76px',left:barLeft});
+                        if(maxTop - $(window).scrollTop() <= ($('.leftLift').height()+80)){
+                            $('.leftLift').css({position:'relative',top:minTop,left:0});
+                        }
+                }else{
+                  $('.leftLift').css({position:'relative',top:'0px',left:0});
+                }
+
+                var difArr = [] ;
+                $('.line').each(function(){
+                  var dif_space = Math.abs($(this).offset().top - $(window).scrollTop()-68);
+                  difArr.push(dif_space);
+                })
+                var miin_dif =   Math.min.apply(null, difArr);//最小值
+                var index  = difArr.indexOf(miin_dif);
+                $('.leftLift ul li a').removeClass('on')
+                $('.leftLift ul li').eq(index).find('a').addClass('on');
+        });
+
+
+        $('.short .like').on('click',function(){
+            $(this).hasClass('on')?$(this).removeClass('on'): $(this).addClass('on');               
+        })
+
+        $('.leftLift ul').on('click','li',function(){
+            $(this).siblings('li').find('a').removeClass('on');
+            $(this).find('a').addClass('on');
+            var selecter = $(this).attr('type');
+            var top = $('#'+selecter).offset().top -68;
+            $("html,body").animate({scrollTop:top},"slow");  
+        })
+
+       /*图片地图 start*/
+       function renderMap (pointArr){
+            // var pointArr= [{'lng':109.501375,'lat':26.128291},{'lng':114.335359,'lat':30.517291},{'lng':116.378816,'lat':28.200323},{'lng':120.158113,'lat':30.004871}]
+            var lngarr=[];
+            var latarr=[];
+            for(var i=0;i<pointArr.length;i++){
+                lngarr.push(pointArr[i].lng)
+                latarr.push(pointArr[i].lat)
+            }
+            var center={}
+            center.lng =(Math.max.apply(null,lngarr )+Math.min.apply(null,lngarr))/2;
+            center.lat =(Math.max.apply(null,latarr )+Math.min.apply(null,latarr))/2;
+            var markerstr = '&markers=icon:http://www.dailuer.com/static/v1/img/map/departureicon.png|'+pointArr[0].lat+','+pointArr[0].lng;
+            var pathstr = '';
+            for(var i= 0;i<pointArr.length-1;i++){
+                markerstr += '&markers=color:blue|label:'+(i +1) +'|'+pointArr[i+1].lat+','+pointArr[i+1].lng;
+                
+                pathstr += '|'+pointArr[i+1].lat+','+pointArr[i+1].lng;
+            }
+            var imgsrc = 'http://maps.google.cn/maps/api/staticmap?center='+center.lat+','+center.lng +'zoom=1&size=618x400&maptype=roadmap'+markerstr+'&path=color:0xFF0000|weight:5'+  pathstr +'&key=AIzaSyDyRjVndlLtlpWVIg_RSfgGYLUUvclNLGw';
+            $('.rightPic  img').attr('src',imgsrc);
+            var tempImage = new Image();
+              tempImage.src = imgsrc;
+              tempImage.crossOrigin = "*";
+              tempImage.onload = function(){
+              var base64 = getBase64Image(tempImage);
+              $('.rightPic  img').attr('src',base64) 
+            }
+    }
+
+     /*图片地图end*/
+  
+
+
+
+
+     var hotelListTemplate ='{{each dayArray as value i}}\
+                                <li class="list">\
+                                {{each value.day as item k}}\
+                                    {{if k==0}}\
+                                <div class="listTit clearfix">\
+                                <div class="fl line" id="{{"day"+i}}">\
+                                <span>D{{i+1}}</span><strong>{{value.thisCity}}</strong><em class="city_abb">{{value.city_abbreviation}}</em>\
+                                </div> \
+                                {{if value.start_time}}\
+                                <div class="fr date"><span class="time">{{value.start_time + " - " + value.end_time }} | </span> <span>{{value.date}}</span></div>\
+                                {{else}}\
+                                <div class="fr date"><span class="time">{{if i==0}}13:00{{else}}09:00{{/if}} -19:00 | </span> <span>{{value.date}}</span></div>\
+                                {{/if}}\
+                                </div>  \
+                                {{/if}}\
+                                <div class="infoBox">\
+                                <p class="pc"><strong>{{item.this_name}}</strong> <span style="color:#999;font-size:16px; margin-left:20px;">适玩时间：{{item.info.play_time}}</span></p>\
+                                <div class="massage clearfix">\
+                                    <div class="ms-img fl">\
+                                        <img src="{{item.info.spot_image_url}}" alt="">\
+                                    </div>\
+                                    <div class="msg-txt fr">\
+                                        <div class="introduce">{{item.info.absture}}</div>\
+                                        <div class="mag_info">\
+                                            <div><span>地址：</span>{{item.info.address}}</div>\
+                                            <div><span>开放时间：</span>{{item.info.business_hours}}</div>\
+                                            <div class="ticket"><span>门票：</span>{{#item.info.attractions_tickets}}</div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                </div>\
+                                {{/each}}\
+                                {{if i < dayArray.length-1&&value.hotel.hotel_name}}\
+                                <div class="infoBox">\
+                                    <p class="pc"><strong>{{value.hotel.hotel_name}}</strong><span></span></p>\
+                                    <div class="massage clearfix">\
+                                        <div class="ms-img fl">\
+                                            <img src="{{value.hotel.ThumbNailUrl}}" alt="">\
+                                        </div>\
+                                        <div class="msg-txt fr">\
+                                            <div class="introduce">{{value.hotel.Features}}</div>\
+                                            <div class="mag_info">\
+                                                <div><span>电话：</span>{{value.hotel.tel}}</div>\
+                                                <div><span>商圈：</span>{{value.hotel.BusinessZoneName}}</div>\
+                                                <div><span>地址：</span>{{value.hotel.address}}</div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                 </div>\
+                                 {{/if}}\
+                                </li>\
+                            {{/each}}';
+
+                   
+      function getBase64Image(img) { //img 转base64 ;
+            var canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+            var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
+            var dataURL = canvas.toDataURL("image/"+ext);
+            return dataURL;
+        }
+
+        function renderCostTable (eachArr,title,icon,Name,price,num,peopleInfo) {
+            var htmlStr  = '';
+            switch(icon)
+            {
+                case "traffic": //如果是交通 则根据不同的交通方式 渲染icon
+                    $(eachArr).each(function(i,ele){
+                        var totmoney = ele['traffic_ico'] == 'plane'? ele[price]*ele[num]:(ele[price]*peopleInfo.adult+ele[price]/2*peopleInfo.child);
+    
+                        if(i<1){
+                          htmlStr +='<tr>'+
+                          '    <td rowspan='+ eachArr.length +' class="t_tit" >'+title+'</td>'+
+                          '    <td><i class="ico '+ele['traffic_ico']+'"></i>'+ele[Name]+'</td>'+
+                          '    <td>¥'+ ele[price] +'起</td>'+
+                          '    <td>'+peopleInfo.adult+'(成人)x'+peopleInfo.child+'(儿童)</td>'+
+                          '    <td>¥'+totmoney+'起</td>'+
+                          '</tr>';
+                      }else{
+                        htmlStr +='<tr>'+
+                        '    <td><i class="ico '+ele['traffic_ico']+'"></i>'+ele[Name]+'</td>'+
+                        '    <td>¥'+ ele[price] +'起</td>'+
+                        '    <td>'+peopleInfo.adult+'(成人)x'+peopleInfo.child+'(儿童)</td>'+
+                        '    <td>¥'+totmoney+'起</td>'+
+                        '</tr>' 
+                        } 
+                    })  
+                break;
+                case "ticket"://如果是门票费用
+                     $(eachArr).each(function(i,ele){
+                        if(i<1){
+                          htmlStr +='<tr>'+
+                          '    <td rowspan='+ eachArr.length +' class="t_tit" >'+ele.type+'</td>'+
+                          '    <td><i class="ico jd"></i>'+ele.spotName+'</td>'+
+                          '    <td>¥'+ ele.ticket +'起</td>'+
+                          '    <td>'+ ele.peopleNum +'</td>'+
+                          '    <td>¥'+ele.totmoney+'起</td>'+
+                          '</tr>';
+                      }else{
+                        htmlStr +='<tr>'+
+                        '    <td><i class="ico jd"></i>'+ele.spotName+'</td>'+
+                        '    <td>¥'+ ele.ticket +'起</td>'+
+                        '    <td>'+ ele.peopleNum+'</td>'+
+                        '    <td>¥'+ele.totmoney+'起</td>'+
+                        '</tr>' 
+                        } 
+                    })  
+                break;
+                default: //如果是酒店 则渲染固定的icon
+                $(eachArr).each(function(i,ele){
+                    if(i<1){ 
+                       htmlStr +='<tr>'+
+                       '    <td rowspan='+ eachArr.length +' class="t_tit" >'+title+'</td>'+
+                       '    <td><i class="ico '+icon+'"></i>'+ele[Name]+'</td>'+
+                       '    <td>¥'+ ele[price] +'起</td>';
+                       htmlStr +=  num=='number_night'? ' <td>'+ele[num]+'(晚)x'+Math.round((peopleInfo.child/2+peopleInfo.adult*1)/2)+'间</td>':' <td>'+ele[num]+'人</td>'
+                       htmlStr+=   num=='number_night'?'  <td>¥'+(ele[price]*ele[num])*Math.round((peopleInfo.child/2+peopleInfo.adult*1)/2)+'起</td>' :'<td>¥'+(ele[price]*ele[num])+'起</td>'+
+                       '</tr>';
+                   }else{
+                    htmlStr +='<tr>'+
+                    '    <td><i class="ico '+icon+'"></i>'+ele[Name]+'</td>'+
+                    '    <td>¥'+ ele[price] +'起</td>';
+                    htmlStr +=  num=='number_night'? ' <td>'+ele[num]+'(晚)x'+Math.round((peopleInfo.child/2+peopleInfo.adult*1)/2)+'间</td>':' <td>'+ele[num]+'人</td>'
+                    htmlStr+=   num=='number_night'?'  <td>¥'+(ele[price]*ele[num])*Math.round((peopleInfo.child/2+peopleInfo.adult*1)/2)+'起</td>' :'<td>¥'+(ele[price]*ele[num])+'起</td>'+
+                    '</tr>' 
+                }  
+
+             }) 
+            }
+        
+        return htmlStr;
+    }
+
+
+
+  function renderEchats(priceArr){
+             // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('p-left'));
+ 
+        // 指定图表的配置项和数据
+
+        var option = {
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b}: {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            x: 'right',
+                            data:['餐饮费用','交通费用','住宿费用','门票费用']
+                        },
+                        color:['#975ee4','#fbd336','#3aa0ff','#f2637a'],
+                        series: [
+                        {
+                            name:'费用类型',
+                            type:'pie',
+                            radius:['50%', '65.5%'],
+                            avoidLabelOverlap: false,
+                            label: {
+                             normal: {
+                                show: true,
+                                z:1,
+                                position: 'center',
+                                formatter:function(){
+                                    return '总费用\n '+(priceArr[0].value+priceArr[1].value+priceArr[2].value+priceArr[3].value).toFixed(2)
+                                },
+                                textStyle: {
+                                    fontSize: '20',
+                                    fontWeight: 'bold',
+                                    backgroundColor:'#fff',
+                                    textAlign:'center',
+
+                                }
+
+                            },
+                            emphasis: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: '20',
+                                    fontWeight: 'bold',
+                                    backgroundColor:'#fff',
+                                    padding: 20
+                                },
+                                formatter:function(p){
+                                    return p.data.name
+                                },
+                                z:2
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data:priceArr
+                    }
+                    ]
+                };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }     
+
+
+    function UrlEncode(str){
+      var ret="";
+      var strSpecial="!\"#$%&'()*+,/:;<=>?[]^`{|}~%";
+      var tt= "";
+
+      for(var i=0;i<str.length;i++){
+        var chr = str.charAt(i);
+        var c=str2asc(chr);
+        tt += chr+":"+c+"n";
+        if(parseInt("0x"+c) > 0x7f){
+          ret+="%"+c.slice(0,2)+"%"+c.slice(-2);
+        }else{
+          if(chr==" ")
+            ret+="+";
+          else if(strSpecial.indexOf(chr)!=-1)
+            ret+="%"+c.toString(16);
+          else
+            ret+=chr;
+        }
+      }
+      return ret;
+}
+})

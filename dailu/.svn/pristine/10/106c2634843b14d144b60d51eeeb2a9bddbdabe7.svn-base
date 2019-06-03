@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/static/v1/public/css/public_header_store.css">
+<div class="header">
+	<div class="shortCart">
+		<div class="main clearfix">
+			<div class="fl">消费者热线：400-640-5199</div>
+			<div class="fr">
+				<a href="/portal/travel/talentTrip.html">达人分享</a>
+				<a href="/portal/store/index.html">袋鹿商城</a>
+				<a href="/portal/aboutuser/dailu_msg.html">消息中心</a>
+				<if condition="!empty($Think.cookie.user_name)">
+				<a class=" login" href="javascript:;">{$Think.cookie.user_name}</a>
+				<else />
+				<a class="login" href="/portal/login/login.html">立即登录</a>
+				</if>	
+			</div>
+		</div>
+	</div>
+</div>

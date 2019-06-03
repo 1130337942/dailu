@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>消息中心</title>
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/jqPaginator-1.2.1/jqPaginator.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/travel/travelShare.css">
+</head>
+<body style='background-color:#fff '>
+	<include file="public@publicHeader"/>
+	<div class="topBanner">
+		<div class="title">袋鹿，是一种旅行方式</div>
+		<div class="fix_wap">
+			<img id='indexg0' class="mount" src="/static/v1/img/mount.png" alt="mount">
+			<img id='indexg1' class="shdow" src="/static/v1/img/shdow.png" alt="shdow">
+			<img id='indexg2' class="cloud2" src="/static/v1/img/cloud2.png" alt="cloud2">
+			<img id='indexg3' class="cloud1" src="/static/v1/img/cloud1.png" alt="cloud1">
+			<a class="design" href="javascript:;">设计行程</a>	
+		</div>
+	</div>
+	<div class="recom">
+		<ul class="clearfix">
+			<li class="list fl">
+				<img src="/static/v1/img/tuijian.png" alt="">
+				<div class="line">西湖·孤山·灵隐寺·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>
+				<div class="imgMask">
+					<div class="mask_line">西湖·孤山·灵隐寺·西溪湿地·大运河 </div>
+					<div class="time">2018-3-23 | 出发</div>
+					<div class="mask_bottom clearfix"><a class="fl" href="javascript:;">查看详情 > </a><span class="day fr"><strong>5</strong> 天</span></div>
+				</div>
+			</li>
+			<li class="list fl">
+				<img src="/static/v1/img/1215.png" alt="">
+				<div class="line">西湖·孤山·灵隐寺·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>
+				<div class="imgMask">
+					<div class="mask_line">西湖·孤山·灵隐寺·西溪湿地·大运河 </div>
+					<div class="time">2018-3-23 | 出发</div>
+					<div class="mask_bottom clearfix"><a class="fl" href="javascript:;">查看详情 > </a><span class="day fr"><strong>5</strong> 天</span></div>
+				</div>
+			</li>
+			<li class="list fl">
+				<img src="/static/v1/img/tuijian.png" alt="">
+				<div class="line">西湖·孤山·灵隐寺·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>
+				<div class="imgMask">
+					<div class="mask_line">西湖·孤山·灵隐寺·西溪湿地·大运河 </div>
+					<div class="time">2018-3-23 | 出发</div>
+					<div class="mask_bottom clearfix"><a class="fl" href="javascript:;">查看详情 > </a><span class="day fr"><strong>5</strong> 天</span></div>
+				</div>
+			</li>
+			<li class="list fl">
+				<img src="/static/v1/img/1215.png" alt="">
+				<div class="line">西湖·孤山·灵隐寺·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>
+				<div class="imgMask">
+					<div class="mask_line">西湖·孤山·灵隐寺·西溪湿地·大运河 </div>
+					<div class="time">2018-3-23 | 出发</div>
+					<div class="mask_bottom clearfix"><a class="fl" href="javascript:;">查看详情 > </a><span class="day fr"><strong>5</strong> 天</span></div>
+				</div>
+			</li>
+			<li class="list fl">
+				<img src="/static/v1/img/city.png" alt="">
+				<div class="line">西湖·孤山·灵隐寺·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>
+				<div class="imgMask">
+					<div class="mask_line">西湖·孤山·灵隐寺·西溪湿地·大运河 </div>
+					<div class="time">2018-3-23 | 出发</div>
+					<div class="mask_bottom clearfix"><a class="fl" href="javascript:;">查看详情 > </a><span class="day fr"><strong>5</strong> 天</span></div>
+				</div>
+			</li>
+
+		</ul>
+		<div class="title">
+				<div class="tit">当季推荐城市</div>
+				<div class="con">每个行程都代表着一种独特的旅游方式</div>
+				<img src="/static/v1/img/hat.png" alt="">
+		</div>
+	</div>
+	<div class="personShare">
+		<div class="search_box">
+			<div class="title">达人分享</div>
+			<div class="con">腾出空，去旅行</div>
+			<div class="search_bar">
+				<input class="search_info" type="text" placeholder="在这里，可以用最快的方式制定你的专属行程">
+				<button class="searchBtn">更多行程</button>
+			</div>
+		</div>
+		<div class="shareWap">
+			<ul class="clearfix">
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="list fl">
+					<a href="javascript:;">
+						<div class="imgbox">
+							<i class="t"></i>
+							<i class="r"></i>
+							<i class="b"></i>
+							<i class="l"></i>
+							<img src="/static/v1/img/shareLine.png" alt="">
+							<div class='hideLine'>千岛湖·孤山·西溪湿地·大运河 <span class="day"><strong>5</strong> 天</span></div>	
+						</div>
+						<div class="contentBox">
+							<div class="tit">尼泊尔，我用心灵触碰你——走进的黄金时代哈市肯定会</div>
+							<div class="line">五台山·三峡·千岛湖·舟山·</div>
+						</div>
+						<div class="hoverBox">
+							<div class="top_info">
+								<div class="tit">童梦犹在，因却南美一往而深</div>
+								<div class="date">2018-3-23 | 出发</div>
+							</div>
+							<div class="bottom_watch clearfix">
+								<span class="name fl">牛魔王2525</span> <span class="see fr">4342</span>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul id="Paginator"></ul>
+		</div>
+	</div>
+	<div class="border"></div>
+	<div class="allCity">
+		<div class="title"> 全部目的地</div>
+		<ul class="clearfix">
+			<li class="list fl">
+				<div class="tit">直辖市</div>
+				<span>北京</span><span>上海</span><span>天津</span><span>重庆</span>
+			</li>
+			<li class="list fl">
+				<div class="tit">广东省</div>
+				<span>南京</span>    
+				<span>扬州</span>    
+				<span>宁波</span>    
+				<span>金华</span>    
+				<span>台州</span>    
+				<span>常熟</span>    
+				<span>无锡</span>    
+				<span>苏州</span>    
+				<span>广州</span>
+			</li>
+			<li class="list fl">
+				<div class="tit">浙江省</div>
+				<span>杭州</span>
+				<span>嘉兴</span>
+				<span>宁波</span>
+				<span>金华</span>    
+				<span>台州</span>    
+				<span>温州</span>    
+				<span>绍兴</span>    
+				<span>丽水</span>    
+				<span>湖州</span>    
+				<span>衢州</span>    
+				<span>舟山</span>
+			</li>
+			<li class="list fl">
+				<div class="tit">浙江省</div>
+				<span>杭州</span>
+				<span>嘉兴</span>
+				<span>宁波</span>
+				<span>金华</span>    
+				<span>台州</span>    
+				<span>温州</span>    
+				<span>绍兴</span>    
+				<span>丽水</span>    
+				<span>湖州</span>    
+				<span>衢州</span>    
+				<span>舟山</span>
+			</li>
+			<li class="list fl">
+				<div class="tit">广东省</div>
+				<span>南京</span>    
+				<span>扬州</span>    
+				<span>宁波</span>    
+				<span>金华</span>    
+				<span>台州</span>    
+				<span>常熟</span>    
+				<span>无锡</span>    
+				<span>苏州</span>    
+				<span>广州</span>
+			</li>
+			<li class="list fl">
+				<div class="tit">浙江省</div>
+				<span>杭州</span>
+				<span>嘉兴</span>
+				<span>宁波</span>
+				<span>金华</span>    
+				<span>台州</span>    
+				<span>温州</span>    
+				<span>绍兴</span>    
+				<span>丽水</span>    
+				<span>湖州</span>    
+				<span>衢州</span>    
+				<span>舟山</span>
+			</li>
+			<li class="list fl">
+				<div class="tit">浙江省</div>
+				<span>杭州</span>
+				<span>嘉兴</span>
+				<span>宁波</span>
+				<span>金华</span>    
+				<span>台州</span>    
+				<span>温州</span>    
+				<span>绍兴</span>    
+				<span>丽水</span>    
+				<span>湖州</span>    
+				<span>衢州</span>    
+				<span>舟山</span>
+			</li>
+
+		</ul>
+	</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/jqPaginator-1.2.1/jqpaginator.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/travel/travelShare.js"></script>
+</html>

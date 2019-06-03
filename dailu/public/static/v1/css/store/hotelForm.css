@@ -1,0 +1,448 @@
+.hide {
+	display: none;
+}
+.checkBox{
+	cursor: pointer;
+	margin-right: 15px;
+	font-size: 14px;
+	color: #999;
+}
+.checkBox::before {
+	margin-right: 6px;
+	display: inline-block;
+	content:'';
+	vertical-align: middle;
+	width: 12px;
+	height: 12px;
+	border: 1px solid #e5e5e5;
+	background-color: #fafafa;
+}
+.on.checkBox::before {
+	background: #fff url(/static/v1/img/checked.png) center center no-repeat;
+}
+input,select{
+     appearance:none;
+    -moz-appearance:none;
+   -webkit-appearance:none;  
+	outline: none;
+	border: none;
+}
+.progress {
+	background-color: #f6f6f6;
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+	left: 0;
+	top: 28px;
+	padding-top: 2px;
+	height: 70px;
+	/*background-color: #f6f6f6;*/
+	border-bottom: 1px solid #e5e5e5;
+}
+.progress .main {
+	height: 100%;
+	width: 1200px;
+	margin: 0 auto;
+}
+.progress .logo{
+	padding-top: 13px;
+	width: 87px;
+	height: 40px;
+} 
+.progress .progress_info{
+	line-height: 70px;
+	color: #999;
+}
+.progress .progress_info i{
+	display: inline-block;
+	width: 136px;
+	height: 2px;
+	border-radius: 1px;
+	background-color: #e5e5e5;
+	margin:0 12px;
+	vertical-align: middle;
+	position: relative;
+}
+.progress .progress_info i::after {
+	position: absolute;
+	top: -2px;
+	right: 0px;
+	display: inline-block;
+	content: '';
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #e5e5e5;
+}
+.progress .progress_info .active{
+	color:#659ff5;
+}
+.progress .progress_info .active i,
+.progress .progress_info .active i::after {
+	background-color: #659ff5;
+}
+
+
+
+.mainWap {
+	padding-top: 108px;
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.mainWap .infoWap {
+	width: 320px;
+	/*height: 600px;*/
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+} 
+.mainWap .formWap{
+	 -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+	width: 804px;
+	padding: 0 34px;
+	/*height: auto;*/
+	/*min-height: 500px;*/
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+	margin-bottom: 96px;
+}
+
+.mainWap .infoWap .title {
+	height: 55px;
+	line-height: 55px;
+	/*font-weight: 600;*/
+	font-family: PingFang-SC-Bold;
+	border-bottom: 1px solid #e5e5e5;
+	padding-left: 24px;
+}
+.mainWap .infoWap .title::before {
+	display: inline-block;
+	content: '';
+	height: 55px;
+	width: 3px;
+	height: 15px;
+	background-color: #659ff5;
+	vertical-align: middle;
+	margin-right: 5px;
+	margin-top: -3px;
+}
+.mainWap .infoWap .info {
+	width: 272px;
+	padding: 14px 24px;
+}
+.mainWap .infoWap .info .imgBox {
+	width: 272px;
+	height: 199px;
+}
+.mainWap .infoWap .info .tit {
+	font-family: PingFang-SC-Bold;
+	font-size: 18px;
+	height: 36px;
+	line-height: 36px;
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow:hidden;
+}
+.mainWap .infoWap .info .loca {
+	font-size: 14px;
+	color: #999;
+}
+.mainWap .infoWap .info .house {
+	padding: 10px 0;
+	line-height: 26px;
+	margin-top: 15px;
+	font-size: 14px;
+	color: #999;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+}
+.mainWap .infoWap .info .house  span {
+	margin-right: 15px;
+}
+.mainWap .infoWap .info .tell{
+	font-size: 14px;
+	color: #999;
+	line-height: 36px;
+}
+.mainWap .formWap .title{
+	height: 55px;
+	line-height: 55px;
+	font-family: PingFang-SC-Bold;
+	border-bottom: 1px solid #e5e5e5;
+	position: relative;
+	margin-bottom: 15px;
+}
+.mainWap .formWap .title::before{
+	display: block;
+	content:'';
+	width: 3px;
+	height: 15px;
+	background-color: #659ff5;
+	position: absolute;
+	top: 50%;
+	margin-top: -6px;
+	left: -8px;
+	
+}
+.mainWap .formWap .list {
+	font-size: 14px;
+	height: 48px;
+	line-height: 48px;
+	position: relative;
+}
+.mainWap .formWap .list .tit {
+	display: inline-block;
+	width: 100px;
+	font-family: PingFang-SC-Bold;
+}
+.mainWap .formWap .date input{
+	padding-left: 10px;
+	width: 126px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	margin-right: 12px;
+}
+#leave_time{
+	margin-left: 12px;
+}
+
+.mainWap .formWap .room input{
+	width: 80px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	text-align: center;
+}
+.mainWap .formWap .room .bar {
+	display: inline-block;
+	width: 80px;
+	position: relative;
+	margin-right: 12px;
+}
+.mainWap .formWap .room .add,
+.mainWap .formWap .room .sub{
+	position: absolute;
+	top: 50%;
+	margin-top: -15px;
+	width: 26px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 18px;
+	text-align: center;
+	cursor: pointer;
+	color: #ccc;
+}
+.mainWap .formWap .room .add{
+	right: 0;
+}
+.mainWap .formWap .room .sub{
+	left: 0;
+}
+.mainWap .formWap .room .add:hover,
+.mainWap .formWap .room .sub:hover{
+	color: #659ff5;
+}
+.mainWap .formWap .tot_price{
+	padding-bottom: 15px;
+}
+.mainWap .formWap .money{
+	font-family: DINMittelschriftStd;
+	font-size: 20px;
+	color: #f4a21e;
+}
+
+.mainWap .formWap .list .name {
+	padding-left: 12px;
+	width: 176px;
+	height: 30px;
+	border-radius: 4px;
+	border: 1px solid  #e5e5e5;
+}
+.mainWap .formWap .list input.active {
+	border: 1px solid  #659ff5;
+}
+.mainWap .formWap .list .phone_type{
+	display: inline-block;
+	vertical-align: middle;
+	width: 126px;
+	padding-left: 12px;
+	height: 30px;
+	line-height: 32px;
+	border-radius: 4px;
+	border: solid 1px #cccccc;
+}
+.mainWap .formWap .list .phone_number {
+	width: 192px;
+	padding-left: 12px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+}
+.mainWap .formWap .list .email{
+	width: 336px;
+	padding-left: 12px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+}
+.mainWap .formWap .list .auth_code {
+	width: 126px;
+	padding-left: 12px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+}
+.mainWap .formWap .list .codeImg {
+	margin-left: 12px;
+	margin-right: 12px;
+	display: inline-block;
+	vertical-align: middle;
+	width: 62px;
+	height: 30px;
+}
+.mainWap .formWap .list .change_code {
+	color: #659ff5;
+}
+.mainWap .formWap .room_list{
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 25px;
+}
+.mainWap .formWap .hint {
+	color: #999;
+	line-height: 28px;
+	font-size: 14px;
+}
+.mainWap .formWap .tab_bar span{
+	text-align: center;
+	font-size: 14px;
+	color:#999;
+	display: inline-block;
+	line-height: 30px;
+	width: 88px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	cursor: pointer;
+}
+.mainWap .formWap .tab_bar{
+	height: 52px;
+}
+.mainWap .formWap .tab_bar span:hover,
+.mainWap .formWap .tab_bar span.active {
+	border: 1px solid #659ff5;
+	color: #659ff5;
+}
+.mainWap .formWap  .c_type {
+	position: relative;
+	padding-left: 15px;
+	width: 98px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+}
+.mainWap .formWap  .trig {
+	vertical-align: middle;
+	margin-left: -20px;
+	margin-top: -5px;
+	position: relative;
+	z-index: 2;
+	display: inline-block;
+	content:'';
+	width: 0;
+	height: 0;
+	border-bottom:3px solid #999;
+	border-right:3px solid #999;
+	border-top: 3px solid transparent;
+	border-left: 3px solid transparent;
+	transform: rotate(45deg);
+}
+.mainWap .formWap .list .w_info{
+	width: 336px;
+	padding-left: 12px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+}
+
+.mainWap .formWap .place select {
+	min-width: 126px;
+	padding-left: 12px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	
+} 
+.mainWap .formWap .place span {
+	margin:0 5px;
+}
+.mainWap .formWap .comment {
+	color: #999;
+}
+.mainWap .formWap .notice{
+	padding: 10px 0 20px 0
+	border-top: 1px solid #e5e5e5;
+	line-height: 30px;
+	font-size: 14px;
+	color: #999;
+}
+.mainWap .formWap .notice div {
+	font-family: PingFang-SC-Bold;	
+}
+.mainWap .formWap .notice p::bafore {
+	display: inline-block;
+	width: 4px;
+	height: 4px;
+	background-color: #999;
+	content: '';
+}
+.mainWap .formWap .notice p .money{
+	font-size: 14px;
+	color: #999;
+}
+.mainWap .formWap .submit_wap {
+	font-size: 14px;
+	text-align: right;
+	padding: 30px 0;
+}
+.mainWap .formWap .submit_wap div {
+	display: inline-block;
+	vertical-align: middle;
+}
+.mainWap .formWap .submit_wap .expre{
+	color: #999;
+}
+.mainWap .formWap .submit_wap .money {
+	font-size: 24px;
+	margin-left: 5px;	
+}
+.mainWap .formWap .submit_wap .submit_btn {
+	display: inline-block;
+	text-align: center;
+	line-height: 40px;
+	width: 148px;
+	height: 40px;
+	background-color: #f4a21e;
+	border-radius: 4px;
+	font-size: 18px;
+	color: #fff;
+	cursor: pointer;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+.mainWap .formWap .submit_wap .submit_btn:hover {
+	background-color: #e89104;
+}
+.kui_data_content_pane {
+	top: 44px;
+	left:100px;
+}

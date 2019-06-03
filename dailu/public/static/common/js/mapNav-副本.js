@@ -1,0 +1,73 @@
+$(function () {
+    $('.cartBox .dayNum .ctr-daynum,.cartBox .man .ctr-adult,.cartBox .child .ctr-child').on('click', function (e) {
+        var daynum = $(this).siblings('span').text() - 0;
+        if (e.target.className == 'add') {
+            daynum++
+            if(e.currentTarget.className == 'ctr-daynum'){
+                if(daynum>30)return
+            }
+            $(this).siblings('span').text(daynum);
+        } else if (e.target.className == 'sub') {
+            daynum <= 1 ? daynum : daynum--;
+            $(this).siblings('span').text(daynum);
+        }else{
+            daynum <= 0 ? daynum : daynum--;
+            $(this).siblings('span').text(daynum);
+        }
+    });
+    //日历
+    $('#wap3_date').datepicker({
+        minDate: 0,
+        dateFormat: "yy-mm-dd"
+    });
+    $('.nav_title').on('click', function () {
+        $('.madeTravelMask').fadeIn()
+    })
+    $('.closeMadeTravelMask').on('click', function () {
+        $('.madeTravelMask').fadeOut()
+    })
+
+    $('.madeTravel .cartBox .wap2 .traffic').on('click', function () {
+        $('.tra-wap').slideToggle(300);
+        var tra_name = $(this).find(".wap2_traffic").html();
+        $(".tra-wap p").each(function (i, n) {
+            if (tra_name == $(n).find("span").html()) {
+                $(n).siblings().find(".ico").removeAttr("style");
+                switch (i) {
+                    case 0:
+                        $(n).find(".ico").css("background-image", "url(/static/v1/img/addStrokeform/air.png)");
+                        break;
+                    case 1:
+                        $(n).find(".ico").css("background-image", "url(/static/v1/img/addStrokeform/train.png)");
+                        break;
+                    case 2:
+                        $(n).find(".ico").css("background-image", "url(/static/v1/img/addStrokeform/car.png)");
+                        break;
+                    case 3:
+                        $(n).find(".ico").css("background-image", "url(/static/v1/img/addStrokeform/otherJT.png)");
+                        break;
+                }
+            }
+        })
+    });
+    // 出行方式下拉
+    $('.madeTravel .cartBox .wap2 .traffic p').on('click', function () {
+        var type = $(this).children('span').html();
+        var curName = $(this).children('i').attr('class');
+        // $(this).parents('.traffic').find('.t-ico').attr('class', '').addClass(curName + ' t-ico');
+        $(this).parents('.traffic').find('.wap2_traffic').html(type);
+        if (type == "铁路交通") {
+            $("#js_traffic_ico").css("background-image", "url(/static/v1/img/addStrokeform/train.png)")
+        }else if (type == "汽车交通"){
+            $("#js_traffic_ico").css("background-image", "url(/static/v1/img/addStrokeform/car.png)")
+        } else if (type == "其他交通") {
+            $("#js_traffic_ico").css("background-image", "url(/static/v1/img/addStrokeform/otherJT.png)")
+        } else {
+            $("#js_traffic_ico").css("background-image", "url(/static/v1/img/addStrokeform/air.png)")
+        }
+    });
+    //取消
+    $('.buttonBox .cancel').on("click", function () {
+        $('.madeTravelMask').fadeOut();
+    });
+})

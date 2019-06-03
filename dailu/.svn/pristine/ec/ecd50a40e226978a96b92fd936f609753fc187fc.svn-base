@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="nofollow" />
+	<title>登录</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/v1/css/login/login.css">
+</head>
+<body>
+	<div class="mainBox">
+		<div class="loginBox">
+			<div class="fl leftInfo">
+				<h4 class='logo'></h4>
+				<div class='zh'>登录袋鹿，与10000+名旅游<br>达人一起制定行程！</div>
+				<div class='en'>Log in the dailuer.com, and  make the  itinerary <br>	 with more than 10000 popular traveler together!</div>
+				<!-- <div class="make"><a href="#">> 立即定制</a></div> -->
+			</div>
+			<div class="fr listWap">
+				<div class='wap1'><span class='en'>登录 Sign in</span><span class='erwm'></span><span class='code'></span></div>
+				<div class='normal'>
+					<div class='wap2'> 
+						<label class='user' for="user"></label>
+						<input class='' id='user' type="text" placeholder="请输入你的用户名或手机号">
+						<label for="passWorld" class='psworld'></label>
+						<input onfocus="this.type='password'" class='' id='passWorld' type="text" placeholder="请输入你的登录密码" autocomplete="off">
+					</div>
+					<div class='wap3'><a class="forget_password" href="javascript:;">忘记密码?</a></div>
+					<div class="wap4">
+						<button class="login">立即登录</button>
+						<button style="margin-top:25px" class="register">免费注册</button>
+					</div>
+					<!-- <div class='wap5'>
+						<span class='weChat'></span>
+						<span class='sina'></span>
+						<span class='QQ'></span>
+					</div> -->
+				</div>
+				<div class="erwmBox">
+					<img src="/static/v1/img/longinerwm.png" alt="">
+					<div>打开 <a href="#">手机袋鹿旅游 </a> 扫面二维码</div>
+					<div class='typeWap'><span class='to-passWorld'>密码登录</span><span class='to-register'>注册账号</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/login/login.js"></script>
+
+</html>

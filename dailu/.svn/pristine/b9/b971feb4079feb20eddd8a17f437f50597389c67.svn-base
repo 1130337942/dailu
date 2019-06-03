@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/static/v1/public/css/public_header_store.css">
+<div class="header">
+	<div class="shortCart">
+		<div class="main clearfix">
+			<div class="fl">消费者热线：400-640-5199</div>
+			<div class="fr">
+				<a href="/portal/travel/talentTrip.html">达人分享</a>
+				<a href="/portal/store/index.html">袋鹿商城</a>
+
+				<if condition="!empty($Think.cookie.user_name)">
+				<a class="login" href="/portal/store/storeOrderlist.html">{$Think.cookie.user_name}</a>
+				<else />
+				<a class="login" href="/portal/login/login.html">立即登录</a>
+				</if>	
+
+			</div>
+		</div>
+	</div>
+	<div class="nav">
+		<div class="main clearfix">
+			<div class="logo fl"><a href="/"><img src="/static/common/img/logo.png" alt="袋鹿"></a></div>
+			<div class="nav_list fr">
+				<a class="list" href="/portal/store/index.html"> 商城首页</a>      
+				<a class="list" href="/portal/store/hotelIndex.html"> 酒店  </a> 
+				<a class="list" href="/portal/store/airIndex.html"> 飞机票 </a>  
+				<a class="list" href="/portal/store/trainIndex.html"> 火车票 </a>     
+				<a class="list" href="javascript:;"> 接送机 </a>     
+				<a class="list" href="javascript:;"> 包车</a>		
+			</div>
+		</div>
+	</div>
+</div>

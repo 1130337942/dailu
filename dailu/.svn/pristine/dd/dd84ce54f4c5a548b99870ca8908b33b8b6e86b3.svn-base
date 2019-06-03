@@ -1,0 +1,244 @@
+
+.hide{
+	display: none;
+}
+.on{
+	display: block;
+}
+input{
+	border:none;
+	outline: none;
+	appearance: none;
+	background-color: #fafafa;
+}
+.main {
+	margin: 0 auto;
+	margin-top: 68px;
+	margin-bottom: 110px;
+	width: 1200px;
+}
+
+.main .title {
+	font-size: 14px;
+	/*font-weight: 600;*/
+	padding-left: 12px;
+	position: relative;
+	height: 58px;
+	line-height: 58px;
+}
+.main .title::before {
+	display: block;
+	content: '';
+	width: 3px;
+	height: 14px;
+	background-color: #659ff5;
+	position: absolute;
+	top: 50%;
+	margin-top: -7px;
+	left: 0;
+}
+
+.right_wap {
+	/*width: 940px;*/
+	min-height: 360px;
+	background-color: #f6f6f6;
+	border-radius: 4px;
+
+}
+
+.right_wap .prev_info  {
+	width: 946px;
+	min-height: 360px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px 4px 8px 8px;
+}
+.right_wap .prev_info .bg{
+	width: 946px;
+	height: 180px;
+	background: #fff url(/static/v1/img/user_center_bg.png) 0 0 no-repeat;
+	border-radius: 4px 4px 0px 0px;
+}
+.right_wap .prev_info .info_box{
+	padding: 0 60px;
+	position: relative;
+}
+.right_wap .prev_info .info_box .header_img {
+	width: 160px;
+	height: 160px;
+	position: absolute;
+	top: -80px;
+	left: 60px;
+}
+.right_wap .prev_info .info_box .header_img:hover .mask{
+	display: block;
+}
+.right_wap .prev_info .info_box .header_img .mask{
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 160px;
+	background-color:rgba(0,0,0,0.6);
+	color: #fff;
+	cursor: pointer;
+	position: absolute;
+	top:0;
+	left:0;
+}
+.right_wap .prev_info .info_box  .user_name {
+	color:#fff;
+	position: absolute;
+	top: -60px;
+	left: 260px;
+}
+.right_wap .prev_info .info_box  .user_name .user {
+	font-size: 18px;
+	font-weight: 600;
+}
+.right_wap .prev_info .info_box  .user_name .autograph{
+	font-size: 14px;
+	color: #fff;
+}
+.right_wap .prev_info .info_box  .phone_email {
+	width: 640px;
+	height: 76px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.right_wap .prev_info .info_box  .phone_email .email,
+.right_wap .prev_info .info_box  .phone_email .phone{
+	display: inline-block;
+	width: 210px;
+	margin-top: 20px;
+} 
+
+.right_wap .prev_info .info_box  .phone_email .tip{
+	font-size: 14px;
+	color: #999;
+}
+
+
+.right_wap .prev_info .info_box  .phone_email {
+	font-size: 18px;
+	color: #333;
+	font-weight: 600;
+}
+.right_wap .prev_info .info_box .usual {
+	width: 100%;
+} 
+#gender{
+	width: 72px;
+	height: 36px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	text-align: center;
+	padding-left: 16px;
+	margin-left: 12px;
+} 
+.usual  {
+	font-size: 14px;
+	color: #999;
+	margin-top: 32px;
+}
+.usual .u_wap{
+	position: relative;
+	display: inline-block;
+	margin-right: 50px;
+}
+.usual .u_wap:last-child{
+	margin-right: 0;
+}
+.usual .u_wap input {
+	width: 214px;
+	height: 36px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	padding-left: 16px;
+}
+.usual .u_wap::after{
+	position: absolute;
+	top: 12px;
+	right:16px;
+	display: block;
+	content: '';
+	width: 0px;
+	height: 0px;
+	transform: rotate(45deg);
+	border-right: 3px solid #999;
+	border-bottom: 3px solid #999;
+	border-left: 3px solid transparent;
+	border-top: 3px solid transparent;
+}
+.right_wap .safety{
+	margin-top: 8px;
+	width: 860px;
+	min-height: 450px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px 4px 8px 8px;
+	padding:0 43px;
+	padding-bottom: 38px;
+}
+.safety .title_s {
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 64px;
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 28px;
+}
+.safety .s_wap {
+	margin-top: 10px;
+	width: 784px;
+	min-height: 72px;
+	line-height: 72px;
+	background-color: #fafafa;
+	border-radius: 4px;
+	color: #999;
+	font-size: 16px;
+	padding:0 38px;
+}
+.safety .s_wap .edit,
+.safety .s_wap .edit_passworld,
+.safety .s_wap .p_save,
+.safety .s_wap .save  {
+	color: #659ff5;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.safety .s_wap  input {
+	font-size: 16px;
+	color: #999;
+	height: 20px;
+	width: 500px;
+}
+input::-webkit-input-placeholder{
+	color:#ccc;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+	color:#ccc;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+	color:#ccc;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+	color:#ccc;
+}
+.safety .s_wap  input.active {
+	color:#333;
+}
+
+.safety  .formerly {
+	border-bottom: 1px solid #e5e5e5;
+}
+
+#file{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	position: absolute;
+	top:0;
+	left:0;
+} 

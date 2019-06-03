@@ -1,0 +1,258 @@
+<include file="public@header" />
+</head>
+
+<body>
+    <div class="wrap js-check-wrap">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="javascript:;">人文景点列表</a>
+            </li>
+            <li>
+                <a href="{:url('Introduction/add_cultural_spot')}">添加人文景点</a>
+            </li>
+        </ul>
+        <form class="well form-inline margin-top-20" method="get" action="{:url('introduction/cultural_spot')}">
+            景点名称:
+            <input type="text" class="form-control" name="keyword" style="width: 200px;" value="{$keyword|default=''}" placeholder="请输入景点名称..."
+            />
+            <input type="submit" value="查询" class="btn btn-primary" />
+            <a class="btn btn-danger" href="{:url('introduction/cultural_spot')}">清空</a>
+
+        </form>
+        <form class="js-ajax-form" action="" method="post">
+            <div class="table-actions">
+                <notempty name="category">
+                    <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('AdminArticle/listOrder')}">{:lang('SORT')}
+                    </button>
+                </notempty>
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('introduction/publish2',array('yes'=>1))}"
+                    data-subcheck="true">发布
+                </button>
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('introduction/publish2',array('no'=>1))}"
+                    data-subcheck="true">取消发布
+                </button>
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('introduction/top2',array('yes'=>1))}"
+                    data-subcheck="true">置顶
+                </button>
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('introduction/top2',array('no'=>1))}"
+                    data-subcheck="true">取消置顶
+                </button>
+                <!--            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/recommend',array('yes'=>1))}" data-subcheck="true">推荐
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/recommend',array('no'=>1))}" data-subcheck="true">取消推荐
+            </button>-->
+                <!--
+            <notempty name="category">
+                <button class="btn btn-primary btn-sm js-articles-move" type="button">批量移动</button>
+            </notempty>
+            <button class="btn btn-primary btn-sm js-articles-copy" type="button">批量复制</button>
+            -->
+                <button class="btn btn-danger btn-sm js-ajax-submit" type="submit" data-action="{:url('introduction/delete_introduction')}"
+                    data-subcheck="true" data-msg="您确定删除吗？">
+                    {:lang('DELETE')}
+                </button>
+            </div>
+            <table class="table table-hover table-bordered table-list">
+                <thead>
+                    <tr>
+                        <th width="15">
+                            <label>
+                                <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                            </label>
+                        </th>
+                        <notempty name="category">
+                            <th width="50">{:lang('SORT')}</th>
+                        </notempty>
+                        <th width="50">ID</th>
+                        <th width="70">景点名称</th>
+                        <th width="50">所属城市</th>
+                        <th width="40">所属景区</th>
+                        <th width="80">详细地址</th>
+                        <th width="70">创建时间</th>
+                        <th width="70">更新时间</th>
+                        <th width="70">发布时间</th>
+                        <th width="45">状态</th>
+                        <th width="90">操作</th>
+                    </tr>
+                </thead>
+                <foreach name="Cultural_spotResult" item="vo">
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]" value="{$vo.id}" title="ID:{$vo.id}">
+                        </td>
+                        <notempty name="category">
+                            <td>
+                                <input name="list_orders[{$vo.post_category_id}]" class="input-order" type="text" value="{$vo.list_order}">
+                            </td>
+                        </notempty>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.spot_name}</td>
+                        <td>{$vo.city_name}</td>
+                        <td>{$vo.scenic_name}</td>
+                        <td>{$vo.address}</td>
+                        <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+                        <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+                        <td>{$vo.published_time|date='Y-m-d H:i:s',###}</td>
+                        <td>
+                            <notempty name="vo.status">
+                                <a data-toggle="tooltip" title="已发布">
+                                    <i class="fa fa-check"></i>
+                                </a>
+                                <else/>
+                                <a data-toggle="tooltip" title="未发布">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </notempty>
+                            <notempty name="vo.is_top">
+                                <a data-toggle="tooltip" title="已置顶">
+                                    <i class="fa fa-arrow-up"></i>
+                                </a>
+                                <else/>
+                                <a data-toggle="tooltip" title="未置顶">
+                                    <i class="fa fa-arrow-down"></i>
+                                </a>
+                            </notempty>
+                        </td>
+
+                        <td>
+                            <a href="{:url('introduction/edit_cultural_spot',array('id'=>$vo['id'],'page'=>$p))}">{:lang('EDIT')}</a>
+                            <a href="{:url('introduction/delete_cultural_spot',array('id'=>$vo['id']))}" class="js-ajax-delete">{:lang('DELETE')}</a>
+                        </td>
+                    </tr>
+                </foreach>
+
+                <tfoot>
+                    <tr>
+                        <th width="15">
+                            <label>
+                                <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                            </label>
+                        </th>
+                        <notempty name="category">
+                            <th width="50">{:lang('SORT')}</th>
+                        </notempty>
+                        <th width="50">ID</th>
+                        <th width="70">景点名称</th>
+                        <th width="50">所属城市</th>
+                        <th width="40">所属景区</th>
+                        <th width="80">详细地址</th>
+                        <th width="70">创建时间</th>
+                        <th width="70">更新时间</th>
+                        <th width="70">发布时间</th>
+                        <th width="45">状态</th>
+                        <th width="90">操作</th>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="table-actions">
+                <notempty name="category">
+                    <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('AdminArticle/listOrder')}">{:lang('SORT')}
+                    </button>
+                </notempty>
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('introduction/publish2',array('yes'=>1))}"
+                    data-subcheck="true">发布
+                </button>
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('introduction/publish2',array('no'=>1))}" data-subcheck="true">取消发布
+                </button>
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('introduction/top2',array('yes'=>1))}"
+                    data-subcheck="true">置顶
+                </button>
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit" data-action="{:url('introduction/top2',array('no'=>1))}"
+                    data-subcheck="true">取消置顶
+                </button>
+                <!--            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/recommend',array('yes'=>1))}" data-subcheck="true">推荐
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/recommend',array('no'=>1))}" data-subcheck="true">取消推荐
+            </button>-->
+                <!--
+            <notempty name="category">
+                <button class="btn btn-primary btn-sm js-articles-move" type="button">批量移动</button>
+            </notempty>
+            <button class="btn btn-primary btn-sm js-articles-copy" type="button">批量复制</button>
+            -->
+                <button class="btn btn-danger btn-sm js-ajax-submit" type="submit" data-action="{:url('introduction/delete_introduction')}"
+                    data-subcheck="true" data-msg="您确定删除吗？">
+                    {:lang('DELETE')}
+                </button>
+            </div>
+            <div style="text-align: center;"><span class="textcenter pagebar">{$page} <span style="margin-left: 10px">跳转至第 <input id="jumpNum" style="outline:none; width: 50px; text-align:center;" type="number" placeholder="页码">页 </span> <a onclick='toSomepage()'  href="javascript:;"> 确定</a></span></div>
+        </form>
+    </div>
+    <script src="__STATIC__/js/admin.js"></script>
+    <script>
+        function reloadPage(win) {
+            win.location.reload();
+        }
+         function toSomepage () {
+                var page =  $("#jumpNum").val();
+                var pathname =window.location.pathname;
+                window.location.href = pathname+'?page='+page;
+        }
+        $(function () {
+            setCookie("refersh_time", 0);
+            Wind.use('ajaxForm', 'artDialog', 'iframeTools', function () {
+                //批量复制
+                $('.js-articles-copy').click(function (e) {
+                    var ids = [];
+                    $("input[name='ids[]']").each(function () {
+                        if ($(this).is(':checked')) {
+                            ids.push($(this).val());
+                        }
+                    });
+
+                    if (ids.length == 0) {
+                        art.dialog.through({
+                            id: 'error',
+                            icon: 'error',
+                            content: '您没有勾选信息，无法进行操作！',
+                            cancelVal: '关闭',
+                            cancel: true
+                        });
+                        return false;
+                    }
+
+                    ids = ids.join(',');
+                    art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=copy&ids=" +
+                        ids, {
+                            title: "批量复制",
+                            width: "300px"
+                        });
+                });
+                //批量移动
+                $('.js-articles-move').click(function (e) {
+                    var ids = [];
+                    $("input[name='ids[]']").each(function () {
+                        if ($(this).is(':checked')) {
+                            ids.push($(this).val());
+                        }
+                    });
+
+                    if (ids.length == 0) {
+                        art.dialog.through({
+                            id: 'error',
+                            icon: 'error',
+                            content: '您没有勾选信息，无法进行操作！',
+                            cancelVal: '关闭',
+                            cancel: true
+                        });
+                        return false;
+                    }
+
+                    ids = ids.join(',');
+                    art.dialog.open(
+                        "__ROOT__/index.php?g=portal&m=AdminArticle&a=move&old_term_id={$term.term_id|default=0}&ids=" +
+                        ids, {
+                            title: "批量移动",
+                            width: "300px"
+                        });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

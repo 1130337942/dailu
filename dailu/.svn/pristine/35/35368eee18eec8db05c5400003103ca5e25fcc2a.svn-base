@@ -1,0 +1,442 @@
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix::after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+body {
+	background-color: #b8c1cc;
+}
+.g-doc{
+	background-color: #fff;
+	max-width: 4.14rem;
+	width: 100%;
+	margin:0px auto;
+	padding: 0.2rem 0.17rem;
+	box-sizing: border-box;
+	color:#333;
+	font-family:'Microsoft YaHei';
+}
+.main_color {
+	color: #659ff5;
+}
+.color_999{
+	color: #999;
+}
+.main_tripimg {
+	width: 100%;
+	height: 2rem;
+	border: 1px solid #e5e5e5;
+}
+.main_tripimg img{
+	width: 100%;
+	height: 100%;
+	border-radius: 0.04rem;
+}
+.main_msg {
+	margin-bottom: 0.2rem;
+}
+.main_msg .trip_title{
+	padding: 0.2rem 0 0.05rem;
+	font-size: 0.18rem;
+	font-weight: bold;
+	text-align: center;
+}
+.main_msg .trip_city{
+	font-size: 0.14rem;
+	text-align: center;
+	color: #666;
+	padding-bottom: 0.1rem;
+}
+.main_msg .user {
+	font-size: 0.14rem;
+	padding:0.15rem ;
+	color: #b3b3b3;
+	border-bottom: 1px solid #e5e5e5;
+}
+.trip_prev {
+	line-height: 0.52rem;
+	font-size: 0.14rem;
+	background-color: #f6f6f6;
+	border-radius: 4px;
+	margin-bottom: 0.4rem;
+}
+.trip_prev .main_color{
+	font-weight: bold;
+}
+.trip_prev .tit {
+	padding:0 0.16rem;
+	font-size: 0.16rem;
+	border-bottom: 1px solid #e5e5e5;
+}
+.trip_prev li {
+	padding:0 0.16rem;
+	border-bottom: 1px solid #e5e5e5;
+}
+.trip_prev li:last-child{
+	border-bottom: none;
+}
+.day_wap .day_list {
+	margin-top: 0.4rem;
+}
+.day_wap .day_list .tit {
+	color: #fff;
+	margin-bottom: 0.12rem;
+	font-size: 0.19rem;
+	background-color: #659ff5;
+	border-radius: 0.04rem;
+	line-height: 0.54rem;
+	padding:0 0.17rem;
+}
+.day_wap .day_list .tit .fl{
+	height: 0.54rem;
+	width: 45%;
+	overflow: hidden;
+}
+.day_wap .day_list .tit .one_time{
+	/*font-size: 0.16rem;
+	font-weight: normal;
+	color: #b3b3b3;
+	margin-right: 5px;*/
+	position: relative;
+}
+.day_wap .day_list .tit .one_time::before {
+	display: inline-block;
+	content: '';
+	vertical-align: middle;
+	width: 2px;
+	height: 0.16rem;
+	background-color: #fff;
+	margin: 0 5px;
+	margin-top: -3px;
+}
+.day_wap {
+	color: #b3b3b3;
+}
+.day_wap .map_img{
+	width: 100%;
+	height: 2rem;
+	margin-bottom: 0.12rem;
+}
+.day_wap .map_img img {
+	width: 100%;
+	height: 100%;
+	border-radius: 0.04rem;
+}
+.day_wap .info_wap {
+	position: relative;
+	padding: 0.16rem 0.12rem 0.16rem 0.6rem; 
+	background-color: #f6f6f6; 
+	border-radius: 0.04rem;                
+}
+.day_wap .info_wap.common_traffic {
+	background-color: #efefef;
+}
+.day_wap .info_wap .city_name {
+	font-size: 0.18rem;
+	color: #659ff5;
+}
+.day_wap .info_wap .city_name .py {
+	font-size: 0.16rem;
+	color: #b3b3b3;
+	margin-left: 10px;
+}
+.day_wap .info_wap .city_msg{
+	font-size: 0.14rem;
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow:hidden;
+}
+.day_wap .circle::before {
+	display: block;
+	content: '';
+	position: absolute;
+	top: 50%;
+	margin-top: -0.09rem;
+	left: 0.24rem;
+	width: 0.1rem;
+	height: 0.1rem;
+	border: 0.04rem solid #659ff5;
+	border-radius: 50%;
+	background-color: #fff;
+}
+.mb_18{
+	position: relative;
+	margin-bottom: 0.18rem;
+}
+.mb_18::after {
+	display: block;
+	content: '';
+	width: 0.02rem;
+	height: 0.18rem;
+	position: absolute;
+	left: 0.32rem;
+	bottom: -0.18rem;
+	background-color: #e5e5e5;
+}
+
+.day_list .spot_list:last-child .mb_18::after{
+	display: none;
+} 
+.day_wap .train::before {
+	display: block;
+	content: '';
+	position: absolute;
+	top: 50%;
+	margin-top: -0.09rem;
+	left: 0.24rem;
+	width: 0.26rem;
+	height: 0.26rem;
+	border-radius: 50%;
+	background: #659ff5 url(/static/v1/img/tripinfoShare/train0.png) center center no-repeat;
+	-webkit-background-size: 65% 65%;
+	background-size: 65% 65%;
+}
+.day_wap .hotel::before {
+	display: block;
+	content: '';
+	position: absolute;
+	top: 50%;
+	margin-top: -0.09rem;
+	left: 0.24rem;
+	width: 0.26rem;
+	height: 0.26rem;
+	border-radius: 50%;
+	background: #659ff5 url(/static/v1/img/tripinfoShare/hotel0.png) center center no-repeat;
+	-webkit-background-size: 50% 50%;
+	background-size: 50% 50%;
+}
+.day_wap .common_traffic.bus::before {
+	display: block;
+	content: '';
+	position: absolute;
+	top: 50%;
+	margin-top: -0.13rem;
+	left: 0.24rem;
+	width: 0.26rem;
+	height: 0.26rem;
+	border-radius: 50%;
+	background: url(/static/v1/img/tripinfoShare/bus1.png) center center no-repeat;
+	background-size: 75% 75%;
+}
+.day_wap  .info_wap .jz{
+	font-size: 10px;
+	line-height: 0.18rem;
+	padding:0 3px;
+	text-align: center;
+	border: 1px solid #659ff5;
+	border-radius: 2px;
+	margin-left: 3px;
+}
+.day_wap .hotel_img{
+	width: 100%;
+	height: 1.8rem;
+	margin-bottom: 0.12rem;
+}
+.day_wap .hotel_wap{
+	border-radius: 0.04rem; 
+}
+.day_wap .hotel_img img {
+	width: 100%;
+	height: 100%;
+}
+.spot_wap_info .on_time,
+.spot_wap_info .pay_one,
+.hotel_info .city_name {
+	height: 0.24rem;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow:hidden;	
+}
+.spot_wap_info p {
+	display: inline-block;
+}
+.spot_wap_info .address,
+.hotel_info .phone ,
+.hotel_info .address {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow:hidden;
+	font-size: 0.14rem;	
+}
+.b_b{
+	border-bottom: 1px solid #e5e5e5;
+}
+.day_wap .spot_wap .spot_list{
+	border-radius: 0.04rem;
+}
+.day_wap .spot_img{
+	width: 100%;
+	height: 1.9rem;
+}
+
+.day_wap .spot_img img {
+	width: 100%;
+	height: 100%;
+}
+.day_wap .spot_wap_info {
+	position: relative;
+	padding: 0.16rem 0.12rem 0.16rem 0.6rem; 
+	background-color: #f6f6f6;               
+}
+.day_wap .spot_wap_info .spot_msg{
+	font-size: 0.14rem;
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow:hidden;
+}
+.day_wap .spot_wap_info .spot_name .name{
+	width: 1.95rem;
+	color: #659ff5;
+	font-size: 0.18rem;
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow:hidden;
+}
+.day_wap .spot_wap_info .spot_name .time{
+	position: absolute;
+	top: 0.16rem;
+	right: 0.16rem;
+}
+.day_wap .ico_num i {
+	display: block;
+	position: absolute;
+	top: 50%;
+	margin-top: -0.09rem;
+	left: 0.24rem;
+	width: 0.2rem;
+	height: 0.2rem;
+	color: #fff;
+	text-align: center;
+	line-height: 0.2rem;
+	font-size: 0.14rem;
+	/*border: 0.04rem solid #659ff5;*/
+	border-radius: 50%;
+	background-color: #659ff5;
+}
+.day_wap .spot_ico::before {
+	display: block;
+	content: '';
+	position: absolute;
+	top: 50%;
+	margin-top: -0.15rem;
+	left: 0.24rem;
+	width: 0.26rem;
+	height: 0.26rem;
+	border-radius: 50%;
+	background:  url(/static/v1/img/tripinfoShare/yinye.png) center center no-repeat;
+	-webkit-background-size: 80% 80%;
+	background-size: 80% 80%;
+}
+
+/* 费用清单 */
+.bill{
+	margin-top: 0.2rem;
+	border-top: 1px solid #e5e5e5;
+}
+.bill .tit {
+	margin-top: 0.2rem;
+	color: #fff;
+	margin-bottom: 0.12rem;
+	font-size: 0.18rem;
+	background-color: #659ff5;
+	border-radius: 0.04rem;
+	line-height: 0.54rem;
+	padding:0 0.17rem;
+}
+.bill .e_charts_box{
+	height: 5rem;
+	background-color: #f6f6f6;
+	border-radius: 0.04rem;
+}
+.bill .bill_wap{
+	color:#333;
+	margin-top: 0.1rem;
+	background-color: #f6f6f6;
+	border-radius: 0.04rem;
+	line-height: 0.44rem;
+	padding: 0 0.25rem; 
+}
+.bill .bill_wap .wap_tit {
+	font-weight: 600;
+	font-size: 0.18rem;
+	border-bottom: 1px dashed #e5e5e5;
+}
+.bill .bill_wap .wap_tit .list_money {
+	color: #f4a21e;
+	font-weight: normal;
+	font-size: 0.2rem;
+}
+.bill .bill_wap .wap_list {
+	position: relative;
+	/*padding-left: 0.28rem;*/
+}
+.bill .bill_wap .wap_list i {
+	display: inline-block;
+	margin-right: 0.1rem;
+	width: 0.2rem;
+	height: 0.2rem;
+	vertical-align: middle;
+}
+.bill .bill_wap .wap_list i.train {
+	background: url(/static/v1/img/tripinfoShare/train1.png) center center no-repeat;
+	-webkit-background-size: 90% 95%;
+	background-size: 90% 95%;
+}
+.bill .bill_wap .wap_list i.plane {
+	background: url(/static/v1/img/tripinfoShare/plane1.png) center center no-repeat;
+	-webkit-background-size: 90% 95%;
+	background-size: 90% 95%;
+}
+.bill .bill_wap .wap_list i.bus {
+	background: url(/static/v1/img/tripinfoShare/bus1.png) center center no-repeat;
+	-webkit-background-size: 90% 95%;
+	background-size: 90% 95%;
+}
+.bill .bill_wap .wap_list i.hotel {
+	background: url(/static/v1/img/tripinfoShare/hotel1.png) center center no-repeat;
+	-webkit-background-size: 90% 95%;
+	background-size: 90% 95%;
+}
+.bill .bill_wap .wap_list i.canyin {
+	background: url(/static/v1/img/tripinfoShare/canyin.png) center center no-repeat;
+	-webkit-background-size: 90% 95%;
+	background-size: 90% 95%;
+}
+.tips {
+	padding: 0.2rem 0.15rem;
+	background-color: #659ff5;
+	border-radius: 0.04rem;
+	color: #fff;
+	font-size: 0.16rem;
+	margin:0.2rem 0 0.5rem;
+	position: relative;
+}
+.tips img {
+	position: absolute;
+	bottom: -0.2rem;
+	right: 0.1rem;
+	width: 0.58rem;
+	height: 0.5rem;
+}

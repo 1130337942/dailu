@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>袋鹿订单列表</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/js/pagination/pagination.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/store/storeOrderlist.css');?>">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@publicHeader"/>
+	<div class="main clearfix">
+		<div class="bread">
+			<a href="javascript:;">首页</a> > <a href="javascript:;">订单列表</a>
+			<div class="listSearch fr">
+				订单编号<input class="searchNum" type="text" placeholder="通过订单编号搜索">
+			</div>
+		</div>
+		<include file="public@public_personal_center"/>
+		<div class="rightList fr">
+			<div class="limit_wap">
+				<select name="" id="listType">
+					<option value="我的订单">我的订单</option>
+					<option value="酒店订单">酒店订单</option>
+					<!-- <option value="机票订单">机票订单</option> -->
+				</select>
+				<div class="status">
+					<span class="notpay active">待付款</span>
+					<span class="nottrip">未出行</span>
+					<span class="notpay">待付款</span>
+				</div>
+				<div class="searchdate fr">
+					下单日期
+					<div class="date_box">
+						<input class="satrtDate" type="date">
+						<input class="endDate" type="date">
+					</div>
+						<a class="search" href="javascript:;"></a>
+				</div>
+			</div>
+			<div class="tab_title">
+				  <span class="len1">产品信息</span>                                 
+				  <span class="len2">类型</span>                                   
+				  <span class="len3">时间</span>                                                                   
+				  <span class="len4">数量</span>                                                                   
+				  <span class="len5">订单金额</span>                                                                   
+				  <span class="len6">状态</span>                                                                   
+				  <span class="len7">操作</span>                                                             
+			</div>
+			<ul class="allist" count="{$count}">
+				<volist name="order_list" id="vo">
+					<li class="order_list">
+						<div class="list_tit">
+							<span class="color_3">
+								订单编号 <span class="order_num">{$vo.hotel_order_id}</span>
+							</span>
+							
+							下单时间 <span class="order_time">{$vo.create_date}</span>
+							<span class="delist fr len7">删除订单</span>
+						</div>
+						<div class="list_info">
+							<div class="len len1 clearfix">
+								<div class="fl left_img">
+									<img src="/static/v1/img/hotel.png" alt="">
+								</div>
+								<div class="fl right_info">
+									<div class="list_name">{$vo.hotel_name}</div>
+									<div class="type">{$vo.hotel_room_type}</div>
+								</div>
+							</div>
+							<div class="len len2">
+								酒店
+							</div>
+							<div class="len len3">
+								{$vo.arrival_date}
+							</div>
+							<div class="len len4">
+								{$vo.room_number}间/{$vo.stay_days}晚
+							</div>
+							<div class="len len5">
+								¥{$vo.total_price}
+							</div>
+							<div class="len len6">
+								<span class=""><switch name="$vo.show_status">
+								<case value="1">担保失败</case>
+								<case value="2">等待担保</case>
+								<case value="4">等待确认</case>
+								<case value="8">等待支付</case>
+								<case value="16">等待核实入住</case>
+								<case value="32">酒店拒绝订单</case>
+								<case value="64">未入住</case>
+								<case value="128">已经离店</case>
+								<case value="256">已经取消</case>
+								<case value="512">已经确认</case>
+								<case value="1024">已经入住</case>
+								<case value="2048">正在担保-处理中</case>
+								<case value="4096">正在支付-处理中</case>
+								<case value="8192">支付失败</case>
+							</switch></span><br>
+								<a class="orderdetail" href='/portal/store/hotelOrderDetails.html?order_id={$vo.hotel_order_id}'>订单详情</a>
+							</div>
+							<div class="len len7">
+								<if condition="$vo.pay_status == 0 " >
+									<if condition="$vo.show_status == 8 " >
+										<a class="topay" href="/portal/store/hotelPay.html?hotel_id={$vo.id}">去付款</a><br>
+										<if condition="$vo.is_cancel == true "/>
+											<a class="tocancel" href="/portal/store/hotelOrderCancel.html?order_id={$vo.hotel_order_id}">取消订单</a>
+										<else />
+											<span class="tocancel">不可取消</span>
+										</if>
+									<else />
+										<a class="submit">已取消</a>
+									</if>
+								<else />
+									<a class="submit">已支付</a>
+									<if condition="$vo.is_cancel == true "/>
+										<a class="tocancel" href="/portal/store/hotelOrderCancel.html?order_id={$vo.hotel_order_id}">取消订单</a>
+									<else />
+										<span class="tocancel">不可取消</span>
+									</if>
+								</if>
+								<!-- <span class="toreturn hide">退票</span>			 -->
+							</div>
+						</div>
+					</li>
+				</volist>
+
+				<!-- <li class="order_list">
+					<div class="list_tit">
+						<span class="color_3">
+							订单编号 <span class="order_num">45215454565156</span>
+						</span>
+						
+						下单时间 <span class="order_time">2018-07-15 12:24:20</span>
+						<span class="delist fr len7">删除订单</span>
+					</div>
+					<div class="list_info">
+						<div class="len len1 clearfix">
+							<div class="fl left_img">
+								<img src="/static/v1/img/air.png" alt="">
+							</div>
+							<div class="fl right_info">
+								<div class="list_name">上海 — 长沙</div>
+								<div class="type">单程</div>
+							</div>
+						</div>
+						<div class="len len2">
+							机票
+						</div>
+						<div class="len len3">
+							2018-05-29
+						</div>
+						<div class="len len4">
+							1张
+						</div>
+						<div class="len len5">
+							¥558.00
+						</div>
+						<div class="len len6">
+							<span class="">已付款</span><br>
+							<a class="orderdetail" href="javascript:;">订单详情</a>
+						</div>
+						<div class="len len7">
+							<span class="topay hide">去付款</span><br>
+							<span class="tocancel hide">取消订单</span>
+							<span class="toreturn">退票</span>
+						</div>
+					</div>
+				</li> -->
+
+			</ul>
+			<div id="pagination"></div>
+		</div>
+	</div>
+
+	<include file="public@publicFooter"/>
+	
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/pagination/jquery.pagination.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/store/storeOrderlist.js');?>"></script>
+</html>

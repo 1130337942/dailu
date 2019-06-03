@@ -1,0 +1,342 @@
+<!DOCTYPE html >
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="Keywords" content="袋鹿,行程路线,旅游行程,行程单,自由行,自助游,行程制作">
+	<meta name="description" content="【袋鹿旅行】专为自由行用户打造的全智能旅行规划平台，自主免费设计行程，一键生成导出行程单，海量旅行元素选择、达人行程推荐，人性智能优化行程，电子景讲，手绘地图，自由行的必备工具，做你旅行的带路人！">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/common/css/common.css');?>">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/common/swiper/swiper.css');?>">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/common/swiper/animate.min.css');?>">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/common/DL-fonts-family/dailu.css');?>">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/index/index.css');?>">
+	<title>袋鹿旅行-好吃好玩的行程路线设计_旅游行程制作_自由行_自助游行程单</title>
+	<include file="public@ie">
+</head>
+
+<body>
+	<div class="swiper-container swiper-container-v">
+		<div class="swiper-wrapper">
+			<!-- 第一屏 -->
+			<div class="swiper-slide">
+				<div class="swiper-container swiper-container-h swiper-no-swiping">
+					<div class="swiper-wrapper swiper-wrapper-h">
+						<div class="swiper-slide">
+							<div class="s_bg s_bg1"></div>
+						</div>
+						<div class="swiper-slide">
+							<div class="s_bg s_bg2"></div>
+						</div>
+						<div class="swiper-slide">
+							<div class="s_bg s_bg3"></div>
+						</div>
+						<div class="swiper-slide">
+							<div class="s_bg s_bg4"></div>
+						</div>
+					</div>
+					<div class="banner_line">
+						<img src="/static/v1/img/index/banner_line.png" alt="">
+						<div class="banner_span">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<div class="banner_text">
+								<div class="banner_text1">
+									<p class="banner_title">袋鹿，自由行的必备工具<br>全免费定制您的私属行程</p>
+									<p>Dailuer, a necessary tool for free walking Customize your private trip free of charge</p>
+									<a href="portal/addStrokeform/addStrokeform.html">设计行程</a>
+								</div>
+								<div class="banner_text2">
+									<p class="banner_title">百万级旅游元素供你自由选购<br>智能规划，消除行程设计烦恼</p>
+									<p>Millions of travel elements for you to choose from</p>
+									<a href="portal/addStrokeform/addStrokeform.html">设计行程</a>
+								</div>
+								<div class="banner_text3">
+									<p class="banner_title">智能景讲、景区导览、周边推送<br>交通住宿一键预定，方便快捷透明</p>
+									<p>Intelligent explanation，scenic spots，peripheral push</p>
+									<a href="portal/addStrokeform/addStrokeform.html">设计行程</a>
+								</div>
+								<div class="banner_text4">
+									<p class="banner_title">袋鹿，开启全新的旅行方式<br>从此让出行变得轻松自由快乐</p>
+									<p>Dailuer，Start a new way of travel From now on let travel become easy, free and happy</p>
+									<a href="portal/addStrokeform/addStrokeform.html">设计行程</a>
+								</div>
+							</div>
+							<div class="hot_mall_box clearfix">
+								<div class="hot_route">
+									<p>达人行程</p>
+									<i class="hot_mall_line"></i>
+									<p>GEEK</p>
+									<p>TRAVEL</p>
+									<i class="hot_mall_icon"></i>
+								</div>
+								<!-- <div class="mall">
+									<a href="/portal/store/index.html">
+										<p>DIY商城</p>
+										<i class="hot_mall_line"></i>
+										<p>DIY</p>
+										<p>MALL</p>
+										<i class="hot_mall_icon"></i>
+									</a>
+
+								</div> -->
+							</div>
+
+						</div>
+						<i class="banner_i"></i>
+					</div>
+
+				</div>
+
+			</div>
+			<!-- ---第二屏--- -->
+			<!-- <div class="swiper-slide swiper-slide2">
+				<div class="img_box">
+					<section class="img_1 section_video" style="height:100%">
+						<div class="bg_1" style="height: 100%">
+								<video style="height:100%; display:block;"  poster="" preload="meta" loop autoplay=''  muted='muted'>
+    									<source src='/static/v1/video/022.mp4' type='video/mp4' />
+								</video>
+						</div>
+						<div class="video_mask"></div>
+						<div class="text text_1">
+							<p class="text_p1 clearfix"><span class="fl">自由选择 专业规划</span><i></i></p>
+							<p class="text_p2">FREEDOM OF CHOICE</p>
+							<i class="line"></i>
+							<p class="text_p3">提供全面的路线库、景点库及周边的吃喝玩乐帮 助用户打造属于自己独家路线
+							</p>
+							<p class="text_p4">
+								<i></i>PLAY VIDEO</p>
+						</div>
+
+						<div class="text_center text_1_center">
+							<div class="text_div1"><i class="i_center"></i></div>
+							<p class="text_p1">自由选择 专业规划</p>
+							<p class="text_p2">FREEDOM OF CHOICE</p>
+							<i class="line"></i>
+							<p class="text_p3">提供全面的路线库、景点库及周边的吃喝玩乐帮 助用户打造属于自己独家路线
+							</p>
+							<p class="text_p4">
+								<i class="center_move"></i>
+							</p>
+						</div>
+					</section>
+					<section class="img_2 section_video" style="height:100%">
+						<div class="bg_2" style="height:100%">
+							<video style="height:100%;display: block;" poster="" preload="meta" loop  autoplay=''  muted='muted'>
+    								<source src='/static/v1/video/011.mp4' type='video/mp4' />
+							</video>
+						</div>
+						<div class="video_mask"></div>
+						<div class="text text_2">
+							<p class="text_p1 clearfix"><span class="fl">智能带路 一站预定</span><i></i></p>
+							<p class="text_p2">SMART ROUTE</p>
+							<i class="line"></i>
+							<p class="text_p3">无论是旅游租车、酒店查询预订、自驾导航、景点讲解都能手到擒来</p>
+							<p class="text_p4">
+								<i></i>PLAY VIDEO</p>
+						</div>
+
+						<div class="text_center text_2_center">
+							<div class="text_div1"><i class="i_center"></i></div>
+							<p class="text_p1">智能带路 一站预定</p>
+							<p class="text_p2">SMART ROUTE</p>
+							<i class="line"></i>
+							<p class="text_p3">无论是旅游租车、酒店查询预订、自驾导航、景点讲解都能手到擒来</p>
+							<p class="text_p4">
+								<i class="center_move"></i>
+							</p>
+						</div>
+
+					</section>
+				
+				</div>
+			</div> -->
+			<!-- -----第三屏------ -->
+			<div class="swiper-slide swiper-slide3">
+				<div class="shares_box clearfix">
+					<div class="ani" swiper-animate-effect="fadeIn" swiper-animate-duration="0.8s" swiper-animate-delay="0s">
+						<div class="title_box">
+							<p>10000+达人的行程路线</p>
+							<span>袋鹿支持数万的用户实现行程规划的工作</span>
+						</div>
+						<!-- <div class="search_box">
+							<a href="/portal/travel/travelShare.html"><div class="search">
+								<label for="shares_search"></label>
+								<input id="shares_search" type="text" placeholder="输入你想要搜索的内容吧">
+							</div>
+							<div class="button">立即搜索</div></a>
+						</div> -->
+					</div>
+					<!-- <div class="hot_text ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.8s" swiper-animate-delay="0s">
+						<p><a href="/portal/travel/travelShare.html">热门行程</a></p>
+						<span>Hot Preferred</span>
+						<br>
+						<i></i>
+					</div> -->
+					<div class="content_box">
+						<div class="swi3_wrap1 clearfix"></div>
+						<div class="swi3_wrap2 clearfix"></div>
+					</div>
+					<div class="shares_more ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.8s" swiper-animate-delay="0.05s">查看更多</div></a>
+				</div>
+			</div>
+			<!-- 第四屏 -->
+			<div class="swiper-slide swiper-slide4">
+				<div class="advantage_box">
+					<div class="advantage_title ani" swiper-animate-effect="fadeIn" swiper-animate-duration="0.8s" swiper-animate-delay="0s">
+						<p class="adv_title1">我们的优势 | DAILUER</p>
+						<p class="adv_title2">免费为您提供设计行程所需的一切服务</p>
+						<i class="adv_i"></i>
+					</div>
+					<div class="advantage_content clearfix">
+						<div class="item ani clearfix" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0s">
+							<div class="adv_img">
+								<img src="/static/v1/img/index/bg4_1.png" alt="">
+							</div>
+							<div class="adv_text">
+								<p>数万旅游资源</p>
+								<p>提供全面的路线库、景点库， 帮助用户打造独家路线</p>
+							</div>
+						</div>
+
+						<div class="item ani clearfix" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+							<div class="adv_img">
+								<img src="/static/v1/img/index/bg4_2.png" alt="">
+							</div>
+							<div class="adv_text">
+								<p>智能优化行程</p>
+								<p>智能优化辅助设计专属行程，合理安排行程，省时更省心</p>
+							</div>
+						</div>
+
+						<div class="item ani clearfix" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.2s">
+							<div class="adv_img">
+								<img src="/static/v1/img/index/bg4_3.png" alt="">
+							</div>
+							<div class="adv_text">
+								<p>WEB多版本行程单</p>
+								<p>精致的电子书行程单，简洁的日历行程单，让您对行程一目了然</p>
+							</div>
+						</div>
+						<div class="item ani clearfix" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+							<div class="adv_img">
+								<img src="/static/v1/img/index/bg4_4.png" alt="">
+							</div>
+							<div class="adv_text">
+								<p>GPS定点触发</p>
+								<p>GPS定点触发，边走边听更省事，行走轨迹记录，游玩不迷路</p>
+							</div>
+						</div>
+						<div class="item clearfix ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.4s">
+							<div class="adv_img">
+								<img src="/static/v1/img/index/bg4_5.png" alt="">
+							</div>
+							<div class="adv_text">
+								<p>管家服务</p>
+								<p>贴心的在线管家服务，让您在出行的过程中尽情的享受旅行</p>
+							</div>
+						</div>
+
+						<div class="item clearfix ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
+							<div class="adv_img">
+								<img src="/static/v1/img/index/bg4_6.png" alt="">
+							</div>
+							<div class="adv_text">
+								<p>一站式服务</p>
+								<p>我们竭力为您提供一切出行中所需的机票，酒店，租车等服务</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide swiper-slide5">
+				<include file="public@publicFooter"/>
+			</div>
+		</div>
+		
+		<!-- Add Pagination -->
+		<div class="swiper-pagination swiper-pagination-v"></div>
+		<div class="home_ico">
+			<div class="logo">
+				<img src="/static/common/img/logo.png" alt="">
+			</div>
+			<div class="ico_right clearfix">
+				<!-- <div class="Help_center">
+					<i></i>帮助中心</div> -->
+				<if condition="$Think.cookie.user_name == true">
+					<div class='log_register islogIn'>
+						<span class="userName">{$Think.cookie.user_name}</span>
+						<img src="/static/v1/img/header.jpg" alt="">
+						<ul class="workbox">
+							<li class="user">{$Think.cookie.user_name}</li>
+							<li class="cart user_main"><a target="_blank" href="/portal/aboutuser/personal_addTour.html" >个人主页</a></li>
+							<li class="cart user_invitation"><a target="_blank" href="/portal/aboutuser/user_invitation.html" >我的推广</a></li>
+							<li class="cart user_travel"><a target="_blank" href="/portal/aboutuser/personal_planTour.html">我的行程</a></li>
+							<!-- <li class="cart user_goods">我的订单</li> -->
+							<!-- <li class="cart user_info">常用信息</li> -->
+							<li class="cart user_set"><a target="_blank" href="/portal/aboutuser/personal_center.html">账户设置</a></li>
+							<li class="cart user_exit">退出账号</li>
+						</ul>
+					</div>
+					<else />
+					<div class="log_register">
+						<a href='/portal/login/login.html' class="log">登录</a>
+						<a href='/portal/login/register.html' class="register">注册</a>
+					</div>
+				</if>
+			</div>
+			<!-- <div class="share_icon">
+				<i></i>
+				<i></i>
+				<i></i>
+			</div> -->
+			<div class="service_icon">
+				<div class="online_service">
+					<i></i>
+					<div class="icon_text icon1_text">在线客服</div>
+				</div>
+				<!-- <div>
+					<i></i>
+					<div class="icon_text icon2_text">在线</div>
+				</div>
+				<div>
+					<i></i>
+					<div class="icon_text icon3_text">在线</div>
+				</div> -->
+			</div>
+			<div class="bottom_line">
+				<i class="online"></i>
+				<span>x</span>
+			</div>
+			<div class="down_gif">
+				<img src="/static/v1/img/index/down.gif" alt="">
+			</div>
+		</div>
+		<div class="video_box">
+			<div class="video_wap">
+				<video style="height:100%; width: 100%;" poster="" preload="auto" loop autoplay="true" controls="true">
+				<source src='' type='video/mp4' />
+				</video>
+				<div class="closeVideo">X</div>
+			</div>	
+		</div>
+		
+	</div>
+		
+
+</body>
+
+<script src="<?php AutoVersion('/static/common/js/jquery.1.8.3.min.js');?>"></script>
+<script src="<?php AutoVersion('/static/common/swiper/swiper.js');?>"></script>
+<script src="<?php AutoVersion('/static/common/swiper/swiper.animate1.0.3.min.js');?>"></script>
+<script src="<?php AutoVersion('/static/common/js/common.js');?>"></script>
+<script src="/static/common/js/template.js"></script>
+<script src="<?php AutoVersion('/static/v1/js/index/index.js');?>"></script>
+
+
+</html>

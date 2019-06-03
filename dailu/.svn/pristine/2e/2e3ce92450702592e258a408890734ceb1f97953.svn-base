@@ -1,0 +1,95 @@
+ <!doctype HTML>
+<html style="font-size:100px;">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta content="telephone=no" name="format-detection" />
+<meta name="description" content="袋鹿活动报名" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"/>
+<title>袋鹿活动</title>
+<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+<script type="text/javascript" src="<?php AutoVersion('/static/common/h5common/rem.js');?>"></script>
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/h5common/normalize.css');?>">
+<link rel="stylesheet" href="/static/v1/css/wap/activityJoin{$activity_info.style}<?php AutoVersion('.css');?>">
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js"></script>
+</head>
+<body>
+	<div class="main">
+		<div class="top_wap">
+			<div class="subhead">{$activity_info.subheading}</div>
+			<div class="main_tit">{$activity_info.activity}</div>
+			<div class="introduce">{$activity_info.info}</div>
+			<div class="activity_time">
+				活动时间：<span class="time">{$activity_info.start_time} — {$activity_info.end_time}</span>
+			</div>
+		</div>
+		<div class="form_box">
+			<div class="dash">
+				<div class="inner">
+					<h4> · 报名信息 · </h4>
+					<div class="input_wap">
+						<input id="name" type="text" placeholder="输入您的姓名">
+					</div>
+					<div class="input_wap">
+						<input id="phone" type="text" placeholder="输入您的手机号码">
+					</div>
+					<div class="submit_wap">
+						<span class="submit" type="{$activity_info.id}">立即报名</span>
+						<span class="under"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="open_step">
+			<div class="open_tit">如何开启电子围栏</div>
+			<div class="step_wap">
+				<div class="step_tit"><span>第一步</span>打开行程频道页</div>
+				<img src="/static/v1/img/wap/step1.png" alt="">
+			</div>
+			<div class="step_wap">
+				<div class="step_tit"><span>第二步</span>打开我的行程</div>
+				<img src="/static/v1/img/wap/step2.png" alt="">
+			</div>
+			<div class="step_wap">
+				<div class="step_tit"><span>第三步</span>点击行程选项卡</div>
+				<img src="/static/v1/img/wap/step3.png" alt="">
+			</div>
+			<div class="step_wap">
+				<div class="step_tit"><span>第四步</span>点击地图模式按钮</div>
+				<img src="/static/v1/img/wap/step4.png" alt="">
+			</div>
+			<div class="step_wap">
+				<div class="step_tit"><span>第五步</span>点击开启按钮</div>
+				<img src="/static/v1/img/wap/step5.png" alt="">
+			</div>
+		</div>
+		<div class="award">
+			<if condition="$activity_info.prize" >
+			<div class="award_box">
+				<h4>奖品清单</h4>
+				<foreach name="activity_info.prize" item="vo">
+				<div class="list">{$vo}</div>
+				</foreach>
+			</div>
+			<else />
+			</if>
+		</div>
+		<div class="rule_box">
+			<div class="rule_tit">活动规则</div>
+			<div class="rules">
+				<foreach name="activity_info.rules" item="vo">
+				<p>{$vo}</p>
+				</foreach>
+			</div>
+		</div>
+		<div class="copyright">
+				<div>杭州优瑞创网络科技出品</div>
+				<div>2018 All Right Reserved</div>
+		</div>
+	</div>
+</body>
+	<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+	<script src='/static/common/layer3.1.1/layer.js'></script>
+	<script type="text/javascript"  src="<?php AutoVersion('/static/common/js/common.js');?>"></script>
+	<script src="<?php AutoVersion('/static/v1/js/wap/activityJoin.js');?>"></script>
+</html>

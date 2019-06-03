@@ -1,0 +1,4451 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<HotelThemeList>
+<HotelTheme CityCode="0101" CityName="北京市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10026" Name="四合院"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10014" Name="精品酒店"/>
+<Location Id="10011" Name="设计师酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10010" Name="豪宅"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0201" CityName="上海市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10031" Name="浦江观景"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10032" Name="老洋房"/>
+<Location Id="10011" Name="设计师酒店"/>
+<Location Id="10025" Name="米其林餐厅"/>
+<Location Id="10014" Name="精品酒店"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10114" Name="外滩漫步"/>
+<Location Id="10111" Name="高校周边"/>
+<Location Id="10085" Name="无边泳池"/>
+<Location Id="10112" Name="临近地铁"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0301" CityName="天津市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10016" Name="海河观景"/>
+<Location Id="10017" Name="万国建筑"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0401" CityName="重庆市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10085" Name="无边泳池"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0402" CityName="万州区">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0404" CityName="涪陵区">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0406" CityName="武隆县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0409" CityName="合川区">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0410" CityName="永川区">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0411" CityName="南川区">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0501" CityName="石家庄市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0502" CityName="承德市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10050" Name="寺庙祈福"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0503" CityName="秦皇岛市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0504" CityName="南戴河">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0505" CityName="邢台市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0506" CityName="唐山市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0508" CityName="北戴河区">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0511" CityName="廊坊市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0512" CityName="保定市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0513" CityName="张家口市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0514" CityName="衡水市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0515" CityName="邯郸市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0516" CityName="沧州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0517" CityName="任丘市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0519" CityName="正定县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0525" CityName="丰宁满族自治县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0528" CityName="高碑店市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0533" CityName="三河市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0535" CityName="野三坡">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0536" CityName="昌黎县">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0543" CityName="乐亭县">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0552" CityName="崇礼县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0555" CityName="黄骅市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0573" CityName="张北县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0588" CityName="滦县">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0601" CityName="太原市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0602" CityName="大同市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0603" CityName="临汾市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0604" CityName="五台山">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0605" CityName="运城市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0606" CityName="忻州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0607" CityName="晋中市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0608" CityName="平遥县">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10026" Name="四合院"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0609" CityName="晋城市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0611" CityName="阳泉市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0617" CityName="长治市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0618" CityName="朔州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0619" CityName="吕梁市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0701" CityName="呼和浩特市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0702" CityName="包头市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0704" CityName="锡林浩特市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0705" CityName="鄂尔多斯市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0706" CityName="通辽市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0707" CityName="赤峰市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0709" CityName="满洲里市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0710" CityName="巴彦淖尔市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0712" CityName="呼伦贝尔市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0713" CityName="乌兰察布市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0714" CityName="乌海市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0719" CityName="阿尔山市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0726" CityName="额尔古纳市">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0801" CityName="大连市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10036" Name="万国风情"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0802" CityName="沈阳市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10050" Name="寺庙祈福"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0803" CityName="鞍山市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0804" CityName="抚顺市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0805" CityName="本溪市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0806" CityName="丹东市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0807" CityName="兴城市">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0809" CityName="盘锦市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0810" CityName="锦州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0812" CityName="海城市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0813" CityName="铁岭市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0815" CityName="营口市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0816" CityName="朝阳市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0818" CityName="辽阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0820" CityName="葫芦岛市">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0823" CityName="阜新市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0833" CityName="绥中县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0901" CityName="长春市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0902" CityName="吉林市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0903" CityName="通化市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0904" CityName="延吉市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10043" Name="交通枢纽"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0910" CityName="松原市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0917" CityName="敦化市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0918" CityName="白山市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0919" CityName="四平市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0920" CityName="白城市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="0939" CityName="长白山">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1001" CityName="哈尔滨市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10058" Name="滑雪酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1002" CityName="牡丹江市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1003" CityName="亚布力">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1004" CityName="大庆市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1005" CityName="齐齐哈尔市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1012" CityName="佳木斯市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1014" CityName="黑河市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1019" CityName="伊春市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1026" CityName="五大连池市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1101" CityName="南京市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10038" Name="民国记忆"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10085" Name="无边泳池"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1102" CityName="苏州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10030" Name="太湖观景"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1103" CityName="常州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1104" CityName="扬州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1105" CityName="无锡市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10030" Name="太湖观景"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1106" CityName="徐州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1107" CityName="南通市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1108" CityName="镇江市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1109" CityName="宜兴市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10044" Name="会议酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1110" CityName="连云港市">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1111" CityName="张家港市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1113" CityName="江阴市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1114" CityName="吴江区">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1115" CityName="泰州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1116" CityName="盐城市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1117" CityName="常熟市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1119" CityName="仪征市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1120" CityName="太仓市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1121" CityName="同里">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1122" CityName="溧阳市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10012" Name="温泉酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1123" CityName="淮安市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1125" CityName="启东市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1126" CityName="周庄">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1127" CityName="昆山市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1129" CityName="丹阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1131" CityName="宿迁市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1134" CityName="新沂市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1136" CityName="东台市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1137" CityName="靖江市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1138" CityName="泗阳县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1139" CityName="海安县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1143" CityName="句容市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1146" CityName="如皋市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1152" CityName="海门市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1157" CityName="泗洪县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1168" CityName="沭阳县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1169" CityName="赣榆县">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1201" CityName="杭州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10014" Name="精品酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10063" Name="江南韵味"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10011" Name="设计师酒店"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10085" Name="无边泳池"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1202" CityName="宁波市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10020" Name="三江美景"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1203" CityName="温州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1204" CityName="金华市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1205" CityName="绍兴市">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1206" CityName="永康市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1207" CityName="义乌市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1208" CityName="玉环县">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1209" CityName="嘉兴市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10121" Name="品质民宿"/>
+<Location Id="10011" Name="设计师酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1212" CityName="诸暨市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1213" CityName="临安市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1215" CityName="奉化市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1224" CityName="台州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1226" CityName="临海市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1227" CityName="天台县">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1228" CityName="云和县">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1230" CityName="丽水市">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1231" CityName="慈溪市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1233" CityName="千岛湖风景区">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1234" CityName="海宁市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1235" CityName="衢州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10044" Name="会议酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1236" CityName="嵊州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1237" CityName="瑞安市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1238" CityName="温岭市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1239" CityName="湖州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1240" CityName="安吉县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1241" CityName="海盐县">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1242" CityName="德清县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1243" CityName="东阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1245" CityName="舟山市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10050" Name="寺庙祈福"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1247" CityName="桐庐县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10049" Name="天然氧吧"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1248" CityName="富阳市">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1250" CityName="仙居县">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1252" CityName="宁海县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1253" CityName="象山县">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1257" CityName="嵊泗县">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1259" CityName="乐清市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1262" CityName="江山市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1263" CityName="桐乡市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1264" CityName="武义县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1266" CityName="雁荡山">
+<Themes>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1267" CityName="缙云县">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1268" CityName="平湖市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1270" CityName="西塘古镇">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10050" Name="寺庙祈福"/>
+<Location Id="10011" Name="设计师酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1271" CityName="建德市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1272" CityName="遂昌县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10009" Name="民居"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1275" CityName="余姚市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1276" CityName="永嘉县">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1277" CityName="嘉善县">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1283" CityName="苍南县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1288" CityName="横店影视城">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1289" CityName="洞头县">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10005" Name="海滨风光"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1293" CityName="乌镇">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10050" Name="寺庙祈福"/>
+<Location Id="10011" Name="设计师酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10121" Name="品质民宿"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1297" CityName="南浔区">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1298" CityName="长兴县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1300" CityName="松阳县">
+<Themes>
+<Location Id="10009" Name="民居"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1301" CityName="合肥市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1302" CityName="黄山市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1303" CityName="安庆市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1304" CityName="芜湖市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1305" CityName="蚌埠市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1306" CityName="淮南市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1307" CityName="阜阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1308" CityName="巢湖市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1309" CityName="九华山">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10050" Name="寺庙祈福"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1311" CityName="马鞍山市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1312" CityName="亳州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1313" CityName="天柱山景区">
+<Themes>
+<Location Id="10015" Name="名山客舍"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1314" CityName="宿州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1315" CityName="铜陵市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1318" CityName="滁州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1319" CityName="六安市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1320" CityName="池州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1322" CityName="淮北市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1325" CityName="桐城市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1328" CityName="宣城市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1330" CityName="宏村景区">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1339" CityName="黟县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1340" CityName="宏村景区">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1349" CityName="泾县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1354" CityName="歙县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1362" CityName="天堂寨镇">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1401" CityName="厦门市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10008" Name="庭院幽悠"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10085" Name="无边泳池"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1402" CityName="福州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1403" CityName="泉州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1404" CityName="武夷山市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1405" CityName="石狮市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1406" CityName="莆田市">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1408" CityName="漳州市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1409" CityName="龙岩市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1410" CityName="三明市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1411" CityName="南平市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1412" CityName="福鼎市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1413" CityName="晋江市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1414" CityName="宁德市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1418" CityName="东山县">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1419" CityName="安溪县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1422" CityName="福清市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1426" CityName="上杭县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1427" CityName="惠安县">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1429" CityName="泰宁县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1434" CityName="漳浦县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1435" CityName="霞浦县">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10005" Name="海滨风光"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1438" CityName="平潭县">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10005" Name="海滨风光"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1439" CityName="南靖县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1441" CityName="南安市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1452" CityName="仙游县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1501" CityName="南昌市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10014" Name="精品酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1502" CityName="九江市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1503" CityName="吉安市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1506" CityName="庐山风景区">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1507" CityName="景德镇市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1508" CityName="上饶市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1509" CityName="宜春市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1512" CityName="萍乡市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1514" CityName="新余市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1515" CityName="抚州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1516" CityName="赣州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1517" CityName="鹰潭市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1523" CityName="三清山">
+<Themes>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10049" Name="天然氧吧"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1601" CityName="青岛市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10022" Name="啤酒大虾"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1602" CityName="济南市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10071" Name="明湖夜景"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1603" CityName="潍坊市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1604" CityName="烟台市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10126" Name="温泉周边"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1605" CityName="威海市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1606" CityName="淄博市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1607" CityName="东营市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1608" CityName="枣庄市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1611" CityName="临沂市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1612" CityName="德州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1614" CityName="泰安市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1615" CityName="日照市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1616" CityName="菏泽市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1618" CityName="滨州市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1619" CityName="济宁市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1622" CityName="聊城市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1634" CityName="莱芜市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1701" CityName="郑州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1702" CityName="洛阳市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1703" CityName="开封市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1704" CityName="新乡市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1705" CityName="平顶山市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1706" CityName="濮阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1707" CityName="南阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1708" CityName="三门峡市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1709" CityName="济源市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1710" CityName="焦作市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1712" CityName="鹤壁市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10043" Name="交通枢纽"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1713" CityName="许昌市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1714" CityName="周口市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1716" CityName="安阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1717" CityName="漯河市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1718" CityName="驻马店市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1719" CityName="登封市">
+<Themes>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1720" CityName="信阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1721" CityName="商丘市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1723" CityName="新郑市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1726" CityName="栾川县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1728" CityName="林州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1744" CityName="中牟县">
+<Themes>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1747" CityName="宜阳县">
+<Themes>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1765" CityName="辉县市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1791" CityName="云台山">
+<Themes>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1801" CityName="武汉市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10035" Name="栖居江畔"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10014" Name="精品酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10113" Name="美食街周边"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1802" CityName="荆州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1803" CityName="宜昌市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1807" CityName="十堰市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1810" CityName="荆门市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1811" CityName="恩施土家族苗族自治州">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1813" CityName="神农架">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1814" CityName="黄石市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1815" CityName="仙桃市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1818" CityName="鄂州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1820" CityName="咸宁市">
+<Themes>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1821" CityName="赤壁市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1822" CityName="孝感市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1823" CityName="随州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1829" CityName="潜江市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1830" CityName="黄冈市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1831" CityName="武当山">
+<Themes>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1834" CityName="襄阳市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1837" CityName="麻城市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1838" CityName="罗田县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1848" CityName="黄梅县">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1901" CityName="长沙市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1902" CityName="株洲市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1903" CityName="张家界市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1904" CityName="岳阳市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1906" CityName="湘潭市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1907" CityName="郴州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1910" CityName="常德市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1915" CityName="凤凰县">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1918" CityName="衡阳市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1919" CityName="浏阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1920" CityName="益阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1921" CityName="怀化市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1923" CityName="永州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1924" CityName="邵阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1928" CityName="娄底市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="1937" CityName="湘西土家族苗族自治州">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2001" CityName="广州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10033" Name="啖茶滋味"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10100" Name="珠江观景"/>
+<Location Id="10101" Name="景区周边"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2002" CityName="汕头市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2003" CityName="深圳市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10018" Name="乐活鹏城"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10057" Name="登山徒步"/>
+<Location Id="10085" Name="无边泳池"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2004" CityName="珠海市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10113" Name="美食街周边"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2005" CityName="佛山市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2006" CityName="揭阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2007" CityName="东莞市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2009" CityName="茂名市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2010" CityName="惠州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2011" CityName="中山市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2013" CityName="肇庆市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2014" CityName="湛江市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2016" CityName="潮州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2020" CityName="阳江市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2021" CityName="江门市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2026" CityName="河源市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2027" CityName="清远市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2028" CityName="梅州市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2030" CityName="韶关市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2037" CityName="台山市">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2040" CityName="汕尾市">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10006" Name="购物便捷"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2041" CityName="云浮市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2101" CityName="桂林市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10101" Name="景区周边"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2102" CityName="南宁市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2103" CityName="北海市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2104" CityName="玉林市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2105" CityName="柳州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2106" CityName="阳朔县">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10101" Name="景区周边"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2107" CityName="贺州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2108" CityName="梧州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2109" CityName="钦州市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2111" CityName="贵港市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2112" CityName="百色市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2113" CityName="防城港市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2118" CityName="来宾市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2119" CityName="河池市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2125" CityName="龙胜各族自治县">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2129" CityName="涠洲岛">
+<Themes>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2130" CityName="崇左市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2201" CityName="三亚市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10037" Name="东南亚风情"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10085" Name="无边泳池"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2202" CityName="海口市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2203" CityName="万宁市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2206" CityName="琼海市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2207" CityName="陵水黎族自治县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2212" CityName="文昌市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2213" CityName="五指山市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2214" CityName="保亭黎族苗族自治县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2216" CityName="儋州市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2224" CityName="澄迈县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2301" CityName="成都市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10013" Name="巴蜀文化"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10014" Name="精品酒店"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10057" Name="登山徒步"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2302" CityName="绵阳市">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2303" CityName="乐山市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2304" CityName="眉山市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2305" CityName="自贡市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2306" CityName="雅安市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2308" CityName="宜宾市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2309" CityName="南充市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2310" CityName="峨眉山市">
+<Themes>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10049" Name="天然氧吧"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2311" CityName="九寨沟县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2312" CityName="德阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2313" CityName="广安市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2314" CityName="泸州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2315" CityName="遂宁市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2317" CityName="阆中市">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2318" CityName="西昌市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2319" CityName="内江市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2320" CityName="广元市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2321" CityName="攀枝花市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2328" CityName="海螺沟">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10012" Name="温泉酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2329" CityName="江油市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2330" CityName="稻城县">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2333" CityName="巴中市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2340" CityName="达州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2341" CityName="凉山彝族自治州">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2354" CityName="若尔盖县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2369" CityName="小金县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2370" CityName="理县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2372" CityName="大邑县">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2385" CityName="都江堰市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2392" CityName="甘孜藏族自治州">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2401" CityName="贵阳市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2402" CityName="遵义市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2404" CityName="凯里市">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2405" CityName="安顺市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2411" CityName="荔波县">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2412" CityName="六盘水市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2413" CityName="铜仁市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2414" CityName="毕节市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2415" CityName="镇远县">
+<Themes>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2420" CityName="赤水市">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2427" CityName="西江苗寨">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2430" CityName="黔南布依族苗族自治州">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2431" CityName="黔西南布依族苗族自治州">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2432" CityName="黔东南苗族侗族自治州">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2501" CityName="昆明市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10019" Name="滇池观景"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2503" CityName="丽江市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10021" Name="纳西风情"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10061" Name="木式庭院"/>
+<Location Id="10059" Name="雪山胜景"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10026" Name="四合院"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2505" CityName="大理白族自治州">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10028" Name="白族风情"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10010" Name="豪宅"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2506" CityName="香格里拉县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10059" Name="雪山胜景"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2507" CityName="西双版纳傣族自治州">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10029" Name="傣族风情"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2510" CityName="保山市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2511" CityName="临沧市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2512" CityName="腾冲县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2513" CityName="文山壮族苗族自治州">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2517" CityName="红河哈尼族彝族自治州">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2518" CityName="楚雄彝族自治州">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2520" CityName="瑞丽市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2521" CityName="芒市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2522" CityName="曲靖市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2523" CityName="玉溪市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2524" CityName="泸沽湖">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2529" CityName="普洱市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2530" CityName="昭通市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2537" CityName="安宁市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2541" CityName="澄江县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2545" CityName="弥勒县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2557" CityName="石林彝族自治县">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2560" CityName="迪庆藏族自治州">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2567" CityName="丘北县">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2582" CityName="普者黑景区">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2601" CityName="拉萨市">
+<Themes>
+<Location Id="10034" Name="藏式风情"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10050" Name="寺庙祈福"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2603" CityName="林芝地区">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2701" CityName="西安市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10027" Name="古都遗风"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10050" Name="寺庙祈福"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2702" CityName="宝鸡市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2703" CityName="咸阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2705" CityName="延安市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2707" CityName="汉中市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2708" CityName="渭南市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2709" CityName="榆林市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2710" CityName="华山">
+<Themes>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2712" CityName="商洛市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2713" CityName="铜川市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2714" CityName="安康市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2801" CityName="兰州市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2802" CityName="嘉峪关市">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2803" CityName="敦煌市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2804" CityName="张掖市">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2805" CityName="天水市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2806" CityName="酒泉市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2807" CityName="白银市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2808" CityName="武威市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2809" CityName="平凉市">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2812" CityName="甘南藏族自治州">
+<Themes>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2813" CityName="庆阳市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2817" CityName="陇南市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2819" CityName="临夏回族自治州">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2821" CityName="定西市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2901" CityName="银川市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2902" CityName="石嘴山市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2904" CityName="中卫市">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10050" Name="寺庙祈福"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="2905" CityName="固原市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3001" CityName="西宁市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3002" CityName="青海湖">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3003" CityName="格尔木市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3014" CityName="海西蒙古族藏族自治州">
+<Themes>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3101" CityName="乌鲁木齐市">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3102" CityName="克拉玛依市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3104" CityName="库尔勒市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3106" CityName="伊宁市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3107" CityName="石河子市">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3109" CityName="阿克苏地区">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3111" CityName="喀什地区">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3113" CityName="哈密地区">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3115" CityName="昌吉回族自治州">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3201" CityName="香港">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10024" Name="醉美维港"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10025" Name="米其林餐厅"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3301" CityName="澳门">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10025" Name="米其林餐厅"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3401" CityName="台北">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10011" Name="设计师酒店"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10005" Name="海滨风光"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3402" CityName="高雄">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3403" CityName="台中">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3404" CityName="屏东">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3407" CityName="桃园">
+<Themes>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3409" CityName="苗栗">
+<Themes>
+<Location Id="10009" Name="民居"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3411" CityName="南投">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3414" CityName="台南">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10001" Name="商务出行"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3415" CityName="宜兰">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10012" Name="温泉酒店"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3416" CityName="花莲">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3417" CityName="台东">
+<Themes>
+<Location Id="10009" Name="民居"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3418" CityName="澎湖">
+<Themes>
+<Location Id="10009" Name="民居"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="3419" CityName="金门">
+<Themes>
+<Location Id="10009" Name="民居"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="5374" CityName="围场满族蒙古族自治县">
+<Themes>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10002" Name="休闲度假"/>
+</Themes>
+</HotelTheme>
+<HotelTheme CityCode="5389" CityName="艺龙测试">
+<Themes>
+<Location Id="1" Name="程艺推荐"/>
+<Location Id="10021" Name="纳西风情"/>
+<Location Id="10011" Name="设计师酒店"/>
+<Location Id="10012" Name="温泉酒店"/>
+<Location Id="10013" Name="巴蜀文化"/>
+<Location Id="10023" Name="麻辣火锅"/>
+<Location Id="10022" Name="啤酒大虾"/>
+<Location Id="10001" Name="商务出行"/>
+<Location Id="10002" Name="休闲度假"/>
+<Location Id="10003" Name="浪漫情侣"/>
+<Location Id="10005" Name="海滨风光"/>
+<Location Id="10006" Name="购物便捷"/>
+<Location Id="10007" Name="亲子酒店"/>
+<Location Id="10008" Name="庭院幽悠"/>
+<Location Id="10009" Name="民居"/>
+<Location Id="10010" Name="豪宅"/>
+<Location Id="10014" Name="精品酒店"/>
+<Location Id="10015" Name="名山客舍"/>
+<Location Id="10016" Name="海河观景"/>
+<Location Id="10017" Name="万国建筑"/>
+<Location Id="10018" Name="乐活鹏城"/>
+<Location Id="10019" Name="滇池观景"/>
+<Location Id="10020" Name="三江美景"/>
+<Location Id="10024" Name="醉美维港"/>
+<Location Id="10025" Name="米其林餐厅"/>
+<Location Id="10026" Name="四合院"/>
+<Location Id="10027" Name="古都遗风"/>
+<Location Id="10028" Name="白族风情"/>
+<Location Id="10029" Name="傣族风情"/>
+<Location Id="10030" Name="太湖观景"/>
+<Location Id="10031" Name="浦江观景"/>
+<Location Id="10032" Name="老洋房"/>
+<Location Id="10033" Name="啖茶滋味"/>
+<Location Id="10034" Name="藏式风情"/>
+<Location Id="10035" Name="栖居江畔"/>
+<Location Id="10036" Name="万国风情"/>
+<Location Id="10037" Name="东南亚风情"/>
+<Location Id="10038" Name="民国记忆"/>
+<Location Id="10039" Name="园林建筑"/>
+<Location Id="10040" Name="江南韵味"/>
+<Location Id="10043" Name="交通枢纽"/>
+<Location Id="10044" Name="会议酒店"/>
+<Location Id="10049" Name="天然氧吧"/>
+<Location Id="10050" Name="寺庙祈福"/>
+<Location Id="10052" Name="闽南风情"/>
+<Location Id="10054" Name="别墅派对"/>
+<Location Id="10055" Name="蜜月圣地"/>
+<Location Id="10056" Name="历史悠久"/>
+<Location Id="10057" Name="登山徒步"/>
+<Location Id="10058" Name="滑雪酒店"/>
+<Location Id="10059" Name="雪山胜景"/>
+<Location Id="10060" Name="洱海风光"/>
+<Location Id="10061" Name="木式庭院"/>
+<Location Id="10063" Name="江南韵味"/>
+<Location Id="10064" Name="复式Loft"/>
+<Location Id="10066" Name="摩梭风情"/>
+<Location Id="10067" Name="山城老街"/>
+<Location Id="10071" Name="明湖夜景"/>
+<Location Id="10073" Name="艺龙测试"/>
+<Location Id="10076" Name="特惠福利周"/>
+<Location Id="10077" Name="新店优惠"/>
+<Location Id="10078" Name="elongActivityTest1"/>
+<Location Id="10079" Name="elongActivityTest2"/>
+<Location Id="10080" Name="elongActivityTest3"/>
+<Location Id="10081" Name="端午特惠"/>
+<Location Id="10082" Name="新开业"/>
+<Location Id="10083" Name="elongActivityTest4"/>
+<Location Id="10085" Name="无边泳池"/>
+<Location Id="10087" Name="汽车旅馆"/>
+<Location Id="10088" Name="暑期特惠"/>
+<Location Id="10089" Name="毕业旅行"/>
+<Location Id="10090" Name="下江南"/>
+<Location Id="10091" Name="避暑特惠"/>
+<Location Id="10092" Name="主题乐园"/>
+<Location Id="10093" Name="海边消夏"/>
+<Location Id="10094" Name="畅饮啤酒节"/>
+<Location Id="10095" Name="避暑纳凉"/>
+<Location Id="10097" Name="暑期玩水"/>
+<Location Id="10098" Name="暑期爆款"/>
+<Location Id="10099" Name="惠玩佛山"/>
+<Location Id="10100" Name="珠江观景"/>
+<Location Id="10101" Name="景区周边"/>
+<Location Id="10102" Name="暑价清凉惠"/>
+<Location Id="10103" Name="七夕约惠"/>
+<Location Id="10105" Name="七夕低价"/>
+<Location Id="10106" Name="七夕礼包"/>
+<Location Id="10107" Name="夏末特惠"/>
+<Location Id="10108" Name="耍在成都"/>
+<Location Id="10109" Name="高校超火"/>
+<Location Id="10110" Name="初秋特惠"/>
+<Location Id="10111" Name="高校周边"/>
+<Location Id="10112" Name="临近地铁"/>
+<Location Id="10113" Name="美食街周边"/>
+<Location Id="10114" Name="外滩漫步"/>
+<Location Id="10115" Name="麻辣山城"/>
+<Location Id="10118" Name="赏秋大促"/>
+<Location Id="10121" Name="品质民宿"/>
+<Location Id="10122" Name="金秋特惠"/>
+<Location Id="10123" Name="登高赏秋"/>
+<Location Id="10125" Name="秋冬精选"/>
+<Location Id="10126" Name="温泉周边"/>
+<Location Id="10128" Name="初冬精选"/>
+<Location Id="10129" Name="初冬精选"/>
+<Location Id="10130" Name="赏枫精选"/>
+<Location Id="10131" Name="国考爆品"/>
+<Location Id="10133" Name="考研爆品"/>
+<Location Id="10136" Name="春节精选"/>
+</Themes>
+</HotelTheme>
+</HotelThemeList>

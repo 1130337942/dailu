@@ -1,0 +1,159 @@
+ <!doctype HTML>
+<html style="font-size:100px;">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"/>
+<title>袋鹿行程单</title>
+<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+
+<!-- <link rel="stylesheet" href="<?php AutoVersion('/static/common/swiper/swiper.css');?>"> -->
+<!-- <link rel="stylesheet" href="<?php AutoVersion('/static/common/swiper/animate.min.css');?>"> -->
+<script type="text/javascript">
+(function(e,t){var i=document,n=window;var l=i.documentElement;var r,a;var d,o=document.createElement("style");var s;function m(){var i=l.getBoundingClientRect().width;if(!t){t=540}if(i>t){i=t}var n=i*100/e;o.innerHTML="html{font-size:"+n+"px;}"}r=i.querySelector('meta[name="viewport"]');a="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no,viewport-fit=cover";if(r){r.setAttribute("content",a)}else{r=i.createElement("meta");r.setAttribute("name","viewport");r.setAttribute("content",a);if(l.firstElementChild){l.firstElementChild.appendChild(r)}else{var c=i.createElement("div");c.appendChild(r);i.write(c.innerHTML);c=null}}m();if(l.firstElementChild){l.firstElementChild.appendChild(o)}else{var c=i.createElement("div");c.appendChild(o);i.write(c.innerHTML);c=null}n.addEventListener("resize",function(){clearTimeout(s);s=setTimeout(m,300)},false);n.addEventListener("pageshow",function(e){if(e.persisted){clearTimeout(s);s=setTimeout(m,300)}},false);if(i.readyState==="complete"){i.body.style.fontSize="16px"}else{i.addEventListener("DOMContentLoaded",function(e){i.body.style.fontSize="16px"},false)}})(750,750);
+</script>
+<style>
+/*
+需要注意的是：
+样式的reset中需先设置html字体的初始化大小为50px，这是为了防止js被禁用或者加载不到或者执行错误而做的兼容
+样式的reset中需先设置body字体的初始化大小为16px，这是为了让body内的字体大小不继承父级html元素的50px，而用系统默认的16px
+*/
+body,dl,dd,ul,ol,h1,h2,h3,h4,h5,h6,pre,form,input,textarea,p,hr,thead,tbody,tfoot,th,td{margin:0;padding:0;}
+ul,ol{list-style:none;}
+a{text-decoration:none;}
+html{-ms-text-size-adjust:none;-webkit-text-size-adjust:none;text-size-adjust:none;}
+body{line-height:1.5;font-size:16px;}
+body,button,input,select,textarea{font-family:'helvetica neue',tahoma,'hiragino sans gb',stheiti,'wenquanyi micro hei',\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif;}
+b,strong{font-weight:bold;}
+i,em{font-style:normal;}
+table{border-collapse:collapse;border-spacing:0;}
+table th,table td{border:1px solid #ddd;padding:5px;}
+table th{font-weight:inherit;border-bottom-width:2px;border-bottom-color:#ccc;}
+img{border:0 none;width:auto\9;max-width:100%;vertical-align:top;}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;vertical-align:baseline;}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}
+button[disabled],input[disabled]{cursor:default;}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}
+input[type="search"]::-webkit-se arch-decoration{-webkit-appearance:none;}
+@media screen and (-webkit-min-device-pixel-ratio:0){
+input{line-height:normal!important;}
+}
+select[size],select[multiple],select[size][multiple]{border:1px solid #AAA;padding:0;}
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}
+audio,canvas,video,progress{display:inline-block;}
+</style>
+<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/itinerary/tripinfoshare.css');?>">
+<script src='/static/common/js/echarts.min.js'></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.10&key=e343e74e5c243c04a3b03a1bc35a0327&plugin=AMap.Transfer"></script>
+</head>
+<body>
+	<div class="ctrl_bar">
+		
+	</div>
+	<div class="nodata">
+		<img src="/static/v1/img/nodata.png" alt="">
+		<div class="notext">亲！该页面没有内容哦...</div>
+	</div>
+	<div class="mask hide">
+		<div class="click_bar hide">
+			<span class="close">x</span>
+			<div class="click_tit">快速查看您的行程</div>
+			<div class="flex">
+				<a index="1" class="gailan" href="#gl">行程概览</a>
+				<a index="2" class="qingdan" href="#qd">费用清单</a>
+			</div>
+			<div class="mask_line"><span>详细行程</span></div>
+			<div class="daylist_mask_box">
+				<div class="daylist_mask">
+				
+			</div>
+			</div>
+			
+		</div>
+	</div>
+	<div  class="swiper-container">
+		
+	<div class="g-doc swiper-wrapper">
+			<div class="firstClient swiper-slide one">
+				<img class="travel_img" src="" alt="">
+				<div class="travel_title"></div>
+				<div class="travel_line"></div>
+				<div class="remark">
+					<div class="">成团人数： 12人</div>
+					<div class="">出团价格： ¥600</div>
+					<div class="">发团日期： 2019年2月14日</div>
+				</div>
+				<div class="logo_box long">
+					<img src="/static/common/img/logo.png" alt="">
+					<div class="create"></div>	
+					
+				</div>
+			</div>
+			<div class="overview swiper-slide two">
+				<div id="gl" class="title">行程概览</div>
+				<div class="lineCros"><!-- <span>南京 — </span> <em>1</em> <span>上海 — </span><span>南京</span>  --></div>
+				<img class="line_img" src="" alt="">
+				<div class="view_list_1">
+					<div style="margin-top:0.1rem;">
+						<p class="">出发日期：<span class="start_date"></span></p>
+						<p class="">返回日期：<span class="back_day"></span></p>
+					</div>	
+					<div class="clearfix">
+						<p class="">出行天数：<span class="travel_day">天</span></p>
+						<p class="">出行人数：<span class="person">成人，儿童</span></p>
+					</div>
+				</div>
+		
+			</div>
+			<div class="cost swiper-slide three">
+				<div id="qd" class="title">费用清单</div>
+				<div id="p_left">
+
+				</div>
+				<div class="p_left_list">
+					<p><span>交通费用</span><span class="traffic_tot"></span></p>
+					<p><span>住宿费用</span><span class="hotel_tot"></span></p>
+					<p><span>餐饮费用</span><span class="eat_tot"></span></p>
+					<p><span>门票费用</span><span class="ticket_tot"></span></p>
+				</div>
+				<div class="title">酒店费用 <span class="fr hotel_tot"></span></div>
+				<div class="hotel_cost">
+				</div>
+				<div class="title">交通费用 <span class="fr traffic_tot"></span></div>
+				<div class="traffic_cost">
+				</div>
+				<div class="title">餐饮费用 <span class="fr eat_tot"></span></div>
+				<div class="eat_cost">
+				</div>
+				<div class="title">门票费用 <span class="fr ticket_tot"></span></div>
+				<div class="ticket_cost">
+				</div>
+			</div>
+			<div class="day_wap swiper-slide four">
+				
+				<div class="theEnd">
+					<div style="font-size: 0.24rem;">The End</div>
+					<div style="font-size:0.16rem;">感谢您对袋鹿的信任，祝您旅途愉快</div>
+					<div class="ctrl">
+						<div class="like on">
+							8喜欢
+						</div>
+						<div class="collect on">
+							2收藏
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+	<!-- <script src="<?php AutoVersion('/static/common/swiper/swiper.js');?>"></script> -->
+	<!-- <script src="<?php AutoVersion('/static/common/swiper/swiper.animate1.0.3.min.js');?>"></script> -->
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+	<script type="text/javascript"  src="<?php AutoVersion('/static/common/js/common.js');?>"></script>
+	<script src="<?php AutoVersion('/static/v1/js/itinerary/tripinfoShare.js');?>"></script>
+</html>

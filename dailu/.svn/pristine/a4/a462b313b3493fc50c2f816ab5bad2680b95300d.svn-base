@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>行程计划</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/aboutUser/personal_collectTour.css');?>">
+</head>
+<body>
+
+	<include file="public@publicHeader"/>
+	<include file="public@public_personalBanner"/>
+	<div class="contentWap">
+		<div class="main">
+		<div class="collect_wap clearfix">
+			<div class="fl">共 <span class="cur">0</span> 个收藏</div>
+			<!-- <div class="fr"><span class="cur">行程</span> &nbsp;&nbsp;| &nbsp;&nbsp;<span>游记</span></div> -->
+		</div>
+			<ul class="routeList clearfix">
+			<!-- 	<li class="list fl">
+				<a href="/portal/itinerary/tripInfo.html">
+					<div class="picBox">
+						<img src="/static/v1/img/city.png" alt="">
+						<div class="imgMask">
+							<div class="cart">
+								<span class="copy"><strong>复制</strong> </span>
+								<span class="del"><strong>删除</strong></span>
+							</div>
+						</div>
+						<div class="line">
+							大运河·孤山·雷峰塔·西溪湿地·西溪湿地·西溪湿地
+							<span class="day"><strong>7</strong>天</span>
+						</div>
+					</div>
+					<div class="info">
+						<div class="con">
+							身披儿时探险梦，心指世界肚脐时,身披儿时探险梦，心指世界肚脐时
+						</div>	
+						<div class="date">
+							2018-02-25 | 出发
+						</div>
+					</div>
+					<div class="up_user clearfix">
+						<div class="up_fl fl">
+							<img class="up_Pic" src="/static/v1/img/header.jpg" alt="">
+							游客4542312
+						</div>
+						<div class="up_ri fr">2018-02-26</div>
+					</div>
+				</a>
+			</li> -->
+			</ul>
+		</div>
+	</div>
+	<include file="public@publicFooter"/>
+
+	
+
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/aboutUser/personal_collect
+Tour.js"></script>
+</html>

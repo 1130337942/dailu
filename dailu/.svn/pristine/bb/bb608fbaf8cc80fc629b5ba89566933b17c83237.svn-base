@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>新闻列表</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/common/css/common.css');?>">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/news/newsList.css');?>">
+</head>
+<body>
+	<include file="public@publicHeader"/>
+	<div class="main clearfix">
+		<div class="leftList">
+			<div class="clearfix list_type">
+				<span type="" class="active">全部</span>
+				<span type="1">企业资讯</span>
+				<span type="2">行业热点</span>
+				<span type="3">粉丝互动 </span>
+				<span type="4">媒体聚焦 </span>
+			</div>
+			<ul class="list_box">
+				
+			</ul>
+			<div class="loadmore"><span>加载更多</span></div>
+		</div>
+		<div class="rightHot">
+			<div class="tit">热点推荐</div>
+			<ul class="hot_list">
+				
+			</ul>
+		</div>
+	</div>
+	<include file="public@publicFooter"/>
+</body>
+	<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+	<script src='/static/common/clipboard/clipboard.min.js'></script>
+	<script src='/static/common/layer3.1.1/layer.js'></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+	<script type="<?php AutoVersion('text/javascript"  src="/static/common/js/common.js');?>"></script>
+	<script src="<?php AutoVersion('/static/v1/js/news/newsList.js');?>"></script>
+	<script type="text/javascript">
+       		
+    </script>
+</html>

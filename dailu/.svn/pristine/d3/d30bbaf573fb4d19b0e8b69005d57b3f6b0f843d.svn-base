@@ -1,0 +1,1133 @@
+.imageContainer {
+  -ms-scroll-chaining: chained;
+  -ms-content-zooming: zoom;
+  -ms-scroll-rails: none;
+  -ms-content-zoom-limit-min: 100%;
+  -ms-content-zoom-limit-max: 500%;
+  -ms-scroll-snap-type: mandatory;
+  scroll-snap-type: mandatory;
+  -ms-scroll-snap-points-x: snapList(100%, 200%, 300%, 400%, 500%);
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(60, 60, 60, 0.4);
+  background-clip: padding-box;
+  min-height: 28px;
+  border-radius: 10px;
+}
+body {
+  background-image: url(/static/v1/img/map/map_bg1.png);
+  background-size: 100% 100%;
+  cursor: default;
+}
+.visitors_plan {
+  width: 260px;
+  height: 90px;
+  left: calc(50% - 170px);
+  top: 110px;
+}
+.visitors_plan::before {
+  border-color: transparent transparent #f9bd5e transparent;
+  border-style: dashed dashed solid dashed;
+  left: 50%;
+  top: -18px;
+}
+.visitors_ri {
+  top: 190px;
+  right: 410px;
+  width: 260px;
+  height: 90px;
+}
+.visitors_ri::before {
+  border-style: dashed  dashed dashed solid ;
+  border-color: transparent  transparent transparent #f8b74e;
+  right: -18px;
+  top: 15px;
+}
+.visitors_lef {
+  width: 220px;
+  height: 200px;
+  left: 390px;
+  top: 310px;
+}
+.visitors_lef .p1 {
+  margin-bottom: 30px;
+}
+.visitors_lef .visitors_end {
+  bottom: 10px;
+}
+.visitors_lef::before {
+  border-style: dashed solid dashed dashed;
+  border-color: transparent #f8b954 transparent transparent;
+  left: -18px;
+  top: 30px;
+}
+.visitors_firstcity {
+  width: 260px;
+  height: 90px;
+  left: 390px;
+  top: 300px;
+}
+.visitors_firstcity::before {
+  border-style: dashed solid dashed dashed;
+  border-color: transparent #f8b74e transparent transparent;
+  left: -18px;
+  top: 15px;
+}
+.main_box {
+  width: 96%;
+  height: 100%;
+  margin: 0px auto;
+  overflow: hidden;
+  position: relative;
+}
+.content {
+  width: 100%;
+  height: 87%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  top: 95px;
+  position: relative;
+}
+.con_lef_top {
+  position: relative;
+  height: 13%;
+}
+.con_lef {
+  width: 310px;
+  background: #fff;
+  height: 100%;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.con_lef .Three_points {
+  margin-left: 250px;
+  cursor: default;
+}
+.con_lef .Three_points span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 16px;
+  box-shadow: inset 0px 0px 3px 0px rgba(0, 0, 0, 0.16);
+}
+.con_lef .Three_points span:nth-child(1) {
+  background-color: #a8edfc;
+}
+.con_lef .Three_points span:nth-child(2) {
+  background-color: #e68b1f;
+}
+.con_lef .Three_points span:nth-child(3) {
+  background-color: #ffdf50;
+}
+.con_lef .f_top {
+  margin: 0px 25px 14px 25px;
+}
+.con_lef .f_top .f_top_p {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.con_lef .f_top .beyond_day_num {
+  color: #e82424;
+  font-size: 14px;
+  position: absolute;
+  margin-top: 6px;
+  right: 0;
+  top: 0px;
+}
+.con_lef .f_top .num_day {
+  color: #248cd3;
+  font-size: 20px;
+}
+.con_lef .f_top .progressbar_box {
+  margin-top: 5px;
+  margin-bottom: 35px;
+}
+.con_lef .f_top #progressbar {
+  margin-top: 10px;
+}
+.con_lef .f_top .calendar {
+  font-size: 14px;
+  margin-top: -27px;
+}
+.con_lef .sj_icon {
+  margin-left: 5px;
+  margin-top: -1px;
+}
+.con_lef .sj_icon i {
+  display: block;
+  width: 10px;
+  height: 7px;
+  cursor: pointer;
+}
+.con_lef .sj_icon .addsj_icon {
+  background: url("/static/v1/img/map/addred.png");
+}
+.con_lef .sj_icon .reducesj_icon {
+  margin-top: 3px;
+  background: url("/static/v1/img/map/undered.png");
+}
+.con_lef .f_main {
+  background-color: rgba(235, 245, 250, 0.9);
+  height: 86%;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  position: relative;
+  width: 298px;
+  margin: 0 auto;
+}
+.con_lef .f_main:hover {
+  overflow: auto;
+  -ms-scroll-chaining: chained;
+  -ms-content-zooming: zoom;
+  -ms-scroll-rails: none;
+  -ms-content-zoom-limit-min: 100%;
+  -ms-content-zoom-limit-max: 500%;
+  -ms-scroll-snap-type: mandatory;
+  scroll-snap-type: mandatory;
+  -ms-scroll-snap-points-x: snapList(100%, 200%, 300%, 400%, 500%);
+  -ms-overflow-style: none;
+}
+.con_lef .f_main .departure,
+.con_lef .f_main .return {
+  height: 84px;
+  border-bottom: solid 1px #d9d9d9;
+  display: flex;
+  display: -webkit-flex;
+}
+.con_lef .f_main .people_num_none {
+  display: none;
+}
+.con_lef .f_main ._l {
+  width: 46px;
+  height: 46px;
+  margin: 18px 22px 20px 24px;
+}
+.con_lef .f_main ._l img {
+  border-radius: 50%;
+}
+.con_lef .f_main ._r {
+  margin-top: 21px;
+}
+.con_lef .f_main ._r .p1 {
+  font-size: 12px;
+  color: #999999;
+}
+.con_lef .f_main ._r .p2 {
+  font-size: 18px;
+  color: #454545;
+}
+.con_lef .f_main .f_prompt .f_prompt_text {
+  color: #f4a21e;
+  font-size: 18px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 0px;
+  width: 99%;
+  position: relative;
+  top: -20px;
+}
+.con_lef .f_main .f_prompt .prompt_img1,
+.con_lef .f_main .f_prompt .prompt_img2 {
+  float: left;
+}
+.con_lef .f_main .f_prompt .prompt_img1 {
+  width: 100px;
+  height: 100px;
+  margin-left: 90px;
+}
+.con_lef .f_main .f_prompt .prompt_img2 {
+  width: 17px;
+  height: 8px;
+  margin-left: -10px;
+  margin-top: 46px;
+}
+.con_lef .f_main_main {
+  width: 290px;
+  position: relative;
+  z-index: 1;
+  margin-left: 4px;
+  background-color: rgba(235, 245, 250, 0.9);
+  padding-bottom: 50px;
+}
+.con_lef .text_logo {
+  position: absolute;
+  bottom: 0px;
+  z-index: 3;
+  width: 72px;
+  height: 15px;
+  background-color: #ffffff;
+  border-radius: 7px 7px 0px 0px;
+  left: calc(155px - 36px);
+  color: #bfbfbf;
+  font-size: 3px;
+  text-align: center;
+}
+.f_main_bg {
+  width: 99%;
+  height: 300px;
+  background-image: url("/static/v1/img/map/f_main_bg.png");
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 0px;
+}
+.f_main_next {
+  position: absolute;
+  bottom: 12px;
+  width: 286px;
+  height: 48px;
+  line-height: 48px;
+  background-image: linear-gradient(90deg, #659ff5 0%, #8fbbfd 100%), linear-gradient(#659ff5, #659ff5);
+  background-blend-mode: normal, 
+		normal;
+  box-shadow: 0px 0px 4px 0px rgba(51, 51, 51, 0.2);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
+  left: 12px;
+  cursor: pointer;
+  z-index: 2;
+}
+.f_main_next:hover {
+  background-image: linear-gradient(90deg, #7fb1fb 0%, #9cc4fd 100%), linear-gradient(#659ff5, #659ff5);
+}
+.f_main_next:active {
+  background-image: linear-gradient(90deg, #5a96ed 0%, #76a9f4 100%), linear-gradient(#659ff5, #659ff5);
+}
+.text_logo_bgc {
+  position: absolute;
+  width: 296px;
+  height: 12px;
+  bottom: 0px;
+  left: 5px;
+  z-index: 2;
+  background-color: #fafafa;
+}
+.people_num {
+  height: 84px;
+  border-bottom: solid 1px #d9d9d9;
+  display: flex;
+  display: -webkit-flex;
+}
+.city_box li {
+  width: 256px;
+  padding: 18px 17px;
+  overflow: hidden;
+  border-bottom: solid 1px #d9d9d9;
+}
+.city_box .city_list_l {
+  float: left;
+}
+.city_box .city_list_l .city_list_name {
+  font-size: 20px;
+  font-weight: bold;
+}
+.city_box .city_list_l .delete_icon {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  background-image: url("/static/v1/img/map/deletecity.png");
+  margin-left: 10px;
+  cursor: pointer;
+}
+.city_box .city_list_l .delete_icon:hover {
+  background-image: url("/static/v1/img/map/deletecityhover.png");
+}
+.city_box .city_list_l .delete_icon:active {
+  background-image: url("/static/v1/img/map/deletecityclick.png");
+}
+.city_box .city_list_l .delete_icon_none {
+  display: none;
+}
+.city_box .city_list_l .city_py {
+  font-size: 14px;
+}
+.city_box .city_list_r {
+  float: right;
+  text-align: right;
+}
+.city_box .city_list_r .day_num {
+  font-size: 14px;
+  color: #cccccc;
+}
+.city_box .city_list_r .reduce_icon,
+.city_box .city_list_r .add_icon {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+.city_box .city_list_r .reduce_icon {
+  margin-right: 5px;
+  background-image: url("/static/v1/img/map/reduce.png");
+}
+.city_box .city_list_r .add_icon {
+  margin-left: 5px;
+  background-image: url("/static/v1/img/map/add.png");
+}
+.city_box .city_list_r .cor {
+  color: #999999;
+}
+#map {
+  height: 94%;
+  width: 100%;
+}
+.con_map {
+  width: 63%;
+  height: 100%;
+  min-width: 600px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.con_map .map_head {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  background-color: rgba(250, 250, 250, 0.95);
+  border-radius: 12px 12px 0px 0px;
+}
+.con_map .map_head_l {
+  width: 313px;
+  height: 20px;
+  float: left;
+  margin: 17px 0px 0px 30px;
+  background: url("/static/v1/img/map/dailusteps1.png");
+}
+.con_rig {
+  width: 330px;
+  height: 100%;
+}
+.con_rig .r_top,
+.con_rig .list {
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.11);
+  border-radius: 12px;
+  background-color: rgba(250, 250, 250, 0.95);
+  padding: 0px 20px 0px 20px;
+}
+.con_rig .list:hover {
+  background-color: rgba(247, 245, 245, 0.8);
+}
+.con_rig .list:hover .introduce {
+  border-bottom: solid 1px #5da5e9;
+}
+.con_rig .list_hover {
+  background-color: rgba(247, 245, 245, 0.8);
+}
+.con_rig .introduce_hover {
+  border-bottom: solid 1px #5da5e9;
+}
+.con_rig .r_main {
+  margin-top: 10px;
+  height: 93.3%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.con_rig .r_main:hover {
+  overflow-y: auto;
+}
+.con_rig .r_main ul {
+  width: 327px;
+}
+.con_rig .addcity_r_top {
+  color: #999;
+}
+.con_rig .addcity_r_top .addcitytext {
+  float: left;
+  cursor: pointer;
+}
+.con_rig .addcity_r_top .search_icon {
+  float: right;
+  margin-top: 16px;
+}
+.con_rig .search_content_list,
+.con_rig .citysearch_cont_list,
+.con_rig .sur_serch_list {
+  background: rgba(250, 250, 250, 0.92);
+  border-radius: 12px;
+}
+.con_rig .search_li {
+  border-bottom: solid 1px #e5e5e5;
+  padding: 12px 25px;
+  cursor: pointer;
+}
+.con_rig .sport_name {
+  color: #999999;
+}
+.con_rig .city_name {
+  color: #659ff5;
+}
+.list {
+  height: 88px;
+  display: flex;
+  display: -webkit-flex;
+  margin-top: 8px;
+}
+.list:nth-child(1) {
+  margin-top: 0;
+}
+.list .list_l {
+  width: 56px;
+  height: 56px;
+  margin: 16px 0px;
+  cursor: pointer;
+}
+.list .list_l img {
+  border-radius: 50%;
+}
+.list .list_r {
+  margin: 15px 0px 15px 30px;
+  width: 193px;
+}
+.list .list_r .text {
+  float: left;
+}
+.list .list_r .provinces,
+.list .list_r .city_name {
+  color: #454545;
+  font-size: 16px;
+  font-weight: bold;
+}
+.list .list_r .city_name {
+  max-width: 80px;
+  overflow: hidden;
+  height: 20px;
+  float: left;
+}
+.list .list_r .py {
+  font-size: 14px;
+  color: #999999;
+  margin-top: -4px;
+}
+.list .list_r .introduce {
+  font-size: 12px;
+  color: #5da5e9;
+  cursor: pointer;
+  line-height: 15px;
+  margin-top: 2px;
+  width: 72px;
+}
+.list .list_r .introduce:hover {
+  color: #74adff;
+}
+.list .list_r .introduce:active {
+  color: #5a91e1;
+}
+.list .list_r .list_icon_box {
+  width: 40px;
+  height: 40px;
+  float: right;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 14px -30px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.list .list_r .list_icon {
+  background-image: url("/static/v1/img/map/procity.png");
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-left: 15px;
+  margin-top: 13px;
+}
+.r_top {
+  height: 46px;
+  line-height: 46px;
+}
+.r_top #nearby,
+.r_top #search_nearby,
+.r_top #sur_input {
+  width: 258px;
+  border: none;
+  background-color: rgba(250, 250, 250, 0);
+}
+.r_top #nearby::-webkit-input-placeholder,
+.r_top #search_nearby::-webkit-input-placeholder,
+.r_top #sur_input::-webkit-input-placeholder {
+  color: #4a69a8;
+  font-size: 14px;
+}
+.r_top #nearby:-moz-placeholder,
+.r_top #search_nearby:-moz-placeholder,
+.r_top #sur_input:-moz-placeholder {
+  color: #4a69a8;
+  font-size: 14px;
+}
+.r_top #nearby input:-ms-input-placeholder,
+.r_top #search_nearby input:-ms-input-placeholder,
+.r_top #sur_input input:-ms-input-placeholder {
+  color: #4a69a8;
+  font-size: 14px;
+}
+.r_top .search_icon {
+  width: 16px;
+  height: 16px;
+  background-image: url("/static/common/img/search.png");
+  float: right;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.r_top .provsearch_del,
+.r_top .citysearch_del,
+.r_top .sur_del {
+  width: 12px;
+  height: 12px;
+  float: right;
+  background-image: url("/static/v1/img/map/searchdel.png");
+  cursor: pointer;
+  display: none;
+  margin-top: 18px;
+}
+.city_con_rig #citynearby {
+  width: 0px;
+  margin-top: 15px;
+  border: none;
+  background-color: rgba(250, 250, 250, 0);
+}
+.city_con_rig .city_nearby_right {
+  float: right;
+}
+.city_con_rig .back {
+  float: left;
+  cursor: pointer;
+}
+.city_con_rig .back span {
+  color: #629aed;
+  margin-right: 5px;
+}
+.city_con_rig .back_icon {
+  width: 8px;
+  height: 14px;
+  display: inline-block;
+  background-image: url(/static/v1/img/map/back.png);
+  margin-bottom: -1px;
+}
+.city_con_rig .city_search_icon {
+  float: right;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.city_r_main .list,
+.surrounding_city_r_main .list {
+  position: relative;
+}
+.city_r_main .city_py,
+.surrounding_city_r_main .city_py {
+  font-size: 12px;
+  color: #454545;
+}
+.city_r_main .day_distance,
+.surrounding_city_r_main .day_distance {
+  color: #999999;
+  font-size: 14px;
+  width: 155px;
+  overflow: hidden;
+  height: 20px;
+  white-space: nowrap;
+}
+.city_r_main .city_km,
+.surrounding_city_r_main .city_km {
+  color: #333333;
+  margin-left: 5px;
+}
+.city_r_main .top_box,
+.surrounding_city_r_main .top_box {
+  position: absolute;
+  font-size: 15px;
+  color: #f4a21e;
+  right: 20px;
+  top: 14px;
+}
+.city_r_main .add_top_box,
+.surrounding_city_r_main .add_top_box {
+  color: #999999;
+}
+.city_r_main .go_button,
+.surrounding_city_r_main .go_button {
+  float: right;
+  margin-top: 35px;
+  background-color: #649ff5;
+  color: #ffffff;
+  width: 50px;
+  height: 21px;
+  line-height: 21px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.city_r_main .go_button:active,
+.surrounding_city_r_main .go_button:active {
+  background-color: #5a91e1;
+}
+.city_r_main .go_button:hover,
+.surrounding_city_r_main .go_button:hover {
+  background-color: #74adff;
+}
+.city_r_main .city_list_r,
+.surrounding_city_r_main .city_list_r {
+  margin: 15px 0px 15px 20px;
+  width: 210px;
+}
+.city_r_main .city_list_r .introduce,
+.surrounding_city_r_main .city_list_r .introduce {
+  margin-top: 1px;
+}
+.surrounding_city_r_main {
+  position: relative;
+}
+.tab_content li {
+  width: 240px;
+  margin: 0 9px;
+  margin-bottom: 18px;
+  text-align: center;
+  float: left;
+}
+.css_attractions {
+  height: 20px;
+  overflow: hidden;
+}
+.hot_city .img_box {
+  position: relative;
+}
+.hot_city .hot_city_ranking {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #649ff5;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 2px 6px;
+}
+.city_hot_sport li {
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 16px 0px;
+  text-align: left;
+  margin: 0px;
+}
+.city_hot_sport li:last-child {
+  border-bottom: none;
+}
+.city_hot_sport li:first-child {
+  padding-top: 0px;
+}
+.city_hot_sport .img_box,
+.city_hot_sport .city_sport_content {
+  float: left;
+}
+.city_hot_sport .city_sport_content {
+  width: 761px;
+  margin-left: 20px;
+}
+.city_hot_sport .city_spots_name {
+  font-size: 20px;
+  color: #333333;
+}
+.city_hot_sport .city_spots_score {
+  float: right;
+  color: #f5a21b;
+  font-size: 16px;
+  margin-top: 6px;
+}
+.city_hot_sport .city_spots_details {
+  margin-top: 10px;
+}
+.city_hot_sport .city_spots_address {
+  color: #333333;
+  margin-top: 25px;
+}
+.city_hot_sport .hot_sport_ranking {
+  font-size: 14px;
+  color: #659ff5;
+  border: solid 1px #659ff5;
+  border-radius: 4px;
+  padding: 0px 5px;
+  margin-left: 15px;
+}
+.city_foot_name,
+.city_goods_name,
+.city_traffic_name {
+  color: #333333;
+  margin-top: 5px;
+  font-size: 18px;
+  overflow: hidden;
+  height: 25px;
+}
+.city_traffic {
+  overflow: auto;
+}
+.city_traffic li {
+  float: none;
+  width: 100%;
+  text-align: left;
+  overflow: hidden;
+  border-bottom: 1px solid #e5e5e5;
+  margin: 0px;
+  padding: 25px 0px;
+}
+.city_traffic li:first-child {
+  padding-top: 5px;
+}
+.city_traffic .traffic_right_text {
+  color: #999;
+  font-size: 14px;
+  float: left;
+}
+.city_traffic .placeName {
+  font-size: 18px;
+  color: #333333;
+  font-weight: bold;
+}
+.city_traffic .plane,
+.city_traffic .train,
+.city_traffic .bus {
+  float: left;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+.city_traffic .plane {
+  background: url(/static/v1/img/map/traffic_ico.png);
+  background-position-y: 0px;
+}
+.city_traffic .train {
+  background: url(/static/v1/img/map/traffic_ico.png);
+  background-position-y: 168px;
+}
+.city_traffic .bus {
+  background: url(/static/v1/img/map/traffic_ico.png);
+  background-position-y: 338px;
+}
+.surrounding_city_r_main .go_button_gray {
+  background-color: #d9d9d9;
+  pointer-events: none;
+}
+.con_rig .city_list_go {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.not_search {
+  text-align: center;
+}
+.u-flyer {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  position: fixed;
+  z-index: 9999;
+}
+.search_city_box {
+  position: absolute;
+  display: none;
+  width: 161px;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.24);
+  border-radius: 4px;
+  z-index: 100;
+  background: #fff;
+  left: 20px;
+}
+.search_city_box #s_input {
+  border: none;
+  width: 110px;
+  margin-left: 10px;
+}
+.search_city_box .input_box {
+  border: solid 1px #e5e5e5;
+  border-radius: 3px;
+  margin: 5px 5px 3px 5px ;
+}
+.search_city_box .labels {
+  width: 16px;
+  height: 16px;
+  background-size: 100% 100%;
+  background-image: url("/static/common/img/search.png");
+  margin-top: 3px;
+  margin-right: 7px;
+  cursor: pointer;
+}
+.search_city_box .s_icon {
+  background-image: url("/static/common/img/search.png");
+}
+.search_city_box .e_icon {
+  background-image: url(/static/v1/img/map/searchdel.png);
+  width: 12px;
+  height: 12px;
+  margin-top: 5px;
+  display: none;
+}
+.search_city_box .s_city_list {
+  border: solid 1px #e5e5e5;
+  margin: 0px 5px 5px 5px;
+  text-align: center;
+}
+.search_city_box .s_city_list li {
+  text-align: left;
+  padding-left: 15px;
+  border-bottom: solid 1px #e5e5e5;
+  cursor: pointer;
+}
+.search_city_box .s_city_list li:last-child {
+  border: none;
+  border-radius: 3px;
+}
+.madeTravelMask .madeTravel .cartBox .wap3 .none_click {
+  pointer-events: none;
+}
+.is_phone {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  background: #FFF;
+  display: none;
+  z-index: 99;
+}
+.is_phone .ph_text {
+  color: #999999;
+  width: 60%;
+  height: 180px;
+  position: absolute;
+  left: calc(50% - 30%);
+  top: calc(50% - 90px);
+  font-size: 48px;
+  text-align: center;
+}
+.is_phone .is_phone_down {
+  position: absolute;
+  right: 110px;
+  top: 100px;
+  font-size: 55px;
+  color: #999999;
+}
+.is_phone .pc_text {
+  color: #2c7ff5;
+}
+.is_phone .img_box {
+  width: 80%;
+  margin: 150px auto 0px;
+}
+.is_phone .wz {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50px;
+  color: #2c7ff5;
+  bottom: 100px;
+  position: absolute;
+}
+@media screen and (max-width: 1680px) {
+  .con_map {
+    width: 58.5%;
+    height: 100%;
+  }
+  .con_map .map_head_l {
+    width: 200px;
+    background: url(/static/v1/img/map/s_dailusteps1.png);
+  }
+  .con_map .map_head_r .icon_2 {
+    margin-left: 10px;
+  }
+  .content {
+    height: 88%;
+  }
+  .visitors_ri {
+    top: 220px;
+    right: 385px;
+  }
+  .visitors_firstcity,
+  .visitors_lef {
+    left: 365px;
+  }
+  .con_lef .f_main {
+    height: 86%;
+  }
+  .con_lef .f_main_main {
+    padding-bottom: 60px;
+  }
+  .con_rig .r_main {
+    height: 91.3%;
+  }
+}
+@media screen and (max-width: 1600px) {
+  .con_map {
+    width: 56.5%;
+    height: 98%;
+  }
+  .con_map .map_head_l {
+    width: 200px;
+    background: url(/static/v1/img/map/s_dailusteps1.png);
+  }
+  .con_map .map_head_r .icon_2 {
+    margin-left: 10px;
+  }
+  .visitors_ri {
+    top: 220px;
+    right: 385px;
+  }
+  .visitors_firstcity,
+  .visitors_lef {
+    left: 365px;
+  }
+  .con_lef .f_main {
+    height: 84%;
+  }
+  .con_lef .f_main_main {
+    padding-bottom: 60px;
+  }
+  .con_rig .r_main {
+    height: 91.3%;
+  }
+}
+@media screen and (max-width: 1560px) {
+  .nav {
+    margin-top: 20px;
+  }
+  .content {
+    top: 80px;
+  }
+  .con_map {
+    width: 55%;
+    height: 98%;
+  }
+  .con_map .map_head_l {
+    width: 200px;
+    background: url(/static/v1/img/map/s_dailusteps1.png);
+  }
+  .con_map .map_head_r .icon_2 {
+    margin-left: 10px;
+  }
+  .visitors_ri {
+    top: 220px;
+    right: 385px;
+  }
+  .visitors_firstcity,
+  .visitors_lef {
+    left: 365px;
+  }
+  .con_lef .f_main {
+    height: 82%;
+  }
+  .con_lef .f_main_main {
+    padding-bottom: 70px;
+  }
+  .con_rig .r_main {
+    height: 91.3%;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .con_map {
+    width: 50%;
+    height: 98%;
+  }
+  .con_map .map_head_l {
+    width: 200px;
+    background: url(/static/v1/img/map/s_dailusteps1.png);
+  }
+  .con_map .map_head_r .icon_2 {
+    margin-left: 10px;
+  }
+  .visitors_ri {
+    top: 220px;
+    right: 385px;
+  }
+  .visitors_firstcity,
+  .visitors_lef {
+    left: 365px;
+  }
+  .con_lef .f_main {
+    height: 84.1%;
+  }
+  .con_rig .r_main {
+    height: 91.3%;
+  }
+}
+@media screen and (max-width: 1366px) {
+  .content {
+    top: 80px;
+  }
+  .con_map {
+    width: 50%;
+    height: 98%;
+  }
+  .con_map .map_head_l {
+    width: 200px;
+    background: url(/static/v1/img/map/s_dailusteps1.png);
+  }
+  .con_map .map_head_r .icon_2 {
+    margin-left: 10px;
+  }
+  .visitors_ri {
+    top: 220px;
+    right: 385px;
+  }
+  .visitors_firstcity,
+  .visitors_lef {
+    left: 365px;
+  }
+  .con_lef .f_main {
+    height: 81.1%;
+  }
+  .con_rig {
+    height: 99%;
+  }
+  .con_rig .r_main {
+    height: 91.3%;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .content {
+    top: 80px;
+  }
+  .con_map {
+    min-width: auto;
+    width: 46%;
+    height: 98%;
+  }
+  .con_map #map {
+    height: 93%;
+  }
+  .con_map .map_head_l {
+    width: 200px;
+    background: url(/static/v1/img/map/s_dailusteps1.png);
+  }
+  .con_map .map_head_r .icon_2 {
+    margin-left: 10px;
+  }
+  .visitors_ri {
+    top: 220px;
+    right: 385px;
+  }
+  .visitors_firstcity,
+  .visitors_lef {
+    left: 365px;
+  }
+  .con_lef .f_main {
+    height: 82%;
+  }
+  .con_rig {
+    height: 99%;
+  }
+  .con_rig .r_main {
+    height: 91.3%;
+  }
+  .s_map {
+    width: 65%;
+  }
+}

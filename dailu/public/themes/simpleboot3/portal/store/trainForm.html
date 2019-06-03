@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>火车票订单填写</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/trainForm.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_store"/>
+		<div class="minWap clearfix">
+			<div class="leftWap fl">
+				<div class="trainInfo">
+					<div class="title">车次信息展示 <i></i> 
+						<span class="tip">发车日期：5月24日</span><a class="tip fr" href="javascript:;">退改签说明</a>
+					</div>
+					<div class="train clearfix">
+						<div class="fl wap1">
+							<div class="fz24">D3126</div>
+							<div class="fz14">修改车次</div>
+						</div>
+						<div class="fl wap2">
+							<div class="leave inblock">
+								<div class="fz24">06:43</div>	
+								<div class="fz14">上海虹桥</div>								
+							</div>
+							<div class="arr inblock">
+								5时57分
+							</div>
+							<div class="deast inblock">
+								<div class="fz24">09:43</div>	
+								<div class="fz14">南京北</div>
+							</div>
+						</div>
+						<div class="fr wap3">
+							<div class="fz24 money">¥ 568</div>
+							<div class="type fz14">二等座</div>
+						</div>
+					</div>
+				</div>
+				<div class="passenger">
+					<div class="title">填写乘客信息</div>
+					<ul class="listbox">
+						<li class="paslist">
+							<div class="wap">
+								<div class="tit">姓名*</div>
+								<input type="text" placeholder="请输入乘客姓名">
+								<div class="del">删除</div>
+							</div>	
+							<div class="wap">
+								<div class="tit">证件类型*</div>
+								<span class="select">
+									<select name="" id="">
+										<option value="身份证">身份证</option>
+										<option value="护照">护照</option>
+									</select>
+								</span>
+							</div>
+							<div class="wap">
+								<div class="tit">证件号码*</div>
+								<input type="text" placeholder="请输入证件号码">
+							</div>
+							<div class="wap">
+								<div class="tit">出生日期*</div>
+								<input type="text" placeholder="2018-06-12">
+							</div>
+							<div class="wap">
+								<div class="tit">火车意外险*</div>
+								<span class="select">
+									<select name="" id="">
+										<option value="0">0份保险共10元</option>
+										<option value="0">1份保险共10元</option>
+									</select>
+								</span>
+								<a href="javascript:;">保险说明</a>
+							</div>
+							<div class="wap">
+								<div class="tit"></div>		
+								<i class="checkBox"></i> <span class="tip">保存为常用乘客</span>
+							</div>
+						</li>
+						<li class="paslist">
+							<div class="wap">
+								<div class="tit">姓名*</div>
+								<input type="text" placeholder="请输入乘客姓名">
+								<div class="del">删除</div>
+							</div>	
+							<div class="wap">
+								<div class="tit">证件类型*</div>
+								<span class="select">
+									<select name="" id="">
+										<option value="身份证">身份证</option>
+										<option value="护照">护照</option>
+									</select>
+								</span>
+							</div>
+							<div class="wap">
+								<div class="tit">证件号码*</div>
+								<input type="text" placeholder="请输入证件号码">
+							</div>
+							<div class="wap">
+								<div class="tit">出生日期*</div>
+								<input type="text" placeholder="2018-06-12">
+							</div>
+							<div class="wap">
+								<div class="tit">火车意外险*</div>
+								<span class="select">
+									<select name="" id="">
+										<option value="0">0份保险共10元</option>
+										<option value="0">1份保险共10元</option>
+									</select>
+								</span>
+								<a href="javascript:;">保险说明</a>
+							</div>
+							<div class="wap">
+								<div class="tit"></div>		
+								<i class="checkBox"></i> <span class="tip">保存为常用乘客</span>
+							</div>
+						</li>
+					</ul>
+					<div class="ctrlwap">
+						<div class="add">添加乘客</div>还可添加<span>4</span>人
+					</div>
+				</div>
+				<div class="linkMan">
+					<div class="title">填写联系人信息</div>
+					<div class="linkbox">
+						<span class="left_tit">常用联系人</span>
+						<span class="list"><i class="checkBox"></i>张兴权</span>
+						<span class="list"><i class="checkBox"></i>发达的</span>
+						<span class="list"><i class="checkBox"></i>试试</span>
+						<span class="list"><i class="checkBox"></i>水电费</span>
+						<span class="list"><i class="checkBox"></i>张兴权</span>
+						<span class="list"><i class="checkBox"></i>发达的</span>
+						<span class="list"><i class="checkBox"></i>试试</span>
+						<span class="list"><i class="checkBox"></i>水电费</span>
+						<span class="ctrl">
+							<span class="more">更多</span>
+							<span class="less hide">收起</span>
+						</span>
+						
+					</div>
+					<div class="wap">
+						<div class="tit">姓名*</div>
+						<input type="text" placeholder="请输入联系人姓名">
+					</div>
+					<div class="wap">
+						<div class="tit">手机号码*</div>
+						<span class="select">
+							<select name="" id="">
+								<option value="+86">中国大陆（+86）</option>
+								<option value="+86">中国香港（+86）</option>
+								<option value="+86">中国澳门（+86）</option>
+								<option value="+86">中国台湾（+86）</option>
+							</select>
+						</span>
+						<input type="text" placeholder="通知出票状态及信息">
+					</div>
+					<div class="wap">
+						<div class="tit">电子邮箱</div>
+						<input type="text" placeholder="通知出票状态及信息">
+					</div>
+					<div class="wap">
+						<div class="tit"></div>
+						<span>
+							<i class="checkBox"></i><span class="tip">保存为常用乘客</span>
+						</span>
+					</div>
+					<div class="title">报销信息</div>
+					<div class="wap">
+						<div class="tit">
+							报销凭证
+						</div><span class="need_vouch"><i class="checkBox"></i> 需要报销凭证 （出发后一周内寄出）</span>
+					</div>
+					<div class="wap">
+						<div class="tit">保险凭证</div>
+						行程单
+					</div>
+					<div class="wap">
+						<div class="tit">快递费用</div>
+						<span class="vouch">10元</span>
+					</div>
+					<div class="wap">
+						<div class="tit">收件人</div>
+						<input type="text" placeholder="收件人姓名">
+					</div>
+					<div class="wap">
+						<div class="tit">联系电话</div>
+						<span class="select">
+							 <select name="" id="">
+									<option value="+86">中国大陆（+86）</option>
+									<option value="+86">中国香港（+86）</option>
+									<option value="+86">中国澳门（+86）</option>
+									<option value="+86">中国台湾（+86）</option>
+							 </select>
+						</span>
+						<input type="text" placeholder="收件人联系电话">
+					</div>
+					<div class="wap">
+						<div class="tit">邮寄地址</div>
+						<span class="select">
+						<select name="" id="">
+							<option value="+86">中国大陆）</option>
+							<option value="+86">中国香港</option>
+							<option value="+86">中国澳门（+86）</option>
+							<option value="+86">广西壮族自治区</option>
+						</select>
+						</span>省
+						<span class="select">
+						<select name="" id="">
+							<option value="+86">中国大陆）</option>
+							<option value="+86">大时代感</option>
+							<option value="+86">中国澳门（+86）</option>
+							<option value="+86">广西壮族自治区</option>
+						</select>
+						</span>市
+						<span class="select">
+						<select name="" id="">
+							<option value="+86">大时代</option>
+							<option value="+86">中国香港</option>
+							<option value="+86">中国澳门（+86）</option>
+							<option value="+86">广西壮族自治区</option>
+						</select>
+						</span>县/区
+					</div>
+					<div class="wap">
+						<div class="tit"></div>
+						<input style="width: 405px" type="text" placeholder="收件人详细地址">
+					</div>
+					<div class="wap">
+						<div class="tit">邮编</div>
+						<input type="text" placeholder="请输入邮编">
+					</div>
+					<div class="wap clause">
+						<div class="tit">确认条款</div>
+						<span><i class="checkBox"></i>我已完成阅读<a href="javascript:;">《火车票平台用户协议》</a> 并接受所有条款</span>
+					</div>
+				</div>
+				<div class="payWap clearfix">
+					订单总金额
+					<div class="fr pay">¥ 628.00 <a class="submit_btn" href="javascript:;">确认订单</a></div>
+				</div>
+			</div>
+			<div class="rightWap fr">
+				<div class="orderInfo">
+					<div class="title">订单金额</div>
+					<div Class='listBox'>
+						<div class="list"><div class="tit">二等座  x1</div><span class="price">¥ 568</span>	</div>
+						<div class="list"><div class="tit">订单总价</div><span class="price">¥ 56</span></div>
+					</div>
+					<div class="tot">
+						订单总金额
+					</div>
+				</div>
+				<div class="warm">
+					<div class="title">温馨提示</div>
+					<div class="text">
+					因火车票实名制购买规定，我司只为真实的消费者代购火车票，我方有权在核实购票人身份时，要求客户提供身份证复印件核实购票人的身份，购票人身份核实通过后，才能完成购票退票及退款，否则我司不提供售后服务。若行为严重违反铁路机关相关规定的，我司将主动配合公安机关进行查处。
+					</div>
+				</div>
+			</div>	
+		</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/trainForm.js"></script>
+</html>

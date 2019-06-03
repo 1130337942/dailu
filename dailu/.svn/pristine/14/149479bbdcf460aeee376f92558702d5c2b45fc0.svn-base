@@ -1,0 +1,136 @@
+body {
+	background-color: #535257;
+}
+html ,body ,.main {
+	height: 100%;	
+}
+.main {
+	background-color: #fff;
+	max-width: 4.14rem;
+	margin:0 auto;
+	box-sizing: border-box;
+	color:#333;
+	font-family: "PingFang","Lantinghei","Helvetica Neue",'Helvetica','Arial',"Microsoft YaHei","STHeitiSC-Light",'simsun',"WenQuanYi Zen Hei","WenQuanYi Micro Hei","sans-serif";
+	font-size: 0.14rem;
+}
+.p18{
+	padding: 0.18rem;
+}
+.main .header {
+	font-size: 18px;
+	color: #333;
+	height: 0.44rem;
+	width: 100%;
+	background-color: #fff;
+	line-height: 0.44rem;
+	text-align: center;
+	border-bottom: 1px solid #e5e5e5;
+	position: fixed;
+	top:0;
+	left: 0;
+	z-index: 2;
+}
+.main .header span{
+	position: absolute;
+	left: 0.26rem;
+	top: 0.14rem;
+	width: 0.12rem;
+	height: 0.12rem;
+	transform:  rotate(45deg);
+	border: 0.02rem solid rgba(101,159,245,1);
+	border-right: none;
+	border-top: none;
+}
+.main .mapContainer {
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+}
+
+.amap-marker{
+	transform: none !important;
+}
+.amap-labels{
+	/*display: none !important;*/
+}
+
+.cardBox {
+	position: fixed;
+	bottom: 0.25rem;
+	left: 0;
+	height: 0.94rem;
+	width: 100%;
+	background-color: transparent;
+
+}
+.cardBox .card_outer,
+.cardBox .card_inner,
+.cardBox .card_list {
+	height: 100%;
+}
+.cardBox .card_list{
+	background:rgba(255,255,255,1);
+	box-shadow:0px 2px 28px 0px rgba(0, 0, 0, 0.12);
+	border-radius:12px;
+	box-sizing: border-box;
+	padding: 0.12rem;
+	display: flex;
+	justify-content: space-between;
+}
+  .left_img{
+	height: 0.7rem;
+	width: 22%;
+	overflow: hidden;
+	border-radius: 0.05rem;
+	position: relative;
+}
+.card_list .left_img img {
+	height: 100%;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform:translateX(-50%);
+	max-width:none;
+}
+.card_list .right_info{
+	overflow: hidden;
+	height: 100%;
+	width: 73%;
+}
+.card_list .right_info .name{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 18px;
+	color:rgba(51,51,51,1);
+}
+.card_list .right_info .suit{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 12px;
+	color:rgba(102,102,102,1);
+}
+.card_list .right_info .address{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 12px;
+	color:rgba(102,102,102,1);
+	display: flex;
+	justify-content: space-between;
+}
+.right_info .address p{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 78%;	
+}
+.right_info .address .more {
+	width: 18%;
+	text-align: center;
+	background:linear-gradient(133deg,rgba(80,144,240,1),rgba(150,192,255,1));
+	border-radius:0.1rem;
+	color: #fff;
+}

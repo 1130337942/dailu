@@ -1,0 +1,445 @@
+body{
+	height: auto;
+}
+.hide {
+	display: none;
+}
+.on{
+	display: block ;
+}
+
+.contentWap {
+	width: 100%;
+	min-width: 1200px;
+	background-color: #f6f6f6;
+}
+.filter_wap{
+	padding: 15px 0;
+	width: 100%;
+	background-color: #fff;
+	border-top: 1px solid #e5e5e5;
+	margin-bottom: 28px;
+}
+.filter_wap .filter.active,
+.filter_wap .filter:hover{
+	font-weight: 600;
+	color: #333;
+	cursor: pointer;
+}
+.filter_wap .filter_main{
+	width: 1200px;
+	margin: 0 auto;
+	position: relative;
+}
+.filter_wap .filter_main .creatSpot{
+	position: absolute;
+	top: -54px;
+	right:0;
+	width:84px;
+	height:30px;
+	background:rgba(101,159,245,1);
+	border-radius:15px;
+	color: #fff;
+	text-align: center;
+	line-height: 30px;
+	font-size: 14px;
+}
+.filter_wap .filter_main .creatSpot:hover {
+	font-weight: 600;
+}
+.filter_wap .filter_main .time {
+	margin-bottom: 10px;
+}
+.filter_wap .filter_main span{
+	float: left;
+	margin-left: 56px;
+	font-size: 14px;
+}
+.filter_wap .filter_main .tit{
+	margin-left: 0;
+}
+.contentWap .main {
+	padding-bottom: 20px;
+	width: 1200px;
+	margin: 0 auto;
+	min-height: 830px;
+	position: relative;
+}
+.contentWap .main .tot_rout {
+	font-size: 14px;
+	height: 48px;
+	line-height: 48px;
+	color: #999;
+	position: absolute;
+	top: 0;	
+	right: 0;
+} 
+.contentWap .main .tot_rout .num {
+	color: #333;
+	font-weight: 600;
+}
+.contentWap .main .monthWap .month {
+	height: 48px;
+	line-height: 48px;
+	font-size: 14px;
+	color:#999;
+	margin-bottom: 10px;
+}
+.contentWap .main .monthWap .month span {
+	font-weight: 600;
+	font-size: 18px;
+	color:#333;
+}
+.contentWap .main .routeList .list{
+	width: 592px;
+	height: 198px;
+	background-color: #ffffff;
+	box-shadow: 0px 2px 4px 0px 
+		rgba(51, 51, 51, 0.12);
+	border-radius: 4px;
+	margin-bottom: 14px;
+	position: relative;
+}
+.contentWap .main .routeList .list .stick_up {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 24px;
+	height: 24px;
+	border-radius: 4px;
+	overflow:hidden;
+	cursor: pointer;
+	z-index: 9;
+	background: transparent url(/static/v1/img/tripinfo/yz2.png) center center no-repeat;
+}
+.contentWap .main .routeList .list .stick_up3{
+	background: transparent url(/static/v1/img/tripinfo/yz.png) center center no-repeat;
+
+}
+.contentWap .main .routeList .list .stick_up:hover {
+	box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+
+}
+.contentWap .main .routeList .list .right_box {
+	width: 270px;
+	height: 170px;
+	padding: 14px 16px;
+	position: relative;
+}
+.contentWap .main .routeList >li {
+	margin-right: 16px;
+	transition: 0.4s;
+}
+.contentWap .main .routeList >li:hover {
+
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.16);
+}
+/* .contentWap .main .routeList >li:nth-child(n+5){
+	margin-top: 25px;
+}
+.contentWap .main .routeList >li:nth-child(n+1):hover {
+	transition: 0.4s;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08);
+} */
+.contentWap .main .routeList >li:nth-child(2n+2){
+	margin-right: 0;
+}
+.contentWap .main .routeList .list .picBox {
+	width: 290px;
+	height: 198px;
+	margin: 0 auto;
+	position: relative;
+}
+.contentWap .main .routeList .list .picBox:hover .copy{
+	display: block;
+}
+.contentWap .main .routeList .list .picBox .copy {
+	display: none;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	position: absolute;
+	top:0;
+	left:0;
+	background-color: rgba(0,0,0,0.6);
+	line-height: 198px;
+	color:#fff;
+}
+/* .contentWap .main .routeList .list .picBox:hover .imgMask{
+	transition: all 0.5s;
+	transition: 0.5s;
+	background: rgba(0,0,0, 0.7);
+}
+.contentWap .main .routeList .list .picBox:hover .line{
+	display: block;
+}
+
+.contentWap .main .routeList .list .picBox:hover .cart{
+	opacity: 1;
+}
+.contentWap .main .routeList .list .picBox:hover .day{
+	display: none;
+} */
+.contentWap .routeList .list .picBox .imgMask{
+	transition: 0.4s;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	background: rgba(0,0,0, 0.0);
+}
+.routeList .list .right_box .cart{
+	position: absolute;
+	height: 40px;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+/* .routeList .list  .toSportEdit{
+	padding: 3px 8px;
+	position: absolute;
+	top:-5px;
+	right:0;
+	background-color: #e6f0ff;
+	color: #659ff5;
+	font-weight: 600;
+	border-radius: 4px;
+	cursor: pointer;
+}  
+.routeList .list  .toSportEdit:hover {
+	background-color: #dbeaff;
+} */
+.routeList .list .right_box .cart>span {
+	cursor: pointer;
+	display: inline-block;
+	background-color: #fff;
+	position: relative;	
+	font-size: 14px;
+	padding:0 16px;
+	color: #659ff5;
+	/*border-right: 1px solid #e5e5e5;*/
+}
+.routeList .list .right_box .cart>span:hover{
+	color:#74adff;
+}
+.routeList .list .right_box .cart .more {
+	float: right;
+	margin-right: 16px;
+	width: 76px;
+	min-height: 28px;
+	line-height: 28px;
+	background-color: #e6f0ff;
+	border-radius: 2px;
+	font-size: 14px;
+	color: #659ff5;
+	font-weight: 600;
+	position: relative;
+	z-index: 10;
+}
+.routeList .list .right_box .cart .more:hover .m_list {
+	display: block;
+}
+.routeList .list .right_box .cart .more  span {
+	margin-left: 12px;
+}
+.routeList .list .right_box .cart .more::after {
+	content: '';
+	position: absolute;
+	top:12px;
+	right:12px;
+	display: block;
+	width: 10px;
+	height: 6px;
+	background: url(/static/v1/img/gj.png) center center no-repeat;
+}
+.right_box .cart .more .m_list{
+	display: none;
+	text-align: center;
+	font-size: 12px;
+	width: 76px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #e6f0ff;
+	border-radius: 2px;
+	border-bottom: 1px solid #d6e6ff;
+	transition: all 0.2s;
+	overflow:hidden;
+}
+.right_box .cart .more .m_list:nth-child(2){
+	border-top: 2px solid #fff;
+	border-radius: 2px 2px 0 0 ;
+}
+.right_box .cart .more .m_list:last-child{
+	border-radius: 0 0 2px 2px ;
+	border-bottom: none;
+}
+.right_box .cart .more .m_list:hover {
+	background-color: #d6e6ff;
+}
+/* .routeList .list .right_box .cart .poster {
+	float: right;
+	margin-right: 16px;
+	box-sizing: border-box;
+	width: 64px;
+	height: 28px;
+	line-height: 28px;
+	padding: 0;
+	text-align: center;
+	background-color: #e6f0ff;
+	border-radius: 4px;
+	font-weight: 600;
+}
+.routeList .list .right_box .cart .poster:hover{
+	background-color: #dbeaff;
+	color: #659ff5;
+} */
+.routeList .list .right_box .cart>span::after {
+	display: inline-block;
+	content: '';
+	width: 1px;
+	height: 12px;
+	position: absolute;
+	bottom: 50%;
+	right: 0;
+	margin-bottom: -6px;
+	background-color: #e5e5e5;
+}
+.routeList .list .right_box .cart>span:last-child::after,
+.routeList .list .right_box .cart>span:nth-last-child(2)::after{
+	display: none;
+} 
+
+.routeList .list .right_box .cart .cart_hide{
+	display: none;
+}
+.routeList .list .picBox .imgMask .cart>span:hover strong{
+	transition: 0.5s;
+	opacity: 1;
+}
+.routeList .list .picBox .imgMask .cart>span:hover{
+	background-color: #f9f9f9;
+}
+.routeList .list .picBox .imgMask .cart .edit {
+	margin-left: 59px;
+	background: #fff url(/static/v1/img/bianji.png) center center no-repeat;
+}
+.routeList .list .picBox .imgMask .cart .copy {
+	margin-left: 20px;
+	background: #fff url(/static/v1/img/shizhi.png) center center no-repeat;
+}
+.routeList .list .picBox .imgMask .cart .del {
+	margin-left: 20px;
+	background: #fff url(/static/v1/img/shanchu.png) center center no-repeat;
+}
+.routeList .list .picBox .imgMask .cart>span strong {
+	width: 36px;
+	height: 24px;
+	background-color: #fff;
+	position: absolute;
+	top: -30px;
+	left: 50%;
+	margin-left: -18px;
+	border-radius: 3px;
+	font-size: 12px;
+	color: #659ff5;
+	text-align: center;
+	line-height: 24px;
+	opacity: 0;
+}
+.routeList .list .picBox .imgMask .cart>span::before{
+	display: block;
+
+}
+.routeList .list .picBox .imgMask .cart>span strong::after{
+	display: block;
+	content: '';
+	width: 0px;
+	height: 0px;
+	border-right: 4px solid #fff;
+	border-bottom: 4px solid #fff;
+	transform: rotate(45deg);
+	position: absolute;
+	bottom: -2px;
+	left: 50%;
+	margin-left: -3px;
+}
+.routeList .list .picBox .line {
+	transition: 0.5s;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+	position: absolute;
+	bottom: 5px;
+	left: 0px;
+	height: 40px;
+}
+.routeList .list .picBox .day_mask {
+	width: 100%;
+	height: 70px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(0,0,0,0.5) 100%);
+
+}
+.routeList .list .picBox .day {
+	color: #fff;
+	position: absolute;
+	right: 10px;
+	bottom: 4px;
+}
+
+
+
+.routeList .list .picBox .day strong {
+	margin-right: 2px;
+	font-weight: normal;
+	font-family: dl;
+	font-size: 24px;
+}
+.routeList .list .info  {
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+.routeList .list .info .con{
+	height: 30px;
+	line-height: 30px;
+	font-weight: 600;	
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow:hidden;
+}
+.routeList .list .info .date{
+	height: 20px;
+	font-size: 14px;
+	color: #999;
+	position: relative;
+}
+.routeList .list .up_user {
+	color: #999;
+	font-size: 14px;
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow:hidden;
+}
+/* 
+.topdf{
+	cursor: pointer;
+    display: inline-block;
+    background-color: #fff;
+    position: relative;
+    font-size: 14px;
+    padding-top: 16px;
+    color: #659ff5
+}
+.topdf:hover{
+	text-decoration: underline;
+} */

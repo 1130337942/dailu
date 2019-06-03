@@ -1,0 +1,496 @@
+ <!doctype HTML>
+<html style="font-size:100px;">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"/>
+<title>行程编辑</title>
+<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+<script src='/static/common/h5common/rem.js'></script>
+<link rel="stylesheet" href="/static/common/h5common/normalize.css">
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/swiper/swiper.css');?>">
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/swiper/animate.min.css');?>">
+<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/itinerary/tripEdit.css');?>">
+<script src='/static/common/js/echarts.min.js'></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.10&key=e343e74e5c243c04a3b03a1bc35a0327&plugin=AMap.Transfer"></script>
+</head>
+<body class="clearfix">
+<include file="public@publicHeader"/>
+		<div class="g-doc edit-tab">
+			<!-- <div class="main-tabs main">
+				<span class="active tab-list">行程单编辑</span>
+				<span class="tab-list">下载海报</span>
+				<span class="bill">隐藏清单</span>
+			</div> -->
+			<div class="toTripinfo">返回行程单</div>
+			<div class="cancel_yl">关闭预览</div>
+			<div class="firstClient one">
+				<div class="mask-first">点击编辑</div>
+				<div class="cover_box">
+					<img class="travel_img" src="" alt="">
+					<div class="otherlogo">
+							<img src="" alt="">
+					</div>
+				</div>
+				<div class="travel_title"></div>
+				<div class="dluser hide">
+					<div class="line_wap1">出发日期： <span class="start_date"></span></div>
+					<div class="line_wap1">出行人数： <span class="person"></span></div>
+					<div class="line_wap1">预估费用： <span class="totmoney"></span></div>
+				</div>
+				<div class="remark">
+					<div class="team_num"></div>
+					<div class="team_date"></div>
+					<div class="team_price"></div>
+					<div class="travel_price"></div>
+				</div>
+				<div class="author"></div>
+				
+				
+			</div>
+			<div class="overview two">
+				<div class="overview_mask">点击编辑</div>
+				<div id="gl" class="title">行程概览</div>
+				<div class="lineCros"></div>
+			</div>
+			<div class="cost  three">
+				<div id="qd" class="title">费用清单</div>
+					<div id="p_left">
+	
+					</div>
+					<div class="p_left_list">
+						<p><span>交通费用</span><span class="traffic_tot"></span></p>
+						<p><span>住宿费用</span><span class="hotel_tot"></span></p>
+						<p><span>餐饮费用</span><span class="eat_tot"></span></p>
+						<p><span>门票费用</span><span class="ticket_tot"></span></p>
+					</div>
+					<div class="title">酒店费用 <span class="fr hotel_tot"></span></div>
+					<div class="hotel_cost">
+					</div>
+					<div class="title">交通费用 <span class="fr traffic_tot"></span></div>
+					<div class="traffic_cost">
+					</div>
+					<div class="title">餐饮费用 <span class="fr eat_tot"></span></div>
+					<div class="eat_cost">
+					</div>
+					<div class="title">门票费用 <span class="fr ticket_tot"></span></div>
+					<div class="ticket_cost">
+					</div>
+			</div>
+			<div class="day_wap  four">
+				<div class="theEnd">
+					<div class="remark_end">
+						<div class="mark_tit">备注信息</div>
+						<div class="mark_content">
+							<div class="con_info">
+							
+							</div>
+							<div class="loadMore">查看更多</div>	
+						</div>
+					</div>
+					<div style="font-size: 0.24rem;">The End</div>
+					<div style="font-size:0.16rem;">感谢您对<span class="agency">袋鹿</span>的信任，祝您旅途愉快</div>
+					<div class="ctrl">
+						<div class="hot"> 人气</div>
+						<div class="like on">
+							喜欢
+						</div>
+						<div class="collect on">
+							收藏
+						</div>
+					</div>
+				</div>
+				<div class="bottom_logo">
+					<div class="logo_box long">
+						<img src="/static/common/img/logo.png" alt="">
+						<div class="create">袋鹿旅行技术支持</div>	
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="editBox" class="edit-tab">
+			<div class="main" style="margin-bottom: 300px;">
+			    <div class="title" style="margin-top:10px;">景点编辑</div>
+			    <table>
+					<tr>
+						<td><span class="tips">景点名称：</span></td>
+						<td> <input id="spot_name" placeholder="请输入景点名称" type="text"></td>
+					</tr>
+					<tr>
+						<td>原相册图片</td>
+						<td class="phototr">
+							
+						</td>
+					</tr>
+					<tr>
+						<td><div class="tips">景点封面</div></td>
+						<td>
+							<div class="imgbox">
+								<img src="http://a.dailuer.com/upload/tourist/20180522/7e9f962f6983ddf2221ce6d12dd0faed.jpg" alt="">
+							</div>
+							<div>
+								<span id="cover_file"><input type="file" id='coverfile'>修改封面</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>重新上传相册</td>
+						<td>
+							<ul class="upload-ul clearfix">
+								<li class="upload-pick">
+									<div class="webuploader-container clearfix" id="goodsUpload"></div>
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td><span class="tips">景点地址：</span></td>
+						<td><input id="address" placeholder="请输入景点地址" type="text"></td>
+					</tr>
+					<tr>
+						<td><span class="tips">游玩时间：</span></td>
+						<td><input id="this_playtime" placeholder="请输入景点游玩时间 如（2小时）" type="text"></td>
+					</tr>
+					<tr>
+						<td><span class="tips">开放时间：</span></td>
+						<td><input id="business_hours" placeholder="请输入开放时间" type="text"></td>
+					</tr>
+					<tr>
+						<td><span class="tips">景点电话：</span></td>
+						<td><input id="phone" type="text" placeholder="请输入景点电话"></td>
+					</tr>
+					<tr>
+						<td><span class="tips">景点备注项标题</span></td>
+						<td><input id="sremarks_title" type="text" placeholder="若不填，前台展示 备注"></td>
+					</tr>
+					<tr>
+						<td><span class="tips">景点备注</span></td>
+						<td><script id="spot_remarks" name="content" type="text/plain"></script></td>
+					</tr>
+					<tr>
+						<td><span class="tips">门票信息</span></td>
+						<td><script id="t_container" name="content" type="text/plain"></script></td>
+					</tr>
+					<tr>
+						<td><span class="tips">景点简介</span></td>
+						<td><textarea name="" id="absture" cols="30" rows="10"></textarea></td>
+					</tr>
+					<tr>
+						<td><span>景点说明</span></td>
+						<td><script id="spot_Introduction" name="content" type="text/plain"></script></td>
+					</tr>
+					
+			    </table>
+				
+				<div class="submit">
+					<a class="submitbtn" href="javascript:;">提交内容</a>
+					<a class="cancel"  href="javascript:;" >取消</a>
+					<a class="yl" href="javascript:;">预览</a>
+
+				</div>
+			</div>
+		</div>
+		<div id="day_ramark" class="edit-tab">
+			<div class="main">
+				<div class="title">当天行程备注</div>
+				<table>
+					<tr>
+						<td>当天索引</td>
+						<td><input class="daySourseEdit" type="text" placeholder="如果不填则前台不展示" value=""></td>
+					</tr>	
+					<tr>
+						<td>当天日期</td>
+						<td><input class="date" type="text" placeholder="请输入当天日期" value=""></td>
+					</tr>	
+					<tr class="croscity">
+						<td>跨城市大交通方式</td>
+						<td>
+							<select name="" id="traffic_day">
+								<option value="铁路交通">铁路交通</option>	
+								<option value="飞机交通">飞机交通</option>	
+								<option value="汽车交通">汽车交通</option>	
+								<option value="自行车">自行车</option>	
+								<option value="步行">步行</option>	
+								<option value="其它交通">其它交通</option>	
+							</select>
+						</td>
+					</tr>
+					<tr class="croscity">
+						<td>两城市相距（公里）</td>
+						<td><input class="distance" type="text" placeholder="请输入两城市之间的距离"></td>
+					</tr>
+					<tr class="croscity">
+						<td>所需时间（小时）</td>
+						<td><input class="usetime" type="text" placeholder="请输入所需时间"></td>
+					</tr>	
+					<tr>
+						<td>当天游玩时间区间 </td>
+						<td><input class="betw_time" type="text" placeholder="如：08:00-16:00"></td>
+					</tr>
+				</table>
+				<div class="dayRemark">
+					<div class="edit_item">
+						<div class="tips">当天行程备注：</div>
+						<div class="dayRemark_tit">
+							<span>备注标题：</span><input id="remarks_title" type="text" placeholder="若不填，前台展示 温馨提示">
+						</div>
+						<script id="remarks" name="content" type="text/plain"></script>
+					</div>
+				</div>
+				<div class="traffic_mark">
+					<div class="edit_item">
+						<div class="tips">当天大交通备注：</div>
+						<script id="traffic_marks" name="content" type="text/plain"></script>
+						
+					</div>
+				</div>
+				<div class="submit">
+					<a class="submitbtn" href="javascript:;">提交内容</a>
+					<a class="cancel"  href="javascript:;" >取消</a>
+					<a class="yl" href="javascript:;">预览</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="travelRemark" class="edit-tab">
+			<div class="main">
+				
+				<div class="info_wap_1">
+					<h4>h5首屏展示信息编辑</h4>
+					<table>
+						<tr>
+							<td class="title_td">旅行社名</td>
+							<td><input class="agency" placeholder="请输入旅行社名称" type="text"></td>
+						</tr>
+						<tr>
+							<td>行程标题</td>
+							<td>
+								<input class="travel_title" type="text">
+							</td>
+						</tr>
+						<tr>
+							<td class="title_td"><input class="team_title" type="text" placeholder="出团人数"></td>
+							<td><input class="team_number" type="text" placeholder="如12人成行"></td>
+						</tr>
+						<tr>
+							<td class="title_td"><input class="date_title" type="text" placeholder="出团日期"></td>
+							<td><input class="departure_date" type="text" placeholder="请输入出团日期"></td>
+						</tr>
+						<tr>
+							<td class="title_td"><input class="price_title" type="text" placeholder="出团天数" ></td>
+							<td><input class="team_price" type="text" placeholder="如:行程共一天"></td>
+						</tr>
+						<tr>
+							<td class="title_td">出团价格</td>
+							<td><input class="travel_price" type="text" placeholder="如99元每人"></td>
+						</tr>
+						<tr>
+							<td>行程封面</td>
+							<td>
+								<img class="travel_img" src="http://www.dailuer.com/upload/spot/20181024/b3de1d7d9fb6a8e50b64960363c1eb9e.jpg" alt="">
+								<a class="edit_travel_img" href="javascript:;"><input class="coverfile file_input-first" type="file">替换行程封面</a>
+							</td>
+						</tr>
+						<tr>
+							<td>底部落款</td>
+							<td>
+								<input id="inscribe" type="text" class="inscribe">
+							</td>
+						</tr>
+						<tr>
+							<td>整体特色</td>
+							<td>
+								<script id="allchara" name="content" type="text/plain"></script>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>备注信息</td>
+							<td>
+								<script id="travel_remarks" name="content" type="text/plain"></script>
+							</td>
+						</tr>
+					</table>
+					<div class="submit_wap"><span class="submit">提交</span> <span class="cancel">取消</span></div>
+				</div>
+			</div>
+				<!-- 行程封面上传start -->
+|
+		<div class="cover-wrap-first" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center; overflow-y: scroll;">	
+						<div class="" style="width:980px;height:720px;margin:100px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+							<div id="clipArea-first" style="margin:10px;height: 640px;"></div>
+							<div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+								<button id="clipBtn-first" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;">保存封面</button>
+							</div>
+						</div>
+		</div>
+				<!-- 行程封面上传 end-->
+		</div>
+		<div id="travelOverview" class="edit-tab">
+			<div class="main">
+				<h4>行程概览</h4>
+				<table>
+					<!-- <tr><td>第1天</td></tr>
+					<tr>
+						<td>途经城市</td>
+						<td><input type="text" class="" placeholder="请输入途经城市"></td>
+					</tr>
+					<tr>
+						<td><input type="text" placeholder="DAY1"></td>
+						<td><input type="text" class="" placeholder="如：城市A → 城市B"></td>
+					</tr>
+					<tr>
+						<td><input type="text" placeholder="日期 如：XX月XX日"></td>
+						<td><input type="text" class="" placeholder="请输入交通方式 如：汽车"></td>
+					</tr>
+					<tr>
+						<td>当天景点</td>
+						<td><input type="text" placeholder="请输入当天游玩景点"></td>
+					</tr> -->
+				</table>
+				<div class="submit_wap"><span class="submit">提交</span> <span class="cancel">取消</span></div>
+			</div>
+		</div>
+		<div id="hotelEdit" class="edit-tab">
+			<div class="main">
+				<h4>酒店详情编辑</h4>
+				<table>
+					<tr>
+						<td>酒店名称</td>
+						<td>
+							<div class="hotel">
+								<input class="hotel_name" type="text" placeholder="请输入酒店名称">
+								<div class="tip_hotel hide">
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>酒店地址</td>
+						<td><input class="address" type="text" placeholder="请输入酒店详细地址"></td>
+					</tr>
+					<tr>
+						<td>酒店类型</td>
+						<td>
+							<select name="" id="Category">
+								<option value="1">民宿</option>
+								<option value="2">客栈型</option>
+								<option value="3">舒适型</option>
+								<option value="4">高档型</option>
+								<option value="5">豪华型</option>
+								<option value="A">公寓型</option>
+							</select>
+						</td>
+					</tr>
+					<tr class="already"> 
+						<td>原酒店图片</td>
+						<td class="imgUL">
+						
+						</td>
+					</tr>
+					<tr>
+						<td>修改酒店图片</td>
+						<td>
+							<ul class="upload-ul clearfix">
+								<li class="upload-pick">
+									<div class="webuploader-container clearfix" id="hotelUpload"></div>
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>酒店描述</td>
+						<td>
+							<textarea name="" id=hotel_desc cols="30" rows="10"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>酒店设施</td>
+						<td>
+							<textarea name="" id="Gen" cols="30" rows="10"></textarea>
+						</td>
+					</tr>
+					
+				</table>
+				<div class="submit_wap"><span class="submit">提交</span> <span class="cancel">取消</span></div>
+
+
+			</div>
+		</div>
+		<div id="travelPoster" class="edit-tab">
+			<div class="main">
+				<div class="left_wap">
+					<div class="downPicBox">
+						<img id="hh" class="hide" src="/static/v1/img/logo2.png" alt="">
+						<div class="trip_ewmbox">
+							<div id="trip_ewm"></div>
+						</div>
+						<div class="poster_img_box hide">
+							<div class="editImg">
+							<input class="file_input" type="file" id="file">
+							重新上传</div>
+							<img class="poster_img" src="" alt="">
+						</div>
+						<div class="inner">
+							<input class="file_input" type="file" id="file">
+							<img class="poster1" src="/static/v1/img/poster_1.png" alt="">
+							<div class="t_poster">
+								单击上传海报底图
+			
+							</div>
+						
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<!-- 海报图片上传 -->
+			<div class="cover-wrap-poster" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center;">	
+						<div class="" style="width:900px;height:600px;margin:100px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+							<div id="clipArea-poster" style="margin:10px;height: 520px;"></div>
+							<div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+								<button id="clipBtn-poster" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;">保存海报</button>
+							</div>
+						</div>
+			</div>
+
+
+		</div>
+		<div class="cover-wrap" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center;">	
+						<div class="" style="width:980px;height:720px;margin:100px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+							<div id="clipArea" style="margin:10px;height: 640px;"></div>
+							<div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+								<button id="clipBtn" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;">保存封面</button>
+							</div>
+						</div>
+		</div>
+		<div class="loading_mask hide">
+			<div class="loading_img">
+				<img src="/static/v1/img/loading.gif" alt="">
+				<div>提交中...</div>
+			</div>
+		</div>
+</body>
+	<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+	<script src="/static/common/layer3.1.1/layer.js"></script>
+	<script src='/static/common/somepicUpload/webuploader.min.js'></script>
+	<script src='/static/common/somepicUpload/diyUpload.js'></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+	 <!-- 配置文件 -->
+    <script type="text/javascript" src="/static/js/ueditor/ueditor.config1.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/static/js/ueditor/ueditor.all.min1.js"></script>
+    <script type="text/javascript"  src="/static/common/js/pdf.js/jquery.qrcode.min.js"></script>
+	<script type="text/javascript" src="/static/common/js/pdf.js/canvas2image.js"></script>
+	<script type="text/javascript"  src="/static/common/js/pdf.js/html2canvas.min.js"></script>
+    <script src="/static/common/js/cover_js/iscroll-zoom.js"></script>
+	<script src="/static/common/js/cover_js/hammer.js"></script>
+	<script src="/static/common/js/cover_js/lrz.all.bundle.js"></script>
+	<script src="/static/common/js/cover_js/jquery.photoClip.min.js"></script>
+	<script type="text/javascript"  src="<?php AutoVersion('/static/common/js/common.js');?>"></script>
+	<script src="<?php AutoVersion('/static/v1/js/itinerary/tripEdit.js');?>"></script>
+	<!-- <script src="<?php AutoVersion('/static/v1/js/aboutUser/create_poster.js');?>"></script> -->
+</html>

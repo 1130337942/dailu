@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="nofollow" />
+	<title>忘记密码</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/v1/css/login/login.css">
+	<style>
+		.registerWap .list2 .p-lab{
+			top:12px;
+		}
+	</style>
+</head>
+<body>
+	<div class="mainBox">
+		<div class="loginBox">
+			<div class="fl leftInfo">
+				<h4 class='logo'></h4>
+				<div class='zh'>登录袋鹿，与10000+名旅游<br>达人一起制定行程！</div>
+				<div class='en'>Log in the dailuer.com, and  make the  itinerary <br>	 with more than 10000 popular traveler together!</div>
+				<!-- <div class="make"><a href="#">> 立即定制</a></div> -->
+			</div>
+			<div class="fr registerWap">
+				<div class='list1 clearfix'><span class='en fl'>忘记密码</span><span class='tologin fr'>已有账号 <a href="/portal/login/login.html">登录</a></span>
+				</div>
+				<div class='list2'>
+					<label class='p-lab' for="phone">
+						<div class='errInfo'></div>
+						<span class='status'></span>
+					</label>
+					<input id='phone' class='phone' type="number" placeholder="请输入您的手机号码">
+				</div>
+				<div id="embed-captcha"></div>
+				<div id="wait" class="show">正在加载图形验证......</div>
+				<div class='phoneCode'>
+					<label class='sendCode' for="phoneCode">发送验证码</label>
+					<input id='phoneCode' type="number" placeholder="请输入手机验证码">
+				</div>
+				<div class='passWorld'>
+					<label for="passWorld">
+						<div class='errInfo'></div>
+						<span class='status'></span>
+					</label>
+					<input onfocus="this.type='password'" id='passWorld' type="text" placeholder="密码需大于6位">
+				</div>
+				<div class='registerBox'>
+					<button class="go_register">完成</button>
+				</div>
+			</div>
+			<a class="close" href="javascript:;" style="">x</a>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/gt.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/login/forget_password.js"></script>
+
+</html>

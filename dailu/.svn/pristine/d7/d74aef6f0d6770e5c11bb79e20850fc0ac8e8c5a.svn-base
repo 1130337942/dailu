@@ -1,0 +1,93 @@
+/*public footer*/
+.pub_footer {
+	width: 100%;	
+	min-width: 1200px;
+	background-color: #333333;
+	color: #999;
+	overflow: hidden;
+}
+.footer_all {
+
+	width: 1200px;
+	margin: 48px auto 0;
+}
+
+.pub_footer .footer_all>ul {
+	margin-right: 120px;
+}
+.pub_footer .footer_all>ul li {
+	line-height: 26px;
+	font-size: 14px;
+}
+.pub_footer .footer_all>ul li a:hover {
+	color: #ccc;
+}
+.pub_footer .footer_all ul .tit {
+	color: #ccc;
+	margin-bottom: 10px;
+}
+
+.pub_footer .footer_all .wechat,
+.pub_footer .footer_all .touch{
+	text-align: center;
+}
+.pub_footer .footer_all .wechat{
+	padding-left: 80px;
+	height: 128px;
+	border-left: 1px solid #666;
+}
+.pub_footer .footer_all .wechat img{
+	width: 100px;
+	height: 98px;
+}
+
+.pub_footer .footer_all .touch {
+	padding-right: 80px;
+}
+.pub_footer .footer_all .touch .phone{
+	color: #f4a21e;
+	font-size: 20px;
+	padding-bottom: 10px;
+}
+.pub_footer .footer_all .touch .interval{
+	font-size: 14px;
+	padding-bottom: 8px;
+}
+.pub_footer .footer_all .touch .all_service a{
+	display: inline-block;
+	width: 142px;
+	height: 28px;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 28px;
+	border: solid 1px #666666;
+	color: #f4a21e;
+}
+.pub_footer .footer_all .touch .all_service a:hover{
+	background-color: #262626;
+}
+
+.copyRight {
+	margin-top: 20px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border-top: 1px solid #454545;
+	font-size: 14px;
+}
+.footer_all   {
+	text-align: left;
+}
+.friendlyLink {
+	width: 1200px;
+	margin: 20px auto;
+	font-size: 12px;
+}
+.friendlyLink a {
+	margin-right: 10px;
+
+}
+.friendlyLink a:hover {
+	color: #ccc;
+}
+/*public footer*/

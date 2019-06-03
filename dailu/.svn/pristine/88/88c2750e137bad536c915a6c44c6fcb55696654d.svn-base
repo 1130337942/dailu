@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>包车详情</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/swiper/swiper.css">
+	<link rel="stylesheet" href="/static/common/swiper/animate.min.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/rentalDetail.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_store"/>
+	<div class="searchWap clearfix">
+		<div class="fl start_city">
+			<div class="tips">出发城市</div>
+			<div class="wap_place">
+				<input type="text" value="呼和浩特">
+				<i class="arr"></i>
+
+			</div>
+		</div>
+		<div class="fl day_num">
+			<div class="tips">天数</div>
+			<div class="wap_num">
+				<input type="text" value="一天">
+				<i class="arr"></i>
+			</div>
+		</div>
+		<div class="fl start_time">
+			<div class="tips">出发日期</div>
+			<div class="wap_time">d
+				<input type="text" value="2018-09-21">
+				<i class="arr"></i>
+
+				<p class="time">
+					<span>08:00</span>
+				</p>
+			</div>
+		</div>
+		<div class="fl searchBtn">
+			立即搜索
+		</div>
+	</div>
+	
+	<div class="limitWap">
+		<div class="wap_car pl20">
+			<div class="tit">车型</div>
+			<span class="all active">不限</span>
+			<span class="carlist"><i class="checkBox on"></i>经济型</span>
+			<span class="carlist"><i class="checkBox"></i>豪华型</span>
+			<span class="carlist"><i class="checkBox"></i>商务型</span>
+			<span class="carlist"><i class="checkBox"></i>8座小巴</span>
+			<span class="carlist"><i class="checkBox"></i>10座小巴</span>
+			<span class="carlist"><i class="checkBox"></i>15座小巴</span>
+		</div>
+		<p class="bd1"></p>
+		<div class="wap_service pl20">
+			<div class="tit">特色服务</div>
+			<span class="all">不限</span>
+			<span class="carlist"><i class="checkBox on"></i>车况佳</span>
+			<span class="carlist"><i class="checkBox"></i>纸巾</span>
+			<span class="carlist"><i class="checkBox"></i>价格（按辆计费）</span>
+		</div>
+	</div>
+	<div class="listWap">
+		<div class="title clearfix">
+			<span class="fl con1">车型展示</span>
+			<span class="fl con2">车型信息</span>
+			<span class="fl con3">车型展示</span>
+		</div>
+		<div class="list">
+			<div class="prev clearfix">
+				<div class="fl con1">
+					<img src="/static/v1/img/dsa.png" alt="">
+				</div>
+				<div class="fl con2">
+					<div class="type">经济型</div>
+					<div class="carname">本田锋范 | 现代伊兰特 | 大众宝来 | 丰田卡罗拉</div>
+					<div class="capacity">搭载能力：<span>可乘坐4人+2行李箱</span></div>
+				</div>
+				<div class="fl con3">
+					<div class="price">¥ <span>75</span> 起</div>
+					<span class="dest_btn">预定</span>
+				</div>
+			</div>
+			<div class="formWap hide">
+				<div class="tit">2018年5月29日  星期二  09:00 <span class="color999"> (当地时间) </span>  上海  一天包车</div>
+				<div class="city_wap">
+					<div class="tips">服务开始城市</div>
+					<div class="city">上海</div>
+				</div>
+				<div class="city_wap" style="margin-left: 128px;">
+					<div class="tips">服务结束城市</div>
+					<div class="city">上海</div>
+				</div>
+				<div class="info_wap">
+					<div class="inputList">
+						<span>上车地点</span>
+						<input type="text" placeholder="请输入与司机见面的地点">
+					</div>
+					<div class="inputList">
+						<span>联系人</span>
+						<input type="text" placeholder="请输入联系人姓名">
+					</div>
+					<div class="inputList">
+						<span>国内手机号</span>
+						<input type="text" placeholder="请输入手机号码">
+						接收订单通知短信
+					</div>
+				</div>
+				<div class="inform">
+					<div class="tit">预定须知</div>
+					<div class="lis"><span>价格包含: </span> (每天8小时100公里)车辆使用费、燃油费、司机服务费。</div>
+					<div class="lis"><span>价格不含: </span> 由乘客临时增加用车需求而产生的费用按如下标准收费。</div>
+					<div class="lis"><span>取消时间: </span> 2018-05-28 08:50 以前可免费取消。超过最晚取消时间，将收取您498元违约金。</div>
+					<div class="lis"><span>开具发票: </span>如需发票，由携程统一开具。请在服务完成后至订单详情页填写开票信息，开票总金额包含超时超公里费用（发票金额不含礼品卡支付金额以及客人自付第三方停车、路桥费金额）。</div>
+					<div class="lis"><span>套餐期限: </span>预订多日包车，每日套餐内容不累计，当日24点仍未使用自动作废。建议每日最长包车时长不超过12小时。
+					</div>
+				</div>
+				<div class="submit_wap">
+					包车费用：<span class="price">¥498 </span>
+					<span class="submit_btn fr">立即支付</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="list">
+			<div class="prev clearfix">
+				<div class="fl con1">
+					<img src="/static/v1/img/dsa.png" alt="">
+				</div>
+				<div class="fl con2">
+					<div class="type">经济型</div>
+					<div class="carname">本田锋范 | 现代伊兰特 | 大众宝来 | 丰田卡罗拉</div>
+					<div class="capacity">搭载能力：<span>可乘坐4人+2行李箱</span></div>
+				</div>
+				<div class="fl con3">
+					<div class="price">¥ <span>75</span> 起</div>
+					<span class="dest_btn">预定</span>
+				</div>
+			</div>
+			<div class="formWap hide">
+				<div class="tit">2018年5月29日  星期二  09:00 <span class="color999"> (当地时间) </span>  上海  一天包车</div>
+				<div class="city_wap">
+					<div class="tips">服务开始城市</div>
+					<div class="city">上海</div>
+				</div>
+				<div class="city_wap" style="margin-left: 128px;">
+					<div class="tips">服务结束城市</div>
+					<div class="city">上海</div>
+				</div>
+				<div class="info_wap">
+					<div class="inputList">
+						<span>上车地点</span>
+						<input type="text" placeholder="请输入与司机见面的地点">
+					</div>
+					<div class="inputList">
+						<span>联系人</span>
+						<input type="text" placeholder="请输入联系人姓名">
+					</div>
+					<div class="inputList">
+						<span>国内手机号</span>
+						<input type="text" placeholder="请输入手机号码">
+						接收订单通知短信
+					</div>
+				</div>
+				<div class="inform">
+					<div class="tit">预定须知</div>
+					<div class="lis"><span>价格包含: </span> (每天8小时100公里)车辆使用费、燃油费、司机服务费。</div>
+					<div class="lis"><span>价格不含: </span> 由乘客临时增加用车需求而产生的费用按如下标准收费。</div>
+					<div class="lis"><span>取消时间: </span> 2018-05-28 08:50 以前可免费取消。超过最晚取消时间，将收取您498元违约金。</div>
+					<div class="lis"><span>开具发票: </span>如需发票，由携程统一开具。请在服务完成后至订单详情页填写开票信息，开票总金额包含超时超公里费用（发票金额不含礼品卡支付金额以及客人自付第三方停车、路桥费金额）。</div>
+					<div class="lis"><span>套餐期限: </span>预订多日包车，每日套餐内容不累计，当日24点仍未使用自动作废。建议每日最长包车时长不超过12小时。
+					</div>
+				</div>
+				<div class="submit_wap">
+					包车费用：<span class="price">¥498 </span>
+					<span class="submit_btn fr">立即支付</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="list">
+			<div class="prev clearfix">
+				<div class="fl con1">
+					<img src="/static/v1/img/dsa.png" alt="">
+				</div>
+				<div class="fl con2">
+					<div class="type">经济型</div>
+					<div class="carname">本田锋范 | 现代伊兰特 | 大众宝来 | 丰田卡罗拉</div>
+					<div class="capacity">搭载能力：<span>可乘坐4人+2行李箱</span></div>
+				</div>
+				<div class="fl con3">
+					<div class="price">¥ <span>75</span> 起</div>
+					<span class="dest_btn">预定</span>
+				</div>
+			</div>
+			<div class="formWap hide">
+				<div class="tit">2018年5月29日  星期二  09:00 <span class="color999"> (当地时间) </span>  上海  一天包车</div>
+				<div class="city_wap">
+					<div class="tips">服务开始城市</div>
+					<div class="city">上海</div>
+				</div>
+				<div class="city_wap" style="margin-left: 128px;">
+					<div class="tips">服务结束城市</div>
+					<div class="city">上海</div>
+				</div>
+				<div class="info_wap">
+					<div class="inputList">
+						<span>上车地点</span>
+						<input type="text" placeholder="请输入与司机见面的地点">
+					</div>
+					<div class="inputList">
+						<span>联系人</span>
+						<input type="text" placeholder="请输入联系人姓名">
+					</div>
+					<div class="inputList">
+						<span>国内手机号</span>
+						<input type="text" placeholder="请输入手机号码">
+						接收订单通知短信
+					</div>
+				</div>
+				<div class="inform">
+					<div class="tit">预定须知</div>
+					<div class="lis"><span>价格包含: </span> (每天8小时100公里)车辆使用费、燃油费、司机服务费。</div>
+					<div class="lis"><span>价格不含: </span> 由乘客临时增加用车需求而产生的费用按如下标准收费。</div>
+					<div class="lis"><span>取消时间: </span> 2018-05-28 08:50 以前可免费取消。超过最晚取消时间，将收取您498元违约金。</div>
+					<div class="lis"><span>开具发票: </span>如需发票，由携程统一开具。请在服务完成后至订单详情页填写开票信息，开票总金额包含超时超公里费用（发票金额不含礼品卡支付金额以及客人自付第三方停车、路桥费金额）。</div>
+					<div class="lis"><span>套餐期限: </span>预订多日包车，每日套餐内容不累计，当日24点仍未使用自动作废。建议每日最长包车时长不超过12小时。
+					</div>
+				</div>
+				<div class="submit_wap">
+					包车费用：<span class="price">¥498 </span>
+					<span class="submit_btn fr">立即支付</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/swiper/swiper.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/rentalDetail.js"></script>
+</html>

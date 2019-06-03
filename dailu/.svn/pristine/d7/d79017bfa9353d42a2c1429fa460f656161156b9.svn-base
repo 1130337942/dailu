@@ -1,0 +1,19 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>袋鹿-设计行程</title>
+<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+<link rel="stylesheet" href="/static/common/css/animate.min.css">
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/css/common.css');?>">
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/css/mapNav.css');?>">
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/css/detailsPopup.css');?>">
+<link rel="stylesheet" href="/static/common/lineProgressbar/jquery.lineProgressbar.css">
+<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c546aa992ebbfb2ccc57220ee155004b";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>	

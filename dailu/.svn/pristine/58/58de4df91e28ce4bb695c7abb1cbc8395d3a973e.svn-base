@@ -1,0 +1,213 @@
+var initObj = {},
+    map,hover_Marker,h_MarkerArr=[];
+var _trc_res,//行程数据
+    _floor_res,//楼层数据
+    _post_floorData = {},//请求楼层数据向后台传入数据
+    this_city_index,
+    go_city_name,
+    return_city_name,
+    city_id,
+    _dataspot,//1-5楼详情
+    hotelList,//酒店列表
+    _hotel_datal,//酒店详情
+    _this_city_data,//当前城市数据
+    _city_name,//当前城市名字
+    bounds = {},//地图缩放后，向后台传地图数据调用酒店接口
+    _Daydate_arr = [],//每天的日期
+    addgo_arry = [],//添加我想去的景点
+    addgo_marker_array = [],//添加我想去的景点marker数组
+    eat_name_arry = [],//添加美食数组
+    hotel_markArr = [],//酒店marker数组
+    time_Arr = [];//时间区间数组
+//高亮
+var polyOptions = {
+    //边线边框线
+    strokeColor: "#9B868B",
+    fillColor: '#FF0000',
+    fillOpacity: 0.1,
+    strokeWeight: 1,
+    zIndex: 1
+};
+
+$(function(){
+   
+    $.post('plan',function(res){
+        if(!res.status)return
+        console.log(res)
+        _trc_res = res.data;
+        this_city_index = _trc_res.r_spot.spot_data.this_city_index
+        _this_city_data = _trc_res.r_spot.go_city_array[this_city_index]
+        city_id = _this_city_data.city_id;
+        _city_name = _this_city_data.city_name;
+       
+        _post_floorData = {city_id:city_id}
+        $(".loading_box").fadeOut();
+        //初始化调动方法
+        initObj.initFn();
+    },'json');
+
+    initObj={
+        initFn:function(){
+            //加载地图
+            google.maps.event.addDomListener(window, "load", mapObj.initMap());
+            //城市高亮
+            mapObj.cityOptionsPathFn();
+            //渲染每天的列表
+            templateObj.dayItem_fn();
+            //下一步
+            initObj.next_fn()
+        },
+        //下一步
+        next_fn:function(){
+            $('.f_main_next').on('click',function(){
+                var post_data = {},singcityData={};
+
+                var res_r_spot = _trc_res.r_spot;
+                post_data.across_city = res_r_spot.across_city//是否跨城
+                post_data.cityArray = res_r_spot.cityArray//城市数组
+                post_data.adult = res_r_spot.adult//成人人数
+                post_data.children = res_r_spot.children //儿童人数
+                post_data.cover = res_r_spot.cover //封面
+                post_data.date = res_r_spot.date //日期
+                post_data.departure_city = res_r_spot.departure_city //出发城市
+                post_data.return_city = res_r_spot.return_city //返回城市
+                post_data.go_city_array = res_r_spot.go_city_array //添加我想去的城市
+
+                var res_result = _trc_res.result;
+                singcityData.day_arry = res_result.day_arry //我想去的元素
+                singcityData.eat_len = res_result.eat_len //吃的个数
+                singcityData.shop_len = res_result.shop_len //购物的个数
+                singcityData.spot_len = res_result.spot_len //景点的个数
+                singcityData.this_city = res_result.this_city //当前城市名字
+                singcityData.this_city_lat = res_result.this_city_lat 
+                singcityData.this_city_lng = res_result.this_city_lng 
+                singcityData.this_city_index = this_city_index ;
+                post_data.singcityData = singcityData;
+                $.ajax({
+                    url: "overview",
+                    type: "post",
+                    dataType: "json",
+                    contentType:"application/json;charset=utf-8",
+                    data:JSON.stringify(post_data), 
+                    success: function (data) {
+                        // console.log(data)
+                        sessionStorage.setItem("this_city_index",Number(this_city_index+1))
+                        window.location.href = "/portal/scenerymap/cityAttractions.html"
+                    }
+                })
+            });
+        }
+    }
+    var mapObj = {
+        //加载谷歌地图
+        initMap: function () {
+            var lat = Number(_this_city_data.lat)
+            var lng = Number(_this_city_data.lng)
+            map = new google.maps.Map(document.getElementById('map'), {
+                gestureHandling: 'greedy',
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                scaleControl: true,
+                streetViewControl: false,
+                center: {
+                    lat: lat,
+                    lng: lng
+                }
+            });
+        },
+        //城市边界线高亮
+        cityOptionsPathFn:function(){
+            var provinceNames = _this_city_data.provinceNames;
+            var data_type ;
+            if(provinceNames == '北京'||provinceNames == '上海'||provinceNames == '天津'||provinceNames == '重庆'){
+                data_type = 1
+            }else{
+                data_type = 0
+            }
+            var sfen_zxsData = data_type == 0 ? cityData.provinces : cityData.municipalities
+            
+            var this_proIndex = getArrIndex(sfen_zxsData, {
+                n: provinceNames
+            });
+            var city_dataArr = data_type == 0 ? sfen_zxsData[this_proIndex].cities : sfen_zxsData;
+            var cityMapIndex = getArrIndex(city_dataArr, {
+                n: _city_name
+            });
+            var getZoom = city_dataArr[cityMapIndex].z?city_dataArr[cityMapIndex].z:9
+            map.setZoom(getZoom)
+            var city_paths = city_dataArr[cityMapIndex].b;
+            var city_polygon = new google.maps.Polygon();
+            city_polygon.setOptions(polyOptions);
+            var paths = mapPaths(city_paths)
+            city_polygon.setPaths(paths);
+            city_polygon.setMap(map);
+        },
+        
+        
+    };
+    var templateObj = {
+        //渲染每天的列表
+        dayItem_fn:function(){
+            var dayItem_str = '{{each day_arry as value i}}\
+                        <div class="dayItem">\
+                            <div class="day_nav">\
+                                <div class="day_nav_top clearfix">\
+                                    <span class="fl item_Dnum">{{value.hotel_day}}</span>\
+                                    <div class="fr"><i class="del_icon"></i></div>\
+                                </div>\
+                                <div class="day_nav_bottom">\
+                                    <span>{{value.date}}</span><span>{{value.weeks}}</span><span>|</span><span>{{value.betw_time}}</span>\
+                                </div>\
+                            </div>\
+                            <ul>\
+                                {{each value.day as spot s}}\
+                                    <li class="spot_list" data-lat="{{spot.this_lat}}" data-lng="{{spot.this_lng}}">\
+                                        <div class="spot_box clearfix">\
+                                            <i class="delete_icon"></i>\
+                                            <div class="div1 clearfix">\
+                                                <span class="name fl" title="{{spot.this_name}}">{{spot.this_name}}</span>\
+                                                {{if spot.eat_info}}\
+                                                    <i class="foodBox"></i>\
+                                                {{/if}}\
+                                                <div class="fr time_div">\
+                                                    <span class="time_num">{{spot.this_tag_time}}</span>\
+                                                    <div class="tiem_ico"><i class="add_ico"></i><i class="dow_ico"></i></div>小时\
+                                                </div>\
+                                            </div>\
+                                            <div class="div2 clearfix">\
+                                                <span class="fl">开放时间:{{spot.business_hours}}</span>\
+                                                <span class="fr">景</span>\
+                                            </div>\
+                                        </div>\
+                                        <div class="spot_trc_box">\
+                                            {{if spot.traffic_distance}}\
+                                                <i class="trc_ico"></i>{{spot.traffic_distance}}km·约{{spot.traffic_time_chinese}}分钟\
+                                            {{else}}\
+                                            <i class="trc_ico"></i>0km·0分钟\
+                                            {{/if}}\
+                                        </div>\
+                                    </li>\
+                                {{/each}}\
+                            </ul>\
+                            {{if value.hotel}}\
+                                {{if value.hotel.hotel_name != ""}}\
+                                    <div class="hotel_box clearfix">\
+                                        <div class="fl"><i class="hotel_ico"></i>{{value.hotel.BusinessZoneName}}</div><span class="fr">住</span>\
+                                    </div>\
+                                {{else}}\
+                                    <div class="hotel_box not_hotel clearfix">\
+                                        <div class="fl"><i class="hotel_ico"></i>当前暂未添加酒店</div><span class="fr">住</span>\
+                                    </div>\
+                                {{/if}}\
+                            {{else}}\
+                                <div class="hotel_box not_hotel clearfix">\
+                                    <div class="fl"><i class="hotel_ico"></i>当前暂未添加酒店</div><span class="fr">住</span>\
+                                </div>\
+                            {{/if}}\
+                        </div>\
+                    {{/each}}';
+            var dayItem_render = template.compile(dayItem_str);
+            var dayItem_html = dayItem_render(_trc_res.result);
+            $('.f_main_main').html(dayItem_html)
+        }
+    }
+})

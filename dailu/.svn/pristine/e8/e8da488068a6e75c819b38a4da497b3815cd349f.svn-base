@@ -1,0 +1,127 @@
+<nav class="nav clearfix">
+    <div class="nav_icon">
+        <a href="/"><i class="icon1"></i></a>
+        <!-- <span>25</span>
+        <i class="icon2"></i> -->
+    </div>
+    <div class="nav_title_box">
+        <div class="nav_title">我的出行计划
+            <i></i>
+        </div>
+    </div>
+    <div class="nav_rig clearfix">
+
+        <!-- 登录过 -->
+        <if condition="$Think.cookie.user_name == true">
+            <a href=''></a><span class="landing">{$Think.cookie.user_name}</span></a>
+            <div class="portrait js_portrait">
+                <img src="/static/v1/img/header.jpg" alt="">
+            </div>
+            <!-- 未登录过 -->
+            <else />
+            <span class="r_text" >登录后会实时保存您的行程数据</span>
+            <!-- <span class="save">登录后会实时保存您的行程数据</span> -->
+            <a href='/portal/login/login.html'><span class="landing">登录</span></a>
+            <!-- <div class="portrait">
+                <img src="/static/v1/img/index/bg1_1.png" alt="">
+            </div> -->
+        </if>
+
+    </div>
+</nav>
+<!-- satrt -->
+<div class='madeTravelMask'>
+    <div class="madeTravel">
+        <div class="upload_box">
+            <img class='bgImg' src="/static/v1/img/map/ballute.png" alt="">
+        </div>
+        <div class='cartBox'>
+            <div class='cart-top'>
+                <div class='clearfix wap1'>
+                    <span class='fl man'>
+                        <i class='ico adult'></i>成人数
+                        <span class="wap2_adult_num"></span>
+                        <div class="ctr-adult">
+                            <span class='add'></span>
+                            <span class='sub'></span>
+                        </div>
+                    </span>
+                    <span class='fl child'>
+                        <i class='ico children'></i>儿童数
+                        <span class="wap2_childrent_num"></span>
+                        <div class="ctr-child">
+                            <span class='add'></span>
+                            <span class='child_sub'></span>
+                        </div>
+                    </span>
+                    <div class='dayNum fr'>
+                        <i class='ico daynum'></i>出行天数
+                        <span class="wap1_day_num"></span>
+                        <div class='ctr-daynum'>
+                            <span class='add'></span>
+                            <span class='sub'></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="wap2 clearfix">
+                    <span class='start'>
+                        <i class='ico departure'></i>
+                        <span class="start_name"></span>
+                        <i class='ico arr'></i>
+                    </span>
+                    <span class='end'>
+                        <i class='ico return'></i>
+                        <span class="end_name"></span>
+                        <i class='ico arr'></i>
+                    </span>
+                    <span class='fr traffic'>
+                        <i class='t-ico ico' id="js_traffic_ico"></i>
+                        <span class='way wap2_traffic'></span>
+                        <i class='ico arr'></i>
+                        <div class='tra-wap'>
+                            <p>
+                                <i class='ico air'></i>
+                                <span>飞机交通</span>
+                            </p>
+                            <p>
+                                <i class='ico train'></i>
+                                <span>铁路交通</span>
+                            </p>
+                            <p>
+                                <i class='ico tra_other'></i>
+                                <span>汽车交通</span>
+                            </p>
+                        </div>
+                    </span>
+                </div>
+                <div class="wap3 clearfix">
+                    <span id='date_picker' class='fl startTime'>
+                        <i class='ico date'></i>
+                        <input type="text" id="wap3_date" readonly="readonly" value="">
+                        <label for="wap3_date" class='ico arr'></label>
+                    </span>
+                    <!--  -->
+                    <div class="search_city_box">
+                        <div class="input_box">
+                            <input placeholder="请输入城市的名字" id="s_input" type="text" autocomplete="off" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"
+                                onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                            <label class="labels fr s_icon" for="s_input"></label>
+                            <label class="labels fr e_icon" for="s_input"></label>
+                        </div>
+                        <div class="s_city_list dis_none"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="buttonBox clearfix">
+                <sapn class="cancel fl">取消</sapn>
+                <span class="save fr">保存</sapn>
+            </div>
+        </div>
+        <i class='closeMadeTravelMask'></i>
+
+    </div>
+</div>
+<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+<script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/mapNav/mapNav.js');?>"></script>
+<!--   -->

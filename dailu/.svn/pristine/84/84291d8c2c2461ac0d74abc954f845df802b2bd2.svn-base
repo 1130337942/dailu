@@ -1,0 +1,420 @@
+.hide {
+	display: none;
+}
+.checkBox{
+	cursor: pointer;
+	margin-right: 15px;
+	font-size: 14px;
+	color: #999;
+}
+.checkBox::before {
+	margin-right: 6px;
+	display: inline-block;
+	content:'';
+	vertical-align: middle;
+	width: 12px;
+	height: 12px;
+	border: 1px solid #e5e5e5;
+	background-color: #fafafa;
+}
+.on.checkBox::before {
+	background: #fff url(/static/v1/img/checked.png) center center no-repeat;
+}
+
+input,select{
+     appearance:none;
+    -moz-appearance:none;
+   -webkit-appearance:none;  
+	outline: none;
+	border: none;
+	margin-left: 0;
+}
+.stepWap{
+	width: 1200px;
+	margin: 0 auto;
+	padding-top: 68px;
+	height: 58px;
+	line-height: 58px;
+	font-size: 14px;
+}
+.stepWap .step {
+	overflow: hidden;
+}
+.stepWap .step span{
+	padding-left: 17px;
+	position: relative;
+	float: left;
+	display: block;
+}
+.stepWap .step span.active{
+	color: #659ff5;
+}
+.stepWap .step span.active::before{
+	background-color: #659ff5;
+}
+.stepWap .step span::before {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	content:'';
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #e5e5e5;
+	margin-top: -2px;
+}
+.stepWap .step span:first-child::before{
+	display: none;
+}
+
+.stepWap .step span::after {
+	font-size: 0;
+	width: 130px;
+	height: 2px;
+	background-color: #e5e5e5;
+	content:'';
+	display: inline-block;
+	border:none;
+	margin-left: 11px;	
+	vertical-align: middle;
+}
+.stepWap .step span:last-child::after{
+	display: none;
+}
+
+.minWap{
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.minWap .leftWap {
+	width: 860px;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.minWap .leftWap .trainInfo {
+	width: 788px;
+	padding: 0 36px;
+	background-color: #fff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.minWap .leftWap .title {
+	height: 50px;
+	line-height: 50px;
+	font-weight: 600;
+	position: relative;
+	border-bottom: 1px solid #e5e5e5;
+}
+.minWap .leftWap .title::before {
+	display:block;
+	content: '';
+	width: 3px;
+	height: 15px;
+	background-color: #659ff5;
+	position: absolute;
+	top: 50%;
+	margin-top: -7px;
+	left: -12px;
+}
+.minWap .leftWap .title .tip {
+	font-size: 14px;
+}
+.minWap .leftWap .title a.tip{
+	color: #659ff5;
+	text-decoration: underline;
+}
+.minWap .leftWap .title i {
+	display: inline-block;
+	vertical-align: middle;
+	width: 1px;
+	height: 15px;
+	background-color: #cccccc;
+	margin: 0 15px;
+}
+.minWap .leftWap .trainInfo .train{
+	height: 68px;
+	padding-top: 20px;
+}
+.minWap .leftWap .train .wap1 {
+	text-align: center;
+	width: 72px;
+}
+.minWap .leftWap .train .wap2 {
+	width: 350px;
+	height: 100%;
+	margin-left: 150px;
+}
+.minWap .leftWap .train .wap3 {
+	text-align: center;
+	width: 80px;
+}  
+.minWap .leftWap .train .fz24 {
+	font-size: 24px;
+	font-family: DINMittelschriftStd;
+}
+.minWap .leftWap .train .money {
+	color: #f4a21e;
+}
+.minWap .leftWap .train .fz14 {
+	font-size: 14px;
+	color: #999;
+	font-family: DINMittelschriftStd;
+}
+.minWap .leftWap .train .wap2 .inblock {
+	display: inline-block;
+	vertical-align: middle;
+}
+.minWap .leftWap .train .wap2  .leave,
+.minWap .leftWap .train .wap2  .deast {
+	width: 120px;
+	text-align: center;
+}
+.minWap .leftWap .train .wap2  .arr{
+	padding-bottom: 10px;
+	font-family: DINMittelschriftStd;
+	font-size: 12px;
+	color: #659ff5;
+	width: 90px;
+	text-align: center;
+	background: #fff url(/static/v1/img/dsaddg.png) center bottom no-repeat;
+}
+.minWap .leftWap  .passenger{
+	margin-top: 8px;
+	width: 788px;
+	padding:0 36px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.minWap .leftWap .wap {
+	line-height: 40px;
+}
+.minWap .leftWap .wap .tit {
+	display: inline-block;
+	width: 98px;
+	vertical-align: middle;
+	font-size: 14px;
+	color: #666;
+}
+.minWap .leftWap input {
+	font-size: 14px;
+	width: 176px;
+	height: 30px;
+	padding-left: 12px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+}
+.minWap .leftWap .passenger select{
+	color: #333;
+	width: 190px;
+	padding-left: 12px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+} 
+.minWap .leftWap .select {
+	position: relative;
+}
+.minWap .leftWap .select::after {
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	position: absolute;
+	top:35%;
+	right: 12px;
+	border-right: 3px solid #999;
+	border-bottom: 3PX solid #999;
+	border-top: 3PX solid transparent;
+	border-left: 3PX solid transparent;
+	transform:  rotate(45deg);
+}
+.minWap .leftWap .passenger a {
+		color: #659ff5;
+		font-size: 14px;
+		margin-left: 20px;	
+}
+.minWap .leftWap .wap .tip{
+		font-size: 12px;
+}
+.minWap .leftWap .passenger .paslist {
+	margin-top: 20px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.minWap .leftWap .passenger  .ctrlwap {
+	padding: 25px 0; 
+	color: #999;
+	font-size: 14px;
+}
+
+.minWap .leftWap .passenger .paslist .del {
+	color: #659ff5;
+	font-size: 14px;
+	float: right;
+	cursor: pointer;
+}
+.minWap .leftWap .passenger .paslist .del:hover {
+	color:#2875e7;
+}
+
+.minWap .leftWap .passenger  .ctrlwap .add {
+	display: inline-block;
+	width: 285px;
+	height: 48px;
+	background-color: #f0f6ff;
+	border-radius: 4px;
+	color: #659ff5;
+	text-align: center;
+	line-height: 48px;
+	font-size: 16px;
+	margin-right: 10px;
+}
+/*联系人信息*/
+.minWap .leftWap  .linkMan{
+	font-size: 14px;
+	margin-top: 8px;
+	width: 788px;
+	padding:0 36px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+
+.minWap .leftWap .linkMan .linkbox {
+	margin: 18px 0;
+	padding: 0 70px 0 96px;
+	height: 36px;
+	overflow: hidden;
+	position: relative;
+	width: 622px;
+	background-color: #fafafa;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #999;
+	line-height: 36px;
+}
+.minWap .leftWap .linkMan .linkbox .left_tit {
+	position: absolute;
+	top: 10px;
+	left: 25px;
+}
+.minWap .leftWap .linkMan .linkbox .list {
+	margin-left: 40px;
+}
+.minWap .leftWap .linkMan .linkbox .left_tit {
+	position: absolute;
+	left: 25px;
+	top: 0;
+}
+.minWap .leftWap .linkMan .linkbox .ctrl {
+	position: absolute;
+	top: 0px;
+	right: 40px;
+}
+.linkMan select{
+	width: 138px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	padding-left: 12px;	
+}
+.linkMan .need_vouch {
+	color: #999;
+	font-size: 14px;
+}	
+ .linkMan .vouch{
+	font-family: DINMittelschriftStd;
+	font-size: 16px;
+	color:#f4a21e;
+}
+.minWap .leftWap .wap.clause{
+	height: 88px;
+	line-height: 88px;
+	color: #999;
+}
+.minWap .leftWap .wap.clause a {
+	color: #659ff5;
+}
+.minWap .leftWap .wap.clause .tit {
+	color: #333;
+	font-weight: 600;
+}
+.returnInfo  {
+	width: 788px;
+    padding: 0 36px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+}
+.returnInfo textarea {
+	margin-top: 10px;
+	border-radius: 3px;
+	border-color: #e5e5e5;
+} 
+.returnInfo .submit_btn {
+	width: 113px;
+	height: 36px;
+	background-color: #659ff5;
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+	display: inline-block;
+	line-height: 36px;
+	margin:20px 0 50px;
+	cursor: pointer;
+}
+.minWap .rightWap{
+	width: 332px;
+}
+.minWap .rightWap .title {
+	height: 50px;
+	line-height: 50px;
+	font-weight: 600;
+	border-bottom: 1px solid #e5e5e5;
+}
+.minWap .rightWap .orderInfo {
+	width: 284px;
+	padding:0 24px;
+	background-color: #fff;
+}
+.minWap .rightWap .orderInfo .list {
+	line-height: 30px;
+}
+.minWap .rightWap .orderInfo .list .tit {
+	display: inline-block;
+	vertical-align: middle;
+	width: 220px;
+	font-size: 14px;
+	color: #666;
+}
+.minWap .rightWap .orderInfo .list .price{
+	color: #f4a21e;
+	font-size: 18px;
+	font-family: DINMittelschriftStd;
+}
+.minWap .rightWap .orderInfo .listBox {
+	padding: 20px 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+.minWap .rightWap .orderInfo .tot{
+	font-size: 18px;
+	height: 56px;
+	line-height: 56px;
+	font-weight: 600;
+}
+.minWap .rightWap .warm {
+	margin-top: 8px;
+	width: 284px;
+	padding:0 24px;
+	background-color: #fff;
+}
+.minWap .rightWap .warm  .text {
+	padding: 16px 0 36px ;
+	color: #999;
+	font-size: 14px;
+}

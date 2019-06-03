@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cityall>
+<state id="哈尔滨">
+<haerbin id="HRB">哈尔滨太平国际机场</haerbin>
+</state>
+
+<state id="齐齐哈尔">
+<qiqihaer id="NDG">齐齐哈尔三家子机场</qiqihaer>
+</state>
+
+<state id="牡丹江">
+<mudanjiang id="MDG">牡丹江海浪机场</mudanjiang>
+</state>
+
+<state id="佳木斯">
+<jiamusi id="JMU">佳木斯东郊机场</jiamusi>
+</state>
+
+<state id="黑河">
+<heihe id="HEK">黑河国际机场</heihe>
+</state>
+
+<state id="漠河">
+<mohe id="OHE">漠河古莲机场</mohe>
+</state>
+
+<state id="大庆">
+<daqing id="DQA">大庆萨尔图机场</daqing>
+</state>
+
+<state id="鸡西">
+<jixing id="JXA">鸡西兴凯湖机场</jixing>
+</state>
+
+<state id="伊春">
+<yichun id="LDS">伊春林都机场</yichun>
+</state>
+
+<state id="长春">
+<changchun id="CGQ">长春龙嘉国际机场</changchun>
+</state>
+
+<state id="延吉">
+<yanji id="YNJ">延吉朝阳川国际机场</yanji>
+</state>
+
+<state id="吉林">
+<jilin id="JIL">吉林二台子机场</jilin>
+</state>
+
+<state id="大连">
+<zhoushuizi id="DLC">大连周水子国际机场</zhoushuizi>
+</state>
+
+<state id="沈阳">
+<shenyang id="SHE">沈阳桃仙国际机场</shenyang>
+</state>
+
+<state id="锦州">
+<jinzhou id="JNZ">锦州小岭子机场</jinzhou>
+</state>
+
+<state id="丹东">
+<dandong id="DDG">丹东浪头机场</dandong>
+</state>
+
+<state id="朝阳">
+<chaoyang id="CHG">朝阳机场</chaoyang>
+</state>
+
+<state id="石家庄">
+<shijiazhuang id="SJW">石家庄正定国际机场</shijiazhuang>
+</state>
+
+<state id="秦皇岛">
+<qinhuangdao id="SHP">秦皇岛山海关机场</qinhuangdao>
+</state>
+
+<state id="邯郸">
+<handan id="HDG">邯郸机场</handan>
+</state>
+
+<state id="北京">
+<shouduguojijichang id="PEK">北京首都国际机场</shouduguojijichang>
+<nanyuan id="NAY">北京南苑机场</nanyuan>
+</state>
+
+<state id="天津">
+<tianjin id="TSN">天津滨海国际机场</tianjin>
+</state>
+
+<state id="太原">
+<taiyuan id="TYN">太原武宿国际机场</taiyuan>
+</state>
+
+<state id="大同">
+<datong id="DAT">大同怀仁机场</datong>
+</state>
+
+<state id="长治">
+<changzhi id="CIH">长治王村机场</changzhi>
+</state>
+
+<state id="运城">
+<yuncheng id="YCU">运城关公机场</yuncheng>
+</state>
+
+<state id="呼和浩特">
+<huhehaote id="HET">呼和浩特白塔国际机场</huhehaote>
+</state>
+
+<state id="包头">
+<baotou id="BAV">包头二里半机场</baotou>
+</state>
+
+<state id="乌兰浩特">
+<wulanhaote id="HLH">乌兰浩特乌兰浩特机场</wulanhaote>
+</state>
+
+<state id="海拉尔">
+<haolaer id="HLD">海拉尔东山机场</haolaer>
+</state>
+
+<state id="鄂尔多斯">
+<eerduosi id="DSN">鄂尔多斯东胜机场 </eerduosi>
+</state>
+
+<state id="满洲里">
+<manzhouli id="NZH">满洲里西郊机场</manzhouli>
+</state>
+
+<state id="锡林浩特">
+<xilinhaote id="XIL">锡林浩特机场</xilinhaote>
+</state>
+
+<state id="赤峰">
+<chifeng id="CIF">赤峰玉龙机场 </chifeng>
+</state>
+
+<state id="通辽">
+<tongliao id="TGO">通辽机场</tongliao>
+</state>
+
+<state id="乌海">
+<wuhai id="WUA">乌海机场 </wuhai>
+</state>
+
+<state id="济南">
+<jinan id="TNA">济南遥墙国际机场</jinan>
+</state>
+
+<state id="威海">
+<weihai id="WEH">威海大水泊国际机场</weihai>
+</state>
+
+<state id="青岛">
+<qingdao id="TAO">青岛流亭国际机场</qingdao>
+</state>
+
+<state id="潍坊">
+<weifang id="WEF">潍坊文登机场</weifang>
+</state>
+
+<state id="烟台">
+<yantai id="YNT">烟台莱山机场</yantai>
+</state>
+
+<state id="临沂">
+<linyi id="LYI">临沂机场</linyi>
+</state>
+
+<state id="东营">
+<dongying id="DOY">东营永安机场</dongying>
+</state>
+
+<state id="济宁">
+<jining id="TNB">济宁济宁机场</jining>
+</state>
+
+<state id="南昌">
+<nanchang id="KHN">南昌昌北国际机场</nanchang>
+</state>
+
+<state id="九江">
+<jiujiang id="JIU">九江庐山机场</jiujiang>
+</state>
+
+<state id="景德镇">
+<jingdezhen id="JDZ">景德镇罗家机场</jingdezhen>
+</state>
+
+<state id="井冈山">
+<jinggangshan id="JGS">井冈山机场</jinggangshan>
+</state>
+
+<state id="赣州">
+<ganzhou id="KOW">赣州黄金机场</ganzhou>
+</state>
+
+<state id="黄山">
+<huangshan id="TXN">黄山屯溪跃桥机场</huangshan>
+</state>
+
+<state id="合肥">
+<hefei id="HFE">合肥骆岗机场</hefei>
+</state>
+
+<state id="安庆">
+<anqing id="AQG">安庆大龙山机场</anqing>
+</state>
+
+<state id="阜阳">
+<fuyang id="FIG">阜阳西关机场</fuyang>
+</state>
+
+<state id="杭州">
+<hangzhou id="HGH">杭州萧山国际机场</hangzhou>
+</state>
+
+<state id="温州">
+<wenzhou id="WNZ">温州永强机场</wenzhou>
+</state>
+
+<state id="舟山">
+<zhoushan id="HSN">舟山普陀山机场机场</zhoushan>
+</state>
+
+<state id="宁波">
+<ningbo id="NGB">宁波栎社国际机场</ningbo>
+</state>
+
+<state id="义乌">
+<yiwu id="YIW">义乌机场</yiwu>
+</state>
+
+<state id="黄岩">
+<huangyan id="HYN">黄岩路桥机场</huangyan>
+</state>
+
+<state id="衢州">
+<chuozhou id="JUZ">衢州机场</chuozhou>
+</state>
+
+<state id="南京">
+<nanjing id="NKG">南京禄口国际机场</nanjing>
+</state>
+
+<state id="徐州">
+<xuzhou id="XUZ">徐州观音机场</xuzhou>
+</state>
+
+<state id="连云港">
+<lianyungang id="LYG">连云港白塔埠机场</lianyungang>
+</state>
+
+<state id="盐城">
+<yancheng id="YNZ">盐城机场 </yancheng>
+</state>
+
+<state id="无锡">
+<wuxi id="WUX">无锡硕放机场</wuxi>
+</state>
+
+<state id="常州">
+<changzhou id="CZX">常州奔牛机场</changzhou>
+</state>
+
+<state id="南通">
+<nantong id="NTG">南通兴东机场</nantong>
+</state>
+
+<state id="上海">
+<hongqiao id="SHA">上海虹桥机场</hongqiao>
+<pudong id="PVG">上海浦东机场</pudong>
+</state>
+
+<state id="厦门">
+<xiamen id="XMN">厦门高崎国际机场 </xiamen>
+</state>
+
+<state id="福州">
+<fuzhou id="FOC">福州长乐国际机场</fuzhou>
+</state>
+
+<state id="晋江">
+<jinjiang id="JIN">晋江机场</jinjiang>
+</state>
+
+<state id="连城">
+<liancheng id="LCX">连城机场</liancheng>
+</state>
+
+<state id="武夷山">
+<wuyishan id="WUS">武夷山机场</wuyishan>
+</state>
+
+<state id="广州">
+<guangzhou id="CAN">广州花都新白云国际机场</guangzhou>
+</state>
+
+<state id="梅县">
+<meixian id="MXZ">梅县机场</meixian>
+</state>
+
+<state id="珠海">
+<zhuhai id="ZUH">珠海三灶国际机场</zhuhai>
+</state>
+
+<state id="汕头">
+<shantou id="SWA">汕头外砂机场</shantou>
+</state>
+
+<state id="深圳">
+<shanzhen id="SZX">深圳宝安国际机场</shanzhen>
+</state>
+
+<state id="湛江">
+<zhanjiang id="ZHA">湛江机场</zhanjiang>
+</state>
+
+<state id="海口">
+<haikou id="HAK">海口美兰国际机场</haikou>
+</state>
+
+<state id="三亚">
+<sanya id="SYX">三亚凤凰国际机场</sanya>
+</state>
+
+<state id="武汉">
+<wuhan id="WUH">武汉天河国际机场</wuhan>
+</state>
+
+<state id="荆州">
+<jinzhou id="SHS">荆州沙市机场  </jinzhou>
+</state>
+
+<state id="襄樊">
+<xiangfan id="XFN">襄樊刘集机场</xiangfan>
+</state>
+
+<state id="宜昌">
+<yichang id="YIH">宜昌三峡机场</yichang>
+</state>
+
+<state id="恩施">
+<enshi id="ENH">恩施许家坪机场</enshi>
+</state>
+
+<state id="张家界">
+<zhangjiajie id="DYG">张家界荷花大庸机场</zhangjiajie>
+</state>
+
+<state id="长沙">
+<changsha id="CSX">长沙黄花国际机场</changsha>
+</state>
+
+<state id="常德">
+<changde id="CGD">常德桃花源机场</changde>
+</state>
+
+<state id="怀化">
+<huaihua id="HJJ">怀化芷江机场</huaihua>
+</state>
+
+<state id="衡阳">
+<hengyang id="HNY">衡阳机场</hengyang>
+</state>
+
+<state id="郑州">
+<zhengzhou id="CGO">郑州新郑国际机场</zhengzhou>
+</state>
+
+<state id="洛阳">
+<luoyang id="LYA">洛阳北郊机场</luoyang>
+</state>
+
+<state id="南阳">
+<nanyang id="NNY">南阳姜营机场</nanyang>
+</state>
+
+<state id="南宁">
+<nanning id="NNG">南宁吴圩国际机场</nanning>
+</state>
+
+<state id="桂林">
+<guilin id="KWL">桂林两江国际机场 </guilin>
+</state>
+
+<state id="北海">
+<beihai id="BHY">北海福成机场  </beihai>
+</state>
+
+<state id="柳州">
+<liuzhou id="LZH">柳州白莲机场</liuzhou>
+</state>
+
+<state id="百色">
+<baise id="AEB">百色田阳机场</baise>
+</state>
+
+<state id="梧州">
+<wuzhou id="WUZ">梧州长洲岛机场</wuzhou>
+</state>
+
+<state id="西安">
+<xian id="XIY">西安咸阳国际机场</xian>
+</state>
+
+<state id="汉中">
+<hanzhong id="HZG">汉中西关机场</hanzhong>
+</state>
+
+<state id="延安">
+<yanan id="ENY">延安二十里堡机场</yanan>
+</state>
+
+<state id="安康">
+<ankang id="AKA">安康五里铺机场 </ankang>
+</state>
+
+<state id="榆林">
+<yulin id="UYN">榆林西沙机场</yulin>
+</state>
+
+<state id="兰州">
+<lanzhou id="LHW">兰州中川机场</lanzhou>
+</state>
+
+<state id="敦煌">
+<dunhuang id="DNH">敦煌机场</dunhuang>
+</state>
+
+<state id="嘉峪关">
+<jiayuguan id="JGN">嘉峪关机场</jiayuguan>
+</state>
+
+<state id="庆阳">
+<qingyang id="IQN">庆阳西峰镇机场</qingyang>
+</state>
+
+<state id="西宁">
+<xining id="XNN">西宁曹家堡机场</xining>
+</state>
+
+<state id="格尔木">
+<geermu id="GOQ">格尔木机场</geermu>
+</state>
+
+<state id="银川">
+<yinchuan id="ING">银川河东机场</yinchuan>
+</state>
+
+<state id="乌鲁木齐">
+<wulumuqi id="URC">乌鲁木齐地窝堡国际机场</wulumuqi>
+</state>
+
+<state id="和田">
+<hetian id="HTN">和田机场</hetian>
+</state>
+
+<state id="伊宁">
+<yining id="YIN">伊宁机场</yining>
+</state>
+
+<state id="克拉玛依">
+<kelamayi id="KRY">克拉玛依机场</kelamayi>
+</state>
+
+<state id="塔城">
+<tacheng id="TCG">塔城机场</tacheng>
+</state>
+
+<state id="阿勒泰">
+<aletai id="AAT">阿勒泰机场</aletai>
+</state>
+
+<state id="阿克苏">
+<akesu id="AKU">阿克苏机场</akesu>
+</state>
+
+<state id="库尔勒">
+<kuerle id="KRL">库尔勒机场</kuerle>
+</state>
+
+<state id="库车">
+<kuche id="KCA">库车机场</kuche>
+</state>
+
+<state id="喀什">
+<kashi id="KHG">喀什机场</kashi>
+</state>
+
+<state id="且末">
+<qiemo id="IQM">且末机场</qiemo>
+</state>
+
+<state id="哈密">
+<hami id="HMI">哈密机场 </hami>
+</state>
+
+<state id="可可托托海">
+<keketuohai id="FYN">可可托托海机场 </keketuohai>
+</state>
+
+<state id="成都">
+<chengdu id="CTU">成都双流国际机场</chengdu>
+</state>
+
+<state id="绵阳">
+<mianyang id="MIG">绵阳南郊机场</mianyang>
+</state>
+
+<state id="宜宾">
+<yibin id="YBP">宜宾菜坝机场</yibin>
+</state>
+
+<state id="泸州">
+<huzhou id="LZO">泸州蓝田机场</huzhou>
+</state>
+
+<state id="九寨沟">
+<jiuzhaigou id="JZH">九寨沟黄龙机场</jiuzhaigou>
+</state>
+
+<state id="攀枝花">
+<panzhihua id="PZI">攀枝花保安营机场</panzhihua>
+</state>
+
+<state id="西昌">
+<xichang id="XIC">西昌青山机场</xichang>
+</state>
+
+<state id="万县">
+<wanxian id="WXN">万县机场</wanxian>
+</state>
+
+<state id="广元">
+<guangyuan id="GYS">广元盘龙机场</guangyuan>
+</state>
+
+<state id="达县">
+<daxian id="DAX">达县河霸机场</daxian>
+</state>
+
+<state id="南充">
+<nanchong id="NAO">南充都尉坝机场</nanchong>
+</state>
+
+<state id="梁平">
+<liangping id="LIA">梁平万州梁平机场</liangping>
+</state>
+
+<state id="广汉">
+<guanghan id="GHN">广汉机场</guanghan>
+</state>
+
+<state id="重庆">
+<jiangbei id="CKG">重庆江北国际机场</jiangbei>
+<wanzhou id="WXN">重庆万州五桥机场</wanzhou>
+</state>
+
+<state id="贵阳">
+<huiyang id="KWE">贵阳龙洞堡国际机场</huiyang>
+</state>
+
+<state id="黎平">
+<liping id="HZH">黎平机场</liping>
+</state>
+
+<state id="铜仁">
+<tongren id="TEN">铜仁大兴机场</tongren>
+</state>
+
+<state id="兴义">
+<xingyi id="ACX">兴义机场</xingyi>
+</state>
+
+<state id="昆明">
+<kunming id="KMG">昆明巫家坝国际机场</kunming>
+</state>
+
+<state id="丽江">
+<lijiang id="LJG">丽江三义机场</lijiang>
+</state>
+
+<state id="西双版纳">
+<xishuangbanna id="JHG">西双版纳嘎洒机场</xishuangbanna>
+</state>
+
+<state id="大理">
+<dali id="DLU">大理机场</dali>
+</state>
+
+<state id="芒市">
+<mangshi id="LUM">芒市面上机场</mangshi>
+</state>
+
+<state id="迪庆">
+<diqing id="DIG">迪庆香格里拉机场</diqing>
+</state>
+
+<state id="思茅">
+<simao id="SYM">思茅机场</simao>
+</state>
+
+<state id="保山">
+<baoshan id="BSD">保山机场</baoshan>
+</state>
+
+<state id="临沧">
+<linyi id="LNJ">临沧机场</linyi>
+</state>
+
+<state id="文山">
+<wenshan id="WNH">文山普者黑机场</wenshan>
+</state>
+
+<state id="腾冲">
+<tengchong id="TCZ">腾冲</tengchong>
+</state>
+
+<state id="昭通">
+<zhaotong id="ZAI">昭通机场</zhaotong>
+</state>
+
+<state id="拉萨">
+<lasa id="LXA">拉萨贡嘎机场</lasa>
+</state>
+
+<state id="昌都">
+<changdu id="BPX">昌都邦达机场</changdu>
+</state>
+
+<state id="林芝">
+<linzhi id="LZY">林芝</linzhi>
+</state>
+
+<state id="鞍山">
+<linzhi id="AOG">腾鳌机场</linzhi>
+</state>
+<state id="安顺">
+<linzhi id="AVA">黄果树机场</linzhi>
+</state>
+<state id="阿拉善盟">
+<linzhi id="AXF">阿拉善左旗机场</linzhi>
+</state>
+<state id="澳门">
+<linzhi id="MFM">澳门国际机场</linzhi>
+</state>
+<state id="阿里">
+<linzhi id="NGQ">阿里昆莎机场</linzhi>
+</state>
+<state id="阿尔山">
+<linzhi id="YIE">伊尔施机场</linzhi>
+</state>
+<state id="毕节">
+<linzhi id="BFJ">飞雄机场</linzhi>
+</state>
+<state id="博乐">
+<linzhi id="BPL">博乐机场</linzhi>
+</state>
+<state id="巴彦淖尔">
+<linzhi id="RLK">天吉泰机场</linzhi>
+</state>
+<state id="沧源">
+<linzhi id="CWJ">佤山机场</linzhi>
+</state>
+<state id="池州">
+<linzhi id="JUH">九华山机场</linzhi>
+</state>
+<state id="长白山">
+<linzhi id="NBS">长白山机场</linzhi>
+</state>
+<state id="潮汕">
+<linzhi id="SWA">潮汕机场</linzhi>
+</state>
+<state id="达州">
+<linzhi id="DAX">河市机场</linzhi>
+</state>
+<state id="稻城">
+<linzhi id="DCY">亚丁机场</linzhi>
+</state>
+<state id="德令哈">
+<linzhi id="HXD">德令哈机场</linzhi>
+</state>
+<state id="稻城">
+<linzhi id="DCY">亚丁机场</linzhi>
+</state>
+<state id="德宏">
+<linzhi id="LUM">德宏芒市机场</linzhi>
+</state>
+<state id="额济纳旗">
+<linzhi id="EJN">桃来机场</linzhi>
+</state>
+<state id="二连浩特">
+<linzhi id="ERL">赛乌苏国际机场</linzhi>
+</state>
+<state id="佛山">
+<linzhi id="FUO">沙堤机场</linzhi>
+</state>
+<state id="抚远">
+<linzhi id="FYJ">东极机场</linzhi>
+</state>
+<state id="富蕴">
+<linzhi id="FYN">富蕴机场</linzhi>
+</state>
+<state id="果洛">
+<linzhi id="GMQ">玛沁机场</linzhi>
+</state>
+<state id="固原">
+<linzhi id="GYU">六盘山机场</linzhi>
+</state>
+<state id="果洛">
+<linzhi id="GMQ">玛沁机场</linzhi>
+</state>
+<state id="河池">
+<linzhi id="HCJ">金城江机场</linzhi>
+</state>
+<state id="淮安">
+<linzhi id="HIA">涟水机场</linzhi>
+</state>
+<state id="花土沟">
+<linzhi id="HIT">花土沟机场</linzhi>
+</state>
+<state id="惠州">
+<linzhi id="HUZ">平潭机场</linzhi>
+</state>
+<state id="加格达奇">
+<linzhi id="JGD">加格达奇机场</linzhi>
+</state>
+<state id="西双版纳">
+<linzhi id="JHG">嘎洒国际机场</linzhi>
+</state>
+<state id="金昌">
+<linzhi id="JIC">金川机场</linzhi>
+</state>
+<state id="揭阳">
+<linzhi id="SWA">潮汕机场</linzhi>
+</state>
+<state id="日照">
+<linzhi id="RIZ">山字河机场</linzhi>
+</state>
+<state id="日喀则">
+<linzhi id="RKZ">和平机场</linzhi>
+</state>
+<state id="唐山">
+<linzhi id="TVS">三女河机场</linzhi>
+</state>
+<state id="台州">
+<linzhi id="HYN">路桥机场</linzhi>
+</state>
+<state id="泰州">
+<linzhi id="YTY">扬州泰州机场</linzhi>
+</state>
+</cityall>

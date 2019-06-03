@@ -1,0 +1,191 @@
+ <!doctype HTML>
+<html style="font-size:100px;">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"/>
+<title>行程单</title>
+<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+<script src='/static/common/h5common/rem.js'></script>
+<link rel="stylesheet" href="/static/common/h5common/normalize.css">
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/swiper/swiper.css');?>">
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/swiper/animate.min.css');?>">
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/DL-fonts-family/dailu.css');?>">
+
+<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/itinerary/tripinfoShare.css');?>">
+<script src='/static/common/js/echarts.min.js'></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.10&key=e343e74e5c243c04a3b03a1bc35a0327&plugin=AMap.Transfer"></script>
+</head>
+<body>
+	<div class="travelList">
+		<div class="flex_inner">
+			<div class="inner_list">
+				<div class="no_more_travel" style="text-align:center;">
+					暂未发布更多
+				</div>
+			</div>
+			
+			
+			
+		</div>
+		<span class="closelist"></span>
+	</div>
+	<div class="ctrl_bar">
+		目录
+	</div>
+	<div class="nodata">
+		<img src="/static/v1/img/nodata.png" alt="">
+		<div class="notext">亲！该页面没有内容哦...</div>
+	</div>
+	<div class="mask hide">
+		<div class="click_bar hide">
+			<span class="close">x</span>
+			<div class="click_tit">快速查看您的行程</div>
+			<div class="flex">
+				<a index="1" class="gailan" href="#gl">行程概览</a>
+				<a index="2" class="qingdan" href="#qd">费用清单</a>
+			</div>
+			<div class="mask_line"><span>详细行程</span></div>
+			<div class="daylist_mask_box">
+				<div class="daylist_mask">
+				
+			</div>
+			</div>
+			
+		</div>
+	</div>		
+	<div class="g-doc">
+			<div class="firstClient one">
+				<div class="firstBanner swiper-container1">
+					<div class="swiper-wrapper"> 
+						<div class="cover_box swiper-slide">
+							<img class="travel_img" src="" alt="">
+							<div class="otherlogo">
+								<img src="" alt="">
+							</div>
+						</div>
+						<img class="swiper-slide moreTravel" src="/static/v1/img/tripinfoShare/xingcheng.png" alt="">
+					</div>	
+					
+				</div>
+				
+				
+				<div class="travel_title"></div>
+				<div class="for_heat">
+					<div class="dluser hide">
+						<div class="line_wap1">出发日期： <span class="start_date"></span></div>
+						<div class="line_wap1">出行人数： <span class="person"></span></div>
+						<div class="line_wap1">预估费用： <span class="totmoney"></span></div>
+					</div>
+					<div class="remark">
+						<div class="team_num"></div>
+						<div class="team_date"></div>
+						<div class="team_price"></div>
+						<div class="travel_price"></div>
+					</div>
+					<div class="heat">
+						<div>行程人气</div>
+						<div style="font-size: 16px;" class="heat_num"></div>
+					</div>
+				</div>
+				
+				<div class="allchara">
+				</div>
+				<div class="author"></div>
+				<div class="author_phone"></div>
+				
+			</div>
+			<div class="overview two">
+				<div id="gl" class="title">行程概览</div>
+				<div class="lineCros"></div>
+				<img class="line_img" src="" alt="">
+				
+		
+			</div>
+			<div class="cost  three">
+				<div id="qd" class="title">费用清单</div>
+					<div id="p_left">
+	
+					</div>
+					<div class="p_left_list">
+						<p><span>交通费用</span><span class="traffic_tot"></span></p>
+						<p><span>住宿费用</span><span class="hotel_tot"></span></p>
+						<p><span>餐饮费用</span><span class="eat_tot"></span></p>
+						<p><span>门票费用</span><span class="ticket_tot"></span></p>
+					</div>
+					<div class="title">酒店费用 <span class="fr hotel_tot"></span></div>
+					<div class="hotel_cost">
+					</div>
+					<div class="title">交通费用 <span class="fr traffic_tot"></span></div>
+					<div class="traffic_cost">
+					</div>
+					<div class="title">餐饮费用 <span class="fr eat_tot"></span></div>
+					<div class="eat_cost">
+					</div>
+					<div class="title">门票费用 <span class="fr ticket_tot"></span></div>
+					<div class="ticket_cost">
+					</div>
+			</div>
+			<div class="day_wap  four">
+				<div class="theEnd">
+					<div class="remark_end">
+						<div class="mark_tit">备注信息</div>
+						<div class="mark_content">
+							<div class="con_info">
+							
+							</div>
+							<div class="loadMore">查看更多</div>	
+						</div>
+					</div>
+					<div class="commemt_box">
+						<div class="comment_in">
+							<div class="title">共 <span>0</span> 条评论<a  class="toComment" href="javascript:;"></a></div>
+							<ul class="">
+							</ul>
+							<div class="nocomment">这个行程暂无评论哟</div>
+							<div class="morecomment">加载更多评论</div>
+						</div>
+					</div>
+					<div class="sole" style="font-size: 0.24rem;">The End</div>
+					<div class="inscribe" style="font-size:0.16rem;">感谢您对<span class="agency">袋鹿</span>的信任，祝您旅途愉快</div>
+					<div class="ctrl">
+						<!-- <div class="like on">
+							点赞
+						</div>
+						<div class="collect on">
+							收藏
+						</div> -->
+						<div class="copy on">
+							复制	
+						</div>
+						<div class="edit on">
+							修改	
+						</div>
+					</div>
+				</div>
+				<div class="bottom_logo">
+					<div class="logo_box long">
+						<img src="/static/common/img/logo.png" alt="">
+						<div class="create">袋鹿旅行技术支持</div>	
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="sliderbox">
+			<div class="sliderMask swiper-container">
+				<div class="sliderIMg swiper-wrapper"></div>
+			</div>
+		</div>
+	
+</body>
+	<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+	<script src="/static/common/layer3.1.1/layer.js"></script>
+	<script src="<?php AutoVersion('/static/common/swiper/swiper.js');?>"></script>
+	<script src="<?php AutoVersion('/static/common/swiper/swiper.animate1.0.3.min.js');?>"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+	<script type="text/javascript"  src="<?php AutoVersion('/static/common/js/common.js');?>"></script>
+	<script src="<?php AutoVersion('/static/v1/js/itinerary/tripinfoShare.js');?>"></script>
+</html>

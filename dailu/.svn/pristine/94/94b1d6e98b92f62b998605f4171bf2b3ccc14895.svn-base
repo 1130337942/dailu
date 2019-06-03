@@ -1,0 +1,754 @@
+var initObj = {},
+    map,hover_Marker,h_MarkerArr=[];
+var _trc_res,//行程数据
+    _floor_res,//楼层数据
+    _post_floorData = {},//请求楼层数据向后台传入数据
+    this_city_index,
+    go_city_name,
+    return_city_name,
+    city_id,
+    _dataspot,//1-5楼详情
+    hotelList,//酒店列表
+    _hotel_datal,//酒店详情
+    _this_city_data,//当前城市数据
+    _city_name,//当前城市名字
+    bounds = {},//地图缩放后，向后台传地图数据调用酒店接口
+    _Daydate_arr = [],//每天的日期
+    addgo_arry = [],//添加我想去的景点
+    addgo_marker_array = [],//添加我想去的景点marker数组
+    eat_name_arry = [],//添加美食数组
+    hotel_markArr = [],//酒店marker数组
+    time_Arr = [];//时间区间数组
+//高亮
+var polyOptions = {
+    //边线边框线
+    strokeColor: "#9B868B",
+    fillColor: '#FF0000',
+    fillOpacity: 0.1,
+    strokeWeight: 1,
+    zIndex: 1
+};
+
+$(function(){
+   
+    $.post('plan',function(res){
+        if(!res.status)return
+        console.log(res)
+        _trc_res = res.data;
+        this_city_index = Number(_trc_res.r_spot.spot_data.this_city_index)
+        _this_city_data = _trc_res.r_spot.go_city_array[this_city_index]
+        city_id = _this_city_data.city_id;
+        _city_name = _this_city_data.city_name;
+        _Daydate_arr = _trc_res.r_spot.dayTime
+        $(".loading_box").fadeOut();
+        //初始化调动方法
+        initObj.initFn();
+    },'json');
+
+    initObj={
+        initFn:function(){
+            //加载地图
+            google.maps.event.addDomListener(window, "load", mapObj.initMap());
+            //城市高亮
+            mapObj.cityOptionsPathFn();
+            //渲染每天的列表
+            templateObj.dayItem_fn();
+            //初始化展示的地图标记点
+            initObj.init_markerFn()
+            //左边 nav 渲染事件
+            initObj.left_nav_Fn();
+            //下一步
+            initObj.next_fn();
+        },
+        init_markerFn:function(){
+            var day_arr = _trc_res.result.day_arry;
+            for(var i = 0;i<day_arr.length;i++){
+                var day = day_arr[i].day
+                for(var a = 0;a<day.length;a++){
+                    var lat = Number(day[a].this_lat);
+                    var lng = Number(day[a].this_lng);
+                    var floor_index = day[a].this_floor_index;
+                    var name = day[a].this_name;
+                    var time = day[a].default_playtime;
+                    var marker_data = {
+                        lat: lat,
+                        lng: lng,
+                        marker_url:floor_index,
+                        name:name,
+                        playTime:'游玩时长'+time
+                    }
+                    mapObj.initMarkerFn(marker_data)
+                }
+            }
+        },
+        //左边 nav 渲染事件
+        left_nav_Fn:function(){
+            //天数tab导航
+            initObj.DayNumTab_fn();
+            //拖拽
+            initObj.dragFn();
+        },
+        //天数tab导航
+        DayNumTab_fn:function(){
+            var day_len = _Daydate_arr.length;
+            var li_width = $('.Dnum_ul').find('li:eq(0)').width()+16//16是margin值
+            var Dnum_ul_width = day_len*li_width;
+            $('.Dnum_ul').css({'width':Dnum_ul_width+'px'});
+            //天数向左向右
+            var num = 0,pos_px;
+            $('.Dnum_but').on('click','.Dnum_left,.Dnum_right',function(){
+                if($(this).hasClass('Dnum_left')){
+                    if(num >= day_len-4)return
+                    num++
+                    pos_px = -num*li_width;
+                    $('.Dnum_ul').css({'transform':'translateX('+pos_px+'px)'})
+                }else{
+                    if(num == 0 )return
+                    num--
+                    pos_px = -num*li_width;
+                    $('.Dnum_ul').css({'transform':'translateX('+pos_px+'px)'})
+                }
+            });
+            //滚动条定位
+            $('.Dnum_ul').on('click','li',function(){
+                $(this).addClass('active').siblings('li').removeClass('active')
+                var i = $(this).index();
+                var top =  $('#day'+i).position().top-15;
+                $('.f_main').stop().animate({scrollTop:top}, 500);
+            });
+            //列表滚动
+            $('.f_main').scroll(function(){
+                var scrollPx;
+                // console.log($('.f_main').scrollTop())
+                $('.f_main_main').find('.dayItem').each(function(i,n){
+                    if( $('.f_main').scrollTop()>=$(n).position().top-72 && $('.f_main').scrollTop()<=$(n).position().top+30){
+                        $('.Dnum_ul').find('li').eq(i).addClass('active').siblings('li').removeClass('active');
+                        if(i>day_len-4)return
+                        scrollPx = -i*li_width;
+                        $('.Dnum_ul').css({'transform':'translateX('+scrollPx+'px)'});
+                    }
+                })
+            })
+        },
+        //拖拽
+        dragFn:function(){
+            var ulId_arr = []
+            $(_Daydate_arr).each(function(i,n){
+                var ul_id = '#day_ul'+i 
+                ulId_arr.push(ul_id)
+            });
+            var ul_id_item = ulId_arr.join(',');
+            $( ul_id_item ).sortable({
+                cursorAt:{top:35,left:145},axis: "y",connectWith: ".connectedSortable"
+            },{
+                //拖拽开始触发的事件
+                start: function( event, ui ) {
+                    startFn(event, ui)
+                },
+                
+                //拖拽结束触发事件
+                stop: function( event, ui ) {
+                    stopFn(event, ui)
+                },
+            }).disableSelection();
+            //拖拽开始
+            function startFn (event, ui){
+                ui.item.css({"height":"67","overflow": "hidden"})
+               
+            };
+            //拖拽结束
+            function stopFn (event, ui){
+                
+            }
+        },
+        //登录/注册
+        loginFn: function () {
+            $(".mainBox").fadeIn().removeClass("dis_none");
+            // 校验是否有汉字
+            var zhReg = /[\u4e00-\u9fa5]+/;
+            var phoneReg = /^[1][3-8]+\d{9}/;
+            var passWorldReg = /^[a-zA-Z0-9]{6,12}$/;
+            var countdown = 60; /*重新发送短信倒计时*/
+            var canSend = true; /*是否能发送验证码*/
+            var checkUserTimer; /*用户名延迟校验定时器*/
+            var checkPhoneTimer; /*用户名延迟校验定时器*/
+            var phonePass, passWorldPass, userPass = false; /*用户名是否通过*/
+            var checkWorldTimer; /*密码延迟校验定时器*/
+            var picvige = false;
+            $('.listWap .erwm').on('click', function () {
+                $(this).hide().siblings('.code').show();
+                $('.listWap .normal').hide().siblings('.erwmBox').show();
+            });
+            $('.listWap .code,.to-passWorld').on('click', function () {
+                $('.listWap .wap1 .code').hide().siblings('.erwm').show();
+                $('.listWap .erwmBox').hide().siblings('.normal').show();
+            });
+            $('.listWap .register,.to-register').on('click', function () {
+                $('.listWap').hide().addClass("dis_none").siblings('.registerWap').show().removeClass("dis_none");
+            });
+            $(".registerWap .js_list1a").on("click", function () {
+                $('.registerWap').hide().addClass("dis_none").siblings('.listWap').show().removeClass("dis_none");
+            });
+            $('.registerWap  .agree').on('click', function () {
+                $('.agreementMask').fadeIn();
+                $('.loginBox').fadeOut();
+            });
+            $('.registerWap .phone').on('input', function () {
+                $(this).val($(this).val() > 11 ? $(this).val().slice(0, 11) : $(this).val());
+            });
+            $('.jsuser,#phone,.jspassWorld').on('focus', function () {
+                $(this).addClass('active').prev('label').addClass('active');
+            }).on('blur', function () {
+                $(this).removeClass('active').prev('label').removeClass('active');
+
+            });
+            $('.agreementMask .agreeBtn,.close').on('click', function () {
+                $('.agreementMask').fadeOut();
+                $('.loginBox').fadeIn().removeClass("dis_none");
+            });
+            $(".loginBox .close").on("click", function () {
+                $(".mainBox").fadeOut().addClass("dis_none");
+            });
+            //-----------------登录-------------------------
+            $('.listWap .wap4 .login').on('click', function () {
+                login()
+            });
+
+
+
+            function login() {
+                var userName = $('#login_user').val().trim();
+                var passWorld = $('#login_passWorld').val().trim();
+
+                if (!(userName && passWorld)) {
+                    alert("请将信息填写完整");
+                    return
+                };
+                var postData = {};
+                postData.user_name = userName;
+                postData.pwd = passWorld;
+
+                $.post('../login/do_login', postData, function (data) {
+                    console.log(data);
+                    if (data.error_code != false || data.msg != 'OK') {
+                        alert(data.msg);
+                        return false;
+                    } else {
+                        //登录成功
+                        initObj.nextPost_Fn()
+                    }
+                }, 'json');
+            };
+
+
+            // ----------------------注册-------------------------
+            //验证码
+            var handlerEmbed = function (captchaObj) {
+                captchaObj.appendTo("#embed-captcha");
+
+                captchaObj.onSuccess(function(){
+                    picvige = true;
+                })
+
+                captchaObj.onReady(function () {
+                    $("#wait").css({'display':'none'});
+                });
+                captchaObj.onError(function () {
+                    alert('验证失败请刷新重试！')
+                });
+            };
+
+            $.ajax({
+                // 获取id，challenge，success（是否启用failback）
+                url: "../login/StartCaptchaServlet?t="+ (new Date()).getTime(), // 加随机数防止缓存
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    // 使用initGeetest接口
+                    // 参数1：配置参数
+                    // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+                    initGeetest({
+                        width:'100%',
+                        gt: data.gt,
+                        challenge: data.challenge,
+                        new_captcha: data.new_captcha,
+                        product: 'popup', // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
+                        offline: !data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
+                    }, handlerEmbed);
+                }
+            });
+            $('.phoneCode .sendCode').on('click', function () {
+                var phoneNumber = $('.registerWap #phone').val().trim();
+                if(!picvige){
+                    alert('请完成图形验证再发验证码')
+                    return false;
+                }
+                var geetest_challenge = $.trim($("input[name=geetest_challenge]").val());
+                var geetest_validate = $.trim($("input[name=geetest_validate]").val());
+                var geetest_seccode = $.trim($("input[name=geetest_seccode]").val());
+                if (canSend && phonePass) {
+                    $(this).addClass('disabled')
+                    settime($(this))
+                    $.post('../login/GenerateForReg', {
+                        'phone': phoneNumber,
+                        'geetest_challenge':geetest_challenge,
+                        'geetest_validate':geetest_validate,
+                        'geetest_seccode':geetest_seccode
+                    }, function (data) {
+                        // console.log(data)
+                        switch (data.error_code) {
+                            case 1:
+                                alert(data.msg)
+                                break;
+                            case 2:
+                                alert('验证过于频繁,请稍后再试')
+                                break;
+                        }
+                    }, 'json');
+                };
+            });
+            //用户名验证
+            $('#reg_user').on('input', function () {
+                $(this).prev('label').removeClass('error');
+                userPass = false;
+                var _self = this;
+                clearTimeout(checkUserTimer);
+                checkUserTimer = setTimeout(function () {
+                    userPass = true;
+                    var userStr = $(_self).val();
+                    if (userStr.indexOf(' ') != -1) {
+                        $(_self).prev('label').addClass('error').find('.errInfo').text('用户名不能有空格');
+                        userPass = false;
+                        return;
+                    }
+                    if (zhReg.test(userStr)) {
+                        if (userStr.length && (userStr.length > 8 || userStr.length < 2)) {
+                            userPass = false;
+                            $(_self).prev('label').addClass('error').find('.errInfo').text('用户名必须是，2-8汉字/4-16字符');
+                        }
+                    } else {
+                        if (userStr.length && (userStr.length > 16 || userStr.length < 4)) {
+                            userPass = false;
+                            $(_self).prev('label').addClass('error').find('.errInfo').text('用户名必须是，2-8汉字/4-16字符');
+                        }
+                    }
+                    clearTimeout(checkUserTimer);
+                }, 1000)
+            });
+            // 手机号码验证
+            $('#phone').on('input', function () {
+                $(this).prev('label').removeClass('error');
+                phonePass = false;
+                var _self = this;
+                clearTimeout(checkPhoneTimer);
+                checkPhoneTimer = setTimeout(function () {
+                    phonePass = true;
+                    var phoneStr = $(_self).val() - 0;
+                    // console.log(phoneReg.test(phoneStr))
+                    if (!phoneReg.test(phoneStr)) {
+                        phonePass = false;
+                        $(_self).prev('label').addClass('error').find('.errInfo').text('请输入正确手机号码');
+                    }
+                    clearTimeout(checkPhoneTimer)
+                }, 1000)
+            });
+            //密码验证 
+            $('#reg_passWorld').on('input', function () {
+                $(this).prev('label').removeClass('error');
+                passWorldPass = false;
+                var _self = this;
+                clearTimeout(checkWorldTimer);
+                checkWorldTimer = setTimeout(function () {
+                    passWorldPass = true;
+                    var passWorld = $(_self).val() + '';
+                    if (passWorld.length < 6) {
+                        passWorldPass = false;
+                        $(_self).prev('label').addClass('error').find('.errInfo').text('密码需大于等于6位');
+                    }
+                    clearTimeout(checkWorldTimer)
+                }, 1000)
+            });
+
+            $('.go_register').on('click', function () {
+                register()
+            });
+            document.onkeydown = function (e) {
+                var theEvent = e || window.event;
+                var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+                if (code == 13) {
+                    if (!$(".mainBox").hasClass("dis_none")) {
+                        if (!$(".listWap").hasClass("dis_none")) {
+                            login();
+                            return
+                        };
+                        if (!$(".registerWap").hasClass("dis_none")) {
+                            register()
+                        }
+                    }
+                };
+            };
+
+            function register() {
+                if (phonePass && passWorldPass && userPass && ($('#phoneCode').val() != '')) {
+                    var psotData = {};
+                    psotData.phone = $('#phone').val().trim();
+                    psotData.user_name = $('#reg_user').val().trim();
+                    psotData.pwd = $('#reg_passWorld').val().trim();
+                    psotData.vfycode = $('#phoneCode').val().trim();
+                    $.post('../login/register_request', psotData, function (data) {
+                        // console.log(data);
+                        switch (data.error_code) {
+                            case false:
+                                // window.location.href = 'login.html'
+                                initObj.nextPost_Fn()
+                                // $('.registerWap').hide().addClass("dis_none").siblings('.listWap').show().removeClass("dis_none");
+                                break;
+                            case true:
+                                alert(data.msg);
+                                break;
+                            case 2:
+                                alert('验证过于频繁,请稍后再试')
+                                break;
+                        }
+                    }, 'json')
+                } else {
+                    alert("请将信息填写完整")
+                }
+            }
+
+            function settime(obj) {
+                if (countdown <= 0) {
+                    obj.removeClass("disabled");
+                    obj.text("获取验证码");
+                    countdown = 60;
+                    canSend = true;
+                    return;
+                } else {
+                    canSend = false;
+                    obj.addClass("disabled");
+                    obj.text('重新发送(' + countdown + ')');
+                    countdown--;
+                }
+                setTimeout(function () {
+                    settime(obj)
+                }, 1000)
+            }
+        },
+        //下一步
+        next_fn:function(){
+             //判断是否登陆
+            $('.f_main_next').on('click',function(){
+                var is_last_city = Number(this_city_index)==_trc_res.r_spot.go_city_array.length-1;
+                if(is_last_city){
+                    $.post("login_name",  function (data) {
+                        console.log(data)
+                        if (data == null) {
+                            initObj.loginFn()
+                        } else {
+                            initObj.nextPost_Fn()
+                        };
+                    }, "json")
+                }else{
+                    initObj.nextPost_Fn();
+                }
+                
+                
+            });
+        },
+        // 下一步 post请求
+        nextPost_Fn:function(){
+            var post_data = {},singcityData={};
+
+            var res_r_spot = _trc_res.r_spot;
+            post_data.across_city = res_r_spot.across_city//是否跨城
+            post_data.cityArray = res_r_spot.cityArray//城市数组
+            //表单
+            post_data.adult = res_r_spot.adult//成人人数
+            post_data.children = res_r_spot.children //儿童人数
+            post_data.cover = res_r_spot.cover //封面
+            post_data.date = res_r_spot.date //日期
+            post_data.title = res_r_spot.title;//行程标题
+            post_data.day_num = res_r_spot.day_num;//行程总天数
+            post_data.departure_city = res_r_spot.departure_city //出发城市
+            post_data.return_city = res_r_spot.return_city //返回城市
+            
+            post_data.go_city_array = res_r_spot.go_city_array //添加我想去的城市
+            post_data.next_city_day0 = res_r_spot.next_city_day0 //下个城市是否为0天
+
+            var res_result = _trc_res.result;
+            singcityData.day_arry = res_result.day_arry //我想去的元素
+            singcityData.eat_len = res_result.eat_len //吃的个数
+            singcityData.shop_len = res_result.shop_len //购物的个数
+            singcityData.spot_len = res_result.spot_len //景点的个数
+            singcityData.this_city = res_result.this_city //当前城市名字
+            singcityData.this_city_lat = res_result.this_city_lat 
+            singcityData.this_city_lng = res_result.this_city_lng 
+            singcityData.this_city_index = this_city_index ;
+            post_data.singcityData = singcityData;
+
+            var is_last_city = Number(this_city_index)==_trc_res.r_spot.go_city_array.length-1;
+            $.ajax({
+                url: '/portal/Itinerary/overview',
+                type: "post",
+                dataType: "json",
+                contentType:"application/json;charset=utf-8",
+                data:JSON.stringify(post_data), 
+                success: function (res) {
+                    console.log(res)
+                    if(!res.status) return
+                    if(!is_last_city){ //判断时候是最后一个城市
+                        sessionStorage.setItem("this_city_index",this_city_index+1)
+                        window.location.href = "/portal/scenerymap/cityAttractions.html"
+                    }else{
+                        window.location.href ='/portal/itinerary/books.html?them='+res.data.uid+'&trip='+res.data.trip_id
+                    }
+                   
+                }
+            })
+        }
+    }
+    var mapObj = {
+        //加载谷歌地图
+        initMap: function () {
+            var lat = Number(_this_city_data.lat)
+            var lng = Number(_this_city_data.lng)
+            map = new google.maps.Map(document.getElementById('map'), {
+                gestureHandling: 'greedy',
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                scaleControl: true,
+                streetViewControl: false,
+                center: {
+                    lat: lat,
+                    lng: lng
+                }
+            });
+        },
+        //城市边界线高亮
+        cityOptionsPathFn:function(){
+            var provinceNames = _this_city_data.provinceNames;
+            var data_type ;
+            if(provinceNames == '北京'||provinceNames == '上海'||provinceNames == '天津'||provinceNames == '重庆'){
+                data_type = 1
+            }else{
+                data_type = 0
+            }
+            var sfen_zxsData = data_type == 0 ? cityData.provinces : cityData.municipalities
+            
+            var this_proIndex = getArrIndex(sfen_zxsData, {
+                n: provinceNames
+            });
+            var city_dataArr = data_type == 0 ? sfen_zxsData[this_proIndex].cities : sfen_zxsData;
+            var cityMapIndex = getArrIndex(city_dataArr, {
+                n: _city_name
+            });
+            var getZoom = city_dataArr[cityMapIndex].z?city_dataArr[cityMapIndex].z:9
+            map.setZoom(getZoom)
+            var city_paths = city_dataArr[cityMapIndex].b;
+            var city_polygon = new google.maps.Polygon();
+            city_polygon.setOptions(polyOptions);
+            var paths = mapPaths(city_paths)
+            city_polygon.setPaths(paths);
+            city_polygon.setMap(map);
+        },
+        initMarkerFn:function(data){
+            var marker = new google.maps.Marker({
+                position: {lat:data.lat,lng:data.lng},
+                icon: "/static/v1/img/map/mark" + data.marker_url + ".png",
+                map: map
+            });
+            // addgo_marker_array.push(marker);
+            // console.log(addgo_marker_array)
+            // 鼠标放上去
+            google.maps.event.addListener(marker, "mouseover",
+                function () {
+                    mapObj.style_InfowindowFn(data, 'spot_hover')
+                });
+            google.maps.event.addListener(marker, "mouseout",
+                function () {
+                    $('#map').find('.popup-content').each(function(){
+                        $(this).remove()
+                    })
+                })
+        },
+        //添加自定义信息窗口
+        style_InfowindowFn: function (data, is_type) {
+            var str, yPx = 45,infoID;
+            if(is_type == "spot_hover"){
+                infoID = 'content'
+                str = '<div id='+infoID+'>\
+                        <div class="info_name">'+data.name+'</div>\
+                        <div class="info_time">'+data.playTime+'</div>\
+                    </div>';
+            }else{
+                infoID = 'content'
+                var is_hover_hotel = data.is_hover_hotel?'dis_none':''
+                str = '<div id='+infoID+' class="hotel_info">\
+                        <div class="info_name">'+data.name+'</div>'
+                if(data.Category ){
+                    str +='<div class="info_type">'+data.Category+'</div>\
+                    <div class="info_type1"><span class="info_Score">'+data.Score+'</span>'+data.comm+'<span class="info_line">|</span>'+data.LowRate+'</div>'
+                }else{
+                    str +=' <div class="info_type1">'+data.LowRate+'</div>'
+                }
+                        str +='<a href="#hotel_'+data.index+'"><i class="addMapIcon'+is_hover_hotel+'" onclick="addhotelFn('+data.index+');"></i></a>\
+                    </div>';
+            }
+            //移除自定义窗口
+            $('#map').find('.popup-content').each(function(){
+                $(this).remove()
+            })
+            //自定义窗口样式init
+            Popup = createPopupClass(infoID,yPx);
+            //自定义信息窗口 
+            $("#map").append(str);
+            var is_id_Classs = data.Class_name == "infoClass" ? document.getElementsByClassName(infoID)[data.index] : document.getElementById(infoID)
+            // console.log(is_id_Classs)
+            popup = new Popup(new google.maps.LatLng(data.lat, data.lng), is_id_Classs);
+            popup.setMap(map);
+        },
+        
+    };
+    var templateObj = {
+        //渲染每天的列表
+        dayItem_fn:function(){
+            var dayNnm_str = '{{each dayTime as value i}}\
+                                {{if i == 0}}\
+                                    <li class="active">D{{(value.hotel_day).split("Day")[1]}}</li>\
+                                {{else}}\
+                                    <li>D{{(value.hotel_day).split("Day")[1]}}</li>\
+                                {{/if}}\
+                             {{/each}}'
+            var dayNnm_render = template.compile(dayNnm_str);
+            var dayNnm_html = dayNnm_render(_trc_res.r_spot);
+            $('.Dnum_box .Dnum_ul').html(dayNnm_html)
+
+            var dayItem_str = '{{each day_arry as value i}}\
+                        <div class="dayItem" id="day{{i}}">\
+                            <div class="day_nav">\
+                                <div class="day_nav_top clearfix">\
+                                    <span class="fl item_Dnum">{{value.hotel_day}}</span>\
+                                    <div class="fr"><i class="del_icon"></i></div>\
+                                </div>\
+                                <div class="day_nav_bottom">\
+                                    <span>{{value.date}}</span><span>{{value.weeks}}</span><span>|</span><span>{{value.betw_time}}</span>\
+                                </div>\
+                            </div>\
+                            <ul id="day_ul{{i}}" class="connectedSortable">\
+                                {{each value.day as spot s}}\
+                                    <li class="spot_list" data-lat="{{spot.this_lat}}" data-lng="{{spot.this_lng}}">\
+                                        <div class="spot_box clearfix">\
+                                            <i class="delete_icon"></i>\
+                                            <div class="div1 clearfix">\
+                                                <span class="name fl" title="{{spot.this_name}}">{{spot.this_name}}</span>\
+                                                {{if spot.eat_info}}\
+                                                    <i class="foodBox"></i>\
+                                                {{/if}}\
+                                                <div class="fr time_div">\
+                                                    <span class="time_num">{{spot.this_tag_time}}</span>\
+                                                    <div class="tiem_ico"><i class="add_ico"></i><i class="dow_ico"></i></div>小时\
+                                                </div>\
+                                            </div>\
+                                            <div class="div2 clearfix">\
+                                                <span class="fl">开放时间:{{spot.business_hours}}</span>\
+                                                <span class="fr">景</span>\
+                                            </div>\
+                                        </div>\
+                                        <div class="spot_trc_box">\
+                                            {{if spot.traffic_distance}}\
+                                                <i class="trc_ico"></i>{{spot.traffic_distance}}km·约{{spot.traffic_time_chinese}}\
+                                            {{else}}\
+                                            <i class="trc_ico"></i>0km·0分钟\
+                                            {{/if}}\
+                                        </div>\
+                                    </li>\
+                                {{/each}}\
+                            </ul>\
+                            {{if value.hotel}}\
+                                {{if value.hotel.hotel_name != ""}}\
+                                    <div class="hotel_box clearfix">\
+                                        <div class="fl" title="{{value.hotel.hotel_name}}"><i class="hotel_ico"></i>{{value.hotel.hotel_name}}</div><span class="fr">住</span>\
+                                    </div>\
+                                {{else}}\
+                                    <div class="hotel_box not_hotel clearfix">\
+                                        <div class="fl"><i class="hotel_ico"></i>当前暂未添加酒店</div><span class="fr">住</span>\
+                                    </div>\
+                                {{/if}}\
+                            {{else}}\
+                                <div class="hotel_box not_hotel clearfix">\
+                                    <div class="fl"><i class="hotel_ico"></i>当前暂未添加酒店</div><span class="fr">住</span>\
+                                </div>\
+                            {{/if}}\
+                        </div>\
+                    {{/each}}';
+            var dayItem_render = template.compile(dayItem_str);
+            var dayItem_html = dayItem_render(_trc_res.result);
+            $('.f_main_main').html(dayItem_html);
+        }
+    }
+})
+
+
+// 自定义标记
+function createPopupClass(infoID, yPx) {
+    var divId = infoID
+    /**
+     * A customized popup on the map.
+     * @param {!google.maps.LatLng} position
+     * @param {!Element} infoID The bubble div.
+     * @constructor
+     * @extends {google.maps.OverlayView}
+     */
+    function Popup(position, infoID) {
+        this.position = position;
+        // console.log(infoID)
+        infoID.classList.add('popup-bubble');
+
+        // This zero-height div is positioned at the bottom of the bubble.
+        var bubbleAnchor = document.createElement('div');
+        bubbleAnchor.classList.add('popup-bubble-anchor');
+        bubbleAnchor.appendChild(infoID);
+
+        // This zero-height div is positioned at the bottom of the tip.
+        this.containerDiv = document.createElement('div');
+        this.containerDiv.classList.add('popup-' + divId);
+        this.containerDiv.appendChild(bubbleAnchor);
+
+        // Optionally stop clicks, etc., from bubbling up to the map.
+        google.maps.OverlayView.preventMapHitsAndGesturesFrom(this.containerDiv);
+    }
+    // ES5 magic to extend google.maps.OverlayView.
+    Popup.prototype = Object.create(google.maps.OverlayView.prototype);
+
+    /** Called when the popup is added to the map. */
+    Popup.prototype.onAdd = function () {
+        this.getPanes().floatPane.appendChild(this.containerDiv);
+    };
+
+    /** Called when the popup is removed from the map. */
+    Popup.prototype.onRemove = function () {
+        if (this.containerDiv.parentElement) {
+            this.containerDiv.parentElement.removeChild(this.containerDiv);
+        }
+    };
+
+    /** Called each frame when the popup needs to draw itself. */
+    Popup.prototype.draw = function () {
+        var divPosition = this.getProjection().fromLatLngToDivPixel(this.position);
+
+        // Hide the popup when it is far out of view.
+        var display =
+            Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000 ?
+            'block' :
+            'none';
+
+        if (display === 'block') {
+            this.containerDiv.style.left = divPosition.x + 'px';
+            this.containerDiv.style.top = divPosition.y - yPx + 'px';
+        }
+        if (this.containerDiv.style.display !== display) {
+            this.containerDiv.style.display = display;
+        }
+    };
+
+    return Popup;
+}

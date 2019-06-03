@@ -1,0 +1,537 @@
+body{
+	background-color: #525659;
+}
+.main {
+	margin:0 auto;
+	padding: 30px;
+	background-color: #fff;
+	width: 733px;
+	position: relative;
+}
+.main .cover {
+	min-height:1075px;
+	position: relative;
+	background-color: #fff;
+}
+.main .cover .cover_img {
+	width: 100%;
+	height:528px;
+}
+.cover .cover_title {
+	margin-top: 10px;
+	font-size: 24px;
+	text-align: center;
+	line-height: 40px;
+	font-weight: 600;
+}
+.cover .line_cros{
+	font-size: 14px;
+	color: #666;
+	text-align: center;
+}
+.left_logo{
+	font-size: 16px;
+	color: #666;
+	position: absolute;
+	bottom: 35px;
+	left: 0;
+}
+.left_logo  img {
+	width: auto;
+}
+.right_code {
+	text-align: center;
+	color: #666;
+	font-size: 14px;
+	position: absolute;
+	bottom: 35px;
+	right: 0;
+}
+.right_code .ewm_code{
+	width: 100px;
+	height: 100px;
+}
+.plan {
+	/*min-height: 1200px;*/
+}
+.plan .plan_header{
+	padding-top: 35px;
+	color: #999;
+	border-bottom: 2px solid #e5e5e5;
+	line-height: 34px;
+}
+.plan .plan_header img {
+	width: auto;
+	height: 25px;
+}
+.main .title_1 {
+	font-size: 22px;
+	color:#659ff5;
+	font-weight: 600;
+	line-height: 70px;
+	position: relative;
+}
+.plan .gailan {
+	position: relative;
+	min-height: 1075px;
+}
+.main .title_1::before {
+	display: block;
+	content: '';
+	width: 8px;
+	height: 24px;
+	background-color: #659ff5;
+	position: absolute;
+	left: -30px;
+	top: 50%;
+	margin-top: -12px;
+}
+.plan .gailan_cros {
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 16px;
+}
+.plan .gailan_cros .num {
+	display: inline-block;
+	vertical-align: middle;
+	border: 1px solid #333;
+	border-radius: 50%;
+	width: 18px;
+	height: 18px;
+	text-align: center;
+	line-height: 18px;
+	font-weight: normal;
+	margin-top: -3px;
+}
+
+.plan .gailan_cros .end::before,
+.plan .gailan_cros .start::before {
+	display: inline-block;
+	vertical-align: middle;
+	content: '';
+	width: 5px;
+	height: 16px;
+	background-color: #659ff5;
+	margin-right: 3px;
+	margin-top: -2px;
+} 
+.plan .gailan_cros .end::before{
+	background-color: #f4a21e;
+}
+.plan .main_map{
+	height: 450px;
+}
+.plan .gailan .travel_info {
+	margin-top: 20px;
+	line-height: 30px;
+}
+.plan .gailan .travel_info .item em {
+	font-style: normal;
+}
+.plan .gailan .travel_info .item span {
+	position: relative;
+}
+.plan .gailan .travel_info .item .fr {
+	text-align:left; 
+	width: 270px;
+}
+.plan .gailan .travel_info .item span::before {
+	content: '';
+	vertical-align: middle;
+	display:inline-block;
+	width: 18px;
+	height: 18px;
+	margin-right: 10px;
+	background: #fff url(/static/v1/img/addStrokeform/date.png) 0 0 no-repeat;
+}
+.plan .gailan .travel_info .item span.money::before {
+	background: #fff url(/static/v1/img/addStrokeform/rmb_num.png) 0 0 no-repeat;
+}
+.plan .gailan .travel_info .item span.peopel_num::before {
+	background: #fff url(/static/v1/img/addStrokeform/adult.png) 0 0 no-repeat;
+}
+.plan .gailan .travel_info .item span.tot_day::before {
+	background: #fff url(/static/v1/img/addStrokeform/daynum.png) 0 0 no-repeat;
+}
+
+.plan .gailan .day_info{
+	margin-top: 20px;
+	line-height: 34px;
+}
+.plan .gailan .day_info .title {
+	background-color: #e5e5e5;
+	line-height: 34px;
+	font-weight: 600;
+}
+.plan .gailan .day_info .item1{
+	height: 34px;
+	width: 210px;
+	text-indent: 2em;
+}
+.plan .gailan .day_info .item2{
+	height: 34px;
+	width: 160px;
+}
+
+.plan .gailan .day_info .item3{
+	width: 120px;
+	height: 34px;
+}
+.plan .gailan .day_info .item4{
+	width: 200px;
+	height: 34px;
+}
+.plan .gailan .day_info .list{
+	background-color: #eee;
+	color:#666;
+}
+.plan .gailan .day_info .list:nth-child(even){
+	background-color: #f6f6f6;
+}
+.plan .cost{
+	position: relative;	
+}
+.plan .cost .tit_tot {
+	font-size: 22px;
+	font-weight: 600;
+	color: #bebebe;
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 70px;
+}
+.plan .cost em {
+	font-style: normal;
+}
+.plan .cost .item1 {
+	width: 274px;
+	text-indent: 2em;
+	overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.plan .cost .item2 {
+	width: 152px;
+}
+.plan .cost .item3 {
+	width: 130px;
+}
+.plan .cost .item4 {
+	width: 130px;
+}
+.plan .cost .list{
+	color: #666;
+	background-color: #eee;
+	line-height: 34px;
+}
+
+.plan .cost .list:nth-child(even){
+	background-color: #f6f6f6;
+}
+.plan .cost .list:first-child{
+	background-color: #e5e5e5;
+	font-weight: 600;
+	color: #333;
+}
+.mb_30{
+	margin-bottom: 30px;
+}
+.p_left18{
+	margin-left: 6px;
+	padding-left: 18px;
+	border-left: 2px solid #659ff5;
+}
+.p_left18 .list_tit {
+	margin-top: 30px;
+}
+.plan .cost .p_left {
+	width: 50%;
+	height: 350px;
+	background-color: fff;
+}
+.plan .cost .p_right {
+	padding-top: 30px;
+	width: 50%;
+	height: 320px;
+}
+.plan .cost .p_right li{
+	padding-right: 20px;
+	line-height: 50px;
+	text-align: right;
+}
+.day_wap  .list {
+	position: relative;
+	margin-bottom: 40px;
+}
+.day_wap  .list .date {
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 70px;
+	color:#659ff5;
+}
+.day_wap  .list .service{
+	text-align: right;
+	color: #f4a21e;
+	margin-bottom: 20px;
+	font-size: 14px;
+}
+.day_wap  .list .day_map {
+	height: 452px;
+	margin-bottom: 20px;
+}
+.day_wap  .list .city_traffic {
+	transition:all 0.3s;
+	height: 34px;
+	overflow:hidden;
+	line-height: 34px;
+	background-color: #eee;
+	padding:0 18px;
+	color: #666;
+	margin: 18px 0;
+	font-size: 14px;
+}
+.day_wap  .list .city_traffic.auto {
+	height: auto;
+}
+.day_wap  .list .city_traffic span.fr:hover{
+	cursor: pointer;
+	color: #659ff5;
+}
+.day_wap  .list .city_traffic .ctrl {
+	color: #f4a21e;
+	font-size: 14px;
+}
+.day_wap  .list {
+	font-size: 20px;
+	font-weight: 600;
+}
+.l_circle {
+	position: relative;
+}
+.l_circle::before {
+	display: block;
+	content: '';
+	width: 8px;
+	height: 8px;
+	background-color: #fff;
+	border: 3px solid #659ff5;
+	position: absolute;
+	top: 50%;
+	margin-top: -7px;
+	left: -26px;
+	border-radius: 50%;
+} 
+.this_introduce ,
+.list_introduce ,
+.hotel_introduce {
+	margin-top: 20px;
+	color: #666;
+	font-size: 14px;
+	line-height: 24px;
+}
+.list_introduce .left_img,
+.hotel_introduce .left_img,
+.this_introduce .left_img{
+	width: 200px;
+	height: 132px;
+}
+.list_introduce .right_info ,
+.hotel_introduce .right_info ,
+.this_introduce .right_info {
+	padding-top: 10px;
+	width: 450px;
+	
+}
+.list_introduce .right_info  .info_list ,
+.hotel_introduce .right_info  .info_list ,
+.this_introduce .right_info  .info_list {
+	overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.list_introduce .right_info  .info_list p {
+	display: inline-block;
+}
+.introduce_2{
+	margin-top: 10px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+.day_wap .list_tit .type,
+.day_wap .hotel_tit .type{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-color: #f4a21e;
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+	line-height: 20px;
+	vertical-align: middle;
+	border-radius: 4px;
+	margin-top: -3px;
+	margin-right: 5px;
+}
+.day_wap .list_tit .type{
+	position: relative;
+	/*width: 0;
+	height: 0;*/
+	color:#fff;
+	background-color: #fff;
+}
+.day_wap .list_tit .type.type0::before,
+.day_wap .list_tit .type.type1::before{
+	background-color: #22d9ac;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	content: '景';
+	border-radius: 4px;
+	margin-top: -4px;
+	color: #fff;
+}
+.day_wap .list_tit .type.type2::before{
+	background-color: #8d5fe2;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	content: '夜';
+	border-radius: 4px;
+	margin-top: -4px;
+}
+
+.day_wap .list_tit .type.type3::before{
+	background-color: #e6d737;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	content: '餐';
+	border-radius: 4px;
+	margin-top: -4px;
+}
+.day_wap .list_tit .type.type4::before{
+	background-color: #f07f50;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	content: '购';
+	border-radius: 4px;
+	margin-top: -4px;
+}
+
+.play_time{
+	color: #666;
+	font-size: 16px;
+}
+.play_time::before {
+	display: inline-block;
+	background-color: #e5e5e5;
+	width: 3px;
+	height: 15px;
+	content: '';
+	margin:0 10px -2px;
+}
+
+.notice {
+	margin-top: 30px;
+	/*background-color: pink;*/
+}
+.notice .n_title{
+	color: #f4a21e;
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+.notice .n_title .tip {
+	font-size: 16px;
+}
+
+.notice .info {
+	font-size: 14px;
+	 line-height: 40px;
+}
+.notice .ewm_wap {
+	margin-top: 50px;
+	color: #659ff5;
+	text-align: center;
+	background-color: #fff;
+}
+.notice .ewm_wap .share_phone,
+.notice .ewm_wap .downApp{
+	width: 50%;
+	height: 300px;
+}
+.notice .ewm_wap .downApp{
+	background: #fff url(/static/v1/img/tripinfo/shouji.png) center center no-repeat;
+}
+.notice .ewm_wap .share_phone {
+	background: #fff url(/static/v1/img/tripinfo/diannao.png) center center no-repeat;
+}
+.notice .ewm_wap .downApp .app_code {
+	margin-top: 70px;
+	width: 105px;
+	height: 105px;
+	margin-bottom: 100px;
+}
+.notice .ewm_wap .share_code{
+	width: 120px;
+	height: 120px;
+	margin-top: 59px;
+	margin-right: 12px;
+	background-color: #fff;
+}
+.notice  .last {
+	margin-top: 250px;
+	text-align: right;
+	font-size: 24px;
+	color: #659ff5;
+	font-weight: 600;
+	padding-bottom: 100px;
+	background-color: #fff;
+}
+
+
+.download_pdf {
+	position: absolute;
+    top: 100px;
+    right: -140px;
+    padding: 10px;
+    background-color: #659ff5;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.download_pdf:hover {
+	background-color: #4a8ae9;
+}
+.mask {
+	display: none;
+	z-index: 12;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255,255,255,0);
+
+}
+.mask .tip_content {
+	margin:300px auto;
+	text-align: center;
+	width: 200px;
+	height: 160px;
+	border-radius: 8px;
+	background-color: #fff;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.12);
+	/*margin-top: 40%;	*/
+}
+.mask .tip_content img {
+	width: 100px;
+	height: 100px;
+}

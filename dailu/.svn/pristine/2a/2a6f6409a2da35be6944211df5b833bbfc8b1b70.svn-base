@@ -1,0 +1,5136 @@
+<?php
+// +----------------------------------------------------------------------
+// | ThinkCMF [ WE CAN DO IT MORE SIMPLE ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2013-2017 http://www.thinkcmf.com All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: bingwang <thinkcmf@126.com>
+// +----------------------------------------------------------------------
+namespace app\portal\controller;
+
+use cmf\controller\HomeBaseController;
+use think\Db;
+
+
+/**
+ * 1F —— 5F 
+ * 
+ * 人文自然、本土体验、醉美夜色、美食诱惑，购物天堂
+ * 安排行程，我的出行计划
+ * 
+ * */
+class ScenerymapController extends HomeBaseController
+{
+    //城市景点、美食、购物页面
+    public function cityAttractions()
+    {
+        return $this->fetch();
+    }
+    //返回拖拽后的城市顺序
+    public function SceneryCity()
+    {
+        session_start();
+        $info = $_SESSION;
+        $result = $info['DragDropcity'];
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    /*** 1F--5F  当点击返回时候数据返回***/
+    public function ReturnSceni()
+    {
+        session_start();
+        $info = $_SESSION;
+        $result = $info['data'];
+      
+        //景点和吃的，放在同一个列表里，数据用于倒退时候1F-5F渲染使用
+        // foreach($info['result']['day_arry'] as $value)
+        // {
+        //     if(isset($value['day']))
+        //     {
+        //         foreach($value['day'] as $vv)
+        //         {
+        //             $allData[] = $vv;
+        //         }
+        //     }  
+        // }
+        // // print_r($allData);
+        // foreach($allData as $key=>$all)
+        // {
+        //     if(!empty($all['eat_info']))
+        //     {
+        //         foreach($all['eat_info'] as $v)
+        //         {
+        //             $eatInfo[] = $v;
+        //         }
+        //         unset($allData[$key]['eat_info']);
+        //     }
+        // }
+        if(isset($result['spot_data']['eat_name_arry']))
+        {
+            $completeData = array_merge($result['spot_data']['addgo_arry'],$result['spot_data']['eat_name_arry']); 
+        }else{
+            $completeData = array_merge($result['spot_data']['addgo_arry']);
+        }
+        $result['spot_data']['completeData'] = $completeData;
+
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    /*** 编辑行程 ***/
+    //编辑行程的时候 城市基本数据
+    public function CityData()
+    {
+        session_start();
+        $post = $_POST;
+        $info = $_SESSION;
+        //城市
+        $result = $info['DragDropcity']; 
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+    /*编辑行程的过程中1F-5F页面数据保留，（正常操作的1F-5F数据公用）
+    * 编辑过程中分为两大类：
+    * 情况一：城市个数始终没有改变
+    * 情况二：城市个数发生改变
+    */
+    public function EditTrip()
+    {
+        session_start();
+        $post = $_POST;
+        $this_city_index = intval($post['this_city_index']);
+        if(isset($_SESSION['DragDropcity'])){$draData = $_SESSION['DragDropcity'];}
+        if(isset($_SESSION['spotArray'])){$infospotArray = $_SESSION['spotArray'];}
+
+        $cityNumber = count($draData['go_city_array']);  //城市个数
+        $cityArray = $draData['go_city_array'];   //每次都是最新选择的城市组合
+        $citytemp = $cityArray;
+        //定义对应长度的数组,数据对应到每个城市当中
+        //初始化
+        // print_r($cityArray);
+        // print_r($info['spotArray']);
+        // exit;
+        $diff = [];  //用来作为是否改变城市的标记
+        if(isset($infospotArray))
+        {  
+            $citylength = count($infospotArray);
+            //情况一：城市个数始终没有改变(但城市顺序可以改变)
+            if($citylength == $cityNumber)
+            {
+                ///////////////////
+                //城市个数没有改变，但是城市改变了
+                foreach($cityArray as $key1=>$new_city)
+                {
+                    foreach($infospotArray as $key2=>&$old_city)
+                    {
+                        if($key1 == $key2)
+                        {
+                            if(isset($old_city['this_city']))
+                            {
+                                if($new_city['city_name'] != $old_city['this_city'])
+                                {
+                                    $diff['diff'] = 'true_diff';
+                                }
+                            }
+                           
+                        }
+                    }
+                }
+                
+                //数组中存在标记true_diff时,表示城市个数没变，但是城市改变了
+                if(isset($diff['diff']))
+                {
+                    if($diff['diff'] == 'true_diff')
+                    {
+                        foreach($infospotArray as $k2=>&$old_city)
+                        {
+                            foreach($cityArray as $k1=>&$new_city)
+                            {
+                                if($new_city['city_name'] == $old_city['this_city'])
+                                {
+                                    if(isset($old_city['day_arry']))
+                                    {
+                                        $cityArray[$k1]['day_arry'] = $infospotArray[$k2]['day_arry'];
+                                    }
+                                }     
+                            }
+                        }
+                        foreach($cityArray as $pp)
+                        {
+                            $pp['this_city'] = $pp['city_name'];
+                        }
+                            $spotArray = $cityArray;
+                        }
+                    // print_r($cityArray);
+                }else{
+                    // print_r($cityArray);
+                    // print_r($info['spotArray']);
+                    //城市没有改变
+                    foreach($cityArray as $key1=>$new_city)
+                    {
+                        foreach($infospotArray as $key2=>&$old_city)
+                        {
+                            if(isset($old_city['this_city']))
+                            {
+                                if($new_city['city_name'] == $old_city['this_city'])
+                                {
+                                    // echo 3;
+                                    $old_city['city_daynum'] = $new_city['city_daynum'];
+                                    $old_city['city_date'] = $new_city['city_date'];
+                                    $spotArray[] = $infospotArray[$key2];
+                                }
+                            }
+                            // if(!isset($old_city['this_city'])){
+                            //     // echo 8;
+                            //     $spotArray[$key2] = '';   
+                            // }
+                        } 
+                    }
+                    // print_r($spotArray);
+                    //////////////////////////////
+                    $cc = count($cityArray);
+                    $cc2 = count($spotArray);
+                    for($i=0;$i<$cc-$cc2;$i++)
+                    {
+                        $spotArray[] = '';
+                    }
+
+                }
+                // print_r($spotArray);
+               //////////////// ////////////////////////////
+                
+                //城市个数不变，天数改变，日期、顺序改变
+                foreach($spotArray as $key3=>&$addcity)
+                {
+                    if(isset($addcity['city_date']))
+                    {
+                        // echo 2;
+                        $addcity['city_time_1'] = str_replace(".","-",$addcity['city_date']);
+                    
+                        $t = strtotime(str_replace(".","-",$addcity['city_date']));
+                        if(isset($addcity['city_daynum']))
+                        {   
+                            // echo 3;
+                            for($i=0;$i<$addcity['city_daynum'];$i++)
+                            {
+                                $a = $i.'day';
+                                $addcity['day_arry'][$i]['date'] = str_replace("-",".",substr(date('Y-m-d',strtotime("+$a",$t)),5)); 
+                            }
+                        }
+                        
+                    }
+                }
+                // print_r($spotArray);
+                // exit;
+              
+            //情况二：城市个数发生改变的时候
+            }else{ 
+                //城市个数发生改变,给一个标记
+                if(isset($_SESSION['addcity_tag']))
+                {
+                   unset($_SESSION['addcity_tag'] );
+                }
+                $_SESSION['addcity_tag'] = 'addcity_tag';
+
+                foreach($cityArray as $key2=>&$city)
+                {   
+                    foreach($infospotArray as $key1=>$ss)
+                    { 
+                        if(isset($ss['this_city']))
+                        {
+                            if( $city['city_name'] == $ss['this_city'])
+                            {
+                                if(isset($infospotArray[$key1]['eat_len']))
+                                {
+                                    $cityArray[$key2]['eat_len'] = $infospotArray[$key1]['eat_len'];
+                                }
+                                if(isset($infospotArray[$key1]['eat_len']))
+                                {
+                                    $cityArray[$key2]['shop_len'] = $infospotArray[$key1]['shop_len'];
+                                }
+                                if(isset($infospotArray[$key1]['eat_len']))
+                                {
+                                    $cityArray[$key2]['spot_len'] = $infospotArray[$key1]['spot_len'];
+                                }
+                                $cityArray[$key2]['day_arry'] = $infospotArray[$key1]['day_arry']; 
+                                if(isset($infospotArray[$key1]['eat_data']))
+                                {
+                                    $cityArray[$key2]['eat_data'] = $infospotArray[$key1]['eat_data'];
+                                }
+                                //表单信息
+                                $formData['traffic_tools'] = $draData['traffic_tools'];
+                                $formData['adult'] = $draData['adult'];
+                                $formData['day_num'] = $draData['day_num'];
+                                $formData['departure_latlng'] = $draData['departure_latlng'];
+                                $formData['return_latlng'] = $draData['return_latlng'];
+                                $formData['departure_city'] = $draData['departure_city'];
+                                $formData['return_city'] = $draData['return_city'];
+                                $formData['return_traffic'] = $draData['return_traffic'];
+                                // $formData['tagId'] = $info['DragDropcity']['tagId'];
+                                $cityArray[$key2]['formData'] = $formData; 
+                            }
+                        }
+                        
+                    }
+                }
+                $spotArray = $cityArray;
+                // print_r($spotArray );
+                //新增加的城市是哪个，格式进行转化,日期重新匹配
+                foreach($spotArray as $key=>&$addcity)
+                {
+                    if(!isset($addcity['day_arry'])) //新加的城市
+                    {
+                        $addcity['betw'] = "D".$addcity['city_d_1']."-"."D".$addcity['city_d_2']; 
+                        $addcity['this_city'] = $addcity['city_name'];
+
+                        //给新城市的day_arry数组
+                        for($i=1;$i<=$addcity['city_daynum'];$i++)
+                        {
+                            $dayarray[] = array();
+                        }
+                        // print_r($dayarray);
+                        foreach($dayarray as $kk=>&$arry)
+                        {
+                            $arry['city_id'] = $spotArray[$key]['city_id'];
+                            $arry['city_py'] = $spotArray[$key]['city_py'];
+
+                            $arry['city_time_1'] = $spotArray[$key]['city_date'];
+                            $arry['city_time_2'] = $spotArray[$key]['city_date2'];
+                            $arry['provinceNames'] = $spotArray[$key]['provinceNames'];
+                            $arry['city_time_1'] = str_replace(".","-",$arry['city_time_1']);
+                            $t = strtotime($arry['city_time_1']);
+                            $a = $kk.'day';  
+                            $arry['date'] = str_replace("-",".",substr(date('Y-m-d',strtotime("+$a",$t)),5));  //指定时间戳+$a天以后
+                        }  
+                        $addcity['day_arry'] = $dayarray;
+                    }else{  //原来的城市
+                        $addcity['city_time_1'] = str_replace(".","-",$spotArray[$key]['city_date']);
+                        $addcity['this_city'] = $addcity['city_name'];
+                        $t = strtotime(str_replace(".","-",$spotArray[$key]['city_date']));
+                        for($i=0;$i<$addcity['city_daynum'];$i++)
+                        {
+                            $a = $i.'day';
+                            $addcity['day_arry'][$i]['date'] = str_replace("-",".",substr(date('Y-m-d',strtotime("+$a",$t)),5)); 
+                        }
+                    }
+                }
+            }
+        }
+
+        //取景点，编辑时渲染
+        if(isset($spotArray))
+        {   
+            foreach($spotArray as $key=>&$current)
+            { 
+                if($key == $this_city_index)
+                {
+                    if(isset($spotArray[$this_city_index]['day_arry']))
+                    {
+                        foreach($current['day_arry'] as $value)
+                        {
+                            if(!empty($value['day']))
+                            {
+                                foreach($value['day'] as $vv)
+                                {
+                                    $spotData[] = $vv;
+                                }  
+                                $current['jingdian'] = $spotData;
+                            }
+                        }
+                        // unset($current['day_arry']);
+                        unset($current['formData']);
+                        if(!isset($current['eat_data']))
+                        {
+                            $current['eat_data'] = '';
+                        }
+                    }
+                }
+            } 
+            // print_r($spotArray);
+            
+            //对于从个人中心入口编辑行程，解决之前有的城市景点缺少以下元素，直接匹配一个（此处是特殊处理）
+            if(isset($_POST['is_plan_edit']) && $_POST['is_plan_edit'] == 'ok')
+            {
+                foreach($spotArray as $key1=>$xx)
+                {
+                    if(isset($xx['jingdian']))
+                    {
+                        foreach($xx['jingdian'] as $key=>$x)
+                        {   
+                            if(!isset($x['this_playtime']))
+                            {
+                                if(isset($x['info']['play_time'])){
+                                    $spotArray[$key1]['jingdian'][$key]['this_playtime'] = $x['info']['play_time'];
+                                }
+                                
+                            }
+                            if(isset($x['info']))
+                            {
+                                unset($spotArray[$key1]['jingdian'][$key]['info']);
+                            }
+                            if(!isset($x['this_img_src']))
+                            {
+                                if(isset($x['info']['spot_image_url'])){
+                                    $spotArray[$key1]['jingdian'][$key]['this_img_src'] = $x['info']['spot_image_url'];
+                                }
+                                
+                            }
+                            if(!isset($x['this_type']))
+                            {
+                                if(isset($x['info']['type'])){
+                                    $spotArray[$key1]['jingdian'][$key]['this_type'] =  $x['info']['type'];
+                                }
+                            }
+                       
+                            if(!isset($x['ranking']))
+                            {   
+                                if(isset($x['info']['ranking'])){
+                                    $spotArray[$key1]['jingdian'][$key]['ranking'] =  $x['info']['ranking'];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            $result['addgo_arry'] = $spotArray; // 城市对应的景点信息
+            $formData = $draData;  
+            $result['status'] = 'true'; 
+        }else{
+            $formData = $draData;   
+            $result['status'] = 'false'; 
+        }
+        //当城市个数发生改变时，新的数据空间被存储
+        if(isset($spotArray))
+        {
+            $_SESSION['cityResult'] = $spotArray;
+        }
+        //制作行程过程中点击编辑，1F-5F重新渲染城市已经选择的景点和美食
+        if($post['is_edit'] == 'true' && $post['is_plan_edit'] == '')
+        {
+            $makeData = $spotArray;
+            //游玩时段
+            // foreach($makeData as $kk=>$value_array)
+            // {
+            //     if($kk == $this_city_index)
+            //     {
+            //         if(isset($value_array['jingdian'])){ $ggg = $info['dayTime'][$kk]; $result['dayTime'] = $ggg;}
+            //     }
+            // }
+        }
+        //从个人中心点击编辑行程，1F-5F重新渲染城市的景点和美食
+        if($post['is_edit'] == 'true' && $post['is_plan_edit'] == 'ok')
+        {
+            $makeData = $spotArray;
+            //游玩时段
+            // if(isset($info['list']))
+            // {
+            //     foreach($info['list'] as $key=>$l_value)
+            //     {
+            //         foreach($l_value['day_arry'] as $key1=>$ll_vv){$rrr[$key1] = $ll_vv['start_time'].'-'.$ll_vv['end_time'];}
+            //     }
+            //     $result['dayTime'] = $rrr;
+            // }
+            
+        }
+        //整合景点和美食到同一个数组中
+        if(isset($makeData))
+        {
+            foreach($makeData as $kk=>$value_array)
+            {
+                if($kk == $this_city_index)
+                {
+                    if(isset($value_array['jingdian']))
+                    {
+                        $jingdianArray = $value_array['jingdian'];
+                    }
+                }
+            }
+            
+            if(isset($jingdianArray))
+            {
+                foreach($jingdianArray as $key=>$all)
+                {
+                    if(!empty($all['eat_info']))
+                    {
+                        foreach($all['eat_info'] as $v)
+                        {
+                            $eatInfo[] = $v;
+                        }    
+                    }
+                    unset($jingdianArray[$key]['eat_info']);
+                    if(isset($all['info']))
+                    {
+                        unset($jingdianArray[$key]['info']);  
+                    }
+                }
+            }
+
+            if(isset($eatInfo))
+            {            
+                $completeData = array_merge($jingdianArray,$eatInfo);  
+                //当前城市的美食
+                $result['addgo_arry'][$this_city_index]['eat_data'] = $eatInfo;
+            }else{
+                if(isset($jingdianArray))
+                {
+                    $completeData = array_merge($jingdianArray);
+                }else{
+                    $completeData = array();
+                }
+            }
+            $result['completeData'] = $completeData;
+        }
+        
+        $result['formData'] = $formData;   //表单信息   
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    //搜索
+    public function allfloorSearch()
+    {
+        $getData = $_GET;
+        $queryString = $getData['spot_name'];
+        $city_id = $getData['city_id'];
+
+        if(strlen($queryString) > 0)
+        {
+            //1F
+            $where1 = array();
+            $where1['spot_name'] = array('like',"%$queryString%"); 
+            $where1['city_id'] = $city_id;
+            $spotList = Db::name('Nature_absture')->where($where1)->field(array('province_id','city_id','spot_name','pic','type'))->select();
+            $spotResult = json_decode($spotList,true);
+            foreach($spotResult as &$spot)
+            {
+                $spot['floor_index'] = '0';
+                if($spot['type'] == 'Top8')
+                {
+                    $spot['group'] = 'top8';
+                }
+                if($spot['type'] == '人文景观')
+                {
+                    $spot['group'] = 'nature';
+                }
+                if($spot['type'] == '自然风光')
+                {
+                    $spot['group'] = 'scenery';
+                }
+            }
+            // print_r($spotResult);
+            //2F
+            $where2 = array();
+            $where2['spot_name'] = array('like',"%$queryString%"); 
+            $where2['city_id'] = $city_id;
+            $DescribeList = Db::name('Describe')->where($where2)->field(array('province_id','city_id','spot_name','pic','type'))->select();
+            $DescribeResult = json_decode($DescribeList,true);
+            foreach($DescribeResult as &$Describe)
+            {
+                $Describe['floor_index'] = '1';
+                if($Describe['type'] == '文化艺术')
+                {
+                    $Describe['group'] = 'art';
+                }
+                if($Describe['type'] == '休闲情调')
+                {
+                    $Describe['group'] = 'leisure';
+                }
+            }
+            //3F
+            $where3 = array();
+            $where3['spot_name'] = array('like',"%$queryString%"); 
+            $where3['city_id'] = $city_id;
+            $NightList = Db::name('Night')->where($where2)->field(array('province_id','city_id','spot_name','pic','type'))->select();
+            $NightResult = json_decode($NightList,true);
+            foreach($NightResult as &$Night)
+            {
+                $Night['floor_index'] = '2';
+                if($Night['type'] == '视觉享受')
+                {
+                    $Night['group'] = 'visual';
+                }
+                if($Night['type'] == '灯红酒绿')
+                {
+                    $Night['group'] = 'neon';
+                }
+            }
+
+            //4F(本土美食、美食街区)
+            $where4 = array();
+            $where4['store_name'] = array('like',"%$queryString%"); 
+            $where4['city_id'] = $city_id;
+            $StoreList = Db::name('Store_info')->where($where4)->field(array('province_id','city_id','store_name','pic','type'))->select();
+            $StoreResult = json_decode($StoreList,true);
+            foreach($StoreResult as &$Store)
+            {
+                $Store['floor_index'] = '3';
+                $Store['spot_name'] = $Store['store_name'];
+                if($Store['type'] == '本土美食')
+                {
+                    $Store['group'] = 'local';
+                }
+                if($Store['type'] == '美食街区')
+                {
+                    $Store['group'] = 'street';
+                }
+            }
+            //连锁店中的总店
+            $where43 = array();
+            $where43['restaurant_name'] = array('like',"%$queryString%"); 
+            $where43['city_id'] = $city_id;
+            $resList = Db::name('Restaurant_chain')->where($where43)->field(array('province_id','city_id','restaurant_name','pic','type'))->select()->toArray();
+            foreach($resList as &$res)
+            {
+                $res['floor_index'] = '3';
+                $res['spot_name'] = $res['restaurant_name'];
+                if($res['type'] == '本土美食')
+                {
+                    $res['group'] = 'local';
+                }
+                if($res['type'] == '美食街区')
+                {
+                    $res['group'] = 'street';
+                }
+            }
+            //美食街区
+            $where42 = array();
+            $where42['food_court_name'] = array('like',"%$queryString%"); 
+            $where42['city_id'] = $city_id;
+            $FoodList = Db::name('Food_court')->where($where42)->field(array('province_id','city_id','food_court_name','pic','type'))->select();
+            $FoodResult = json_decode($FoodList,true);
+            foreach($FoodResult as &$Food)
+            {
+                $Food['floor_index'] = '3';
+                $Food['spot_name'] = $Food['food_court_name'];
+                if($Food['type'] == '本土美食')
+                {
+                    $Food['group'] = 'local';
+                }
+                if($Food['type'] == '美食街区')
+                {
+                    $Food['group'] = 'street';
+                }
+            }
+
+            //5F(土特产店、购物商圈)
+            $where5 = array();
+            $where5['shopping_name'] = array('like',"%$queryString%"); 
+            $where5['city_id'] = $city_id;
+            $ShopList = Db::name('Shopping_streets')->where($where5)->field(array('province_id','city_id','shopping_name','pic','type'))->select();
+            $ShopResult = json_decode($ShopList,true);
+            foreach($ShopResult as &$Shop)
+            {
+                $Shop['floor_index'] = '4';
+                $Shop['spot_name'] = $Shop['shopping_name'];
+                if($Shop['type'] == '土特产店')
+                {
+                    $Shop['group'] = 'productShops';
+                }
+                if($Shop['type'] == '购物商圈')
+                {
+                    $Shop['group'] = 'businessCircle';
+                }
+            }
+            $searchData = array_merge($spotResult,$DescribeResult,$NightResult,$StoreResult,$resList,$FoodResult,$ShopResult);
+        // print_r($searchData);
+            echo json_encode($searchData,JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    //用户自己新增景点
+    public function NewSpot()
+    {
+        $post = $_POST;
+        $data['city_id'] = $post['city_id'];
+        $data['spot_name'] = $post['spot_name'];
+        $data['map_name'] = $post['map_name']; //原始地图上的景点名称
+        $data['map_address'] = $post['map_address'];    //原始地图上景点地址
+        $data['longitude'] = $post['longitude'];
+        $data['latitude'] = $post['latitude'];
+        $data['address'] = $post['address'];
+
+
+        $base64_image_content = $post['pic'];
+        $orgurl = '/upload/newspot/'.date('Ymd').'/';
+        $imageresult = Base64Image($base64_image_content,$orgurl);
+        $data['pic'] = $imageresult['url']; 
+
+        $ab ='http://';
+        if(!empty($imageresult['url']))
+        {
+            $image_cover = $ab.$_SERVER['HTTP_HOST'].$imageresult['url']; 
+        }else{
+            //当没有上传图片时，用404图片代替
+            $unified_404 = '404/unified_404.png';
+            $image_cover= cmf_get_image_preview_url($unified_404);
+        }
+        $result = Db::name('New_spot')->insert($data);
+        if($result)
+        {
+            $return = array('status'=>true,'msg'=>'保存成功','data'=>$image_cover);
+        }else{
+            $return = array('status'=>false,'msg'=>'保存失败','data'=>'');
+        }
+        echo json_encode($return,JSON_UNESCAPED_UNICODE);
+
+
+    }
+    /**
+    * 1F
+    * 人文自然 景点列表
+    */
+    public function renwen()
+    {
+        //根据传递过来的
+        $post = $_POST;
+        $city_id = $post['city_id'];
+        $spotList = Db::name('Nature_absture')->where(array('city_id'=>$city_id))
+        ->field(array('id','province_id','city_id','spot_name','area_id','attr_score','play_time','pic','type','longitude','latitude','ranking','period_time','not_modifity','suit_season'))->order('ranking asc')->select();
+        $spotResult = json_decode($spotList,true);
+        $top = array();
+        $nature = array();
+        $scenery = array();
+        foreach($spotResult as $kk=>&$spot)
+        {
+            //适玩时间
+            $spot['tag_time'] = $this->play_time($spot['play_time']);  //时间统一成小时
+            //景点封面图片 cover
+            if(!empty($spot['pic']))
+            {
+                $cover_pic =json_decode($spot['pic'],true);
+                foreach($cover_pic as $k => &$pic_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $spot['cover_url'] = cmf_get_image_preview_url($pic_value['url']); 
+                }
+                unset($spot['pic']);
+            }
+            else{
+                //当没有上传图片时，用404图片代替
+                $unified_404 = '404/unified_404.png';
+                $spot['cover_url'] = cmf_get_image_preview_url($unified_404);
+            }
+
+
+            if($spot['type'] == 'Top8')
+            {
+                $top['top8'][] = $spot; 
+            }
+            if($spot['type'] == '人文景观')
+            {
+                $nature['nature'][] = $spot;
+            }
+
+            if($spot['type'] == '自然风光')
+            {
+                $scenery['scenery'][] = $spot;
+            }
+        }
+
+        $abstureList = array();
+        $type['type']= array('Top8','人文景观','自然风光');
+
+        if(isset($top['top8']))
+        {
+            $top8_sort = array_column($top['top8'], 'ranking');  
+            array_multisort($top8_sort, SORT_ASC, $top['top8']);
+        }
+        
+        if(isset($nature['nature']))
+        {
+            $nature_sort = array_column($nature['nature'], 'ranking');  
+            array_multisort($nature_sort, SORT_ASC, $nature['nature']); 
+        }
+    
+        if(isset($scenery['scenery']))
+        {
+            $scenery_sort = array_column($scenery['scenery'], 'ranking');  
+            array_multisort($scenery_sort, SORT_ASC,  $scenery['scenery']); 
+        }
+
+        $abstureList = array_merge($top,$nature,$scenery,$type);
+
+// print_r($abstureList);
+        //加入搜索条件 
+        if(isset($post['group']))
+        {
+            //top8
+            if($post['group'] == 'top8')
+            {
+                //带有搜索条件下返回的数据，放在列表第一位
+                if(isset($post['search_spot_name']) && strlen($post['search_spot_name']) > 0){
+                    foreach($abstureList['top8'] as $key=>$top8)
+                    {
+                        if($post['search_spot_name'] == $top8['spot_name'])
+                        {
+                            array_unshift($abstureList['top8'],$top8);
+                        }
+                       
+                    }
+                    
+                }
+            }
+            foreach($abstureList['top8'] as $key0=>$tt)
+            {
+                if($tt['spot_name'] == $post['search_spot_name']){
+                    if($key0 != 0){
+                        unset($abstureList['top8'][$key0]);
+                    }
+                }
+            }
+            $abstureList['top8'] = array_merge($abstureList['top8']);
+
+            //人文自然nature
+            if($post['group'] == 'nature')
+            {
+                //带有搜索条件下返回的数据，放在列表第一位
+                if(isset($post['search_spot_name']) && strlen($post['search_spot_name']) > 0){
+                    foreach($abstureList['nature'] as $key=>$nature)
+                    {
+                        if($post['search_spot_name'] == $nature['spot_name'])
+                        {
+                            array_unshift($abstureList['nature'],$nature);
+                        }
+                       
+                    }
+                    
+                }
+            }
+            foreach($abstureList['nature'] as $key1=>$na)
+            {
+                if($na['spot_name'] == $post['search_spot_name']){
+                    if($key1 != 0){
+                        unset($abstureList['nature'][$key1]);
+                    }
+                }
+            }
+            $abstureList['nature'] = array_merge($abstureList['nature']);
+
+            //自然风光scenery
+            if($post['group'] == 'scenery')
+            {
+                //带有搜索条件下返回的数据，放在列表第一位
+                if(isset($post['search_spot_name']) && strlen($post['search_spot_name']) > 0){
+                    foreach($abstureList['scenery'] as $key=>$scenery)
+                    {
+                        if($post['search_spot_name'] == $scenery['spot_name'])
+                        {
+                            array_unshift($abstureList['scenery'],$scenery);
+                        }
+                        
+                    }
+                    
+                }
+            }
+            foreach($abstureList['scenery'] as $key2=>$sc)
+            {
+                if($sc['spot_name'] == $post['search_spot_name']){
+                    if($key2 != 0){
+                        unset($abstureList['scenery'][$key2]);
+                    }
+                }
+            }
+            $abstureList['scenery'] = array_merge($abstureList['scenery']);
+
+        }
+
+    //    print_r($abstureList);     
+        echo json_encode($abstureList,JSON_UNESCAPED_UNICODE);
+    }
+
+    /********** 人文景点中的 查看介绍，景点的详情页面数据  ***********/
+    public function renwen_detail()
+    {
+        /****** 景区  *********/
+        $post = $_POST;
+        $spot_name = $post['spot_name'];
+        $city_id = $post['city_id'];
+        $where['spot_name'] = $spot_name;
+        $spotDetail = Db::name('Nature_absture')->where($where)->find();
+
+        $spotDetail['release_time'] = date('Y-m-d', $spotDetail['update_time']);
+        //景点封面图片 cover
+        if(!empty($spotDetail['picture2']))
+        {
+            $cover_pic = json_decode($spotDetail['picture2'],true);
+            foreach($cover_pic as $k => &$pic_value)
+            {
+                //common.php中封装的图片url解析方法
+                $spotDetail['image_url'][$k]= cmf_get_image_preview_url($pic_value['url']); 
+                $spotDetail['image_name'][$k]= substr($pic_value['name'],0,strpos($pic_value['name'], '.'));
+                $pp['url'] = $spotDetail['image_url'][$k];
+                $pp['name'] = $spotDetail['image_name'][$k];
+                $spotDetail['image'][$k] = $pp;
+            }
+            unset($spotDetail['picture2']);
+        }
+        
+        
+        //文字描述中的html标签转化成实体
+        $spotDetail['introduction'] = htmlchars($spotDetail['spot_Introduction']);
+        unset($spotDetail['spot_Introduction']);
+        $spotDetail['description'] = htmlchars($spotDetail['other_description']);
+        unset($spotDetail['spot_Introduction']);
+        
+        /*****  景区中的景点   *****/
+        $where_condition['scenic_name'] = $spot_name;
+        $cultural_spot = Db::name('Cultural_spot')->where($where_condition)->select();
+        $culturalResult = json_decode($cultural_spot,true);
+        if($culturalResult)
+        {
+            foreach($culturalResult as &$cultural)
+            {
+                if(!empty($cultural['pic']))
+                {
+                    $image =json_decode($cultural['pic'],true);  
+                    foreach($image as $key => &$img_value)
+                    {
+                        $cultural['img_url'] = cmf_get_image_preview_url($img_value['url']); 
+                    }
+                    unset($cultural['pic']);
+                }
+                
+                unset($cultural['picture2']);
+                $cultural['introduction'] = htmlchars($cultural['spot_Introduction']);
+                unset($cultural['spot_Introduction']);
+            }
+        }
+  
+        /** 附近推荐 
+         * 景区附近推荐 (美食推荐、景点推荐、购物推荐)，
+         * 规则：景点3公里以内的给予推荐
+         **/
+        $longitude1 = $post['lng'];
+        $latitude1 = $post['lat'];
+        // //① 附近推荐景点
+        $cityData = Db::name('Cultural_spot')->where(array('city_id'=>$city_id))->select();
+        $cityInfo = json_decode($cityData,true);
+        if($cityInfo)
+        { 
+            foreach($cityInfo as $key=>&$cityValue)
+            {
+                $lo = $cityValue['longitude'];
+                $la= $cityValue['latitude'];
+                //调用common.php 中的 getDistance方法计算两个地理位置之间的距离
+                $distance = getDistance($longitude1, $latitude1, $lo, $la, 1,0);
+                //景区中的景点不推送在附近景点中
+                if($cityValue['scenic_name'] == $spot_name)
+                {
+                    unset($cityInfo[$key]);
+                }
+                if($distance > 3000 )
+                {
+                    unset($cityInfo[$key]);
+                }else{
+                    $cityValue['distance'] = $distance.'米';
+                }
+                if(!empty($cityValue['pic']))
+                {
+                    $pic =json_decode($cityValue['pic'],true);
+                  
+                    foreach($pic as $kk => $pic_value)
+                    {
+                        //common.php中封装的图片url解析方法
+                        if(!empty($pic_value['url']))
+                        {
+                            $cityValue['img_url'] = cmf_get_image_preview_url($pic_value['url']); 
+                        }
+                        
+                    }
+                }
+                
+            
+                unset($cityValue['pic']);
+                unset($cityValue['picture2']); 
+                $cityValue['introduction'] = htmlchars($cityValue['spot_Introduction']);
+                unset($cityValue['spot_Introduction']); 
+                //适玩时间
+                $cityValue['tag_time'] = $this->play_time($cityValue['play_time']);  //时间统一成小时
+            } 
+        }
+
+        // ② 附近推荐美食
+        $store_infoData = Db::name('Store_info')->where(array('city_id'=>$city_id))->select();
+        $storeInfo = json_decode($store_infoData,true);
+        foreach($storeInfo as $key2=>&$storeValue)
+        {
+            $long = $storeValue['longitude'];
+            $lat= $storeValue['latitude'];
+            //调用common.php 中的 getDistance方法计算两个地理位置之间的距离
+            $distance2 = getDistance($longitude1, $latitude1, $long, $lat, 1,0);
+            if($distance2 > 3000 )
+            {
+                unset($storeInfo[$key2]);
+            }else{
+                $storeValue['distance'] = $distance2.'米';
+            }
+            if(!empty($storeValue['pic']))
+            {
+                $image =json_decode($storeValue['pic'],true);
+                foreach($image as $kk2 => &$pic_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $storeValue['img_url'] = cmf_get_image_preview_url($pic_value['url']); 
+                }
+                unset($storeValue['pic']);
+            }
+           
+            unset($storeValue['picture2']); 
+            $storeValue['introduction'] = htmlchars($storeValue['store_Introduction']);
+            unset($storeValue['store_Introduction']); 
+        }
+
+        // ③ 附近推荐购物
+        $shop_streetData = Db::name('shopping_streets')->where(array('city_id'=>$city_id))->select();
+        $shop_streetInfo = json_decode($shop_streetData,true);
+        foreach($shop_streetInfo as $key3=>&$shopValue)
+        {
+            $longitu = $shopValue['longitude'];
+            $latitu= $shopValue['latitude'];
+            //调用common.php 中的 getDistance方法计算两个地理位置之间的距离
+            $distance3 = getDistance($longitude1, $latitude1, $longitu, $latitu, 1,0);
+
+            if($distance3 > 3000 )
+            {
+                unset($shop_streetInfo[$key3]);
+            }else{
+                $shopValue['distance'] = $distance3.'米';
+            }
+            if(!empty($shopValue['picture2']))
+            {
+                $picture =json_decode($shopValue['picture2'],true);
+                foreach($picture as $kk3 => &$picvalue)
+                {
+                    //common.php中封装的图片url解析方法
+                    $shopValue['img_url'] = cmf_get_image_preview_url($picvalue['url']);
+                }
+                unset($shopValue['pic']);
+            }
+           
+            unset($shopValue['picture2']); 
+            $shopValue['introduction'] = htmlchars($shopValue['shopping_Introduction']);
+            unset($shopValue['shopping_Introduction']); 
+            //适玩时间
+            $shopValue['tag_time'] = $this->play_time($shopValue['shopping_time']);  //时间统一成小时
+        }
+
+        $re1['jingdian'] = array_merge($cityInfo);
+        $re2['food'] = array_merge($storeInfo);
+        $re3['shop'] = array_merge($shop_streetInfo);
+        $tuijian = array_merge($re1,$re2,$re3); //整合成 附近推荐的数据
+        $result = array();
+        $result['spot'] =  $spotDetail;    //景区里的简要介绍
+        $result['tuijian'] = $tuijian;     //景区中的附近推荐
+        $result['cultural'] = $culturalResult; //景区中的景点
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+
+    /*** 2F
+     * 本土体验
+     ***/
+    //本土体验 景点列表
+    public function local()
+    {
+         //根据传递过来的
+        $post = $_POST;
+        $city_id = $post['city_id'];
+
+        $localList = Db::name('Describe')->where(array('city_id'=>$city_id))->field(array('province_id','city_id','spot_name','area_id','attr_score','play_time','pic','type','longitude','latitude','attr_score','ranking','period_time','not_modifity','suit_season'))->select();
+        $localResult = json_decode($localList,true);
+
+        $art = array();
+        $leisure = array();
+        foreach($localResult as $kk=>&$local)
+        {
+            //适玩时间
+            $local['tag_time'] = $this->play_time($local['play_time']);  //时间统一成小时
+            //景点封面图片 cover
+            if(!empty($local['pic']))
+            {
+                $cover_pic =json_decode($local['pic'],true);
+                foreach($cover_pic as $k => &$pic_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $local['cover_url'] = cmf_get_image_preview_url($pic_value['url']); 
+                }
+                unset($local['pic']);
+            }
+            else{
+                $unified_404 = '404/unified_404.png';
+                $local['cover_url']  = cmf_get_image_preview_url($unified_404);
+            }
+            
+
+            if($local['type'] == '文化艺术')
+            {
+                $art['art'][] = $local;
+            }
+
+            if($local['type'] == '休闲情调')
+            {
+                $leisure['leisure'][] = $local;
+            }
+            
+        }
+        $Result = array();
+        $type['type']= array('文化艺术','休闲情调');
+
+        if(isset($art['art']))
+        {
+            $art_sort = array_column($art['art'], 'ranking');  
+            array_multisort($art_sort, SORT_ASC, $art['art']);
+        }
+         
+
+        if(isset($leisure['leisure']))
+        {
+            $leisure_sort = array_column($leisure['leisure'], 'ranking');  
+            array_multisort($leisure_sort, SORT_ASC, $leisure['leisure']); 
+        }
+        $Result = array_merge($art,$leisure,$type);
+
+        //搜索
+        if(isset($post['group']))
+        {
+            //文化艺术 art
+            if($post['group'] == 'art')
+            {
+                //带有搜索条件下返回的数据，放在列表第一位
+                if(isset($post['search_spot_name']) && strlen($post['search_spot_name']) > 0){
+                    foreach($Result['art'] as $key=>$art)
+                    {
+                        if($post['search_spot_name'] == $art['spot_name'])
+                        {
+                            array_unshift($Result['art'],$art);
+                        }
+                       
+                    }
+                    
+                }
+            }
+            foreach($Result['art'] as $key0=>$tt)
+            {
+                if($tt['spot_name'] == $post['search_spot_name']){
+                    if($key0 != 0){
+                        unset($Result['art'][$key0]);
+                    }
+                }
+            }
+            $Result['art'] = array_merge($Result['art']);
+
+            //休闲情调leisure
+            if($post['group'] == 'leisure')
+            {
+                //带有搜索条件下返回的数据，放在列表第一位
+                if(isset($post['search_spot_name']) && strlen($post['search_spot_name']) > 0){
+                    foreach($Result['leisure'] as $key=>$leisure)
+                    {
+                        if($post['search_spot_name'] == $leisure['spot_name'])
+                        {
+                            array_unshift($Result['leisure'],$leisure);
+                        }
+                       
+                    }
+                    
+                }
+            }
+            foreach($Result['leisure'] as $key1=>$na)
+            {
+                if($na['spot_name'] == $post['search_spot_name']){
+                    if($key1 != 0){
+                        unset($Result['leisure'][$key1]);
+                    }
+                }
+            }
+            $Result['leisure'] = array_merge($Result['leisure']);
+        }
+
+       
+        echo json_encode($Result,JSON_UNESCAPED_UNICODE);
+    }
+
+    /********** 本土体验中的 查看介绍，景点的详情页面数据  ***********/
+    public function local_detail()
+    {
+        /****** 本土详情介绍  *********/
+        $post = $_POST;
+        $spot_name = $post['spot_name'];
+        $city_id = $post['city_id'];
+        $where['spot_name'] = $spot_name;
+        $localDetail = Db::name('Describe')->where($where)->find();
+        $localDetail['release_time'] = date('Y-m-d', $localDetail['update_time']);
+        //景点封面图片 cover
+        if(!empty($localDetail['picture2']))
+        {
+            $cover_pic = json_decode($localDetail['picture2'],true);
+            foreach($cover_pic as $k => &$pic_value)
+            {
+                //common.php中封装的图片url解析方法
+                $localDetail['image_url'][$k]= cmf_get_image_preview_url($pic_value['url']); 
+                $localDetail['image_name'][$k]= substr($pic_value['name'],0,strpos($pic_value['name'], '.'));
+                $pp['url'] = $localDetail['image_url'][$k];
+                $pp['name'] = $localDetail['image_name'][$k];
+                $localDetail['image'][$k] = $pp;
+            }
+            unset($localDetail['picture2']);
+        }
+       
+        
+        //文字描述中的html标签转化成实体
+        $localDetail['introduction'] = htmlchars($localDetail['spot_Introduction']);
+        unset($localDetail['spot_Introduction']);
+        $localDetail['qita_description'] = htmlchars($localDetail['other_description']);
+        unset($localDetail['other_description']);
+        unset($localDetail['pic']);
+        
+        /** 附近推荐 
+         * 景区附近推荐 (美食推荐、景点推荐、购物推荐)，
+         * 规则：景点3公里以内的给予推荐
+         **/
+        $longitude1 = $post['lng'];
+        $latitude1= $post['lat'];
+        // //① 附近推荐景点
+        $cityData = Db::name('Cultural_spot')->where(array('city_id'=>$city_id))->select();
+        $cityInfo = json_decode($cityData,true);
+        if($cityInfo)
+        {
+            foreach($cityInfo as $key=>&$cityValue)
+            {
+                $lo = $cityValue['longitude'];
+                $la= $cityValue['latitude'];
+                //调用common.php 中的 getDistance方法计算两个地理位置之间的距离
+                $distance = getDistance($longitude1, $latitude1, $lo, $la, 1,0);
+                if($distance > 3000 )
+                {
+                    unset($cityInfo[$key]);
+                }else{
+                    $cityValue['distance'] = $distance.'米';
+                }
+                if(!empty($cityValue['pic']))
+                {
+                    $pic =json_decode($cityValue['pic'],true);
+                    foreach($pic as $kk => &$pic_value)
+                    {
+                        //common.php中封装的图片url解析方法
+                        $cityValue['img_url'] = cmf_get_image_preview_url($pic_value['url']); 
+                    }
+                    unset($cityValue['pic']);
+                }
+               
+                unset($cityValue['picture2']); 
+                $cityValue['introduction'] = htmlchars($cityValue['spot_Introduction']);
+                unset($cityValue['spot_Introduction']); 
+                //适玩时间
+                $cityValue['tag_time'] = $this->play_time($cityValue['play_time']);  //时间统一成小时
+            } 
+        }
+
+        // // ② 附近推荐美食
+        $store_infoData = Db::name('Store_info')->where(array('city_id'=>$city_id))->select();
+        $storeInfo = json_decode($store_infoData,true);
+        foreach($storeInfo as $key2=>&$storeValue)
+        {
+            $long = $storeValue['longitude'];
+            $lat= $storeValue['latitude'];
+            //调用common.php 中的 getDistance方法计算两个地理位置之间的距离
+            $distance2 = getDistance($longitude1, $latitude1, $long, $lat, 1,0);
+            if($distance2 > 3000 )
+            {
+                unset($storeInfo[$key2]);
+            }else{
+                $storeValue['distance'] = $distance2.'米';
+            }
+            if(!empty($storeValue['pic']))
+            {
+                $image =json_decode($storeValue['pic'],true);
+                foreach($image as $kk2 => &$pic_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $storeValue['img_url'] = cmf_get_image_preview_url($pic_value['url']); 
+                }
+                unset($storeValue['pic']);
+            }
+           
+            unset($storeValue['picture2']); 
+            $storeValue['introduction'] = htmlchars($storeValue['store_Introduction']);
+            unset($storeValue['store_Introduction']); 
+        }
+
+        // ③ 附近推荐购物
+        $shop_streetData = Db::name('shopping_streets')->where(array('city_id' => $city_id))->select();
+        $shop_streetInfo = json_decode($shop_streetData,true);
+        // print_R($shop_streetInfo);
+        foreach($shop_streetInfo as $key3=>&$shopValue)
+        {
+            $longitu = $shopValue['longitude'];
+            $latitu= $shopValue['latitude'];
+            //调用common.php 中的 getDistance方法计算两个地理位置之间的距离
+            $distance3 = getDistance($longitude1, $latitude1, $longitu, $latitu, 1,0);
+
+            if($distance3 > 3000 )
+            {
+                unset($shop_streetInfo[$key3]);
+            }else{
+                $shopValue['distance'] = $distance3.'米';
+            }
+            if(!empty($shopValue['picture2']))
+            {
+                $picture =json_decode($shopValue['picture2'],true);
+                foreach($picture as $kk3 => &$picvalue)
+                {
+                    //common.php中封装的图片url解析方法
+                    $shopValue['img_url'] = cmf_get_image_preview_url($picvalue['url']); 
+                }
+                unset($shopValue['pic']);
+            }
+            
+            unset($shopValue['picture2']); 
+            $shopValue['introduction'] = htmlchars($shopValue['shopping_Introduction']);
+            unset($shopValue['shopping_Introduction']); 
+            //适玩时间
+            $shopValue['tag_time'] = $this->play_time($shopValue['shopping_time']);  //时间统一成小时
+        }
+        $re1['jingdian'] = array_merge($cityInfo);
+        $re2['food'] = array_merge($storeInfo);
+        $re3['shop'] = array_merge($shop_streetInfo);
+        $tuijian = array_merge($re1,$re2,$re3); //整合成 附近推荐的数据
+        $result = array();
+        $result['spot'] =  $localDetail;    //景区里的简要介绍
+        $result['tuijian'] = $tuijian;     //景区中的附近推荐
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    /*** 3F
+     * 最美夜色
+     ***/
+    //醉美夜色 景点列表
+    public function night()
+    {
+         //根据传递过来的
+        $post = $_POST;
+        $city_id = $post['city_id'];
+
+        $nightList = Db::name('Night')->where(array('city_id'=>$city_id))->field(array('province_id','city_id','spot_name','area_id','attr_score','play_time','pic','type','longitude','latitude','attr_score','ranking','period_time','not_modifity','suit_season'))->select();
+        $nightResult = json_decode($nightList,true);
+
+        $visual = array();
+        $neon = array();
+        foreach($nightResult as $kk=>&$night)
+        {
+            //适玩时间
+            $night['tag_time'] = $this->play_time($night['play_time']);  //时间统一成小时
+            //景点封面图片 cover
+            if(!empty($night['pic']))
+            {
+                $cover_pic =json_decode($night['pic'],true);
+                foreach($cover_pic as $k => &$pic_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $night['cover_url'] = cmf_get_image_preview_url($pic_value['url']); 
+                }
+                unset($night['pic']);
+            }
+            else{
+                $unified_404 = '404/unified_404.png';
+                $night['cover_url'] = cmf_get_image_preview_url($unified_404);
+            }
+           
+
+            if($night['type'] == '视觉享受')
+            {
+                $visual['visual'][] = $night; 
+            }
+            if($night['type'] == '灯红酒绿')
+            {
+                $neon['neon'][] = $night;
+            }
+            
+        }
+        $Result = array();
+        $type['type']= array('视觉享受','灯红酒绿');
+
+        if(isset($visual['visual']))
+        {
+            $visual_sort = array_column($visual['visual'], 'ranking');  
+            array_multisort($visual_sort, SORT_ASC,  $visual['visual']); 
+        }
+        
+
+        if(isset($neon['neon']))
+        {
+            $neon_sort = array_column($neon['neon'], 'ranking');  
+            array_multisort($neon_sort, SORT_ASC, $neon['neon']); 
+        }
+       
+
+        $Result = array_merge($visual,$neon,$type);
+        //搜索
+        if(isset($post['group']))
+        {
+            //视觉享受 visual
+            if($post['group'] == 'visual')
+            {
+                //带有搜索条件下返回的数据，放在列表第一位
+                if(isset($post['search_spot_name']) && strlen($post['search_spot_name']) > 0){
+                    foreach($Result['visual'] as $key=>$visual)
+                    {
+                        if($post['search_spot_name'] == $visual['spot_name'])
+                        {
+                            array_unshift($Result['visual'],$visual);
+                        }
+                       
+                    }
+                    
+                }
+            }
+            foreach($Result['visual'] as $key0=>$tt)
+            {
+                if($tt['spot_name'] == $post['search_spot_name']){
+                    if($key0 != 0){
+                        unset($Result['visual'][$key0]);
+                    }
+                }
+            }
+            $Result['visual'] = array_merge($Result['visual']);
+            
+            //灯红酒绿neon
+            if($post['group'] == 'neon')
+            {
+                //带有搜索条件下返回的数据，放在列表第一位
+                if(isset($post['search_spot_name']) && strlen($post['search_spot_name']) > 0){
+                    foreach($Result['neon'] as $key=>$neon)
+                    {
+                        if($post['search_spot_name'] == $neon['spot_name'])
+                        {
+                            array_unshift($Result['neon'],$neon);
+                        }
+                       
+                    }
+                    
+                }
+            }
+            foreach($Result['neon'] as $key1=>$na)
+            {
+                if($na['spot_name'] == $post['search_spot_name']){
+                    if($key1 != 0){
+                        unset($Result['neon'][$key1]);
+                    }
+                }
+            }
+            $Result['neon'] = array_merge($Result['neon']);
+        }
+
+        echo json_encode($Result,JSON_UNESCAPED_UNICODE);
+    }
+
+    /********** 醉美夜色中的 查看介绍，景点的详情页面数据  ***********/
+    public function night_detail()
+    {
+        /****** 本土详情介绍  *********/
+        $post = $_POST;
+        $spot_name = $post['spot_name'];
+        $city_id = $post['city_id'];
+        $where['spot_name'] = $spot_name;
+        $nightDetail = Db::name('Night')->where($where)->find();
+        $nightDetail['release_time'] = date('Y-m-d', $nightDetail['update_time']);
+        //景点封面图片 cover
+        if(!empty($nightDetail['picture2']))
+        {
+            $cover_pic = json_decode($nightDetail['picture2'],true);
+            foreach($cover_pic as $k => &$pic_value)
+            {
+                //common.php中封装的图片url解析方法
+                $nightDetail['image_url'][$k]= cmf_get_image_preview_url($pic_value['url']); 
+                $nightDetail['image_name'][$k]= substr($pic_value['name'],0,strpos($pic_value['name'], '.'));
+                $pp['url'] = $nightDetail['image_url'][$k];
+                $pp['name'] = $nightDetail['image_name'][$k];
+                $nightDetail['image'][$k] = $pp;
+            }
+            unset($nightDetail['picture2']);
+        }
+       
+        
+        //文字描述中的html标签转化成实体
+        $nightDetail['introduction'] = htmlchars($nightDetail['spot_Introduction']);
+        unset($nightDetail['spot_Introduction']);
+        $nightDetail['qita_description'] = htmlchars($nightDetail['other_description']);
+        unset($nightDetail['other_description']);
+        unset($nightDetail['pic']);
+
+        /** 附近推荐 
+         * 景区附近推荐 (美食推荐、景点推荐、购物推荐)，
+         * 规则：景点3公里以内的给予推荐
+         **/
+        $longitude1 = $post['lng'];
+        $latitude1= $post['lat'];
+        // //① 附近推荐景点
+        $cityData = Db::name('Cultural_spot')->where(array('city_id'=>$city_id))->select();
+        $cityInfo = json_decode($cityData,true);
+        if($cityInfo)
+        {
+            foreach($cityInfo as $key=>&$cityValue)
+            {
+                $lo = $cityValue['longitude'];
+                $la= $cityValue['latitude'];
+                //调用common.php 中的 getDistance方法计算两个地理位置之间的距离
+                $distance = getDistance($longitude1, $latitude1, $lo, $la, 1,0);
+                if($distance > 3000 )
+                {
+                    unset($cityInfo[$key]);
+                }else{
+                    $cityValue['distance'] = $distance.'米';
+                }
+                if(!empty($cityValue['pic']))
+                {
+                    $pic =json_decode($cityValue['pic'],true);
+                    foreach($pic as $kk => &$pic_value)
+                    {
+                        //common.php中封装的图片url解析方法
+                        $cityValue['img_url'] = cmf_get_image_preview_url($pic_value['url']); 
+                    }
+                    unset($cityValue['pic']);
+                }
+               
+                unset($cityValue['picture2']); 
+                $cityValue['introduction'] = htmlchars($cityValue['spot_Introduction']);
+                unset($cityValue['spot_Introduction']); 
+                //适玩时间
+                $cityValue['tag_time'] = $this->play_time($cityValue['play_time']);  //时间统一成小时
+            } 
+        }
+
+        // // ② 附近推荐美食
+        $store_infoData = Db::name('Store_info')->where(array('city_id'=>$city_id))->select();
+        $storeInfo = json_decode($store_infoData,true);
+        foreach($storeInfo as $key2=>&$storeValue)
+        {
+            $long = $storeValue['longitude'];
+            $lat= $storeValue['latitude'];
+            //调用common.php 中的 getDistance方法计算两个地理位置之间的距离
+            $distance2 = getDistance($longitude1, $latitude1, $long, $lat, 1,0);
+            if($distance2 > 3000 )
+            {
+                unset($storeInfo[$key2]);
+            }else{
+                $storeValue['distance'] = $distance2.'米';
+            }
+            if(!empty($storeValue['pic']))
+            {
+                $image =json_decode($storeValue['pic'],true);
+                foreach($image as $kk2 => &$pic_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $storeValue['img_url'] = cmf_get_image_preview_url($pic_value['url']); 
+                }
+                unset($storeValue['pic']);
+            }
+          
+            unset($storeValue['picture2']); 
+            $storeValue['introduction'] = htmlchars($storeValue['store_Introduction']);
+            unset($storeValue['store_Introduction']); 
+        }
+        // ③ 附近推荐购物
+        $shop_streetData = Db::name('shopping_streets')->where(array('city_id'=>$city_id))->select();
+        $shop_streetInfo = json_decode($shop_streetData,true);
+        foreach($shop_streetInfo as $key3=>&$shopValue)
+        {
+            $longitu = $shopValue['longitude'];
+            $latitu= $shopValue['latitude'];
+            //调用common.php 中的 getDistance方法计算两个地理位置之间的距离
+            $distance3 = getDistance($longitude1, $latitude1, $longitu, $latitu, 1,0);
+
+            if($distance3 > 3000 )
+            {
+                unset($shop_streetInfo[$key3]);
+            }else{
+                $shopValue['distance'] = $distance3.'米';
+            }
+            if(!empty($shopValue['picture2']))
+            {
+                $picture =json_decode($shopValue['picture2'],true);
+                foreach($picture as $kk3 => &$picvalue)
+                {
+                    //common.php中封装的图片url解析方法
+                    $shopValue['img_url'] = cmf_get_image_preview_url($picvalue['url']); 
+                }
+                unset($shopValue['pic']);
+            }
+           
+            unset($shopValue['picture2']); 
+            $shopValue['introduction'] = htmlchars($shopValue['shopping_Introduction']);
+            unset($shopValue['shopping_Introduction']); 
+            //适玩时间
+            $shopValue['tag_time'] = $this->play_time($shopValue['shopping_time']);  //时间统一成小时
+        }
+        $re1['jingdian'] = array_merge($cityInfo);
+        $re2['food'] = array_merge($storeInfo);
+        $re3['shop'] = array_merge($shop_streetInfo);
+        $tuijian = array_merge($re1,$re2,$re3); //整合成 附近推荐的数据
+        $result = array();
+        $result['spot'] =  $nightDetail;    //景区里的简要介绍
+        $result['tuijian'] = $tuijian;     //景区中的附近推荐
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+    //打乱数组
+    public function shuffle_assoc($list) 
+    {  
+        if (!is_array($list)) return $list;  
+        $keys = array_keys($list);  
+        shuffle($keys);  
+        $random = array();  
+        foreach ($keys as $key)  
+        $random[$key] = $this->shuffle_assoc($list[$key]);  
+        return $random;  
+     }
+
+    /*** 4F
+     * 美食诱惑
+     ***/
+    //美食诱惑列表
+    public function food()
+    {
+        $post = $_POST;
+    
+        $city_id = $post['city_id'];
+       
+        $willeat = array();    //必吃美食
+        $localeat = array();   //本土美食
+        $street = array(); //美食街区
+        $arr = array();
+
+        /*********  第一部分**********/
+        /****** 单店中的必吃美食 *******/
+
+        //必吃美食下关联的店铺
+        $storeInfo = Db::name('Store_info')->where(array('city_id'=>$city_id))->select();
+        $storeResult = json_decode($storeInfo,true);
+        //必吃美食 'is_hot_have'=>1  单店必吃美食
+        $foodList = Db::name('dishes_recommended_info')->where(array('city_id'=>$city_id,'is_hot_have'=>1))->select();
+        $foodResult = json_decode($foodList,true);
+
+        foreach($storeResult as $key1=>&$store)
+        {
+            $store['tag_time'] = $this->play_time($store['meal_time']);  //时间统一成小时
+            //店铺封面
+            if(!empty($store['pic']))
+            {
+                $cover_pic = json_decode($store['pic'],true);
+                foreach($cover_pic as $k => &$pic_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $store['pic_url']= cmf_get_image_preview_url($pic_value['url']); 
+                }
+            }
+            else{
+                $unified_404 = '404/unified_404.png';
+                $store['pic_url'] = cmf_get_image_preview_url($unified_404);
+            }
+            foreach($foodResult as $key2=>&$f)
+            {
+                if($store['store_name'] == $f['store_name'])
+                {
+                    $f['store_type'] = 0;   //单店
+                    $f['longitude'] = $store['longitude'];
+                    $f['latitude'] = $store['latitude'];
+                    $f['meal_time'] = $store['meal_time'];
+                    $f['dianpu_image'] = $store['pic_url'];
+                    $f['per_capita'] = $store['per_capita'];
+                    $f['tag_time'] = $store['tag_time'];
+                    $f['address'] = $store['address'];
+                    $f['phone'] = $store['phone'];
+                    $f['business_hours'] = $store['business_hours'];
+                    $f['store_Introduction'] = $store['store_Introduction'];
+                }
+            }
+        }
+
+        foreach($foodResult as $key4 => &$food)
+        {   
+            //商品封面
+            if(!empty($food['pic']))
+            {
+                $food_pic = json_decode($food['pic'],true);
+                foreach($food_pic as $k => &$food_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $food['goods_url']= cmf_get_image_preview_url($food_value['url']); 
+                }
+            }
+            else{
+                $unified_404 = '404/unified_404.png';
+                $food['goods_url'] = cmf_get_image_preview_url($unified_404);
+            }
+           
+            if(isset($food))
+            {
+                $arr[$food['dishes_name']]['place'][] = $food;  //取出数据分组
+            }
+           
+        }
+
+        //同一个美食放到统一数组中，美食一对多店铺
+        $keyV = array_keys($arr);
+        $arr = array_values($arr);
+        foreach($arr as $k => &$v)
+        {
+            $v['name'] = $keyV[$k];   
+            foreach($v['place'] as $k1 => $v1)
+            {
+                $v['goods_url'] = $v1['goods_url']; //美食图片
+                $v['recom_sites'] = $v1['recom_sites'];
+            } 
+        }
+
+        /******** 连锁总店中的必吃美食  ********/
+
+        $restaurantResult = Db::name('Restaurant_chain')->where(array('city_id'=>$city_id))->select()->toArray();
+
+        //连锁店下的 必吃美食
+        $re_food = Db::name('recom_dishes')->where(array('city_id'=>$city_id,'is_hot_have'=>1))->select()->toarray(); 
+        foreach($restaurantResult as $key1=>&$res)
+        {
+            //分店的列表
+            $branchInfo = Db::name('branch')->where(array('store_name'=>$res['restaurant_name']))->select()->toArray();
+            $res['tag_time'] = $this->play_time($res['meal_time']);  //时间统一成小时
+            //连锁店封面
+            if(!empty($res['pic']))
+            {
+                $cover_pic = json_decode($res['pic'],true);
+                foreach($cover_pic as $k => &$pic_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $res['pic_url']= cmf_get_image_preview_url($pic_value['url']); 
+                }
+            }
+            else{
+                $unified_404 = '404/unified_404.png';
+                $res['pic_url'] = cmf_get_image_preview_url($unified_404);
+            }
+            foreach($re_food as $key2=>&$f)
+            {
+                if($res['restaurant_name'] == $f['store_name'])
+                {
+                    $f['store_type'] = 1;
+                    $f['fen_store'] = $branchInfo;
+                    $f['longitude'] = $res['longitude'];
+                    $f['latitude'] = $res['latitude'];
+                    $f['meal_time'] = $res['meal_time'];
+                    $f['dianpu_image'] = $res['pic_url'];
+                    $f['per_capita'] = $res['per_capita'];
+                    $f['tag_time'] = $res['tag_time'];
+                    $f['address'] = $res['address'];
+                    $f['phone'] = $res['phone'];
+                    $f['business_hours'] = $res['business_hours'];
+                    $f['store_Introduction'] = $res['restaurant_Introduction'];
+                }
+            }
+           
+
+        }
+        // print_r($re_food);
+        foreach($re_food as $key4 => &$food)
+        {   
+            //商品封面
+            if(!empty($food['pic']))
+            {
+                $food_pic = json_decode($food['pic'],true);
+                foreach($food_pic as $k => &$food_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $food['goods_url']= cmf_get_image_preview_url($food_value['url']); 
+                }
+            }
+            else{
+                $unified_404 = '404/unified_404.png';
+                $food['goods_url'] = cmf_get_image_preview_url($unified_404);
+            }
+            
+            if(isset($food))
+            {
+                $arr2[$food['dishes_name']]['place'][] = $food;  //取出数据分组
+            }
+        }
+        // print_r($arr2);
+        //同一个美食放到统一数组中，美食一对多店铺
+        if(isset($arr2))
+        {
+            $keyV2 = array_keys($arr2);
+            $arr2 = array_values($arr2);
+            foreach($arr2 as $k => &$v)
+            {
+                $v['name'] = $keyV2[$k];   
+                foreach($v['place'] as $k1 => $v1)
+                {
+                    $v['goods_url'] = $v1['goods_url']; //美食图片
+                    $v['recom_sites'] = "";
+                } 
+            }
+            
+            // print_r($arr);
+            // print_r($arr2);
+            //合并单店、连锁的必吃美食，统一输出
+            $arr3 = [];
+            foreach($arr as $k1=>&$v1){
+                foreach($arr2 as $k2=>$v2){
+                    if($v1['name'] == $v2['name']){
+                        $arr3[$k1]['place'] = array_merge($v1['place'],$v2['place']);
+                        $arr3[$k1]['name'] = $v1['name'];
+                        $arr3[$k1]['goods_url'] = $v1['goods_url'];
+                        $arr3[$k1]['recom_sites'] = $v1['recom_sites'];
+                    }
+                }
+            }
+            $arr5 = array_merge($arr,$arr2);
+            foreach($arr3 as $k3=>&$v3){
+                foreach($arr5 as $k5=>&$v5){
+                    if($v3['name'] == $v5['name']){
+                        
+                        unset($arr5[$k5]);
+                    }
+                }
+            }
+          
+            $arr = array_merge($arr3,$arr5); 
+        }else{
+            $arr = $arr;
+        }
+        //    print_r($arr);exit;
+
+        /*********  第二部分**********/
+        //本土美食店铺列表
+        $store = Db::name('Store_info')->where(array('city_id'=>$city_id))->select();
+        $localResult = json_decode($store,true);
+        
+        foreach($localResult as &$value)
+        {
+            $value['tag_time'] = $this->play_time($value['meal_time']);  //时间统一成小时
+            if(!empty($value['pic']))
+            {
+                $pic = json_decode($value['pic'],true);
+                foreach($pic as $k => &$p)
+                {
+                    //common.php中封装的图片url解析方法
+                    $value['url']= cmf_get_image_preview_url($p['url']); 
+                }
+                unset($value['pic']);
+            }
+            else{
+                $unified_404 = '404/unified_404.png';
+                $value['url'] = cmf_get_image_preview_url($unified_404);
+            }
+            $value['store_type'] = 0;   //单店
+        }
+        //连锁餐厅总店
+        foreach($restaurantResult as &$value2)
+        {
+            $value2['tag_time'] = $this->play_time($value2['meal_time']);  //时间统一成小时
+            if(!empty($value2['pic']))
+            {
+                $pic2 = json_decode($value2['pic'],true);
+                foreach($pic2 as $k => &$p2)
+                {
+                    //common.php中封装的图片url解析方法
+                    $value2['url']= cmf_get_image_preview_url($p2['url']); 
+                }
+                unset($value2['pic']);
+            }
+            else{
+                $unified_404 = '404/unified_404.png';
+                $value2['url'] = cmf_get_image_preview_url($unified_404);
+            }
+            
+            $value2['store_name'] = $value2['restaurant_name'];
+            $value2['store_type'] = 1;  //连锁店 
+            //分店的列表
+            $branchInfo = Db::name('branch')->where(array('store_name'=>$value2['restaurant_name']))->select()->toArray();
+            $value2['fen_store'] = $branchInfo;
+            unset($value2['restaurant_name']);
+        }
+        $local = array_merge($localResult,$restaurantResult);
+        // $local = $this->shuffle_assoc($list);
+
+        /*********  第三部分**********/
+        //美食街区
+        $foodstreet = Db::name('Food_court')->field(array('id','province_id','city_id','area_id','food_court_name','type','pic','longitude','latitude','meal_time','suit_time','period_time','not_modifity'))
+        ->where(array('city_id'=>$city_id))->select();
+        $foodResult = json_decode($foodstreet,true);
+        foreach($foodResult as &$st)
+        {
+            //适玩时间
+            $st['tag_time'] = $this->play_time($st['suit_time']);  //时间统一成小时
+            if(!empty($st['pic']))
+            {
+                $image = json_decode($st['pic'],true);
+                foreach($image as $k => &$im)
+                {
+                    //common.php中封装的图片url解析方法
+                    $st['url']= cmf_get_image_preview_url($im['url']); 
+                }
+                unset($st['pic']);
+            }
+            
+            
+            unset($st['picture2']);
+            $st['store_name'] = $st['food_court_name'];
+            unset($st['food_court_name']);
+        }
+         //美食关联店铺时，店铺详情没有录入时，特殊处理,剔除店铺
+        // print_r($arr);
+        // exit;
+        foreach($arr as $key1=>&$yy)
+        {
+            foreach($yy['place'] as $key=>$ply)
+            {
+                if(!isset($ply['longitude']))
+                {
+                    unset($arr[$key1]['place'][$key]);
+                }
+            }
+            $yy['place'] = array_merge($yy['place']);
+        }
+
+        $Result = array();
+        $willeat['eat'] = $arr;  //必吃美食
+        $localeat['local'] = $local;  //本土美食
+        $street['street'] = $foodResult ;  //美食街区
+        $type['type']= array('必吃美食','本土美食','美食街区');
+        $Result = array_merge($willeat,$localeat,$street,$type);
+// print_r($Result);
+        //搜索
+        if(isset($post['group']))
+        {
+            //本土美食local
+            if($post['group'] == 'local')
+            {
+                //带有搜索条件下返回的数据，放在列表第一位
+                if(isset($post['search_spot_name']) && strlen($post['search_spot_name']) > 0){
+                    foreach($Result['local'] as $key=>$local)
+                    {
+                        if($post['search_spot_name'] == $local['store_name'])
+                        {
+                            array_unshift($Result['local'],$local);
+                        }
+                       
+                    }
+                    
+                }
+            }
+            foreach($Result['local'] as $key0=>$tt)
+            {
+                if($tt['store_name'] == $post['search_spot_name']){
+                    if($key0 != 0){
+                        unset($Result['local'][$key0]);
+                    }
+                }
+            }
+            $Result['local'] = array_merge($Result['local']);
+
+            //美食街区street
+            if($post['group'] == 'street')
+            {
+                //带有搜索条件下返回的数据，放在列表第一位
+                if(isset($post['search_spot_name']) && strlen($post['search_spot_name']) > 0){
+                    foreach($Result['street'] as $key=>$street)
+                    {
+                        if($post['search_spot_name'] == $street['store_name'])
+                        {
+                            array_unshift($Result['street'],$street);
+                        }
+                       
+                    }
+                    
+                }
+            }
+            foreach($Result['street'] as $key1=>$na)
+            {
+                if($na['store_name'] == $post['search_spot_name']){
+                    if($key1 != 0){
+                        unset($Result['street'][$key1]);
+                    }
+                }
+            }
+            $Result['street'] = array_merge($Result['street']);
+        }
+
+        echo json_encode($Result,JSON_UNESCAPED_UNICODE);
+    }
+
+
+    /***** 美食诱惑的具体详情  ******/
+    public  function food_detail()
+    {
+        /****** 美食诱惑介绍  *********/
+        $post = $_POST;
+        $name = $post['spot_name'];
+        $city_id = $post['city_id'];
+        $type = $post['type'];   //根据传递过来的类型判断是哪个分组下的，然后查询相应的数据表的数据
+        $store_type = $post['store_type'];   //0单店，1连锁店
+        $Info = array();
+        $Data = array();
+        $result = array();
+        $a = array();
+        $b = array(); 
+
+        $result = array();
+
+        //总店
+        $restaurant_chain = Db::name('Restaurant_chain')->where(array('city_id'=>$city_id,'restaurant_name'=>$name))->find();
+    
+        if(isset($restaurant_chain['restaurant_name']))
+        {
+            $restaurant_chain['store_name'] = $restaurant_chain['restaurant_name'];
+            unset($restaurant_chain['restaurant_name']);
+        }
+        if(isset($restaurant_chain['restaurant_Introduction']))
+        {
+            $restaurant_chain['Introduction'] = $restaurant_chain['restaurant_Introduction'];
+            unset($restaurant_chain['restaurant_Introduction']);
+        }
+        if(isset($restaurant_chain['update_time']))
+        {
+            $restaurant_chain['release_time'] = date('Y-m-d', $restaurant_chain['update_time']);
+        }
+        
+        if(isset($restaurant_chain['picture2']))
+        {
+            $re_cover = json_decode($restaurant_chain['picture2'],true);
+            foreach($re_cover as $kk2 => &$re)
+            {
+                //common.php中封装的图片url解析方法
+                $restaurant_chain['image_url'][$kk2]= cmf_get_image_preview_url($re['url']); 
+            }
+        }
+        
+
+        //分店
+        $branchInfo = Db::name('branch')->where(array('store_name'=>$name))->select();
+        $barnchResult = json_decode($branchInfo,true);
+
+        foreach($barnchResult as &$branch)
+        {
+            if(!empty($restaurant_chain['pic']))
+            {
+                $cover = json_decode($restaurant_chain['pic'],true);
+                foreach($cover as $k3 => &$value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $branch['image_url']= cmf_get_image_preview_url($value['url']); 
+                }
+            }
+            
+        } 
+        //单店推荐菜品
+        if($store_type == 0)
+        {
+            $tuijianResult = Db::name('dishes_recommended_info')->field(array('id','store_name','dishes_name','pic','is_hot_have','status','is_top'))
+            ->where(array('city_id'=>$city_id,'store_name'=>$name))->select()->toArray();
+            foreach($tuijianResult as &$tj)
+            {
+                if(!empty($tj['pic']))
+                {
+                    $tj_cover = json_decode($tj['pic'],true);
+                    foreach($tj_cover as $k5 => &$vv)
+                    {
+                        //common.php中封装的图片url解析方法
+                        $tj['image_url']= cmf_get_image_preview_url($vv['url']); 
+                    }
+                    unset($tj['pic']);
+                }
+               
+            }
+        }
+       
+        //连锁店推荐菜品
+        if($store_type == 1)
+        {
+            $tuijianResult = Db::name('recom_dishes')->field(array('id','store_name','dishes_name','pic','is_hot_have','status','is_top'))
+            ->where(array('city_id'=>$city_id,'store_name'=>$name))->select()->toArray();
+            foreach($tuijianResult as &$tj)
+            {
+                if(!empty($tj['pic']))
+                {
+                    $tj_cover = json_decode($tj['pic'],true);
+                    foreach($tj_cover as $k5 => &$vv)
+                    {
+                        //common.php中封装的图片url解析方法
+                        $tj['image_url']= cmf_get_image_preview_url($vv['url']); 
+                    }
+                    unset($tj['pic']);
+                }
+            }
+        }
+        $dishesResult = $tuijianResult;
+        $a['store'] = $restaurant_chain;
+        $a['fen'] = $barnchResult;
+        $a['tj'] = $tuijianResult;
+        //必吃美食详情
+        //单店
+        if($type == '必吃美食')
+        {
+            $storeData = Db::name('Store_info')->where(array('city_id'=>$city_id,'store_name'=>$name))->find();
+            $storeData['release_time'] = date('Y-m-d', $storeData['update_time']);
+            if(!empty($storeData['picture2']))
+            {
+                $picture2 = json_decode($storeData['picture2'],true);
+                foreach($picture2 as $k => &$val)
+                {
+                    //common.php中封装的图片url解析方法 
+                    $storeData['image_url'][$k]= cmf_get_image_preview_url($val['url']); 
+                    $storeData['image_name'][$k]= substr($val['name'],0,strpos($val['name'], '.'));
+                    $pp['url'] = $storeData['image_url'][$k];
+                    $pp['name'] = $storeData['image_name'][$k];
+                    $storeData['image'][$k] = $pp;
+                }
+                unset($storeData['pic']);
+            }
+           
+            unset($storeData['picture2']);
+            //文字描述中的html标签转化成实体
+            if(isset($storeData['store_Introduction']))
+            {
+            	$storeData['Introduction'] = htmlchars($storeData['store_Introduction']);
+            	unset($storeData['store_Introduction']);
+            }
+            if(isset($storeData['other_description']))
+            {
+            	$storeData['qita_description'] = htmlchars($storeData['other_description']);
+            	unset($storeData['other_description']);
+            }
+
+        }
+        //单店
+        if($post['store_type'] == 0)
+        {
+            if(!empty($storeData))
+            {
+                $dan['store'] = $storeData;
+                $dan['fen'] = array();
+                $dan['tj'] = $tuijianResult;
+                $Data = $dan;
+            }
+        //连锁店
+        }else{
+            $Data = $a;
+        }
+
+        //本土美食详情
+        if($type == '本土美食')
+        {
+            $where['store_name'] = $name;
+            $storeInfo = Db::name('store_info')->where($where)->find();
+            //景点封面图片 cover
+            if(!empty($storeInfo))
+            {
+                if(!empty($storeInfo['picture2']))
+                {
+                    $cover_pic = json_decode($storeInfo['picture2'],true);
+                    foreach($cover_pic as $k => &$pic_value)
+                    {
+                        //common.php中封装的图片url解析方法 
+                     	$storeInfo['image_url'][$k]= cmf_get_image_preview_url($pic_value['url']); 
+	                    $storeInfo['image_name'][$k]= substr($pic_value['name'],0,strpos($pic_value['name'], '.'));
+	                    $pp['url'] = $storeInfo['image_url'][$k];
+	                    $pp['name'] = $storeInfo['image_name'][$k];
+	                    $storeInfo['image'][$k] = $pp;
+                    }
+                    unset($storeInfo['picture2']);
+                }
+                
+                //文字描述中的html标签转化成实体
+                $storeInfo['Introduction'] = htmlchars($storeInfo['store_Introduction']);
+                unset($storeInfo['store_Introduction']);
+
+                $storeInfo['qita_description'] = htmlchars($storeInfo['other_description']);
+                unset($storeInfo['other_description']);
+                $storeInfo['release_time'] = date('Y-m-d', $storeInfo['update_time']);
+                //推荐菜品
+                $dishesInfo = Db::name('Dishes_recommended_info')->field(array('id','store_name','dishes_name','pic','is_hot_have','status','is_top'))->where(array('store_name'=>$name))->select();
+                $dishesResult = json_decode($dishesInfo,true);
+            
+                foreach($dishesResult as &$dish)
+                {
+                    if(!empty($dish['pic']))
+                    {
+                        $dish_cover = json_decode($dish['pic'],true);
+                        foreach($dish_cover as $k2 => &$dish_value)
+                        {
+                            //common.php中封装的图片url解析方法
+                            $dish['image_url']= cmf_get_image_preview_url($dish_value['url']); 
+                        }
+                        unset($dish['pic']);
+                    }
+                  
+                }
+
+                $Info['store'] = $storeInfo;
+                $Info['fen'] = $b;
+                $Info['tj'] = $dishesResult;  
+            }else{
+                $Info = $a;     //连锁店的数据（总店，分店）
+            }
+
+        }
+
+        //美食街区详情
+        if($type == '美食街区')
+        {
+            $courtInfo = Db::name('Food_court')->where(array('city_id'=>$city_id,'food_court_name'=>$name))->find();
+            //景点封面图片 cover
+            if(!empty($courtInfo))
+            {
+                if(!empty($courtInfo['picture2']))
+                {
+                    $cover_pic = json_decode($courtInfo['picture2'],true);
+                    foreach($cover_pic as $k => &$pic_value)
+                    {
+                        //common.php中封装的图片url解析方法
+                        $courtInfo['image_url'][$k]= cmf_get_image_preview_url($pic_value['url']); 
+	                    $courtInfo['image_name'][$k]= substr($pic_value['name'],0,strpos($pic_value['name'], '.'));
+	                    $pp['url'] = $courtInfo['image_url'][$k];
+	                    $pp['name'] = $courtInfo['image_name'][$k];
+	                    $courtInfo['image'][$k] = $pp; 
+                    }
+                    unset($courtInfo['picture2']);
+                }
+                
+                
+                //文字描述中的html标签转化成实体
+                $courtInfo['Introduction'] = htmlchars($courtInfo['court_Introduction']);
+                unset($courtInfo['court_Introduction']);
+                $courtInfo['qita_description'] = htmlchars($courtInfo['other_description']);
+                unset($courtInfo['other_description']);
+                unset($courtInfo['pic']);
+                $courtInfo['release_time'] = date('Y-m-d', $courtInfo['update_time']);
+            }
+        }
+        
+
+        $result = array();
+        if(!empty($Data))
+        {
+            $result['spot'] = $Data;    //店铺的简要介绍
+            $result['dishes'] = $dishesResult;   //推荐菜品
+        }
+        if(!empty($Info))
+        {
+            $result = $Info;  
+
+        }
+        
+
+        if(!empty($courtInfo))
+        {
+            $result['spot'] = $courtInfo; 
+        }
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    //必吃美食中的菜品详情
+    public function specific()
+    {
+        /****** 美食诱惑介绍  *********/
+        $post = $_POST;
+        $name = $post['spot_name'];
+        $city_id = $post['city_id'];
+
+        $dishesResult = Db::name('Dishes_recommended_info')->where(array('city_id'=>$city_id,'dishes_name'=>$name))->find();
+        if(!empty($dishesResult['pic']))
+        {
+            $dish_cover = json_decode($dishesResult['pic'],true);
+            foreach($dish_cover as $k2 => &$dish_value)
+            {
+                //common.php中封装的图片url解析方法
+                $dishesResult['image_url'][$k2]= cmf_get_image_preview_url($dish_value['url']); 
+            }
+            unset($dishesResult['pic']);
+        }
+        
+        echo json_encode($dishesResult,JSON_UNESCAPED_UNICODE);
+    }
+
+    /*** 5F
+     * 购物街
+     ***/
+    //购物街列表
+    public function shop()
+    {
+        //购物详情列表
+        ////根据传递过来的
+        $post = $_POST;
+        $city_id = $post['city_id'];
+
+        $shopList = Db::name('shopping_streets')->where(array('city_id'=>$city_id))->select();
+        $shopResult = json_decode($shopList,true);
+    
+        //推荐商品店铺列表 is_specialty=>1 本土特产
+        $goodsList = Db::name('goods_info')->field(array('id','goods_name','recom_sites','store_name','type','pic'))->where(array('is_specialty'=>1,'city_id'=>$city_id))->select();
+        $goodsResult = json_decode($goodsList,true);
+        foreach($shopResult as $key1=>&$sh)
+        {
+            //适玩时间
+            $sh['tag_time'] = $this->play_time($sh['shopping_time']);  //时间统一成小时
+            //店铺封面
+            if(!empty($sh['pic']))
+            {
+                $cover_pic = json_decode($sh['pic'],true);
+                foreach($cover_pic as $k => &$pic_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $sh['pic_url']= cmf_get_image_preview_url($pic_value['url']); 
+                }
+            }
+         
+            //处理商品关联店铺数据
+            foreach($goodsResult as $key2=>&$g)
+            {
+                if($sh['shopping_name'] == $g['store_name'])
+                {
+                    $g['city_id'] = $sh['city_id'];
+                    $g['longitude'] = $sh['longitude'];
+                    $g['latitude'] = $sh['latitude'];
+                    $g['period_time'] = $sh['period_time'];
+                    $g['not_modifity'] = $sh['not_modifity'];
+                    if(isset($sh['pic_url']))
+                    {
+                        $g['dianpu_image'] = $sh['pic_url'];
+                    }
+                    
+                    $g['shopping_time'] = $sh['shopping_time'];  //2小时
+                    //适玩时间
+                    $g['tag_time'] = $this->play_time($sh['shopping_time']);  //时间统一成小时
+                }
+            }
+        }
+        foreach($goodsResult as $key4 => &$goods)
+        {   
+            //商品封面
+            if(!empty($goods['pic']))
+            {
+                $goods_pic = json_decode($goods['pic'],true);
+                foreach($goods_pic as $k => &$good_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $goods['goods_url']= cmf_get_image_preview_url($good_value['url']); 
+                }
+                $arr[$goods['goods_name']]['place'][] = $goods; //取出数据分组
+            }
+          
+        }
+        
+        $keyV = array_keys($arr);
+        $arr = array_values($arr);
+        foreach($arr as $k => &$v)
+        {
+            $v['name'] = $keyV[$k];
+            foreach($v['place'] as $k1 => $v1)
+            {
+                $v['goods_url'] = $v1['goods_url'];
+                $v['recom_sites'] = $v1['recom_sites'];
+            } 
+        }
+
+        $local_product = array();
+        $pro_shops = array();
+        $business_circle = array();
+
+        foreach($shopResult as $key=>&$shop)
+        {
+            //适玩时间
+            $shop['tag_time'] = $this->play_time($shop['shopping_time']);  //时间统一成小时
+            if(!empty($shop['pic']))
+            {
+                $picture = json_decode($shop['pic'],true);
+                foreach($picture as $k=> &$picvalue)
+                {
+                    //common.php中封装的图片url解析方法
+                    $shop['img_url'] = cmf_get_image_preview_url($picvalue['url']); 
+                }
+                unset($shop['pic']);
+            }
+           
+            unset($shop['picture2']);
+            //文字描述中的html标签转化成实体
+            $shop['shopping_Intro'] = htmlchars($shop['shopping_Introduction']);
+            unset($shop['shopping_Introduction']);
+            $shop['qita_description'] = htmlchars($shop['other_description']);
+            unset($shop['other_description']);
+
+            // if($shop['type'] == '本土特产')
+            // {
+            //     $local_product['localProduct'] = $arr; 
+            // }
+
+            if($shop['type'] == '土特产店' || $shop['shop_type'] == '土特产店')
+            {
+                $pro_shops['productShops'][] = $shop;
+            }
+            if($shop['type'] == '购物商圈' || $shop['shop_type'] == '购物商圈')
+            {
+                $business_circle['businessCircle'][] = $shop;
+            }
+        }
+        //商品关联商店时，商店详情没有录入时，特殊处理,剔除商店
+        foreach($arr as $key1=>&$yy)
+        {
+            foreach($yy['place'] as $key=>$ply)
+            {
+                if(!isset($ply['longitude']))
+                {
+                    unset($arr[$key1]['place'][$key]);
+                }
+            }
+            $yy['place'] = array_merge($yy['place']);
+        }
+
+
+        $local_product['localProduct'] = $arr; 
+        $Result = array();
+        $type['type']= array('本土特产','土特产店','购物商圈');
+        $Result = array_merge($local_product,$pro_shops,$business_circle,$type);
+
+        //搜索
+        if(isset($post['group']))
+        {
+            //土特产店productShops
+            if($post['group'] == 'productShops')
+            {
+                //带有搜索条件下返回的数据，放在列表第一位
+                if(isset($post['search_spot_name']) && strlen($post['search_spot_name']) > 0){
+                    foreach($Result['productShops'] as $key=>$productShops)
+                    {
+                        if($post['search_spot_name'] == $productShops['shopping_name'])
+                        {
+                            array_unshift($Result['productShops'],$productShops);
+                        }
+                       
+                    }
+                    
+                }
+            }
+            foreach($Result['productShops'] as $key0=>$tt)
+            {
+                if($tt['shopping_name'] == $post['search_spot_name']){
+                    if($key0 != 0){
+                        unset($Result['productShops'][$key0]);
+                    }
+                }
+            }
+            $Result['productShops'] = array_merge($Result['productShops']);
+
+            //购物商圈businessCircle
+            if($post['group'] == 'businessCircle')
+            {
+                //带有搜索条件下返回的数据，放在列表第一位
+                if(isset($post['search_spot_name']) && strlen($post['search_spot_name']) > 0){
+                    foreach($Result['businessCircle'] as $key=>$businessCircle)
+                    {
+                        if($post['search_spot_name'] == $businessCircle['shopping_name'])
+                        {
+                            array_unshift($Result['businessCircle'],$businessCircle);
+                        }
+                       
+                    }
+                    
+                }
+            }
+            foreach($Result['businessCircle'] as $key1=>$na)
+            {
+                if($na['shopping_name'] == $post['search_spot_name']){
+                    if($key1 != 0){
+                        unset($Result['businessCircle'][$key1]);
+                    }
+                }
+            }
+            $Result['businessCircle'] = array_merge($Result['businessCircle']);
+        }
+
+        echo json_encode($Result,JSON_UNESCAPED_UNICODE);
+    }
+
+    //购物天堂的具体详情
+    public  function shop_detail()
+    {
+        /****** 购物详情介绍  *********/
+        $post = $_POST;
+        $shopping_name = $post['spot_name'];
+        //测试
+        // $shopping_name = '天鹅湖店铺';  
+
+        $where['shopping_name'] = $shopping_name;
+        $shopDetail = Db::name('shopping_streets')->where($where)->find();
+    // print_r($shopDetail); exit;
+        $shopDetail['release_time'] = date('Y-m-d', $shopDetail['update_time']);
+    
+        //景点封面图片 cover
+        if(!empty($shopDetail['picture2']))
+        {
+            $cover_pic = json_decode($shopDetail['picture2'],true);
+            foreach($cover_pic as $k => &$pic_value)
+            {
+                //common.php中封装的图片url解析方法
+                $shopDetail['image_url'][$k]= cmf_get_image_preview_url($pic_value['url']); 
+                $shopDetail['image_name'][$k]= substr($pic_value['name'],0,strpos($pic_value['name'], '.'));
+                $pp['url'] = $shopDetail['image_url'][$k];
+                $pp['name'] = $shopDetail['image_name'][$k];
+                $shopDetail['image'][$k] = $pp;
+            }
+            unset($shopDetail['picture2']);
+        }
+     
+        
+        //文字描述中的html标签转化成实体
+        if(isset($shopDetail['shopping_Introduction']))
+        {
+        	$shopDetail['Introduction'] = htmlchars($shopDetail['shopping_Introduction']);
+        	unset($shopDetail['shopping_Introduction']);
+        }
+       
+       if(isset($shopDetail['other_description']))
+        {
+        	$shopDetail['qita_description'] = htmlchars($shopDetail['other_description']);
+        	unset($shopDetail['other_description']);
+        }
+        
+        unset($shopDetail['pic']);
+        /*** 特色商品 ***/
+        $goodinfoList = Db::name('goods_info')->where(array('city_id'=>$post['city_id'],'type'=>$shopDetail['type'],'store_name'=>$shopping_name))->select();
+        $goodinfoResult = json_decode($goodinfoList,true);
+        foreach($goodinfoResult as $key2=>&$goodinfo)
+        {
+            if(!empty($goodinfo['pic']))
+            {
+                $cover_pic = json_decode($goodinfo['pic'],true);
+                foreach($cover_pic as $k => &$pic_value)
+                {
+                    //common.php中封装的图片url解析方法
+                    $goodinfo['image_url']= cmf_get_image_preview_url($pic_value['url']); 
+                }
+                unset($goodinfo['pic']);
+            }
+           
+        }
+        $result = array();
+        $result['spot'] = $shopDetail;    //景区里的简要介绍
+        $result['features_goods'] = $goodinfoResult;   //本土特产、土特产店、购物商圈中的特色商品
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    
+
+    //本土特产中商品的详情
+    public function local_product()
+    {
+        $post = $_POST;
+        $shopping_name = $post['spot_name'];
+
+        $goodsList = Db::name('goods_info')->where(array('city_id'=>$post['city_id'],'goods_name'=>$shopping_name))->find();
+        if(!empty($goodsList['pic']))
+        {
+            $goods_pic = json_decode($goodsList['pic'],true);
+            foreach($goods_pic as $k2 => &$dish_value)
+            {
+                //common.php中封装的图片url解析方法
+                $goodsList['image_url'][$k2]= cmf_get_image_preview_url($dish_value['url']); 
+            }
+            unset($goodsList['pic']);
+        }
+        
+        echo json_encode($goodsList,JSON_UNESCAPED_UNICODE);
+    }
+
+    //适玩时间单位统一成小时（规则：一天为10个小时的游玩时间）
+    public function play_time($play_time)
+    {
+        if(strstr($play_time,'天'))
+        {
+            $time =  mb_strcut($play_time,0,1,'utf-8') * 8;
+        }else{
+            $time = mb_strcut($play_time,0,3,'utf-8');
+        }
+        return $time;
+    }
+
+    //安排日程
+    public function attractionsArrange()
+    {
+       
+        return $this->fetch();
+    }
+    
+    //A、B、C、D点之间的距离（依次找距离中心点最近的点）
+    public function sortDis($shortDis,$data){
+        $arr = array();
+        $num = count($data);
+        for($i=0;$i<$num;$i++){
+            for($j=1;$j<$num;$j++){
+                $arr[] = [$data[$i],$data[$j]];
+            }
+            break;
+        }
+        foreach ($arr as $k => $v) {
+            $dis = getDistance($v['0']['this_lng'],$v['0']['this_lat'],$v['1']['this_lng'],$v['1']['this_lat'],2);
+            $allDis[$v[1]['this_name']] = $dis;
+        }
+        asort($allDis);
+
+        // print_r($allDis);
+        // exit;
+        $sDis = array_keys($allDis);
+        $shortDis[] = $sDis[0];//距离最短地点
+        // print_r($shortDis);
+        
+        foreach ($data as $key => $value) {
+            if($value['this_name'] == $sDis[0]){
+                //将数组第一个城市替换成距离最短地点
+                $data[0] = $value;
+                unset($data[$key]);
+            }
+        }
+     
+        $data = array_values($data);//键值归零
+        if(!empty($data[1])){
+            $shortDis = $this->sortDis($shortDis,$data);
+        }
+        // print_r($shortDis);
+        // exit;
+        return $shortDis;
+
+    }
+    //优化线路数据返回
+    public function optimize_line()
+    {
+        session_start();
+        $post = file_get_contents('php://input'); 
+        $post = json_decode($post,true);   
+    // print_r($post);
+    // exit;
+        $numtotal = $post['city_data']['day_num']; //行程的全部天数
+        $citynum = $post['spot_data']['this_cityDayNum']; //当前城市的天数
+
+        $this_city = $post['spot_data']['this_city'];      //当前城市
+        $status = $post['spot_data']['status'];     
+        $this_cityid = $post['spot_data']['this_cityid'];   //景点所属city_id
+        $this_city_index = $post['spot_data']['this_city_index'];   //当前城市索引
+        $this_city_lng = $post['spot_data']['this_city_lng'];   
+        $this_city_lat = $post['spot_data']['this_city_lat']; 
+        //当前城市景点数，购物数，美食数
+        $shop_len = $post['spot_data']['shop_len'];
+        $spot_len = $post['spot_data']['spot_len'];
+        $eat_len = $post['spot_data']['eat_len'];
+
+        $city_data = $post['city_data']['go_city_array'];
+        $departure_city = $post['city_data']['departure_city'];  //出发城市
+        $return_city = $post['city_data']['return_city'];         //返回城市
+
+        $len = count($city_data);
+
+        foreach($city_data as $key=>&$city)
+        {
+            if($key == $this_city_index && $key < $len-1)
+            {
+                $middle_city = $city_data[$key+1]['city_name']; 
+            }
+
+            if($this_city_index == $key)
+            {
+                $first_date = $city['city_date'];    //起始日期
+                break;
+            }
+        }
+
+        $first_date = str_replace(".","-","$first_date");
+        if($citynum == 1)     //城市只玩一天,初始日期特殊判断
+        {
+            for($i=0;$i<$citynum;$i++)
+            {
+                $dateArrray[$i] = date("Y-m-d",(strtotime($first_date) + $i*3600*24)); 
+            }
+        }
+        if($citynum != 1)
+        {
+            for($i=1;$i<$citynum;$i++)
+            {
+                $dateArrray[$i] = date("Y-m-d",(strtotime($first_date) + $i*3600*24)); 
+            }
+        }
+
+        array_unshift($dateArrray,"$first_date");
+       
+        //需要的基本元素
+        $result['this_city'] = $this_city;
+        $result['shop_len'] = $shop_len ;
+        $result['spot_len'] = $spot_len;
+        $result['eat_len'] = $eat_len;
+        if(isset($eat_data))
+        {
+            $result['eat_data'] = $eat_data;
+        }
+        //只有一个城市时：status=3,
+        //多个城市时：首个城市1，中间城市0，末尾城市2
+        if($status == 3)
+        {
+            $result['departure_city'] = $departure_city;
+            $result['return_city'] = $return_city;
+        }
+        if($status == 1)
+        {
+            $result['departure_city'] = $departure_city;
+            foreach($city_data as $key=>&$city)
+            {
+                if($key == $this_city_index && $key < $len-1)
+                {
+                    $middle_city = $city_data[$key+1]['city_name']; 
+                    $result['middle_city'] = $middle_city;
+                }
+            }
+        }
+        
+        if($status == 0)
+        { 
+            foreach($city_data as $key=>&$city)
+            {
+                if($key == $this_city_index && $key < $len-1)
+                {
+                    $middle_city = $city_data[$key+1]['city_name']; 
+                    $result['middle_city'] = $middle_city;
+                }
+            }
+        }
+        if($status == 2)
+        { 
+            $result['return_city'] = $return_city;
+        }
+        $result['this_city_lng'] = $this_city_lng;
+        $result['this_city_lat'] = $this_city_lat;
+        $result['status'] = $status;
+
+        /*** 行程优化部分 ***/
+        //关于景点的基本信息
+        $spot_data = $post['spot_data']['addgo_arry'];
+        //特殊处理，当数据库period_time字段为空时候（录入组没有录入）,默认为allday属性补全
+        //美食街区，5F都没，都没有ranking字段,默认ranking = '10'值补全
+        // print_r($spot_data);exit;
+        foreach($spot_data as &$stemp)
+        {
+            if($stemp['period_time'] == '')
+            {
+                $stemp['period_time'] = 'allday';
+            }
+            if(!isset($stemp['ranking']))
+            {
+                $stemp['ranking'] = '10';
+            }
+        }
+
+        //美食
+        if(!empty($post['spot_data']['eat_name_arry']))
+        {
+            $eatData = $post['spot_data']['eat_name_arry'];
+            // print_r($spot_data);
+            // print_r($eatData);
+            // exit;
+            
+            //每个美食到每个景点的距离
+            foreach($eatData as $key1=>$eat)
+            {
+                foreach($spot_data as $key2=>&$spotvalue)
+                {
+                    $longitude1 = $eat['lng']; //美食经纬度
+                    $latitude1 = $eat['lat'];
+                    $lo = $spotvalue['this_lng']; //景点经纬度
+                    $la = $spotvalue['this_lat'];
+
+                    $distance[$eat['name']][$spotvalue['this_name']] = getDistance($longitude1, $latitude1, $lo, $la, 2);
+                }
+            }
+
+            foreach($distance as $key=>$d_value)
+            {
+                if(min($d_value))
+                {
+                    //数组一个value值来获取得到其key的值
+                    $k = array_search(min($d_value), $d_value);
+                    //美食与景点匹配数组
+                    $r[$key] = $k;
+                    //距离数组
+                    $d[$key] = min($d_value);
+                }
+                
+            }
+
+            // print_r($r);
+            // print_r($d);
+            //美食绑定到距离最近的景点上
+            foreach($spot_data as $key1=>&$spot)
+            {
+                foreach($r as $key2=>$rr)
+                {
+                    if($spot['this_name'] == $rr)
+                    {
+                        foreach($eatData as $eat)
+                        {
+                            foreach($d as $key3=>$dd)
+                            {
+                                if($eat['name'] == $key2)
+                                { 
+                                    if($eat['name'] == $key3)
+                                    {
+                                        $eatResult['city_id'] = $eat['city_id'];
+                                        $eatResult['lng'] = $eat['lng'];
+                                        $eatResult['lat'] = $eat['lat'];
+                                        $eatResult['per_capita'] = $eat['per_capita'];
+                                        $eatResult['address'] = $eat['address'];
+                                        $eatResult['business_hours'] = $eat['business_hours'];
+                                        if(isset($eat['store_Introduction']))
+                                        {
+                                            $eatResult['store_Introduction'] = $eat['store_Introduction'];
+                                        }
+                                       
+                                        $eatResult['dianpu_image'] = $eat['dianpu_image'];
+                                        $eatResult['js_sport_eat'] = $eat['js_sport_eat'];
+                                        $eatResult['meal_time'] = $eat['meal_time'];
+                                        $eatResult['tag_time'] = $eat['tag_time'];
+                                        
+                                        $eatResult['eat_to_spot'] = $dd; //美食到景点的距离
+                                        // if(isset($eat['fen_data'])) //分店{ $eatResult['fen_data'] = $eat['fen_data'];}
+                                    }   
+                                }
+                            }
+                        }
+                        $eatResult['name'] = $key2;
+                        $spot['eat_info'][] = $eatResult;
+                    }
+                }
+            }
+        }
+        
+
+        $Sumtime = array_sum(array_map(create_function('$vals', 'return $vals["this_tag_time"];'),$spot_data));
+        //night不可以作为首景点处理，单独拿出，再放到数组尾部
+        foreach($spot_data as $key=>$v)
+        {
+            if($v['period_time'] == 'night')
+            {
+                $nData[] =  $v;
+                unset($spot_data[$key]);
+            }
+        }
+        $spot_data = array_merge($spot_data);
+
+        $f_sort = array_column($spot_data, 'ranking');  
+        array_multisort($f_sort, SORT_ASC, $spot_data); 
+        if(isset($nData))
+        {
+            $spot_data = array_merge($spot_data,$nData);
+        }
+        // print_r($spot_data);
+        // exit;
+     
+        //白天、晚上、全天
+        $duringday = [];
+        $night = [];
+        $allday = [];
+
+        foreach($spot_data as $key=>$s_value)
+        {
+            if($s_value['period_time'] == 'day')
+            {
+                $duringday[] =  $s_value;
+            }
+            if($s_value['period_time'] == 'night')
+            {
+                $night[] =  $s_value;
+            }
+            if($s_value['period_time'] == 'allday')
+            {
+                $allday[] =  $s_value;
+            }
+        }
+        $sort1 = array_column($duringday, 'ranking');  
+        array_multisort($sort1, SORT_ASC, $duringday);
+        $sort2 = array_column($night, 'ranking');  
+        array_multisort($sort2, SORT_ASC, $night);
+        $sort3 = array_column($allday, 'ranking');  
+        array_multisort($sort3, SORT_ASC, $allday); 
+
+        //day元素之间的距离
+        $count1 = count($duringday);
+        if($count1>=2){
+
+            $shortDis = array();
+            $return=$this->sortDis($shortDis,$duringday);
+            // print_r($return);
+            // exit;
+            foreach ($return as $k => $v) {
+                foreach ($duringday as $key1 => $value1) {
+                    if($v == $value1['this_name']){
+                        $array[] = $value1;
+                    }
+                }
+            }
+        
+            $arr = array($duringday[0]);
+            $d_array = array_merge($arr,$array);
+
+            $num = count($d_array);
+            for($i=0;$i<$num;$i++){
+                for($j=$i+1;$j<$num;$j++){
+                    $dis[]= getDistance($d_array[$i]['this_lng'],$d_array[$i]['this_lat'],$d_array[$j]['this_lng'],$d_array[$j]['this_lat'],2);break;
+                }
+            }
+            $d_array = array_values($d_array);
+            foreach($d_array as $key1=>$a)
+            {
+                foreach($dis as $key2=>$d)
+                {
+                    if($key1 == $key2)
+                    {
+                        $d_array[$key1+1]['dis'] = $d;
+                    }
+                }
+            }
+        }else{
+            $d_array = $duringday;
+        }
+
+        //night元素之间的距离
+        $count2 = count($night);
+        if($count2>=2){
+            $shortDis2 = array();
+            $return=$this->sortDis($shortDis2,$night);
+
+            foreach ($return as $k => $v) {
+                foreach ($night as $key1 => $value1) {
+                    if($v == $value1['this_name']){
+                        $array2[] = $value1;
+                    }
+                }
+            }
+
+            $arr = array($night[0]);
+            $n_array = array_merge($arr,$array2);
+            $num = count($n_array);
+            for($i=0;$i<$num;$i++){
+                for($j=$i+1;$j<$num;$j++){
+                    $dis2[]= getDistance($n_array[$i]['this_lng'],$n_array[$i]['this_lat'],$n_array[$j]['this_lng'],$n_array[$j]['this_lat'],2);break;
+                }
+            }
+            $n_array = array_values($n_array);
+            foreach($n_array as $key1=>$a)
+            {
+                foreach($dis2 as $key2=>$d)
+                {
+                    if($key1 == $key2)
+                    {
+                        $n_array[$key1+1]['dis'] = $d;
+                    }
+                }
+            }
+            $sort2 = array_column($n_array, 'not_modifity');  //固定时长的夜晚演出放在夜晚的第一个位置
+            array_multisort($sort2, SORT_DESC, $n_array);
+        }else{
+            $n_array = $night;
+        }
+        // print_r($n_array);
+        // exit;
+        //allday元素之间的距离
+        $count3 = count($allday);
+        if($count3>=2){
+            $shortDis3 = array();
+            $return=$this->sortDis($shortDis3,$allday);
+
+            foreach ($return as $k => $v) {
+                foreach ($allday as $key1 => $value1) {
+                    if($v == $value1['this_name']){
+                        $array3[] = $value1;
+                    }
+                }
+            }
+
+            $arr = array($allday[0]);
+            $all_array = array_merge($arr,$array3);
+            $num = count($all_array);
+            for($i=0;$i<$num;$i++){
+                for($j=$i+1;$j<$num;$j++){
+                    $dis3[]= getDistance($all_array[$i]['this_lng'],$all_array[$i]['this_lat'],$all_array[$j]['this_lng'],$all_array[$j]['this_lat'],2);break;
+                }
+            }
+            $all_array = array_values($all_array);
+            foreach($all_array as $key1=>$a)
+            {
+                foreach($dis3 as $key2=>$d)
+                {
+                    if($key1 == $key2)
+                    {
+                        $all_array[$key1+1]['dis'] = $d;
+                    }
+                }
+            }
+        }else{
+            $all_array = $allday;
+        }
+
+
+        $daytime = array_sum(array_map(create_function('$vals', 'return $vals["this_tag_time"];'),$duringday));
+        $nighttime = array_sum(array_map(create_function('$vals', 'return $vals["this_tag_time"];'),$night));
+        $alldaytime = array_sum(array_map(create_function('$vals', 'return $vals["this_tag_time"];'),$allday));
+
+        $firstspot = $spot_data[0]; //根据ranking确定首景点
+        // print_r($firstspot);
+
+        //每天的游玩时段
+        // print_r($post);
+        // exit;
+        $group = $post['dayTime'];
+        // print_r($group);
+        if(isset($_SESSION['dayTime']))
+        {
+            $groupData = $_SESSION['dayTime'];
+        }else{
+            for($i=0;$i<$len;$i++)
+            {
+                $groupData[] = array();
+            }
+        }
+        foreach($groupData as $key=>$vgh)
+        {
+            if($key == $this_city_index){
+                $groupData[$key] = $group;
+            }
+        }
+        // print_r($groupData);
+        // exit;
+        $_SESSION['dayTime'] = $groupData;
+        // print_r($group);
+        // exit;
+        //存入临时变量
+        $a = $group;
+        $groupTemp = $group;
+        foreach($group as &$g)
+        {
+            $g = explode("-",$g);
+        }
+
+        foreach($group as $key=>&$t)
+        {
+            $t['betw'] = $a[$key];
+            $t['start'] = $t[0];
+            $t['end'] = $t[1];
+            $t['totaltime'] = $t[1] - $t[0];
+            if(('18:00' - $t[0]) < 0){
+                $t['dtime'] = 0;
+            }else{
+                if($t[1] == '18:00' || $t[1] > '18:00')
+                {
+                    $t['dtime'] = '18:00' - $t[0];
+                }
+                if($t[1] < '18:00')
+                {
+                    $t['dtime'] = $t[1] - $t[0];
+                }
+            }
+
+            if(($t[1] - '18:00') < 0){
+                $t['ntime'] = 0;
+            }else{
+                if($t[0] == '18:00' || $t[0] < '18:00')
+                {
+                    $t['ntime'] = $t[1] - '18:00';
+                }
+                if($t[0] > '18:00')
+                {
+                    $t['ntime'] = $t[1] - $t[0];
+                }
+            }
+            unset($t[0]);
+            unset($t[1]);
+        }
+        // print_r($group);
+        $duringSum = array_sum(array_map(create_function('$vals', 'return $vals["dtime"];'),$group));
+        $nightSum = array_sum(array_map(create_function('$vals', 'return $vals["ntime"];'),$group));
+        $totalSum = array_sum(array_map(create_function('$vals', 'return $vals["totaltime"];'),$group));
+      
+        //////
+        // print_r($d_array);
+        //距离转换成时间
+        if($count1>=2)
+        {
+            foreach($d_array as &$dd)
+            {
+                if(isset($dd['dis']))
+                {
+                    if($dd['dis'] <= 80){$dd['traffic_time'] = round($dd['dis']/30,1);}
+                    if($dd['dis'] > 80){$dd['traffic_time'] = round($dd['dis']/60,1);}
+                }
+            }
+        }
+        if($count2>=2)
+        {
+            foreach($n_array as &$nn)
+            {
+                if(isset($nn['dis']))
+                {
+                    if($nn['dis'] <= 80){$nn['traffic_time'] = round($nn['dis']/30,1);}
+                    if($nn['dis'] > 80){$nn['traffic_time'] = round($nn['dis']/60,1);}
+                }
+            }
+        }
+        
+        if($count3>=2)
+        {
+            foreach($all_array as &$aa)
+            {
+                if(isset($aa['dis']))
+                {
+                    if($aa['dis'] <= 80){$aa['traffic_time'] = round($aa['dis']/30,1);}
+                    if($aa['dis'] > 80){$aa['traffic_time'] = round($aa['dis']/60,1);}
+                }
+            }
+        }
+       
+        // print_r($d_array);
+        // print_r($n_array);
+        // print_r($all_array);
+        // echo $daytime;
+        // echo $duringSum;
+        
+        //特殊情况:只选择了夜景
+        foreach($spot_data as $vals)
+        {
+            if($vals['period_time'] == 'day')
+            {
+                $daytag = 1;
+            }
+            if($vals['period_time'] == 'allday')
+            {
+                $alldaytag = 1;
+            }
+        }
+        if(!isset($daytag) && !isset($alldaytag))
+        {
+            $n_array = $spot_data;
+            for($i=0;$i<$citynum;$i++)
+            {
+                $day[] = [];
+
+                $sum = 0;  
+                foreach($group as $key1=>$g_value)
+                {
+                    if($i == $key1)
+                    {
+                        //只有夜景
+                        foreach($n_array as $key2=>$n_value)
+                        {
+                            if(isset($n_value['traffic_time']))
+                            {
+                                $sum += $n_value['traffic_time'];
+                            }
+                            
+                            $sum += $n_value['this_tag_time'];
+                            if($sum < $group[$key1]['ntime'])
+                            {
+                                $day[$i]['day'][] = $n_value;
+                                unset($n_array[$key2]);
+                            }
+                        }
+                        
+                    }
+                }
+                if(!empty($n_array))
+                {
+                    $n_array = array_merge($n_array); 
+                }     
+            }
+        }
+        // print_r($day);
+        // print_r($d_array);
+        // exit;
+        /*** 情况一:首景点选择的是全天元素  ***/
+        $firsttemp = $firstspot; //首景点临时变量
+        // print_r( $firstspot);
+        // exit;
+        if($firstspot['period_time'] == 'allday')
+        {
+            if($firstspot['this_tag_time'] + $daytime < $duringSum)
+            {
+                for($i=0;$i<$citynum;$i++)
+                {
+                    $day[] = [];
+
+                    $sum1 = 0;  //白天
+
+                    foreach($group as $key1=>$g_value)
+                    {
+                        if($i == $key1)
+                        {
+                            if(isset($firsttemp))
+                            {
+                                //首景点是全景时先放进第一天
+                                if($firsttemp['this_tag_time'] < $group[0]['totaltime'])
+                                {
+                                    $day[0]['day'][] = $firsttemp;
+                                    $sum1 = $firsttemp['this_tag_time'];
+                                    unset($firsttemp);
+                                    //已经放进去的全景，从all_array数组剔除
+                                    foreach($all_array as $key2=>$a_value)
+                                    {
+                                        if($a_value['this_name'] == $firstspot['this_name'])
+                                        {
+                                            unset($all_array[$key2]);
+                                        }
+                                    }
+                                    $all_array = array_merge($all_array); 
+                                }else{
+                                    $sum1 = 0;
+                                }
+                            }
+
+                            //白
+                            if(!empty($d_array))
+                            {
+                                foreach($d_array as $key2=>$d_value)
+                                {
+                                    if(isset($d_value['traffic_time']))
+                                    {
+                                        $sum1 += $d_value['traffic_time'];
+                                    }
+                                    
+                                    $sum1 += $d_value['this_tag_time'];
+                                    if($sum1 < $group[$key1]['dtime'])
+                                    {
+                                        $day[$i]['day'][] = $d_value;
+                                        unset($d_array[$key2]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if(!empty($d_array)){ $d_array = array_merge($d_array);}
+
+                }
+            }else{
+                foreach($spot_data as $key=>$spotValue)
+                {
+                    if($spotValue['this_tag_time'] + $daytime < $duringSum)
+                    {
+                        if($spotValue['period_time'] != 'night')
+                        {
+                            $firsttemp2 = $spotValue;
+                            $temp2 = $firsttemp2;
+                        }
+                        break;
+                    }
+                } 
+                if(!isset($firsttemp2))
+                {
+                    if(isset($d_array))
+                    {
+                        $sort3 = array_column($d_array, 'this_lng');  
+                        array_multisort($sort3, SORT_DESC, $d_array); 
+                        $firsttemp3 = $d_array[0];
+                    }
+                    // print_r($d_array);
+                    for($i=0;$i<$citynum;$i++)
+                    {
+                        $day[] = [];
+                        $sum1 = 0;
+                        foreach($group as $key1=>$g_value)
+                        {
+                            if($i == $key1)
+                            {
+                                if(isset($firsttemp3))
+                                {                            
+                                    foreach($d_array as $key2=>$d_value)
+                                    {
+                                        if(isset($d_value['traffic_time']))
+                                        {
+                                            $sum1 += $d_value['traffic_time'];
+                                        }
+                                        
+                                        $sum1 += $d_value['this_tag_time'];
+                                        if($sum1 < $group[$key1]['dtime'])
+                                        {
+                                            $day[$i]['day'][] = $d_value;
+                                            unset($d_array[$key2]);
+                                        }
+                                    }
+                                    $d_array = array_merge($d_array);
+                                }else{
+                                    $sort4 = array_column($all_array, 'this_lng');  
+                                    array_multisort($sort4, SORT_DESC, $all_array); 
+                                    $firsttemp3 = $all_array[0];
+                                    $temp3 = $firsttemp3;
+                                    if($temp3['this_tag_time'] < $group[0]['totaltime'])
+                                    {
+                                        $day[0]['day'][] = $temp3;
+                                        $sum1 = $temp3['this_tag_time'];
+                                        unset($temp3);
+                                        //若是全景，已经放进去的全景，从all_array数组剔除
+                                        if($firsttemp3['period_time'] == 'allday')
+                                        {
+                                            foreach($all_array as $key2=>$a_value)
+                                            {
+                                                if($a_value['this_name'] == $firsttemp3['this_name'])
+                                                {
+                                                    unset($all_array[$key2]);
+                                                }
+                                            }
+                                            $all_array = array_merge($all_array);
+                                        }
+                                    }else{
+                                        $sum1 = 0;
+                                    }
+
+                                    if(!empty($d_array))
+                                    {
+                                        foreach($d_array as $key2=>$d_value)
+                                        {
+                                            if(isset($d_value['traffic_time']))
+                                            {
+                                                $sum1 += $d_value['traffic_time'];
+                                            }
+                                            
+                                            $sum1 += $d_value['this_tag_time'];
+                                            if($sum1 < $group[$key1]['dtime'])
+                                            {
+                                                $day[$i]['day'][] = $d_value;
+                                                unset($d_array[$key2]);
+                                            }
+                                        }
+                                    }
+                                    if(!empty($d_array)){ $d_array = array_merge($d_array);}
+                                }
+                            }
+                        }
+                    }
+                    
+                }else{
+                    for($i=0;$i<$citynum;$i++)
+                    {
+                        $day[] = [];
+
+                        $sum1 = 0;  
+
+                        foreach($group as $key1=>$g_value)
+                        {
+                            if($i == $key1)
+                            {
+                                if($temp2['this_tag_time'] < $group[0]['totaltime'])
+                                {
+                                    $day[0]['day'][] = $temp2;
+                                    $sum1 = $temp2['this_tag_time'];
+                                    unset($temp2);
+                                    //若是全景，已经放进去的全景，从all_array数组剔除
+                                    if($firsttemp2['period_time'] == 'allday')
+                                    {
+                                        foreach($all_array as $key2=>$a_value)
+                                        {
+                                            if($a_value['this_name'] == $firsttemp2['this_name'])
+                                            {
+                                                unset($all_array[$key2]);
+                                            }
+                                        }
+                                        $all_array = array_merge($all_array);
+                                    }
+                                    //若是白景，已经放进去的白景，从d_array数组剔除
+                                    if($firsttemp2['period_time'] == 'day')
+                                    {
+                                        foreach($d_array as $key2=>$d_value)
+                                        {
+                                            if($d_value['this_name'] == $firsttemp2['this_name'])
+                                            {
+                                                unset($d_array[$key2]);
+                                            }
+                                        }
+                                        $d_array = array_merge($d_array);
+                                    }
+                                     
+                                }else{
+                                    $sum1 = 0;
+                                }
+                                //白
+                                if(!empty($d_array))
+                                {
+                                    foreach($d_array as $key2=>$d_value)
+                                    {
+                                        if(isset($d_value['traffic_time']))
+                                        {
+                                            $sum1 += $d_value['traffic_time'];
+                                        }
+                                        
+                                        $sum1 += $d_value['this_tag_time'];
+                                        if($sum1 < $group[$key1]['dtime'])
+                                        {
+                                            $day[$i]['day'][] = $d_value;
+                                            unset($d_array[$key2]);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if(!empty($d_array)){ $d_array = array_merge($d_array);}
+                    }
+                }  
+            }
+        } 
+        // print_r($day);
+        //  exit;
+       
+        /*** 情况二：首景点是白天元素 ***/
+        if($firstspot['period_time'] == 'day')
+        {
+            for($i=0;$i<$citynum;$i++)
+            {
+                $day[] = [];
+
+                $sum1 = 0;  //白天
+                foreach($group as $key1=>$g_value)
+                {
+                    if($i == $key1)
+                    {
+                        //白
+                        if(!empty($d_array))
+                        {
+                            foreach($d_array as $key2=>&$d_value)
+                            {
+                                if(isset($d_value['traffic_time']))
+                                {
+                                    $sum1 += $d_value['traffic_time'];
+                                }
+                                $sum1 += $d_value['this_tag_time'];
+                                if($sum1 < $group[$key1]['dtime'])
+                                {
+                                    $day[$i]['day'][] = $d_value;
+                                    unset($d_array[$key2]);
+                                }
+                            }
+                        }
+                    }
+                }
+                if(!empty($d_array))
+                {
+                    $d_array = array_merge($d_array); 
+                }     
+            }
+        }
+        // print_r($day);
+        // exit;
+        //计算每天的适玩时间总和,便于计算每天还剩余多少白天时间
+        foreach($day as $key=>$v)
+        {
+            if(!empty($v))
+            {
+                foreach($v as $vv)
+                {
+                    $this_tag_time[] = array_sum(array_map(create_function('$vals', 'return $vals["this_tag_time"];'),$vv));
+                }
+               
+            }else{
+                $this_tag_time[] = 0;
+            }
+        }
+        
+        // print_r($this_tag_time);
+        foreach($this_tag_time as $k1=>$tag)
+        {
+            foreach($group as $k2=>$gg)
+            {
+                if($k1 == $k2)
+                {
+                    $poor[] = $gg['dtime'] - $tag; //每天白天的剩余时间
+                }                                                                                           
+            }
+        }
+        // print_r($poor);
+        // print_r($all_array);
+        //数组中追加全景
+        foreach($day as $k1=>$val)
+        {
+            $sum3 = 0;
+            foreach($poor as $k2=>$p)
+            {
+                if(!empty($all_array))
+                {
+                    if($k1 == $k2)
+                    {
+                        foreach($all_array as $key2=>$a_value)
+                        {
+                            if(isset($a_value['traffic_time']))
+                            {
+                                $sum3 += $a_value['traffic_time'];
+                            }
+                            
+                            $sum3 += $a_value['this_tag_time'];
+                            if($sum3 < $p)
+                            {
+                                $day[$k1]['day'][] = $a_value;
+                                unset($all_array[$key2]);
+                            }
+                        }
+                    }  
+                }
+            }
+        }
+        if(!empty($all_array))
+        {
+            $all_array = array_merge($all_array); 
+        }   
+        //  print_r($day);
+        foreach($day as $key=>$v)
+        {
+            if(!empty($v))
+            {
+                foreach($v as $vv)
+                {
+                    $tag_time[] = array_sum(array_map(create_function('$vals', 'return $vals["this_tag_time"];'),$vv));
+                }
+            }else{
+                $tag_time[] = 0;
+            }
+        }
+        // print_r($tag_time);
+        foreach($tag_time as $k1=>$tag)
+        {
+            foreach($group as $k2=>$gg)
+            {
+                if($k1 == $k2)
+                {
+                    $poor2[] = $gg['totaltime'] - $tag;
+                }
+            }
+        }
+        // print_r($poor2);
+        // var_dump($day);
+        // exit;
+        //数组中追加夜景
+        foreach($day as $k1=>$val)
+        {
+            $sum4 = 0;
+            foreach($poor2 as $k2=>$p)
+            {
+                if(!empty($n_array))
+                {
+                    foreach($group as $key1=>$g_v)
+                    {
+                        if($group[$key1]['ntime'] != 0)
+                        {
+                            if($k1 == $key1)
+                            {
+                                if($k1 == $k2)
+                                {
+                                    foreach($n_array as $key2=>$n_value)
+                                    {
+                                        if(isset($n_value['traffic_time']))
+                                        {
+                                            $sum4 += $n_value['traffic_time'];
+                                        }
+                                        $sum4 += $n_value['this_tag_time'];
+
+                                        if($sum4 < $group[$key1]['ntime'])
+                                        {
+                                            if($sum4 < $p)
+                                            {
+                                                $day[$k1]['day'][] = $n_value;
+                                                unset($n_array[$key2]);
+                                            }  
+                                        }
+                                    }
+                                }  
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
+        if(!empty($n_array))
+        {
+            $n_array = array_merge($n_array); 
+        }   
+
+        //多出的数据再处理,放入最后一天 (可能会超出范围)
+        $remain = array_merge($n_array,$all_array,$d_array);
+        // print_r($remain);
+        // print_r($day);
+        // var_dump($remain);
+        // exit;
+
+        $len = count($day);
+        if(!empty($remain))
+        {
+            if(isset($day[$len-1]['day'])) //最后一天之前有数据时
+            {
+                foreach($remain as $key=>$value)
+                {
+                    array_unshift($day[$len-1]['day'],$value); 
+                }
+                foreach($day[$len-1]['day'] as $key=>$v)
+                {
+                    if($v['period_time'] == 'night')
+                    {
+                        $redata[] = $v;   
+                        unset($day[$len-1]['day'][$key]);   
+                    }
+                }
+                $day[$len-1]['day'] = array_merge($day[$len-1]['day']);
+
+                if(isset($redata))
+                {
+                    foreach($redata as $re)
+                    {
+                        array_push($day[$len-1]['day'],$re); 
+                    }
+                }
+            }else{    //最后一天之前没有任何数据
+                // echo 9;
+                foreach($remain as $key=>$value)
+                {
+                    array_unshift($day[$len-1],$value); 
+                }
+                foreach($day[$len-1] as $key=>$v)
+                {
+                    if($v['period_time'] == 'night')
+                    {
+                        $redata[] = $v;   
+                        unset($day[$len-1][$key]);   
+                    }
+                }
+                $day[$len-1]['day'] = array_merge($day[$len-1]);
+
+                if(isset($redata))
+                {
+                    // echo 8;
+                    foreach($redata as $re)
+                    {
+                        array_push($day[$len-1]['day'],$re); 
+                    }
+                }
+            }
+        } 
+
+        //日期匹配到每天
+        foreach($dateArrray as $key1=>$dater)
+        {
+            foreach($day as $key2=>$yy)
+            {
+                if($key1 == $key2)
+                {
+                    $day[$key2]['of_date'] = $dater;
+                    $day[$key2]['date'] = date('m.d',strtotime($dater));   
+                }
+            }
+        }
+        
+
+        //计算每天的时间总和（景点适玩时间、交通时间、美食时间）
+        // print_r($day);
+        // exit;
+        foreach($day as $key1=>$vvv)
+        {
+            if(isset($vvv['day']))
+            {
+                $len = count($vvv['day']);
+                if($len >1)
+                { 
+                    foreach($vvv['day'] as $key2=>$vs)
+                    {
+                        if($key2 < count($vvv['day'])-1)
+                        {
+                            $dist2[$key1][] =getDistance($vvv['day'][$key2]['this_lng'], $vvv['day'][$key2]['this_lat'],
+                            $vvv['day'][$key2+1]['this_lng'], $vvv['day'][$key2+1]['this_lat'], 2); 
+                        }
+                        unset($day[$key1]['day'][$key2]['traffic_time']);
+                        unset($day[$key1]['day'][$key2]['dis']);
+                    }
+                }
+                if(isset($day[$key1]['day'][$len-1]['traffic_time'])) {unset($day[$key1]['day'][$len-1]['traffic_time']);}
+                if(isset($day[$key1]['day'][$len-1]['dis'])){unset($day[$key1]['day'][$len-1]['dis']);}
+            }
+        }
+
+        foreach($day as $k1=>$tacter)
+        {
+            if(isset($dist2))
+            {
+                foreach($dist2 as $k2=>$vale)
+                {
+                    if($k1 == $k2)
+                    {
+                        foreach($vale as $k3=>$v)
+                        {
+                            $day[$k1]['day'][$k3+1]['traffic_distance'] =$v;
+                        
+                            if($v<= 80){$day[$k1]['day'][$k3+1]['traffic_time'] = round($v/30,1);}
+                            if($v> 80){$day[$k1]['day'][$k3+1]['traffic_time'] = round($v/60,1);}
+                        }
+                    } 
+                }
+            }
+            
+        }
+
+        // print_r($dist2);
+        // print_r($day);
+        // exit;
+
+        foreach($day as &$dd_value)
+        {
+            $playtimeNum = 0;
+            $eattimeNum = 0;
+            $traffictimeNum = 0;
+            if(isset($dd_value['day']))
+            {
+                foreach($dd_value['day'] as $dd_va)
+                {
+                    //每天景点适玩时间之和
+                    $playtimeNum += $dd_va['this_tag_time'];
+
+                    //每天美食时间之和(暂时不计算到行程中)
+                    // if(isset($dd_va['eat_info']))
+                    // {
+                    //     foreach($dd_va['eat_info'] as $eatValue)
+                    //     {
+                    //         // $eattimeNum +=  $eatValue[''];
+                    //     }
+                    // }
+
+                    //每天交通时间之和
+                    if(isset($dd_va['traffic_time'])){$traffictimeNum += $dd_va['traffic_time'];}
+                
+                }
+                $dd_value['playtimeNum'] = $playtimeNum;
+                $dd_value['traffictimeNum'] = $traffictimeNum;
+                $dd_value['reality_time'] = $playtimeNum + $traffictimeNum;
+                //以0.5为刻度
+                $wwww = $playtimeNum + $traffictimeNum;
+                if(ceil($wwww) == $wwww)
+                {
+                    $dd_value['time'] = $playtimeNum + $traffictimeNum;
+                }else{
+                    $TimeSum = $playtimeNum + $traffictimeNum;
+                    $TimeSum = sprintf('%.1f', (float)$TimeSum);
+                    $hy=explode(".",$TimeSum);
+                    if($hy[1] > 5){ $TimeSum = $hy[0] + 1;}
+                    if($hy[1] < 5){ $TimeSum = $hy[0] + 0.5;}
+                    if($hy[1] = 5){ $TimeSum = $TimeSum;}
+                    $dd_value['time'] = $TimeSum;
+                }
+            }else{
+                $dd_value['time'] = 0;
+            }
+            
+        }
+        // print_r($group);
+        // print_r($day);
+        // exit;
+        //每天的开始时间
+        foreach($day as $kk1=>&$valuesData)
+        {
+            foreach($groupTemp as $kk2=>$groupValue)
+            {
+                if($kk1 == $kk2)
+                {
+                    $valuesData['start_clock'] = substr($groupValue,0,strpos($groupValue, '-'));   
+                }
+            } 
+        }
+
+        $result['day_arry'] = $day;
+
+        ////
+        //原始的数据格式存到session
+        $_SESSION['data'] = $post;
+        //处理后的结果存到session
+        $_SESSION['result'] = $result;
+
+        if($result)
+        {
+            $re['status'] = 1;
+        }
+
+        // print_r($_SESSION['result']);
+        echo json_encode($re,JSON_UNESCAPED_UNICODE);
+    }
+    //从session取出数据返回
+    public function plan()
+    {
+        session_start();
+        // print_r($_SESSION);
+        ini_set('session.gc_maxlifetime', 3600); 
+        ini_get('session.gc_maxlifetime'); //得到ini中设定值 
+        $info['result'] = $_SESSION['result'];
+        $info['r_spot'] = $_SESSION['data'];
+        // print_r($_SESSION['result']);
+        echo json_encode($info,JSON_UNESCAPED_UNICODE);
+    }
+
+
+    //行程总览页面
+    public function tripOverview()
+    {
+       return $this->fetch();
+    }
+
+    //接收收据
+    public function overview()
+    {
+        session_start();
+        $info = $_SESSION;
+        
+        // $post = $GLOBALS['HTTP_RAW_POST_DATA']; 低版本的PHP
+        $post = file_get_contents('php://input'); 
+        $post = json_decode($post,true);  
+        $city_name = $post['this_city'];
+
+        $city_index = $info['data']['spot_data']['this_city_index'];   //当前城市索引
+        // print_r($city_index);
+        $cityNumber = count($info['data']['city_data']['go_city_array']);  //城市个数
+        $cityArray = $info['data']['city_data']['go_city_array'];   //每次都是最新选择的城市组合
+         
+        //定义对应长度的数组,数据对应到每个城市当中
+        //初始化
+        // print_r($info['cityResult']);
+        // exit;
+        foreach($info['cityResult'] as $key2=>&$old_city)
+        {
+            if(isset($old_city['city_name']) )
+            {
+                $old_city['this_city'] = $old_city['city_name'];
+            }
+            
+        }
+        // print_r($cityArray);
+        // print_r($info['cityResult']);
+        // echo $cityNumber;
+        // exit;  
+        if(isset($info['cityResult']))
+        {
+            $citylength = count($info['cityResult']);
+            // echo $citylength;
+            // echo $cityNumber;
+            // exit;
+            //情况一：城市个数始终没有改变(并且城市个数不变,但城市顺序可以改变)
+            if($citylength == $cityNumber)
+            {
+                ///////////////////
+                //城市个数没有改变，但是城市改变了
+                // foreach($cityArray as $key1=>$new_city)
+                // {
+                //     foreach($info['cityResult'] as $key2=>&$old_city)
+                //     {
+                //         if($key1 == $key2)
+                //         {
+                //             if($new_city['city_name'] != $old_city['this_city'])
+                //             {
+                //                 $diff['diff'] = 'true_diff';
+                //             }
+                //         }
+                //     }
+                // }
+                // //数组中存在标记true_diff时,表示城市个数没变，但是城市改变了
+                // if($diff['diff'] == 'true_diff')
+                // {
+                //     foreach($info['cityResult'] as $k2=>&$old_city)
+                //     {
+                //         foreach($cityArray as $k1=>&$new_city)
+                //         {
+                //             if($new_city['city_name'] == $old_city['this_city'])
+                //             {
+                //                 if(isset($old_city['day_arry']))
+                //                 {
+                //                     $cityArray[$k1]['day_arry'] = $info['cityResult'][$k2]['day_arry'];
+                //                 }
+                //             }     
+                //         }
+                //     }
+                //     foreach($cityArray as $pp)
+                //     {
+                //         $pp['this_city'] = $pp['city_name'];
+                //     }
+                //     $cityResult = $cityArray;
+                //     // print_r($cityArray);
+                // }else{
+                //     //城市没有改变
+                   
+                // }
+                ////
+                // print_r($cityArray);
+                // print_r($info['cityResult']);
+                // exit;
+                foreach($cityArray as $key1=>$new_city)
+                {
+                    foreach($info['cityResult'] as $key2=>&$old_city)
+                    {
+                        if(isset($old_city['this_city']))
+                        {
+                            if($new_city['city_name'] == $old_city['this_city'])
+                            {
+                                $old_city['city_daynum'] = $new_city['city_daynum'];
+                                $old_city['city_date'] = $new_city['city_date'];
+                                $cityResult[] = $info['cityResult'][$key2];
+                            }
+                        }
+                    } 
+                }
+                ///////////////////////
+                if(isset($cityResult))
+                {
+                    $cc = count($cityArray);
+                    $cc2 = count($cityResult);
+                    for($i=0;$i<$cc-$cc2;$i++)
+                    {
+                        $cityResult[] = '';
+                    }
+                }else{
+                    for($i=0;$i<$cityNumber;$i++)
+                    {
+                        $cityResult[] = '';
+                    }
+                }
+                //   print_r($cityResult);
+                //   exit;
+                //////////////////////////////////
+                //城市个数不变，天数改变，日期、顺序改变
+                foreach($cityResult as $key3=>&$ccValue)
+                {
+                    if(isset($ccValue['city_date']))
+                    {
+                        $ccValue['city_time_1'] = str_replace(".","-",$ccValue['city_date']);
+                    
+                        $t = strtotime(str_replace(".","-",$ccValue['city_date']));
+                        if(isset($ccValue['city_daynum']))
+                        {
+                            for($i=0;$i<$ccValue['city_daynum'];$i++)
+                            {
+                                $a = $i.'day';
+                                // echo $a;
+                                $ccValue['day_arry'][$i]['date'] = str_replace("-",".",substr(date('Y-m-d',strtotime("+$a",$t)),5)); 
+                            }
+                        }
+                        
+                    }
+                }
+
+                // print_r($cityResult);
+            //情况二：城市个数发生改变的时候
+            }else{ 
+                foreach($cityArray as $key2=>&$city)
+                {   
+                    foreach($info['cityResult'] as $key1=>$ss)
+                    { 
+                        if( $city['city_name'] == $ss['this_city'])
+                        {
+                            $cityArray[$key2]['eat_len'] = $info['cityResult'][$key1]['eat_len'];
+                            $cityArray[$key2]['shop_len'] = $info['cityResult'][$key1]['shop_len'];
+                            $cityArray[$key2]['spot_len'] = $info['cityResult'][$key1]['spot_len'];
+
+                            $cityArray[$key2]['day_arry'] = $info['cityResult'][$key1]['day_arry']; 
+                            //表单信息
+                            $formData['traffic_tools'] = $info['DragDropcity']['traffic_tools'];
+                            $formData['adult'] = $info['DragDropcity']['adult'];
+                            $formData['day_num'] = $info['DragDropcity']['day_num'];
+                            $formData['departure_latlng'] = $info['DragDropcity']['departure_latlng'];
+                            $formData['return_latlng'] = $info['DragDropcity']['return_latlng'];
+                            $formData['departure_city'] = $info['DragDropcity']['departure_city'];
+                            $formData['return_city'] = $info['DragDropcity']['return_city'];
+                            $formData['return_traffic'] = $info['DragDropcity']['return_traffic'];
+                            // $formData['tagId'] = $info['DragDropcity']['tagId'];
+                            $cityArray[$key2]['formData'] = $formData; 
+                        }
+                    }
+                }
+                $cityResult = $cityArray;
+                // print_r($cityResult);
+                //新增加的城市是哪个，格式进行转化,日期重新匹配
+                foreach($cityResult as $key=>&$addcity)
+                {
+                    if(!isset($addcity['day_arry'])) //新加的城市
+                    {
+                        // echo $key;
+                        $addcity['betw'] = "D".$addcity['city_d_1']."-"."D".$addcity['city_d_2']; 
+                        $addcity['this_city'] = $addcity['city_name'];
+
+                        //给新城市的day_arry数组
+                        for($i=1;$i<=$addcity['city_daynum'];$i++)
+                        {
+                            $dayarray[] = array();
+                        }
+                        foreach($dayarray as $kk=>&$arry)
+                        {
+                            $arry['city_id'] = $cityResult[$key]['city_id'];
+                            $arry['city_py'] = $cityResult[$key]['city_py'];
+
+                            $arry['city_time_1'] = $cityResult[$key]['city_date'];
+                            $arry['city_time_2'] = $cityResult[$key]['city_date2'];
+                            $arry['provinceNames'] = $cityResult[$key]['provinceNames'];
+                            $arry['city_time_1'] = str_replace(".","-",$arry['city_time_1']);
+                            $t = strtotime($arry['city_time_1']);
+                            $a = $kk.'day';  
+                            $arry['date'] = str_replace("-",".",substr(date('Y-m-d',strtotime("+$a",$t)),5));  //指定时间戳+$a天以后
+                        }  
+                        // print_r($dayarray);
+                        $addcity['day_arry'] = $dayarray;
+                    }else{  //原来的城市
+                        $addcity['city_time_1'] = str_replace(".","-",$cityResult[$key]['city_date']);
+                        $addcity['this_city'] = $addcity['city_name'];
+                        $t = strtotime(str_replace(".","-",$cityResult[$key]['city_date']));
+                        for($i=0;$i<$addcity['city_daynum'];$i++)
+                        {
+                            $a = $i.'day';
+                            $addcity['day_arry'][$i]['date'] = str_replace("-",".",substr(date('Y-m-d',strtotime("+$a",$t)),5)); 
+                        }
+                    }
+                }
+            }
+        }
+        else{      
+            for($i=0;$i<$cityNumber;$i++)
+            {
+                $cityResult[] = '';
+            }
+        }
+        // print_r($cityResult);
+        // echo $city_index;
+        foreach($cityResult as $key=>$r)
+        {
+            if($city_index == $key)
+            {
+                $cityResult[$key] = $post;   //将城市数据存到对应的空间内
+            }
+        }   
+        // print_r($cityResult);
+        $_SESSION['result'] = $post;    //当前城市(之前未拖拽的result被覆盖)
+        $_SESSION['cityResult'] = $cityResult;      //每个城市数据
+// print_r( $_SESSION['cityResult']);
+    }
+
+    //从个人中心编辑已经做好的行程单，链接到这里，数据重新布局到session
+    public function Personal_edit()
+    {
+        session_start();
+        if($_POST['is_plan_edit'] == 'ok')
+        {
+            $uid = $_POST['uid'];
+            $trip_id = $_POST['trip_id'];
+
+            $trip_info = Db::name('trip_info')->where(array('uid'=>$uid,'trip_id'=>$trip_id))->find();
+            $trip_info['go_city_array'] = json_decode($trip_info['go_city_array'],true);
+            $trip_info['return_cityInfo'] = json_decode($trip_info['return_cityInfo'],true);
+            
+            $city_data['adult'] = $trip_info['adult'];
+            $city_data['children'] = $trip_info['children'];
+            $city_data['date'] = $trip_info['date'];
+            $city_data['day_num'] = $trip_info['day_num'];
+            $city_data['departure_city'] = $trip_info['departure_city'];
+            $city_data['go_city_array'] = $trip_info['go_city_array'];
+            $city_data['return_city'] = $trip_info['return_city'];
+            $city_data['departure_latlng']['dep_lat'] = $trip_info['dep_lat'];
+            $city_data['departure_latlng']['dep_lng'] = $trip_info['dep_lng'];
+            $city_data['return_latlng']['ret_lat'] = $trip_info['ret_lat'];
+            $city_data['return_latlng']['ret_lng'] = $trip_info['ret_lng'];
+            $city_data['traffic_tools'] = $trip_info['traffic_tools'];
+            $city_data['return_traffic'] = $trip_info['return_cityInfo'];
+
+            $plan_info = Db::name('plan_info')->where(array('uid'=>$uid,'trip_id'=>$trip_id))->find();
+            $scheduf = unserialize(base64_decode($plan_info['schedufing']));
+            $plan_info['schedufing'] = json_decode(json_encode($scheduf),true);
+
+            $num = count($trip_info['go_city_array']);
+            for($i=1;$i<=$num;$i++)
+            {
+                $index[] = array();
+            }
+            foreach($index as $key=>$ii)
+            {
+                $index[$key] = strval($key); 
+            }
+           
+            $city_line = Db::name('city_line')->where(array('uid'=>$uid,'trip_id'=>$trip_id))->find();
+            $city_line['list'] = json_decode($city_line['list'],true);
+
+            $traffic_money = Db::name('traffic_money')->where(array('uid'=>$uid,'trip_id'=>$trip_id))->find();
+            $traffic_money['traffic_money'] = json_decode($traffic_money['traffic_money'],true);
+
+            $hotel = Db::name('hotel')->where(array('uid'=>$uid,'trip_id'=>$trip_id))->find();
+            if(isset($hotel['hotel_info']))
+            {
+                $hotel['hotel_info'] = json_decode($hotel['hotel_info'],true);
+            }
+            
+            $eat_money = Db::name('eat_money')->where(array('uid'=>$uid,'trip_id'=>$trip_id))->find();
+            if(isset($eat_money['eat_money']))
+            {
+                $eat_money['eat_money'] = json_decode($eat_money['eat_money'],true);
+            }
+            if(isset($eat_money['way_money']))
+            {
+                $eat_money['way_money'] = json_decode($eat_money['way_money'],true);
+            }
+
+            foreach($trip_info['go_city_array'] as $key=>$arr)
+            {
+                $city[$key] = $arr['city_name'];
+            }
+
+            $head['city'] = $city;
+            $head['departure_city'] = $trip_info['departure_city'];
+            $head['departure_date'] = $trip_info['date'];
+            $head['return_city'] = $trip_info['return_city'];
+            $head['return_date'] = $city_line['return_date'];
+
+            $overview['head'] = $head;
+            $overview['index'] = $index;
+            $overview['list'] = $plan_info['schedufing'];
+
+            $start['adult'] = $trip_info['adult'];
+            $start['children'] = $trip_info['children'];
+            $start['date'] = $trip_info['date'];
+            $start['day_num'] = $trip_info['day_num'];
+            $start['departure_city'] = $trip_info['departure_city'];
+            $start['return_city'] = $trip_info['return_city'];
+            $start['traffic_tools'] = $trip_info['traffic_tools'];
+
+            $baseData = $city_data;
+            $baseData['go_city_array'] =  $trip_info['go_city_array'];
+            $lastInfo['baseData'] = $baseData;
+            $lastInfo['head'] = $head;
+            $lastInfo['index'] = $index;
+            $lastInfo['formData'] = $start;
+            $lastInfo['list'] = $plan_info['schedufing'];
+
+            $_SESSION['DragDropcity'] = $city_data;
+            $_SESSION['cityResult'] = $plan_info['schedufing'];
+            $_SESSION['citysession'] = $city_data;
+            $_SESSION['data']['city_data'] = $city_data;
+            $_SESSION['hotelArray'] = $plan_info['schedufing'];
+            $_SESSION['hotelResult'] = $plan_info['schedufing'];
+            $_SESSION['index'] = $index;
+            $_SESSION['lastInfo'] = $lastInfo;
+            $_SESSION['list'] = $plan_info['schedufing'];
+            $_SESSION['overview'] = $overview;
+            $_SESSION['spotArray'] = $plan_info['schedufing'];
+            // $_SESSION['result'] 当前城市数据
+            $_SESSION['start'] = $start;
+            $_SESSION['this_city_index'] = '0';
+            $_SESSION['complete_order']['uid'] = $uid;
+            $_SESSION['complete_order']['trip_id'] = $trip_id;
+        }
+    }
+    
+    //从session中取出数据返回到行程总览左侧页面 
+    public function do_view()
+    {
+        $post = $_POST;  //接收是否是编辑状态
+        session_start();
+        $info = $_SESSION;
+        // print_r($_SESSION['cityResult']);
+        // exit;
+        $_SESSION['spotArray'] = $_SESSION['cityResult']; //用于修改行程时，返回的景点数据
+        $cityResult = $_SESSION['cityResult'];
+        
+        // print_r($cityResult);
+        //当城市的天数减少，且顺序被调换
+        foreach($cityResult as &$cc)
+        {
+            if(isset($cc['day_arry']) && isset($cc['city_daynum']))
+            {
+                $num = count($cc['day_arry']);
+                if($num > $cc['city_daynum'])  //城市的天数变少了,之前多出的天数day_arry空间释放
+                {
+                    $cc['day_arry'] = array_slice($cc['day_arry'],0,$cc['city_daynum']);
+                }
+            }
+        }
+        
+        // print_r($cityResult);
+        //当前城市索引
+        if(isset($info['data']['spot_data']['this_city_index']))
+        {
+            $this_city_index = $info['data']['spot_data']['this_city_index'];
+        }
+        
+        //城市个数
+        $cityNumber = count($info['data']['city_data']['go_city_array']);
+        //出发、返回城市
+        $departure_city = $info['data']['city_data']['departure_city'];
+        $return_city = $info['data']['city_data']['return_city'];
+        //出发、返回日期
+        $departure_date = $info['data']['city_data']['date'];
+        $sum = $info['data']['city_data']['day_num']; //行程总天数 
+        $return_date = date("Y-m-d",(strtotime($departure_date) + ($sum-1)*3600*24)); 
+        //所有城市
+        $allCity = $info['data']['city_data']['go_city_array'];
+        // print_r($allCity);
+        foreach($allCity as $key=>$all)
+        {
+            $city_name[] = $all['city_name'];
+            if($this_city_index != $key)
+            {  
+                $day_num = $all['city_daynum'];
+                for($i=0;$i<$day_num;$i++)
+                {
+                    $qitaCity[$key][$i]['this_city'] = $allCity[$key]['city_name'];
+                    $qitaCity[$key][$i]['city_daynum'] = $allCity[$key]['city_daynum'];
+                    $qitaCity[$key][$i]['city_time_1'] = $allCity[$key]['city_date'];
+                    // $qitaCity[$key][$i]['date'] = substr($allCity[$key]['city_date'],5);
+                    $qitaCity[$key][$i]['city_time_2'] = $allCity[$key]['city_date2'];
+                     
+                    $qitaCity[$key][$i]['city_py'] = $allCity[$key]['city_py'];
+                    $qitaCity[$key][$i]['city_id'] = $allCity[$key]['city_id'];
+                    $qitaCity[$key][$i]['province_id'] = $allCity[$key]['province_id'];
+                    $qitaCity[$key][$i]['provinceNames'] = $allCity[$key]['provinceNames'];
+                }
+            }
+        }
+
+        if(isset($qitaCity))
+        {
+            foreach($qitaCity as $key=>&$vv)
+            {
+                foreach($vv as $key2=>$r)
+                {
+                    $name[$key] = $r['this_city'];  //其他城市的名称取出来
+                    break;
+                }
+            }
+        }
+
+        if(isset($qitaCity))
+        {
+            foreach($qitaCity as $key=>&$vv)
+            {
+                foreach($vv as $key2=>&$r)
+                {
+                    $r['city_time_1'] = str_replace(".","-",$r['city_time_1']);
+                    $t = strtotime($r['city_time_1']);
+                    $a = $key2.'day';  
+                    $r['date'] = str_replace("-",".",substr(date('Y-m-d',strtotime("+$a",$t)),5));  //指定时间戳+$a天以后
+                }
+            }
+        }
+
+        //头部数组
+        $headArray = array('departure_city'=>$departure_city,'return_city'=>$return_city,'departure_date'=>$departure_date,'return_date'=>$return_date,'city'=>$city_name);
+
+        //初始化索引数组
+        if(isset($info['index']))
+        {
+            $index = $info['index'];
+        }else{        
+            for($i=0;$i<$cityNumber;$i++)
+            {
+                $index[] = '';
+            }
+        }
+
+        foreach($index as $key=>$v)
+        {
+            if($this_city_index == $key)
+            {
+                $index[$key] = $this_city_index;   //将城市数据存到对应的空间内
+            }
+        }
+
+        $_SESSION['index'] = $index;   
+
+        //当前城市具体数据
+        if(isset($_SESSION['result']))
+        {
+            $city = $_SESSION['result'];
+        }
+       
+        //所有城市组合
+        // print_r($info['list']);
+        if(isset($info['list']))
+        {
+            // echo 1;
+            $list = $info['list'];
+        }else{   
+            // echo 2;   
+            for($i=0;$i<$cityNumber;$i++)
+            {
+                $list[] = '';
+            }
+        }
+        // print_r($cityResult);
+        //已经规划好景点线路的城市
+        $list = $cityResult;
+        //处理allCity,天数区间
+        foreach($allCity as $key1=>$val)
+        {
+            $dayNum[$key1] = "D".$val['city_d_1']."-"."D".$val['city_d_2'];  
+        }
+
+        foreach($list as $k4=>$value)
+        {
+            if(empty($value))
+            {
+                foreach($qitaCity as $k5=>$qita)
+                {
+                    
+                    if($k4 == $k5)
+                    {
+                        $qitaResult[$k5] = $qitaCity[$k5];
+                    }
+                }
+            }
+            
+        }
+
+        foreach($list as $key2=>&$vo)
+        {
+            if(in_array('', $index) == 1)
+            {
+                if(isset($qitaResult))
+                {
+                    foreach($qitaResult as $kk=>$qita)
+                    {
+                        if($key2 == $kk)
+                        {
+                            $temp['day_arry']= $qitaResult[$kk];
+                            $list[$key2] = $temp;
+                        } 
+                        foreach($name as $key4=>$nValue)
+                        {
+                            if($key2 == $key4)
+                            {
+                                $list[$key2]['this_city'] = $nValue;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            foreach($dayNum as $key3=>$d)
+            {
+                if($key2 == $key3)
+                {
+                    $vo['betw'] = $d;
+                }
+            }
+
+        }
+        $_SESSION['list'] = $list;   
+
+        // print_r($list);
+        // print_r($info['hotelArray']);
+        $cityArray = $info['DragDropcity']['go_city_array'];   //每次都是最新选择的城市组合
+        //部分城市选择了酒店，存在的情况下,在输出list的时候，替换list中的酒店数据
+        //未编辑情况下的酒店在行程总览页面的渲染
+
+        ////////////////////////////////////
+
+
+        //当从个人中心点击编辑时，未做任何酒店添加操作时，替换之前的lastInfo内容
+        // print_r($info);
+        // print_r($info['lastInfo']);
+        // exit;
+        if($post['is_edit'] == 'true' && $post['is_plan_edit'] == 'ok')
+        {
+            $lastInfo['baseData'] = $info['DragDropcity'];
+            $city = [];
+            foreach($info['DragDropcity']['go_city_array'] as $k=>$ii)
+            {
+                $city[$k] = $ii['city_name'];
+            }
+            $head['city'] = $city;
+            $head['departure_city'] = $info['DragDropcity']['departure_city'];
+            $head['departure_date'] = $info['DragDropcity']['date'];
+            $head['return_city'] = $info['DragDropcity']['return_city'];
+            $a = ($info['DragDropcity']['day_num']-1).'day';  
+            $t = strtotime($head['departure_date']);
+            $head['return_date']  = str_replace("-",".",substr(date('Y-m-d',strtotime("+$a",$t)),5));
+            $lastInfo['head'] = $head;
+
+            $lastInfo['index'] = $info['index'];
+
+            $formData['adult'] = $info['DragDropcity']['adult'];
+            $formData['children'] = $info['DragDropcity']['children'];
+            $formData['day_num'] = $info['DragDropcity']['day_num'];
+            $formData['date'] = $info['DragDropcity']['date'];
+            $formData['traffic_tools'] = $info['DragDropcity']['traffic_tools'];
+            $formData['departure_city'] = $info['DragDropcity']['departure_city'];
+            $formData['return_city'] = $info['DragDropcity']['return_city'];
+            
+            $lastInfo['formData'] = $formData;
+            $lastInfo['list'] = $list;
+
+            $_SESSION['lastInfo'] = $lastInfo;
+        }
+    
+        // print_r($info);
+        //更新formData里的数据，天数的变化
+        if(isset($info['data']['city_data']))
+        {
+            $_SESSION['DragDropcity'] = $info['data']['city_data'];
+            $_SESSION['citysession'] = $info['data']['city_data'];
+        }
+       
+        $result['head']= $headArray;
+        $result['index'] = $index;
+        $result['list'] = $list;
+        // print_r($list);
+        $result['this_city_index'] = $this_city_index;
+        // print_r($list);
+        $_SESSION['overview'] = $result;   //行程总览左侧数据 (此时只有对应的城市有酒店)
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    //行程总览右侧列表数据
+    public function right_list()
+    { 
+        session_start();
+        $post = $_POST;
+        $cityindex = $post['cityindex'];   //城市索引
+        $dayindex = $post['dayindex']; ;    //天数索引
+        $info = $_SESSION;
+
+        $departure_city = $info['data']['city_data']['departure_city']; //出发城市
+        $return_city = $info['data']['city_data']['return_city'];       //返回城市
+        //城市 
+        $cityArray = $info['data']['city_data']['go_city_array'];
+        // print_r($cityArray);
+        foreach($cityArray as $key=>$arr)
+        {
+            if($key == $cityindex)
+            {
+                $city = $cityArray[$key];
+                $daynum = $arr['city_daynum'];
+            }
+        }
+        $c = count($cityArray);  //城市个数
+        $cityResult = $info['cityResult']; 
+        //景点
+        foreach($cityResult as $key=>$spotday)
+        {
+            //匹配城市
+            if($cityindex == $key)  
+            {
+                $Arr = $cityResult[$key];
+            }
+        }
+        $this_city = $Arr['this_city']; 
+        $status = $Arr['status']; 
+        $spotArray = $Arr['day_arry']; 
+
+        foreach($spotArray as $key2=>$spot)
+        {
+            //匹配天数中
+            if($dayindex == $key2)
+            {
+                $info = $spotArray[$key2];
+                $result['howDay'] = $key2; 
+            }
+            
+        }
+        $allInfo = $_SESSION;
+
+        $result['date'] = $spot['date']; 
+        $result['cityindex'] = $cityindex; 
+        $result['this_city'] = $this_city; 
+        $result['status'] = $status; 
+        $result['start_time'] = $info['start_time'];
+        $result['end_time'] = $info['end_time'];
+        $result['jingdian'] = $info['day']; 
+
+        //交通方式匹配
+        /**** 多个城市 ****/
+        if($c > 1)  
+        {
+            /**** 第一个城市 ****/
+            if($cityindex == 0)
+            {
+                //游玩大于一天
+                if($cityArray[0]['city_daynum'] > 1)
+                {
+                    //第一天
+                    if($cityindex == 0)
+                    {
+                        if($result['howDay'] == 0)
+                        {
+                            $result['departure_city']= $departure_city;
+                            $result['city_trc_name'] = $cityArray[0]['city_trc_name'];
+                            $result['dis'] = $cityArray[0]['dis'];
+                            if($cityArray[0]['city_trc_name'] == '飞机交通')
+                            {
+                                $result['flightTime'] = $cityArray[0]['flightTime'];
+                            }
+                            if($cityArray[0]['city_trc_name'] == '铁路交通')
+                            {
+                                $result['trainTime'] = $cityArray[0]['trainTime'];
+                            } 
+                            if($cityArray[0]['city_trc_name'] == '其他交通')
+                            {
+                                $result['trafficTime'] = $cityArray[0]['trafficTime'];
+                            } 
+                        }
+                    }
+                    //最后一天
+                    foreach($cityArray as $key=>$ci)
+                    {
+                        if($result['howDay'] == $cityArray[0]['city_daynum'] -1)
+                        {
+                            
+                            $result['next_city'] = $cityArray[1]['city_name'];
+                            $result['city_trc_name'] = $cityArray[1]['city_trc_name'];
+                            $result['dis'] = $cityArray[1]['dis'];
+                            if($cityArray[1]['city_trc_name'] == '飞机交通')
+                            {
+                                $result['flightTime'] = $cityArray[1]['flightTime'];
+                            }
+                            if($cityArray[1]['city_trc_name'] == '铁路交通')
+                            {
+                                $result['trainTime'] = $cityArray[1]['trainTime'];
+                            } 
+                            if($cityArray[1]['city_trc_name'] == '其他交通')
+                            {
+                                $result['trafficTime'] = $cityArray[1]['trafficTime'];
+                            } 
+                        }
+                        break;
+                    }
+                    
+                }else{ //第一个城市只游玩一天
+                    $result['departure_city']= $departure_city;
+                    $result['next_city'] = $cityArray[1]['city_name'];
+                    $result['city_trc_name'] = $cityArray[1]['city_trc_name'];
+                    $result['dis'] = $cityArray[1]['dis'];
+                    if($cityArray[1]['city_trc_name'] == '飞机交通')
+                    {
+                        $result['flightTime'] = $cityArray[1]['flightTime'];
+                    }
+                    if($cityArray[1]['city_trc_name'] == '铁路交通')
+                    {
+                        $result['trainTime'] = $cityArray[1]['trainTime'];
+                    } 
+                    if($cityArray[1]['city_trc_name'] == '其他交通')
+                    {
+                        $result['trafficTime'] = $cityArray[1]['trafficTime'];
+                    } 
+                }
+            }
+            /**** 最后一个城市 ****/
+            if($cityindex == $c-1 && $c-1 >= 1)
+            {
+                //最后一个城市游玩大于一天
+                if($cityArray[$c-1]['city_daynum'] > 1)
+                {
+                    //第一天
+                    if($result['howDay'] == 0)
+                    {
+                        $result['pre_city'] = $cityArray[$c-2]['city_name'];
+                        $result['city_trc_name'] = $cityArray[$c-2]['city_trc_name'];
+                        $result['dis'] = $cityArray[$c-2]['dis'];
+                        if($cityArray[$c-2]['city_trc_name'] == '飞机交通')
+                        {
+                            $result['flightTime'] = $cityArray[$c-2]['flightTime'];
+                        }
+                        if($cityArray[$c-2]['city_trc_name'] == '铁路交通')
+                        {
+                            $result['trainTime'] = $cityArray[$c-2]['trainTime'];
+                        } 
+                        if($cityArray[$c-2]['city_trc_name'] == '其他交通')
+                        {
+                            $result['trafficTime'] = $cityArray[$c-2]['trafficTime'];
+                        } 
+                    }
+                    
+                    //最后一天
+                    foreach($cityArray as $key=>$ci)
+                    {
+                        if($result['howDay'] == $cityArray[$c-1]['city_daynum'] - 1)
+                        {
+                            $result['return_city'] = $return_city ;
+                            $result['city_trc_name'] = $allInfo['data']['city_data']['return_traffic']['city_trc_name'];
+                            $result['dis'] = $allInfo['data']['city_data']['return_traffic']['dis'];
+                            if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '飞机交通')
+                            {
+                                $result['flightTime'] = $allInfo['data']['city_data']['return_traffic']['flightTime'];
+                            }
+                            if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '铁路交通')
+                            {
+                                $result['trainTime'] = $allInfo['data']['city_data']['return_traffic']['trainTime'];
+                            }  
+                            if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '其他交通')
+                            {
+                                $result['trafficTime'] = $allInfo['data']['city_data']['return_traffic']['trafficTime'];
+                            }  
+                        }
+                        break;
+                    }
+                }else{   //最后一个城市只玩一天
+                    $result['pre_city'] = $cityArray[$c-2]['city_name'];
+                    $result['city_trc_name'] = $cityArray[$c-2]['city_trc_name'];
+                    $result['dis'] = $cityArray[$c-1]['dis'];
+                    if($cityArray[0]['city_trc_name'] == '飞机交通')
+                    {
+                        $result['flightTime'] = $cityArray[0]['flightTime'];
+                    }
+                    if($cityArray[$c-1]['city_trc_name'] == '铁路交通')
+                    {
+                        $result['trainTime'] = $cityArray[$c-1]['trainTime'];
+                    } 
+                    if($cityArray[$c-1]['city_trc_name'] == '其他交通')
+                    {
+                        $result['trafficTime'] = $cityArray[$c-1]['trafficTime'];
+                    } 
+
+                    $result['return_city'] = $return_city ;
+                    $result['dis'] = $allInfo['data']['city_data']['return_traffic']['dis'];
+                    $result['city_trc_name'] = $allInfo['data']['city_data']['return_traffic']['city_trc_name'];
+                    if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '飞机交通')
+                    {
+                        $result['flightTime'] = $allInfo['data']['city_data']['return_traffic']['flightTime'];
+                    }
+                    if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '铁路交通')
+                    {
+                        $result['trainTime'] = $allInfo['data']['city_data']['return_traffic']['trainTime'];
+                    } 
+                    if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '其他交通')
+                    {
+                        $result['trafficTime'] = $allInfo['data']['city_data']['return_traffic']['trafficTime'];
+                    }   
+                }
+            }
+
+            /**** 中间城市 ****/
+            if($cityindex <= $c-2 && $cityindex > 0)
+            {
+                //中间就只有一个城市
+                if($cityindex == $c-2)
+                {
+                    //中间一个城市游玩大于一天
+                    if($cityArray[$c-2]['city_daynum'] > 1)
+                    {
+                        //中间城市第一天
+                        if($result['howDay'] == 0)
+                        {
+                            $result['pre_city'] = $cityArray[0]['city_name'];
+                            $result['city_trc_name'] = $cityArray[$c-2]['city_trc_name'];
+                            $result['dis'] = $cityArray[$c-2]['dis'];
+                            if($cityArray[$c-2]['city_trc_name'] == '飞机交通')
+                            {
+                                $result['flightTime'] = $cityArray[$c-2]['flightTime'];
+                            }
+                            if($cityArray[$c-2]['city_trc_name'] == '铁路交通')
+                            {
+                                $result['trainTime'] = $cityArray[$c-2]['trainTime'];
+                            } 
+                            if($cityArray[$c-2]['city_trc_name'] == '其他交通')
+                            {
+                                $result['trafficTime'] = $cityArray[$c-2]['trafficTime'];
+                            } 
+                        }
+                        //中间城市最后一天
+                        foreach($cityArray as $key=>$ci)
+                        {
+                            if($result['howDay'] == $cityArray[$c-2]['city_daynum'] - 1)
+                            {
+                                $result['next_city'] = $cityArray[$c-1]['city_name'];
+                                $result['city_trc_name'] = $cityArray[$c-1]['city_trc_name'];
+                                $result['dis'] = $allInfo['data']['city_data']['return_traffic']['dis'];
+                                if($cityArray[$c-2]['city_trc_name'] == '飞机交通')
+                                {
+                                    $result['flightTime'] = $cityArray[$c-2]['flightTime'];
+                                }
+                                if($cityArray[$c-2]['city_trc_name'] == '铁路交通')
+                                {
+                                    $result['trainTime'] = $cityArray[$c-2]['trainTime'];
+                                }  
+                                if($cityArray[$c-2]['city_trc_name'] == '其他交通')
+                                {
+                                    $result['trafficTime'] = $cityArray[$c-2]['trafficTime'];
+                                }  
+                            }
+                            break;
+                        }
+                        }else{   //中间城市只玩一天
+                            $result['pre_city'] = $cityArray[0]['city_name'];
+                            $result['city_trc_name'] = $cityArray[$c-2]['city_trc_name'];
+                            $result['dis'] = $cityArray[$c-1]['dis'];
+                            if($cityArray[0]['city_trc_name'] == '飞机交通')
+                            {
+                                $result['flightTime'] = $cityArray[0]['flightTime'];
+                            }
+                            if($cityArray[0]['city_trc_name'] == '铁路交通')
+                            {
+                                $result['trainTime'] = $cityArray[0]['trainTime'];
+                            } 
+                            if($cityArray[0]['city_trc_name'] == '其他交通')
+                            {
+                                $result['trafficTime'] = $cityArray[0]['trafficTime'];
+                            } 
+
+                            $result['next_city'] = $cityArray[$c-1]['city_name'];
+                            $result['dis'] = $allInfo['data']['city_data']['return_traffic']['dis'];
+                            if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '飞机交通')
+                            {
+                                $result['flightTime'] = $allInfo['data']['city_data']['return_traffic']['flightTime'];
+                            }
+                            if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '铁路交通')
+                            {
+                                $result['trainTime'] = $allInfo['data']['city_data']['return_traffic']['trainTime'];
+                            }  
+                            if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '其他交通')
+                            {
+                                $result['trafficTime'] = $allInfo['data']['city_data']['return_traffic']['trafficTime'];
+                            } 
+                        }
+                    }
+            }
+
+        }else{  //只有一个城市
+            //只有一天
+            if($cityArray[0]['city_daynum'] == 0)
+            {
+                $result['departure_city'] = $departure_city;
+                $result['city_trc_name'] = $cityArray[0]['city_trc_name'];
+                $result['dis'] = $cityArray[0]['dis'];
+                if($cityArray[0]['city_trc_name'] == '飞机交通')
+                {
+                    $result['flightTime'] = $cityArray[0]['flightTime'];
+                }
+                if($cityArray[0]['city_trc_name'] == '铁路交通')
+                {
+                    $result['trainTime'] = $cityArray[0]['trainTime'];
+                } 
+                if($cityArray[0]['city_trc_name'] == '其他交通')
+                {
+                    $result['trafficTime'] = $cityArray[0]['trafficTime'];
+                } 
+
+                $result['return_city'] = $return_city ;
+                $result['dis'] = $allInfo['data']['city_data']['return_traffic']['dis'];
+                if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '飞机交通')
+                {
+                    $result['flightTime'] = $allInfo['data']['city_data']['return_traffic']['flightTime'];
+                }
+                if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '铁路交通')
+                {
+                    $result['trainTime'] = $allInfo['data']['city_data']['return_traffic']['trainTime'];
+                }  
+                if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '其他交通')
+                {
+                    $result['trafficTime'] = $allInfo['data']['city_data']['return_traffic']['trafficTime'];
+                }  
+            }else{  //大于一天
+                //第一天
+                if($result['howDay'] == 0)
+                {
+                    $result['departure_city']= $departure_city;
+                    $result['city_trc_name'] = $cityArray[0]['city_trc_name'];
+                    $result['dis'] = $cityArray[0]['dis'];
+                    if($cityArray[0]['city_trc_name'] == '飞机交通')
+                    {
+                        $result['flightTime'] = $cityArray[0]['flightTime'];
+                    }
+                    if($cityArray[0]['city_trc_name'] == '铁路交通')
+                    {
+                        $result['trainTime'] = $cityArray[0]['trainTime'];
+                    } 
+                    if($cityArray[0]['city_trc_name'] == '其他交通')
+                    {
+                        $result['trafficTime'] = $cityArray[0]['trafficTime'];
+                    } 
+                }
+                //最后一天
+                if($result['howDay'] == $cityArray[0]['city_daynum'] -1)
+                {
+                    $result['return_city'] = $return_city ;
+                    $result['dis'] = $allInfo['data']['city_data']['return_traffic']['dis'];
+                    $result['city_trc_name'] = $allInfo['data']['city_data']['return_traffic']['city_trc_name'];
+                    if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '飞机交通')
+                    {
+                        $result['flightTime'] = $allInfo['data']['city_data']['return_traffic']['flightTime'];
+                    }
+                    if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '铁路交通')
+                    {
+                        $result['trainTime'] = $allInfo['data']['city_data']['return_traffic']['trainTime'];
+                    }  
+                    if($allInfo['data']['city_data']['return_traffic']['city_trc_name'] == '其他交通')
+                    {
+                        $result['trafficTime'] = $allInfo['data']['city_data']['return_traffic']['trafficTime'];
+                    }
+                }
+
+            }
+            
+        }
+
+        // print_r($result);     
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    
+    //酒店页面
+    public function addHotel()
+    {
+        return $this->fetch();
+    }
+
+    //酒店页面左侧列表数据
+    public function hotelData()
+    {
+        session_start();
+        $post = $_POST;  //接收城市索引 
+        $data = $_SESSION;
+
+        $cityinfo = $data['data']['city_data']['go_city_array'];
+        // print_r($cityinfo);    
+        foreach($cityinfo as $key=>&$info)
+        {
+            $h = array();
+            $city_date = $info['city_date'];
+            $city_date2 = $info['city_date2'];
+            $info['date1'] = str_replace(".","-","$city_date");
+            $info['date2'] = str_replace(".","-","$city_date2");
+            $num = $info['city_daynum'];
+
+            if(isset($data['lastInfo']['list']))
+            {
+                $list = $data['lastInfo']['list'];
+                $result['list'] = $list;
+            }else{
+                //第一次进来的时候分配第一个城市的酒店空间
+                for($i=1;$i<=$num;$i++)
+                {
+                    $h[] = array('hotel_name'=>'','lat'=>'','lng'=>'','tel'=>'','address'=>'','LowRate'=>'','BusinessZoneName'=>'','ThumbNailUrl'=>'');
+                }
+                $info['hotel'] = $h;
+                $result['list'] = $cityinfo;
+            }
+        }
+
+    // print_r($_SESSION['spotArray']);
+        //////编辑时，取值 $_SESSION['spotArray']
+        $citys = $data['DragDropcity']['go_city_array'];
+        if($post['is_edit'] == 'true')
+        { 
+            foreach($_SESSION['spotArray'] as &$ss)
+            {
+                $ss['city_name'] = $ss['this_city'];
+                if(isset($ss['province']))
+                {
+                    $ss['provinceNames'] = $ss['province'];
+                }
+                if(isset($ss['this_city_lat']))
+                {
+                    $ss['position']['lat'] = $ss['this_city_lat'];
+                }
+                if(isset($ss['this_city_lng']))
+                {
+                    $ss['position']['lng'] = $ss['this_city_lng'];
+                } 
+
+                foreach($citys as $cc)
+                {
+                    if(isset($ss['this_city']))
+                    {
+                        if($ss['this_city'] == $cc['city_name'])
+                        {
+                            $ss['city_daynum'] = $cc['city_daynum'];
+                            $ss['city_date'] = $cc['city_date'];
+                            $ss['city_date2'] = $cc['city_date2'];
+                            $ss['city_time_1'] = $cc['city_time_1'];
+                            $ss['city_time_2'] = $cc['city_time_2'];
+                            $ss['city_d_1'] = $cc['city_d_1'];
+                            $ss['city_d_2'] = $cc['city_d_2'];
+                            $ss['date1'] = str_replace(".","-",$cc['city_date']);
+                            $ss['date2'] = str_replace(".","-",$cc['city_date2']);
+                        }
+                    }
+                }
+
+                $h = [];
+                $num = $ss['city_daynum'];
+                for($i=1;$i<=$num;$i++)
+                {
+                    $h[] = array('hotel_name'=>'','lat'=>'','lng'=>'','tel'=>'','address'=>'','LowRate'=>'','BusinessZoneName'=>'','ThumbNailUrl'=>'');
+                }
+                $ss['hotel'] = $h;
+            }
+            $result['list'] = $_SESSION['spotArray'];
+        }
+        // print_r($result);
+        //////////////////////
+
+        $head = $data['overview']['head'];
+        $index = $data['overview']['index'];
+        // print_r($data);
+        // exit;
+        if($post['is_plan_edit'] == 'ok')
+        { 
+            $this_city_index = 0;
+            foreach($result['list'] as &$ss)
+            {
+                $ss['city_name'] = $ss['this_city'];
+                if(isset($ss['province']))
+                {
+                    $ss['provinceNames'] = $ss['province'];
+                }
+                if(isset($ss['this_city_lat']))
+                {
+                    $ss['position']['lat'] = $ss['this_city_lat'];
+                }
+                if(isset($ss['this_city_lng']))
+                {
+                    $ss['position']['lng'] = $ss['this_city_lng'];
+                } 
+
+                foreach($citys as $cc)
+                {
+                    if(isset($ss['this_city']))
+                    {
+                        if($ss['this_city'] == $cc['city_name'])
+                        {
+                            $ss['city_daynum'] = $cc['city_daynum'];
+                            $ss['city_date'] = $cc['city_date'];
+                            $ss['city_date2'] = $cc['city_date2'];
+                            $ss['city_time_1'] = $cc['city_time_1'];
+                            $ss['city_time_2'] = $cc['city_time_2'];
+                            $ss['city_d_1'] = $cc['city_d_1'];
+                            $ss['city_d_2'] = $cc['city_d_2'];
+                            $ss['date1'] = str_replace(".","-",$cc['city_date']);
+                            $ss['date2'] = str_replace(".","-",$cc['city_date2']);
+                        }
+                    }
+                }
+
+                $h = [];
+                $num = $ss['city_daynum'];
+                for($i=1;$i<=$num;$i++)
+                {
+                    $h[] = array('hotel_name'=>'','lat'=>'','lng'=>'','tel'=>'','address'=>'','LowRate'=>'','BusinessZoneName'=>'','ThumbNailUrl'=>'');
+                }
+                $ss['hotel'] = $h;
+            }
+        }else{
+            $this_city_index = $data['overview']['this_city_index'];
+        }
+
+       
+        $curr_index = $post['curr_index'];
+
+        foreach($data['cityResult'] as $key=>$gg)
+        {
+            if($key == $curr_index)
+            {
+                $city = $gg;
+            }
+        }
+
+        $result['head']= $head;
+        $result['index'] = $index;
+        $result['this_city_index'] = $this_city_index;
+        $result['curr_index'] = $curr_index;
+        $result['city'] = $city;
+        $result['formData'] = $data['data']['city_data'];
+        // print_r($result);
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    //接收酒店数据(此时对于单个城市所需要的数据已经汇总)
+    public function receiveHotel()
+    {
+        session_start();
+        $data = $_SESSION; 
+    // print_r($data);
+
+        $overview = $data['overview'];
+        $index = $overview['index'];    //城市索引数组
+        $spotList = $overview['list'];      //城市景点列表
+
+        // $post = $_POST;   //接收添加酒店以后的数据
+
+        $post = file_get_contents('php://input');  //数据量比较大的时候,$_POST已经无法满足
+        $post = json_decode($post,true);
+		
+        $cityData = $data['data']['city_data']['go_city_array'];
+        $len = count($cityData);
+       
+        if(isset($data['hotelResult']))
+        {
+            $hotelResult = $data['hotelResult'];
+        }
+        else{      
+            for($i=0;$i<$len;$i++)
+            {
+                $hotelResult[] = '';
+            }
+        }
+
+        foreach($hotelResult as $key=>&$h)
+        {
+        	if(isset($post['curr_index']))
+        	{
+        		if($post['curr_index'] == $key)
+	            {
+	                $hotelResult[$key] = $post['city'];   //将酒店数据存到对应的空间内 
+	            }
+        	}
+           
+        }
+          
+        ////////////////////////
+        //编辑时，城市个数发生改变
+        if($post['is_edit'] == 'true')
+        {
+            //城市个数改变的标记
+            if(isset($_SESSION['addcity_tag'])) 
+            {
+                if(isset($_SESSION['hotelArray']))
+                {
+                    if(isset($_SESSION['spotArray']))
+                    {
+                        if(count($hotelResult) != count($_SESSION['spotArray']))
+                        {
+                            $hotelResult = $_SESSION['spotArray'];  //用新的结构替换一次
+                        }
+                        
+                        foreach($hotelResult as $key=>&$h)
+                        {
+                            if($post['curr_index'] == $key)
+                            {
+                                $hotelResult[$key] = $post['city'];  //将酒店数据存到对应的空间内 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //////////////////////////
+
+        $_SESSION['hotelResult'] = $hotelResult;
+        //用于返回编辑的时候，行程总览页面渲染
+        $_SESSION['hotelArray'] = $hotelResult;
+
+        //编辑时使用
+        if($post['is_edit'] == 'true')
+        {
+            $newcity = $post['city']['this_city'];
+            foreach($post['head']['city'] as $key22=>$xx)
+            {
+                if($xx == $newcity)
+                {
+                    $a = $key22;
+                }
+            }
+            foreach($hotelResult as $key=>$hh)
+            {
+                $hotelResult[$a] = $post['city'];  // 新添加的城市
+            }
+            $_SESSION['hotelResult'] = $hotelResult;
+        }
+
+        $post['index'] = $index; //索引
+        $hotelList = $post['list'];
+
+        //处理酒店、景点数据
+        foreach($hotelList as $key=>$value)
+        {
+            if($key == $index)
+            {
+                if(!empty($value['hotel']))
+                {
+                    foreach($value['hotel'] as $v)
+                    {
+                        if(!empty($v['hotel_name'])){$id = $key;}
+                    }
+                }
+            }
+           
+        }
+
+        foreach($spotList as $k=>$s)
+        {
+            foreach($s['day_arry'] as &$arr)
+            {
+                if(isset($arr['hotel']))
+                {
+                    unset($arr['hotel']);
+                }
+                if(isset($arr['day']))
+                {
+                    $arr['jingdian'] = $arr['day'];
+                    unset($arr['day']);
+                }
+               
+            }
+            if(isset($id))
+            {
+                if($k == $id){$spot = $s;}
+            }
+            
+           
+        }
+       foreach($hotelList as $key=>&$hotelValue)
+       {
+            if(isset($id))
+            {
+                if($key == $id) 
+                {
+                $hotelValue['spot'] = $spot;
+
+                foreach($post['city']['day_arry'] as &$value)
+                {
+                        $value['jingdian'] = $value['day'];
+                        unset($value['day']);
+                }
+                $hotelValue['day_arry'] = $post['city']['day_arry'];
+                }
+            }
+            
+       } 
+        $post['list'] = $hotelList;  
+
+       //处理城市基本数据(包括交通方式，出行人数量，往返城市)
+        $baseData = $data['data']['city_data'];
+        $post['baseData'] = $baseData;
+        $_SESSION['lastInfo'] = $post;      //整合一个城市的相关数据存储到session
+        $result['status'] = 1;              //返回一个成功的状态
+        // print_r( $_SESSION);
+
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    //返回已经选择的酒店，行程总览右侧列表中展示
+    public  function hotelList()
+    {
+        $post = $_POST;
+        session_start();
+        $data = $_SESSION;
+        // print_r($data['index']);
+        // $key = array_search('',$data['hotelResult']);  //array_search失败时候返回的是false,含有单个
+        // $p = array_keys($data['hotelResult'], ''); //搜索的字符串在数组中 含有多个 
+        //当其中城市没有选择酒店的时候，将cityResult中的对应数据 赋值到 hotelResult 对应的位置
+        // print_r($data['hotelResult']);
+        foreach($data['hotelResult'] as $key=>&$h)
+        {
+            if($h == '')
+            {
+                foreach($data['cityResult'] as $key2=>&$cc)
+                {
+                    if($key == $key2)
+                    {
+                        $data['hotelResult'][$key] = $cc; 
+                    }
+                }
+            }
+        }
+
+        $result = $data;
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    //判断用户是否已经登录
+    public function login_name()
+    {
+        if(!empty($_COOKIE['uid']))
+        {
+            echo json_encode($_COOKIE['user_name'],JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+}

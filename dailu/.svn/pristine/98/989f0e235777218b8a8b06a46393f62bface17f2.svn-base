@@ -1,0 +1,423 @@
+$(function(){
+	var dateInput = ['#arr_time','#leave_time']
+	$(dateInput).each(function(i,ele){
+		$(ele).datepicker({
+			minDate: 0,
+			dateFormat: "yy-mm-dd"
+		});
+	});
+
+
+	var totnum = $('.totnum').text()
+	
+	$('#loca').on('focus',function(){
+		$.post('hotelFilter',{'city':$('#des').val()+'市'},function(res){
+			var hotList = {};
+			hotList.list = res.hotelFilterInfos;
+			var hotRender = template.compile(hotTemplate);
+			var html = hotRender(hotList);
+			$('.business .businessBox').html(html)
+
+		},'json')
+		$('.business .businessBox').show();
+	})
+		$('html').on('click',function(event){
+			if(event.target.id!='loca'){
+				$('.business .businessBox').hide()
+			}
+			
+		})
+	var map = new BMap.Map("allmap");
+	map.enableScrollWheelZoom();
+
+	// 定义自定义覆盖物的构造函数  
+	function SquareOverlay(point, text){
+		this._center = point;
+		this._text = text;
+	}
+
+	// 继承API的BMap.Overlay
+		SquareOverlay.prototype = new BMap.Overlay();
+		SquareOverlay.prototype.initialize = function(map){
+					// 保存map对象实例
+					this._map = map;
+
+					var textLength = this._text.length
+					// 创建div元素，作为自定义覆盖物的容器
+					var div = document.createElement("div");
+					div.style.position = "absolute";
+					// 可以根据参数设置元素外观
+					div.style.width = 13*textLength + "px";
+					div.style.height = 20 + "px";
+					div.style.color = "#2e94d3";
+					div.style.lineHeight = "20px";
+					div.style.whiteSpace = "nowrap";
+					div.style.backgroundColor = "#fff";
+					//让文字不被选中
+					div.style.MozUserSelect = "none";
+					div.style.fontSize = "12px";
+					div.style.borderRadius = "3px";
+					div.style.paddingLeft = "5px";
+					// textNode1=document.createTextNode(this._),  
+					div.appendChild(document.createTextNode(this._text));
+					//创建一个文本节点 
+					// 将div添加到覆盖物容器中
+					map.getPanes().markerPane.appendChild(div);
+					// 保存div实例
+					this._div = div;
+					// 需要将div元素作为方法的返回值，当调用该覆盖物的show、
+					// hide方法，或者对覆盖物进行移除时，API都将操作此元素。
+					return div;
+				}
+			// 添加自定义覆盖物  
+		SquareOverlay.prototype.draw = function(){    
+					// 根据地理坐标转换为像素坐标，并设置给容器    
+					var position = this._map.pointToOverlayPixel(this._center);
+					this._div.style.left = position.x +5 + "px";    
+					this._div.style.top = position.y -24 + "px";    
+					this._div.style.zIndex = -1;    
+					
+			}
+
+
+
+
+		setPagination(totnum)				
+ 		renderMarker() //通过列表渲染marker
+ 		var currPoint = '';
+ 		$('.content_wap .hotel_box').on('mouseenter','.list',function(){
+ 			var center = {};
+ 			center.lng =$(this).attr('lng');
+ 			center.lat =$(this).attr('lat');
+ 			var point = new BMap.Point(center.lng, center.lat);
+ 			map.centerAndZoom(point, 12);
+ 			var allPoint =  map.getOverlays();
+ 			for(var i = 0;i<allPoint.length;i++){
+ 				if(allPoint[i].point.lng==center.lng && allPoint[i].point.lat==center.lat){
+ 					currPoint=allPoint[i];
+ 					currPoint.setAnimation(BMAP_ANIMATION_BOUNCE)
+ 					return false;
+ 				}
+ 			}
+ 		}).on('mouseleave','.list',function(){
+ 			currPoint.setAnimation(null);
+ 		})
+
+ 		$('.filterBox .list').on('click','.filter',function(){
+ 			if($(this).hasClass('title')) return false;
+ 			$(this).parents('.list').find('.filter').removeClass('active');
+ 			$(this).addClass('active')
+ 		})
+ 		$('.list_wap .filter').on('click',function(){
+ 			var that =this;
+ 			setTimeout(function(){
+ 				if($(that).attr('val')=='RateDesc'){
+ 					$(that).addClass('active').removeClass('up').attr('val','RateAsc');
+ 				}else if($(that).attr('val')=='RateAsc'){
+ 					$(that).addClass('up').attr('val','RateDesc');
+ 				}	
+ 			},300)
+ 			
+ 		})
+
+ 		$('.filterBox .loc_list .locType').on("click",function(){
+ 			$(this).addClass('clickActive').siblings().removeClass('clickActive');
+ 		})
+
+ 		$(window).scroll(function() {  
+ 			var mapTop,mapLeft;
+ 			mapTop =  $('.content_wap').offset().top-$(window).scrollTop(); 
+ 			mapLeft = $('.content_wap .map_wap').offset().left-$(window).scrollLeft()
+ 			if(mapTop<=100){
+ 				$('.content_wap .map_wap').css({position:'fixed',top:'100px',left:mapLeft})
+ 			}else{
+ 				$('.content_wap .map_wap').css({position:'relative',top:'0px',left:0})
+ 			}
+ 		});  
+
+ 		$('.locType').on('click',function(){
+ 			var query = {};
+ 				query.type = $(this).attr('val');
+				query.city= $('#des').val()+"市";
+				switch(query.type)
+				{
+					case 'area':
+					var type = 'dis_id';
+					break;
+					case 'dis':
+					var type = 'zone_id';
+					break;
+					case 'lan':
+					var type = 'query_text';
+					break;
+				}
+
+ 				$.post('position',query,function(res){
+ 					if (!Array.isArray(res)) return false;
+ 					var str = '';
+ 						if(type =='query_text'){
+ 							for(var i=0;i<res.length;i++){
+ 								str+= '<span class="filter" type ='+ type +' val='+res[i].Name+'>'+res[i].Name+'</span>'
+ 							}
+ 						}else{
+ 							for(var i=0;i<res.length;i++){
+ 								str+= '<span class="filter" type ='+ type +' val='+res[i].Id+'>'+res[i].Name+'</span>'
+ 							}
+ 						}
+ 						
+ 					$('.loc_box').html(str);
+ 				},'json')
+
+ 		})
+
+ 		$('.filterBox ,.list_wap .title').on('click','.filter',function(){
+ 				var query = {};
+ 				$('.filter.active').each(function(){
+ 					var key = $(this).attr('type');
+ 					var val = $(this).attr('val')
+ 					query[key] = val;
+ 				})
+				query.arrival_date = $('#arr_time').val();
+				query.departure_date = $('#leave_time').val();
+				query.city= $('#des').val()+"市";
+				query.post= true;
+				query.page_size= 20;
+				query.query_text =$('#loca').val();
+ 			$.post('hotel',query,function(res){
+ 				if(!res) return false;
+ 				map.clearOverlays()
+ 				renderList(res)
+ 				setPagination(res.count);
+ 				renderMarker();
+
+ 			},'json')
+ 		})
+
+ 		$('.business .businessBox').on('click','.list span',function(){
+ 			var querytext = $(this).text();
+ 			$('.business .businessBox').hide();
+ 			$('#loca').val(querytext);
+ 			var query = {};
+ 				$('.filter.active').each(function(){
+ 					var key = $(this).attr('type');
+ 					var val = $(this).attr('val')
+ 					query[key] = val;
+ 				})
+				query.arrival_date = $('#arr_time').val();
+				query.departure_date = $('#leave_time').val();
+				query.city= $('#des').val()+"市";
+				query.post= true;
+				query.page_size= 20;
+				query.query_text =$('#loca').val();
+ 			$.post('hotel',query,function(res){
+ 				if(!res) return false;
+ 				map.clearOverlays()
+ 				renderList(res)
+ 				setPagination(res.count);
+ 				renderMarker();
+
+ 			},'json')
+
+ 		})
+
+ 		$('.filter input').on('change',function(){
+ 			var priceArr =[];
+ 			$('.filter input').each(function(){
+ 				priceArr.push($(this).val());
+ 			})
+ 			var val = priceArr.join(',')
+ 			$(this).parent('.filter').attr('val',val)
+ 			
+ 		})
+
+ 		$('.nodata a').on('click',function(){
+ 			$('.list .filter').removeClass('active');
+ 			$('.list .bx').addClass('active');
+ 			var query = {};
+				query.arrival_date = $('#arr_time').val();
+				query.departure_date = $('#leave_time').val();
+				query.city= $('#des').val()+"市";
+				query.post= true;
+				query.page_size= 20;
+ 			$.post('hotel',query,function(res){
+ 				if(!res) return false;
+ 				map.clearOverlays()
+ 				renderList(res)
+ 				setPagination(res.count);
+ 				renderMarker();
+
+ 			},'json')
+ 		})
+ 		$('.search_form .searchBtn').on('click',function(){
+ 			$('.businessBox').hide();
+ 			var query = {};
+				query.arrival_date = $('#arr_time').val();
+				query.departure_date = $('#leave_time').val();
+				query.city= $('#des').val()+"市";
+				query.post= true;
+				query.page_size= 20;
+				query.query_text= $('#loca').val();
+ 			$.post('hotel',query,function(res){
+ 				if(!res) return false;
+ 				map.clearOverlays()
+ 				renderList(res)
+ 				setPagination(res.count);
+ 				renderMarker();
+
+ 			},'json')
+
+ 			var query1={};
+ 				query1.city= $('#des').val()+"市"; 
+ 				query1.type= 'area'; 
+ 			$.post('position',query1,function(res){
+ 					if (!Array.isArray(res)) return false;
+ 					var str = '';
+ 							for(var i=0;i<res.length;i++){
+ 								str+= '<span class="filter" type="dis_id" val='+res[i].Id+'>'+res[i].Name+'</span>'
+ 							}
+ 					$('.loc_box').html(str);
+ 				},'json')
+
+ 			$('.filter').removeClass('active').not('.title').each(function(){
+ 				if($(this).text()=='不限'){
+ 					$(this).addClass('active');
+ 				}
+ 				if($(this).text()=='星级 '){
+ 					$(this).addClass('active');
+ 				}
+ 			})
+ 		})
+
+ 		$('.list_wap').on('click','.btn a',function(){
+ 			var hotel_id = $(this).attr('hotel_id') 
+ 			var arrival_date = $('#arr_time').val();
+			var departure_date = $('#leave_time').val();
+ 			window.location.href =encodeURI('/portal/store/hoteldetail.html?hotel_id='+hotel_id+'&arrival_date='+arrival_date+'&departure_date='+departure_date)
+ 		})
+
+ 	function renderMarker (){  //地图上添加标记 marker
+ 		$('.content_wap .hotel_box .list').each(function(i,ele){
+ 			var lat = $(this).attr('lat');
+ 			var lng = $(this).attr('lng');
+ 			var hotelName = $(this).find('.info .hot_tit').html();
+ 			var center ; 
+	 		// console.log(i)
+	 		if(i==0){
+	 			center = new BMap.Point(lng, lat);
+	 			map.centerAndZoom(center, 15);
+	 		}
+	 		var point = new BMap.Point(lng, lat);
+
+	 		var mySquare = new SquareOverlay(point,hotelName);    
+
+			var myIcon = new BMap.Icon("/static/v1/img/hotel_marker.png", new BMap.Size(20, 53)); //创建marker
+			var marker = new BMap.Marker(point, {
+				icon: myIcon
+			});
+
+			map.addOverlay(marker);              // 将标注添加到地图中\
+			map.addOverlay(mySquare);
+		})
+
+ 	}
+
+ 
+ 	var hotTemplate ='{{each list as value i}}\
+ 				<div class="b_wap">\
+					<div class="tit">{{value.nameCn}}</div>\
+					<div class="list">\
+						{{each value.subHotelFilterInfos as item key}}\
+ 					  		{{if key<11}}\
+							<span>{{item.nameCn}}</span>\
+							{{/if}}\
+						{{/each}}\
+					</div>\
+				</div>\
+				{{/each}}'
+ 
+ 	function renderList (data){
+ 		$('.totnum').text(data.count);
+ 		if(!data.count){
+ 			$('.list_wap .nodata').show();
+ 		}else{
+ 			$('.list_wap .nodata').hide();
+ 		}
+ 		var templateStr = '';
+ 		var hotel = data.hotel;
+ 		var hotelListTemplate = '{{each hotel as value i}}\
+ 									<li lng="{{value.Detail.Longitude }}" lat="{{value.Detail.Latitude}}" class="list clearfix">\
+ 									<div class="imgBox fl">\
+ 									<img src="{{value.Detail.ThumbNailUrl}}" alt="">\
+ 									</div>\
+ 									<div class="info fl">\
+ 									<div class="hot_tit">{{value.Detail.HotelName}}</div>\
+ 									<div class="keyword">\
+ 									<span>{{value.Detail.BusinessZoneName}}</span>\
+ 									<span>{{value.Detail.Category}}星级</span>\
+ 									</div>\
+ 									<div class="location">{{value.Detail.Address}}</div>\
+ 									<div class="booking_time"></div>\
+ 									<div class="service">\
+ 									{{each value.Facilities as item key}}\
+ 										<span class="ico{{item.id}} ico" title="{{item.type}}"></span>\
+ 									{{/each}}\
+ 									</div>\
+ 									</div>\
+ 									<div class="price_box fl">\
+ 									<div  class="price"><span>¥{{value.LowRate}}</span>起</div>\
+ 									<div class="point"><span>{{value.Detail.Review.Score}}</span>/5.0</div>\
+ 									<div class="pj">用户评价{{value.Detail.Review.Count}}条</div>\
+ 									<div class="btn"><a hotel_id="{{value.HotelId}}" href="javascript:;">查看详情</a></div>\
+ 									</div>\
+ 									</li>\
+ 								{{/each}}'
+
+ 					var hotelListRender = template.compile(hotelListTemplate);
+					var html = hotelListRender(data);
+ 					$('.list_wap .hotel_box').html(html)
+
+ 	}
+
+ 	function setPagination (totnum){   //设置翻页
+ 		$("#pagination").pagination( {
+ 			pageCount:5,   
+ 			count:1,  
+ 			prevContent:'上一页',  
+ 			nextContent:'下一页', 
+ 			totalData: totnum,
+ 			showData: 20,
+ 			coping: true ,
+ 			callback:function (api){
+			// api.getPageCount() 获取总页数
+			// api.setPageCount(page) 设置总页数
+		var index = api.getCurrent() //获取当前是第几页
+		var query = {};
+
+			$('.filter.active').each(function(){
+ 					var key = $(this).attr('type');
+ 					var val = $(this).attr('val')
+ 					query[key] = val;
+ 				})
+			query.query_text =$('#loca').val();
+			query.arrival_date = $('#arr_time').val();
+			query.departure_date = $('#leave_time').val();
+			query.city= $('#des').val()+'市';
+			query.page= index;
+			query.page_size= 20;
+			query.post= true;
+			$.post('hotel',query,function(res){
+				map.clearOverlays()
+				renderList(res);
+				renderMarker();
+			},'json')
+		}
+
+	})
+ 	};
+
+
+
+
+
+
+})

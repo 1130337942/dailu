@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>机票申请退款</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/store/airMoneyback.css');?>">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_storeForm"/>
+	<div class="progress">
+		<div class="main clearfix">
+			<div class="logo fl"><a href="/"><img src="/static/common/img/logo.png" alt="袋鹿"></a></div>
+			<div class="fr progress_info">
+				<span class="step1 active">申请退款<i></i></span>
+				<span class="step2">在线支付<i></i></span>
+				<span class="step3">订单完成</span>
+			</div>
+		</div>
+	</div>
+	<div class="mainWap clearfix">
+		<div class="wap1">
+			<div class="wap1_tit clearfix">
+				<p class="detail_num fl">订单号 <span>{$order_detail.local_detail.order_no}</span></p>
+				<p class="right_ctrl fr">订单总金额 <strong>¥{$order_detail.local_detail.all_price}</strong>
+			</div>
+			<div class="air_info clearfix">
+				<div class="item">
+					
+				</div>
+				<div class="item flight">
+					<div class="flight_name">{$order_detail.local_detail.flight_info.carrierName}</div>
+					<div class="tip">{$order_detail.local_detail.flight_info.planeCode}</div>
+				</div>
+				<div class="item start_flight">
+					<div class="time">{$order_detail.local_detail.flight_info.dptTime}</div>
+					<div class="airport">{$order_detail.local_detail.flight_info.dptAirport}{$order_detail.local_detail.flight_info.dptTerminal}</div>
+				</div>
+				<div class="item">
+					<div class="line"></div>
+					<div class="airtype">{$order_detail.local_detail.flight_info.cbcn}</div>
+				</div>
+				<div class="item">
+					<div class="time">{$order_detail.local_detail.flight_info.arrTime}</div>
+					<div class="airport">{$order_detail.local_detail.flight_info.arrAirport}{$order_detail.local_detail.flight_info.arrTerminal}</div>
+				</div>
+				<div class="item">
+					<div class="times">出发时间  {$order_detail.local_detail.flight_info.dptDate}  {$order_detail.local_detail.flight_info.dptTime}</div>
+					<div class="times">出发时间  {$order_detail.local_detail.flight_info.arrDate}  {$order_detail.local_detail.flight_info.arrTime}</div>
+				</div>
+				<div class="item">
+					<div class="tot_info">总金额明细 机票：
+						<foreach name="order_detail.air_detail.result.passengerTypes" id="vo">
+							<span>{$vo.ageType} ¥{$vo.printPrice}*{$vo.count}+{$vo.constructionFee}*{$vo.count}</span>
+						</foreach>
+					</div>
+					<div class="back_rule">退改签规则<!-- {$order_detail.air_detail.result.other.tgqMsg}--></div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="wap2">
+			<div class="wap2_tit">
+				选择退款人
+			</div>
+			<div class="person_check">
+				<foreach name="refund_info" id="vo">
+					<if condition="$vo.refundSearchResult.canRefund == false ">
+						<div class="returnId"><i class="checkBox"></i> {$vo.name} <input class="p_name" type="hidden" value="{$vo.name}"> <input class="p_id" type="hidden" value="{$vo.id}"></div>
+					<else/>
+						<div class="disabled"><i class="checkBox"></i> {$vo.name}(无法退票) <input type="hidden" value="{$vo.id}"></div>
+					</if>
+				</foreach>
+			</div>
+		</div>
+		<div class="wap2">
+			<div class="wap2_tit">
+				退款填写
+			</div>
+			<div class="backreason">
+				取消原因*:
+				<select name="" id="">
+					<option value="自愿取消">自愿取消（行程变化）</option>
+					<option value="其它">其它</option>
+				</select>
+				<i></i>
+			    <!-- <p>
+			    					<span>自愿取消（行程变化）</span>			
+			    				</p> -->
+			</div>
+			<div class="describe">
+				取消说明*
+				<p>
+					<textarea name="" id="" cols="30" rows="10"></textarea>
+				</p>
+			</div>
+			<div class="ctrl">
+				<p><i class="checkBox on"></i>本人已阅读并同意以下条款<a href="javascript:;">《我也不知道什么条款》</a></p>
+				<span class="submit disabled">提交申请</span>
+			</div>
+		</div>
+	</div>
+
+	<include file="public@publicFooter"/>
+	
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script src='/static/common/layer3.1.1/layer.js'></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/airMoneyback.js"></script>
+</html>

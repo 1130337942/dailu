@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <include file="public@head" />
+    <link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+    <link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/login/login.css');?>">
+    <link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/map/customLine.css');?>">
+</head>
+
+<body>
+    <div class="loading_box">
+        <div class="loading_content">
+            <img src="/static/v1/img/loading.gif" alt="">
+            <div class="loading_text">袋鹿正在努力加载地图...</div>
+        </div>
+    </div>
+    <div class="main_box">
+        <include file="public@nav" />
+        <div class="content">
+            <div class="con_lef">
+                <div class="con_lef_top">
+                    <div class="Three_points">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="f_top">
+                        <div class="f_top_p">本次行程&nbsp;
+                            <span class="num_day"></span>
+                            <div class="sj_icon">
+                                <i class="addsj_icon"></i>
+                                <i class="reducesj_icon"></i>
+                            </div>&nbsp;天
+                            <span class="beyond_day_num dis_none"></span>
+                        </div>
+                        <div class="progressbar_box">
+                            <div id="progressbar"></div>
+                        </div>
+                        <p class="calendar">
+                            <input type="text" id="date_from" value="" readonly="readonly">出发
+                        </p>
+                    </div>
+                </div>
+                <div class="f_main">
+                    <div class="f_main_main">
+                        <div class="form_info_box">
+                            <div class="from_toCity_box clearfix">
+                                <div class="fl city_leftbg"></div>
+                                <div class="fl city_rightTxt">
+                                    <div class="from_div"><span class="from_name fl ct_name"></span><span class="city_ri fr">出发城市
+                                            <i class="rightG_icon"></i></span></div>
+                                    <div class="to_div"><span class="to_name fl ct_name"></span><span class="city_ri fr">返回城市
+                                            <i class="rightG_icon"></i></span></div>
+                                </div>
+                            </div>
+                            <div class="people_num clearfix">
+                                <div class="fl adult_box">
+                                    <i class="people_icon adult_icon"></i><span class="people_txt">成人</span><span class="adult_num">1</span>
+                                    <span class="add_dow"><i class="add_gre"></i><i class="dow_gre"></i></span>
+                                </div>
+                                <div class="fr children_box">
+                                    <i class="people_icon children_icon"></i><span class="people_txt">儿童</span><span
+                                        class="children_num">0</span>
+                                    <span class="add_dow"><i class="add_gre"></i><i class="dow_gre"></i></span>
+                                </div>
+                            </div>
+                            <div class="f_prompt">
+                                <div class="f_prompt_img"></div>
+                                <div class="f_prompt_text">亲，在右侧寻找要去的地方</div>
+                            </div>
+                        </div>
+                        <div class="addgo_cityBox dis_none">
+                            <div class="departure js_endfly">
+                                <div class="fl"><i class="departure_icon"></i><span class="departure_city from_name ct_name"></span></div>
+                                <div class="fr ft_txt">出发城市</div>
+                            </div>
+                            <div class="city_box dis_none"><ul id="city_list" class="cityBoxUl"></ul></div>
+                            <div class="return">
+                                <div class="list_traffic">
+                                    <i class="traffic_icon"></i>
+                                    <p class="trc_p"><span class="list_trc_name"></span>·<span class="js_list_dis"></span>公里·<span class="trcTime"></span></p>
+                                    <i class="traffic_icon_r"></i>
+                                </div>
+                                <div class="return_box">
+                                    <div class="fl"><i class="return_icon"></i><span class="return_city to_name ct_name"></span></div>
+                                    <div class="fr ft_txt">返回城市</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="f_main_bg"></div>
+                </div>
+
+                <div class="f_main_next dis_none">确定</div>
+                <div class="text_logo">DAILUER</div>
+                <div class="text_logo_bgc dis_none"></div>
+
+            </div>
+            <div class="con_map">
+                <div class="map_head">
+                    <div class="map_head_r">
+                        <span class="js_map_service"><i class="icon_1"></i>在线客服</span>
+                        <span class="js_help"><i class="icon_2"></i>帮助</span>
+                    </div>
+                </div>
+                <div id="map"></div>
+            </div>
+            <!-- province  -->
+            <div class="con_rig provinces_con_rig">
+                <div class="r_top provinces_r_top">
+                    <input id="nearby" class="provinces_search_s" placeholder="你想去哪里？（省、市、景点）" type="text" autocomplete="off" onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                    <label for="nearby" class="search_icon province_search_icon"></label>
+                    <i class="provsearch_del search_del"></i>
+                </div>
+                <div class="r_main province_r_main"></div>
+                <div class="r_main search_content_list dis_none"></div>
+            </div>
+            <!-- city -->
+            <div class="con_rig city_con_rig dis_none">
+                <div class="r_top city_r_top clearfix">
+                    <div class="back">
+                        <i class="back_icon"></i>
+                        <span>返回</span>
+                    </div>
+                    <div class="city_nearby_right">
+                        <label for="citynearby" class="search_icon city_search_icon"></label>
+                    </div>
+                </div>
+                <div class="r_top search_content dis_none">
+                    <input id="search_nearby" class="city_search_s" placeholder="添加想去的目的地" type="text" autocomplete="off" onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                    <i class="citysearch_del search_del "></i>
+                </div>
+                <div class="r_top addcity_r_top dis_none clearfix">
+                    <p class="addcitytext">为您推荐<span class="sur_this_city"></span>周边的城市</p>
+                    <input class="dis_none" type="text" id="sur_input" placeholder="添加想去的目的地" autocomplete="off" onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                    <label for="sur_input" class="search_icon"></label>
+                    <i class="sur_del"></i>
+                </div>
+                <div class="r_main city_r_main"></div>
+                <div class="r_main surrounding_city_r_main dis_none">
+                    <ul class="js_surcity_li"></ul>
+                </div>
+                <div class="r_main citysearch_cont_list dis_none"></div>
+                <div class="r_main sur_serch_list dis_none">
+                    <ul class="js_sur_ul"></ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Province details -->
+    <div class="details_popup_box province_details_popup_box">
+        <div class="auto_details">
+            <div class="details_popup province_details">
+                <div class="details_popup_top province_details_top">
+                    <div class="top_details_text province_top_details_text">
+                        <p class="p1"></p>
+                        <p class="p2"></p>
+                        <p class="p3"></p>
+                    </div>
+                    <div class="shut_down"></div>
+                </div>
+                <div class="details_popup_main province_details_main">
+                    <div class="details_popup_tab">
+                        <ul class="clearfix">
+                            <li>热门城市</li>
+                            <li>热门景点</li>
+                            <li>本地特色</li>
+                        </ul>
+                        <i class="details_popup_tab_active"></i>
+                    </div>
+                    <div class="tab_content_box">
+                        <!-- .........tab1........ -->
+                        <div class="hot_city  tab_content"></div>
+                        <!-- ..........tab2............ -->
+                        <div class="hot_spots  tab_content dis_none"></div>
+                        <!-- .........tab3........ -->
+                        <div class="special_goods  tab_content dis_none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CITY   details -->
+    <div class="details_popup_box city_details_popup_box">
+        <div class="auto_details">
+            <div class="details_popup city_details">
+                <div class="details_popup_top city_details_top">
+                    <div class="top_details_text city_top_details_text"></div>
+                    <div class="shut_down"></div>
+                </div>
+                <div class="details_popup_main city_details_main">
+                    <div class="details_popup_tab">
+                        <ul class="clearfix">
+                            <li>知名景点</li>
+                            <li>特色美食</li>
+                            <li>特色商品</li>
+                            <li>城市交通</li>
+                        </ul>
+                        <i class="details_popup_tab_active"></i>
+                    </div>
+                    <div class="tab_content_box">
+                        <!-- .........tab1........ -->
+                        <div class="city_hot_sport tab_content"></div>
+                        <!-- ..........tab2............ -->
+                        <div class="city_foot tab_content  dis_none"></div>
+                        <!-- .........tab3........ -->
+                        <div class="city_goods tab_content dis_none"></div>
+                        <div class="city_traffic tab_content dis_none">
+                            <ul>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- prompt box -->
+    <div class="prompt prompt_b dis_none">
+        <div class="prompt_box">
+            <div class="prompt_content">
+                <p class="prompt_title">袋鹿提醒您~</p>
+                <p class="prompt_text"></p>
+                <div class="prompt_but">确定</div>
+            </div>
+        </div>
+    </div>
+    <div class="prompt prompt_c dis_none">
+        <div class="cancel_prompt_box">
+            <div class="prompt_content">
+                <p class="prompt_title">袋鹿提醒您~</p>
+                <p class="cancel_prompt_text"></p>
+                <div class="cancel_prompt_but clearfix">
+                    <div class="prompt_det">确定</div>
+                    <div class="prompt_cancel">取消</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- <div class="visitors visitors_plan dis_none">
+        <p class="visitors_text">您可以 “我的出行计划”中修改您的行程计划</p>
+        <div class="visitors_end">关闭</div>
+    </div> -->
+    <div class="visitors visitors_ri dis_none">
+        <p class="visitors_text">您可以在右侧选择第一目的地城市</p>
+        <div class="visitors_end">关闭</div>
+    </div>
+    <div class="visitors visitors_lef dis_none">
+        <p class="visitors_text p1">点击 “我的行程计划"修改行程总天数</p>
+        <p class="visitors_text">点击 - 或 + 修改目的地游玩天数</p>
+        <div class="visitors_end">关闭</div>
+    </div>
+    <div class="visitors visitors_firstcity dis_none">
+        <p class="visitors_text">亲，
+            <span class="visitors_firstcity_name"></span>周边还有好多好玩的地方,您可以在右侧选择。</p>
+        <div class="visitors_end">关闭</div>
+    </div>
+    <div class="info_text_none"></div>
+
+    <div class="is_phone">
+        <div class="img_box"><img src="/static/v1/img/map/yindao.png" alt=""></div>
+        <div class="ph_text">为了您的体验和服务请在<span class="pc_text">PC端</span>访问袋鹿</div>
+        <div class="wz">www.dailuer.com</div>
+        <div class="is_phone_down"></div>
+    </div>
+
+    <div class="more_cities dis_none">
+        <div class="more_cities_box">
+            <div class="more_top clearfix">
+                <div class="current_city_name fl"></div>
+                <div class="seach_box clearfix">
+                    <input type="text" placeholder="请输入城市名字" id="search_city" class="seach_input" autocomplete="off" >
+                    <label for="search_city" class="search_icon"></label>
+                    <div class="seach_list dis_none" id="seach_list"></div>
+                </div>
+            </div>
+            <div class="city_top clearfix">
+                <div class="current_city city_color city_list_bgcolor">本省城市</div>
+                <div class="other_city" >外省城市</div>
+            </div>
+            <div class="city_list city_list_bgcolor">
+                <div class="current_list "></div>
+                <div class="other_list dis_none clearfix">
+                    <div class="zxs">
+                        <div class="city_color">直辖市</div>
+                        <ul class="zxs_ul clearfix"></ul>
+                    </div>
+                    <div class="sf">
+                        <div class="city_color">省份</div>
+                        <ul class="sf_ul clearfix"></ul>
+                    </div>
+                </div>
+                <div class="sfcity"></div>
+            </div>
+            <div class="city_bottom">取消</div>
+        </div>
+    </div>
+
+    <div class="traffic_more">
+        <div class="trc_div clearfix">
+            <div class="trc_l uncheck fl"></div>
+            <div class="fl trc_r">
+                <div><i class="air_trc_icon"></i><span class="trc_name">飞机交通</span></div>
+                <div><span class="js_traTime"></span></div>
+            </div>
+        </div>
+        <div class="trc_div clearfix">
+            <div class="trc_l uncheck fl"></div>
+            <div class="fl trc_r">
+                <div><i class="train_trc_icon"></i><span class="trc_name">铁路交通</span></div>
+                <div><span class="js_traTime"></span></div>
+            </div>
+        </div>
+        <div class="trc_div clearfix">
+            <div class="trc_l uncheck fl"></div>
+            <div class="fl trc_r">
+                <div><i class="car_trc_icon"></i><span class="trc_name">汽车交通</span></div>
+                <div><span class="js_traTime"></span></div>
+            </div>
+        </div>
+        <div class="trc_div clearfix">
+            <div class="trc_l uncheck fl"></div>
+            <div class="fl trc_r">
+                <div><i class="other_trc_icon"></i><span class="trc_name">其他交通</span></div>
+                <div><span class="js_traTime"></span></div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="mainBox dis_none">
+        <div class="loginBox">
+            <div class="fl leftInfo">
+                <h4 class='logo'></h4>
+                <div class='zh'>登录袋鹿，与10000+名旅游
+                    <br>达人一起制定行程！</div>
+                <div class='en'>Log in the dailuer.com, and make the itinerary
+                    <br>with more than 10000 popular traveler together!</div>
+            </div>
+            <div class="fr listWap">
+                <div class='wap1'>
+                    <span class='en'>登录 Sign in</span>
+                    <span class='erwm'></span>
+                    <span class='code'></span>
+                </div>
+                <div class='normal'>
+                    <div class='wap2'>
+                        <label class='user' for="login_user"></label>
+                        <input class='jsuser' id='login_user' type="text" placeholder="请输入你的用户名">
+                        <label for="login_passWorld" class='psworld'></label>
+                        <input onfocus="this.type='password'" class='jspassWorld' id='login_passWorld' type="text"
+                            placeholder="请输入你的登录密码" autocomplete="off">
+                    </div>
+                    <div class='wap3'>
+                        <a href="#">忘记密码?</a>
+                    </div>
+                    <div class="wap4">
+                        <button class="login">立即登录</button>
+                        <button class="register">免费注册</button>
+                    </div>
+                    <!-- <div class='wap5'>
+                        <span class='weChat'></span>
+                        <span class='sina'></span>
+                        <span class='QQ'></span>
+                    </div> -->
+                </div>
+                <div class="erwmBox">
+                    <img src="/static/v1/img/longinerwm.png" alt="">
+                    <div>打开
+                        <a href="#">手机DIY旅游 </a> 扫面二维码</div>
+                    <div class='typeWap'>
+                        <span class='to-passWorld'>密码登录</span>
+                        <span class='to-register'>注册账号</span>
+                    </div>
+                </div>
+            </div>
+            <div class="fr registerWap dis_none">
+                <div class='list1 clearfix'>
+                    <span class='en fl'>注册 Register</span>
+                    <span class='tologin fr'>已有账号
+                        <a class="js_list1a">登录</a>
+                    </span>
+                </div>
+                <div class='list2'>
+                    <label class='' for="reg_user">
+                        <div class='errInfo'></div>
+                        <span class='status'></span>
+                    </label>
+                    <input id='reg_user' class='user jsuser' maxlength="8" minlength="2" type="text" placeholder="用户名，2-8汉字/4-16字符">
+                    <label class='p-lab' for="phone">
+                        <div class='errInfo'></div>
+                        <span class='status'></span>
+                    </label>
+                    <input id='phone' class='phone' type="number" placeholder="请输入您的手机号码">
+                </div>
+                <div id="embed-captcha"></div>
+                <div id="wait" class="show">正在加载图形验证......</div>
+                <div class='phoneCode'>
+                    <label class='sendCode' for="phoneCode">发送验证码</label>
+                    <input id='phoneCode' type="number" placeholder="请输入手机验证码">
+                </div>
+                <div class='passWorld'>
+                    <label for="reg_passWorld">
+                        <div class='errInfo'></div>
+                        <span class='status'></span>
+                    </label>
+                    <input onfocus="this.type='password'" id='reg_passWorld' class="jspassWorld" type="text"
+                        placeholder="密码需大于等于6位">
+                </div>
+                <div class='registerBox'>
+                    <button class="go_register">立即注册</button>
+                    <div class='agree'>注册即代表您同意我们的
+                        <a href="javascript:;">服务协议</a>和
+                        <a href="javascript:;">隐私政策</a>
+                    </div>
+                </div>
+            </div>
+            <a class="close" href="javascript:;">x</a>
+        </div>
+        <div class='agreementMask'>
+            <div class="agreementInfo">
+                <div class="title">DIY旅游用户注册协议
+                    <span class='close'>X</span>
+                </div>
+                <div class='agr-content'>
+                    【审慎阅读】您在申请注册流程中点击同意前，应当认真阅读以下协议。请您务必审慎阅读、充分理解协议中相关条款内容，其中包括：
+                    <br> 1、与您约定免除或限制责任的条款；
+                    <br> 2、与您约定法律适用和管辖的条款；
+                    <br> 3、其他以粗体下划线标识的重要条款。
+                    <br> 如您对协议有任何疑问，可向平台客服咨询。
+                    <br>
+                    【特别提示】当您按照注册页面提示填写信息、阅读并同意协议且完成全部注册程序后，即表示您已充分阅读、理解并接受协议的全部内容。如您因平台服务与淘宝发生争议的，适用《DIY旅游平台服务协议》处理。如您在使用平台服务过程中与其他用户发生争议的，依您与其他用户达成的协议处理。
+                    <br> 阅读协议的过程中，如果您不同意相关协议或其中任何条款约定，您应立即停止注册程序。
+                </div>
+                <div class='diybook'>
+                    <a href="#">《DIY旅游平台协议》</a>
+                    <br>
+                    <a href="#">《隐私政策》</a>
+                </div>
+                <div class='btnBox'>
+                    <button class='agreeBtn'>同意以上协议</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" charset="UTF-8" src="http://maps.google.cn/maps/api/js?sensor=false&language=zh-CN&key=AIzaSyCHN56rgx83Aov8o308nMSePnx_6miAVHk"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://webapi.amap.com/maps?v=1.4.12&key=e343e74e5c243c04a3b03a1bc35a0327&plugin=AMap.CitySearch"></script>
+    <include file="public@scripts" />
+
+    <script src="/static/common/js/cover_js/iscroll-zoom.js"></script>
+    <script src="/static/common/js/cover_js/hammer.js"></script>
+    <script src="/static/common/js/cover_js/lrz.all.bundle.js"></script>
+    <script src="/static/common/js/cover_js/jquery.photoClip.min.js"></script>
+    <!-- 验证拖拽图片插件gt.js -->
+    <script type="text/javascript" charset="UTF-8" src="/static/common/js/gt.js"></script>
+    <script type="text/javascript" charset="UTF-8" src='/static/common/layer3.1.1/layer.js'></script>
+    <script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.fly.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/map/customLine.js');?>"></script>
+
+</body>
+
+</html>

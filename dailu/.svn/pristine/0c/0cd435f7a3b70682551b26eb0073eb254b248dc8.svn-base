@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>机票订单详情</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/store/airOrderdetails.css');?>">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@publicHeader"/>
+	<div class="main clearfix">
+		<div class="main_title">
+			<a href="javascript:;">个人中心</a> >
+			<a href="javascript:;">我的订单</a> >
+			<a href="javascript:;">订单详情</a> 
+		</div>
+		<div class="wap1">
+			<div class="wap1_tit clearfix">
+					<p class="detail_num fl">订单号 <span>DL5451348484151</span></p>
+					<p class="right_ctrl fr">订单总金额 <strong>¥450.00</strong><a class="cancel" href="javascript:;">取消订单</a></p>
+			</div>
+			<div class="air_info clearfix">
+				<div class="item">
+					
+				</div>
+				<div class="item flight">
+					<div class="flight_name">中国国航CA1886</div>
+					<div class="tip">波音 777-300ER(大型)</div>
+				</div>
+				<div class="item start_flight">
+					<div class="time">21:55</div>
+					<div class="airport">萧山国际机场T2</div>
+				</div>
+				<div class="item">
+					<div class="line"></div>
+					<div class="airtype">经济舱</div>
+				</div>
+				<div class="item">
+					<div class="time">00:55</div>
+					<div class="airport">三峡嗯但是多机场k23</div>
+				</div>
+				<div class="item">
+					<div class="times">出发时间  2017-12-04  21:55</div>
+					<div class="times">出发时间  2017-12-04  21:55</div>
+				</div>
+				<div class="item">
+					<div class="tot_info">总金额明细</div>
+					<div class="back_rule">退改签规则</div>
+				</div>
+			</div>
+			<div class="air_info bb_n">
+				<p>下单时间：<span>2017-12-08  17:40:28</span></p>
+				<p>支付方式：<span>支付宝</span></p>
+				<p>支付金额：<span>¥668.50</span></p>
+				<p>订单状态：<span>已退款</span></p>
+				<p>订单状态：<span>已退款</span></p>
+				<p>订单记录：<span>2017-12-08 17:41:11 订单交易成功<br>
+								2017-12-26 17:13:44 订单取消申请99111782402，乘客朱琳订单取消申请已提交，正在处理中</span></p>
+			</div>
+		</div>
+		<div class="wap2">
+			<div class="wap2_tit">
+				乘机人信息
+			</div>
+			<div>
+				<div class="passenger clearfix">
+					<div class="item fl">
+						<div>乘机人姓名</div>
+						<div>应铁柱</div>	
+					</div>
+					<div class="item fl">
+						<div>乘机人类型</div>
+						<div>成人</div>
+					</div>
+					<div class="item fl">
+						<div>乘机人证件号</div>
+						<div>332624 1991 0428 6659</div>
+					</div>
+				</div>
+				<div class="passenger clearfix">
+					<div class="item fl">
+						<div>乘机人姓名</div>
+						<div>应铁柱</div>	
+					</div>
+					<div class="item fl">
+						<div>乘机人类型</div>
+						<div>成人</div>
+					</div>
+					<div class="item fl">
+						<div>乘机人证件号</div>
+						<div>332624 1991 0428 6659</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wap3">
+			<div class="wap3_tit">联系人</div>
+			<div class="clearfix concat">
+				<div class="item fl">
+					<div>联系人姓名</div>
+					<div>应铁柱</div>
+				</div>
+				<div class="item fl">
+					<div>联系人电话</div>
+					<div>1587052055</div>
+				</div>
+				<div class="item fl">
+					<div>联系人邮箱</div>
+					<div>iwuscy@163.com</div>
+				</div>
+			</div>
+		</div>
+		<div class="wap4">
+			<div class="wap4_tit">保险信息</div>
+			<div class="safetybox">
+				<div class="safetyList">
+					<span>航空组合险</span>
+					<span>赵无极 x 1</span>
+					<span>应大胆 x 1</span>
+					<a href="javascript:;">详情</a>
+				</div>
+				<div class="safetyList">
+					<span>航空延误险</span>
+					<span>赵无极 x 1</span>
+					<span>应大胆 x 1</span>
+					<a href="javascript:;">详情</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<include file="public@publicFooter"/>
+	
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<!-- <script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/store/hotelForm.js');?>"></script> -->
+</html>

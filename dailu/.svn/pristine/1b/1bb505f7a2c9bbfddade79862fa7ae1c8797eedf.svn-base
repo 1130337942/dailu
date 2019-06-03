@@ -1,0 +1,322 @@
+html，body {
+	background-color: #535257;
+	height: 100%;
+}
+html ,body ,.main {
+	min-height: 100%;	
+}
+
+.main {	
+	background-color: #fff;
+	max-width: 4.14rem;
+	margin:0 auto;
+	box-sizing: border-box;
+	color:#333;
+	font-family: "PingFang","Lantinghei","Helvetica Neue",'Helvetica','Arial',"Microsoft YaHei","STHeitiSC-Light",'simsun',"WenQuanYi Zen Hei","WenQuanYi Micro Hei","sans-serif";
+	font-size: 0.14rem;
+}
+.p18{
+	padding: 0.18rem;
+}
+.main .header {
+	font-size: 18px;
+	color: #333;
+	height: 0.44rem;
+	width: 100%;
+	background-color: transparent;
+	line-height: 0.44rem;
+	text-align: center;
+	/*border-bottom: 1px solid #e5e5e5;*/
+	position: relative;
+}
+.main .header span{
+	position: absolute;
+	left: 0.26rem;
+	top: 0.14rem;
+	width: 0.12rem;
+	height: 0.12rem;
+	transform:  rotate(45deg);
+	border: 0.02rem solid rgba(255,255,255,1);
+	border-right: none;
+	border-top: none;
+}
+.main .banner_img {
+	width: 100%;
+	height: 2.5rem;	
+	position: relative;
+}
+.main .banner_img img{
+	width: 100%;
+	height: 100%;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.main .banner_img img:nth-child(n+2){
+	display: none;
+}
+.banner_img .imgCount {
+	width: 0.38rem;
+	height: 0.2rem;
+	background-color: #000000;
+	border-radius: 0.02rem;
+	font-size: 0.12rem;
+	color: #fff;
+	opacity: 0.6;
+	text-align: center;
+	line-height: 0.2rem;
+	position: absolute;
+	bottom: 0.2rem;
+	right: 0.2rem;
+}
+.detail_info{
+	position: relative;
+	background-color: #fff;
+	border-radius: 0.12rem;
+	padding:0.2rem 0.18rem; 
+	margin-top: -0.14rem;
+	z-index: 2;
+	color: #333;
+}
+.detail_info .detail_tit{
+	position: relative;
+}
+.detail_info .detail_tit .hotel_type{
+	display: inline-block;
+	width: 0.42rem;
+	height:  0.2rem;
+	background-color: #F4A21E;
+	font-size: 0.12rem;
+	font-weight: 600;
+	text-align: center;
+	line-height: 0.2rem;
+	color: #fff;
+	border-radius: 0.02rem;
+	vertical-align: middle;
+	margin-bottom:0.08rem;
+	margin-right: 0.05rem; 
+}
+.detail_info .detail_tit .inner_tit{
+	font-size: 0.2rem;
+	font-weight: 600;
+	color:#333;
+}
+.detail_info .address {
+	font-size: 0.14rem;
+	color: #666;
+	height: 0.34rem;
+	line-height: 0.24rem;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	border-bottom: 0.01rem solid #e5e5e5;
+}
+
+.moreInfo .showMore{
+	width: 85%;
+	margin: 0 auto;
+	text-align: center;
+	color:#659ff5;
+	border:1px solid rgba(101,159,245,1);
+	border-radius:4px;
+	height: 0.34rem;
+	line-height: 0.34rem;
+	font-size: 0.14rem;
+}
+
+.moreInfo .flexInfo{
+	display: none;
+	position: fixed;
+	top:0;
+	left: 0;
+	z-index: 11;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+}
+.moreInfo .flexInfo .flex_inner {
+	width: 80%;
+	height: 70%;
+	background-color: #fff;
+	padding:0 0.2rem;
+	border-radius:0.12rem;
+	margin:  auto;
+	margin-top: 10%;
+	overflow-y: scroll;
+	border-top: 0.2rem solid #fff;
+	border-bottom: 0.2rem solid #fff;
+}
+
+.moreInfo .closeInfo {
+	position: absolute;
+	bottom: 8%;
+	left: 50%;
+	margin-left: -0.2rem;
+	width: 0.4rem;
+	height: 0.4rem;
+	background: #fff url(/static/v1/img/tripinfoShare/close1.png) center center no-repeat;
+	-webkit-background-size: 50% 50%;
+	background-size: 50% 50%;
+	border-radius: 50%;
+}
+.moreInfo .detail_info{
+	padding: 0;
+	margin: 0;
+} 
+.moreInfo .detail_tit{
+	font-size: 0.2rem;
+	font-weight: 600;
+	padding: 0.1rem 0 0.05rem;	
+}
+.moreInfo .spot_desc{
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 0.12rem;
+}
+.moreInfo .address{
+	border:none;
+	white-space: normal;
+    overflow: hidden;
+    text-overflow:clip ;
+    color: #333;
+}
+.moreInfo .itemlist p{
+	display: inline-block;
+}
+.moreInfo .detail_info .itemlist{
+	white-space: normal;
+    overflow: hidden;
+    text-overflow:clip ;
+
+}
+.comment_wap{
+	padding: 0.2rem 0.18rem;
+}
+.comment_wap .title {
+	font-size: 0.18rem;
+	position: relative;
+	border-top: 1px solid #e5e5e5;
+	padding-top: 0.15rem;
+}
+.comment_wap .commemt_box {
+	background-color: #fff;
+	/*border-radius: 8px;*/
+	margin-bottom: 0.28rem;
+
+}
+.comment_wap .toComment {
+	width: 0.32rem;
+	height: 0.32rem;
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 0.2rem;
+	margin-top: -0.16rem;
+	background: url(/static/v1/img/tripinfoShare/tocomment.png) center center no-repeat;
+	-webkit-background-size: 50% 50%;
+	background-size: 50% 50%;
+}
+.comment_list{
+	box-sizing: border-box;
+	padding: 0.16rem 0;
+	font-size: 14px;
+	color: #666;
+	text-align: left;
+}
+.comment_list .con {
+	padding-left: 0.44rem;
+}
+.comment_list .uploadTime{
+	font-size: 0.12rem;
+	color: #b3b3b3;
+	padding-left: 0.44rem;
+	margin-top: 0.15rem;
+}
+.comment_list .head {
+	display: flex;
+}
+.comment_list .head img {
+	width: 0.34rem;
+	height: 0.34rem;
+	border-radius: 50%;	
+}
+
+.comment_list .head span {
+	line-height: 0.34rem;
+	font-size: 0.14rem;
+	color: #333;
+	margin-left: 0.1rem;
+}
+.comment_list .uploadImg {
+	overflow: hidden;
+	display: flex;
+	margin-top: 0.05rem;
+	padding-left: 0.4rem;
+}
+.comment_list .uploadImg img {
+	width: 0.7rem;
+	height: 0.7rem;
+	margin-left: 0.05rem;
+}
+.comment_in{
+	border-radius: 8px;
+	/*height: 2rem;*/
+}
+.commemt_box .morecomment,
+.commemt_box .nocomment {
+	text-align: center;
+	font-size: 0.14rem;
+	color: #999;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	display: none;
+}
+.commemt_box .morecomment{
+	display: block;
+}
+
+.sliderMask  img {
+	width: 100%;
+	/*box-sizing: border-box;*/
+}
+.sliderMask .sliderIMg{
+	width: 100%;
+} 
+.sliderbox {
+	z-index: 10;
+	position: fixed;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,1);
+	display: none;
+}
+.sliderMask {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 50%;	
+	transform: translateY(-50%);
+}
+.hotel_map {
+	padding: 0.18rem;
+}
+.adress_map {
+	margin-top: 0.1rem;
+	font-size: 0.18rem;
+	color: #333;
+}
+#amap {
+	margin-top: 0.1rem;
+	width: 100%;
+	height: 2rem;
+}
+
+.amap-logo ,
+.amap-copyright {
+	display: none !important;
+}
+.title{
+	font-size: 0.2rem;
+	font-weight: 600;
+}

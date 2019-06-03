@@ -1,0 +1,193 @@
+<include file="public@header" />
+</head>
+<style>
+        .big{
+            height:150px;
+            width:150px;
+        }
+        .dialog{
+            height:20px;
+            width:20px;
+        }
+        .sure {
+            text-decoration: underline;
+            color: #d1492f;
+            cursor: pointer;
+        }
+        .jbox-button-panel {
+            height: 30px !important;
+        }
+    </style>
+<body>
+    <div class="wrap js-check-wrap">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="javascript:;">新闻列表</a>
+            </li>
+            <li>
+                <a href="/news/news/matchNews.html">APP新闻链接匹配</a>
+            </li>
+        </ul>
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+                <tr>
+                    <th width="50">banner</th>
+                    <th width="25">新闻链接</th>
+                    <th width="25">发表时间</th>
+                    <th width="25">是否展示</th>
+                    <th width="25">展示顺序</th>
+                    <th width="90">操作</th>
+                </tr>
+            </thead>
+            <!-- 数据渲染 -->
+            <foreach name="news_list" item="vo">
+                <tr id="{$vo.id}">
+                    <td>
+                        <if condition="$vo.image eq '无图片'">
+                                无图片反馈
+                            <else />
+                                点击预览
+                                <img class="dialog" src='{$vo.image}' style="cursor:pointer;"></img>
+                                <div class="dialog_large_image"></div>
+                            </if>
+                    </td>
+                    <td><div style="width: 500px;overflow: hidden;">{$vo.news_url}</div></td>
+                    <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+                    <td>
+                        <select class="status" name="status" id="">
+                            <if condition="$vo.status eq 0">
+                                <option value="0" selected="">不展示</option>
+                                <option value="1">展示</option>
+                            <else />
+                                <option value="0">不展示</option>
+                                <option value="1" selected="">展示</option>
+                            </if>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="sort" style="width:60%;" type="number" max="5" min="0" value="{$vo.sort}" placeholder="{$vo.sort}">
+                        <span class="sure">确定</span>
+                    </td>
+                    <td>
+                        <a href="javascript:;" class="del" id="{$vo.id}">{:lang('DELETE')}</a>
+                    </td>
+                </tr>
+            </foreach>
+        </table>
+    </div>
+    <script src="__STATIC__/js/admin.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/jBox/Skins/Default/jbox.css" />
+    <script type="text/javascript" src="/static/jbox/jquery.jBox-2.3.min.js"></script>
+    <script src="/static/common/laydate/laydate.js"></script>
+    <script>
+        $(function () {
+            //点击图片放大预览
+            $("img.dialog").each(function (i, n) {
+                $(n).click(function () {
+                    if($(n).hasClass("big")){
+                        $(n).removeClass("big").addClass("dialog")
+                    }else{
+                        $(n).addClass("big").removeClass("dialog")
+                    } 
+                });
+                
+            })
+
+            $('.status').on('change',function(){
+                var query ={};
+                    query.status=$(this).val();
+                    query.id =$(this).parents('tr').attr('id')
+                    query.sort =$(this).parents('tr').find('.sort').val();
+                    $.jBox("确定修改吗！！！", {
+                        title: "提示消息",
+                        width: 200,
+                        height: 80,
+                        buttons: {
+                            '确定': 1,
+                            '取消': 0
+                        },
+                        buttonsFocus: 0,
+                        submit: function (v, h, f) {
+                            if (v == 0) {
+                        return true; // close the window  
+                    } else {
+                       
+                        $.post('showStatus',query,function(res){
+                            if(res.status==true){
+                                return true;
+                            }
+                        },'json')
+                    }
+                    
+                }
+            });
+
+                
+        })
+
+            $('.sure').on('click',function(){
+                var query ={};
+                query.id=$(this).parents('tr').attr('id');
+                query.sort = $(this).siblings('input').val();
+                query.status = $(this).parents('tr').find('.status').val();
+                $.jBox("确定修改吗！！！", {
+                    title: "提示消息",
+                    width: 200,
+                    height: 100,
+                    buttons: {
+                        '确定': 1,
+                        '取消': 0
+                    },
+                    buttonsFocus: 0,
+                    submit: function (v, h, f) {
+                        if (v == 0) {
+                        return true; // close the window  
+                    } else {
+
+                        $.post('showStatus',query,function(res){
+                            if(res.status==true){
+                                return true;
+                            }
+                        },'json')
+                    }
+                    
+                }
+             });
+            })
+       
+        });
+        //刪除(将status改成0)
+        $('.del').click(function () {
+            var id = $(this).attr("id");
+            $.jBox("确定删除！！！", {
+                title: "提示消息",
+                width: 200,
+                height: 80,
+                buttons: {
+                    '确定': 1,
+                    '取消': 0
+                },
+                buttonsFocus: 0,
+                submit: function (v, h, f) {
+                    if (v == 0) {
+                        return true; // close the window  
+                    } else {
+                        $.get("delMatchNews", {
+                            id: id,
+                        }, function (data) {
+                            if (data.status == 'ok') {
+                                window.location.reload();
+                            }
+                        }, 'json');
+                    }
+                    return false;
+                }
+            });
+        });
+
+       
+    </script>
+</body>
+
+</html>

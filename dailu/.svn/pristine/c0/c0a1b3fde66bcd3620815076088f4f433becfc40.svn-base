@@ -1,0 +1,952 @@
+<include file="public@header" />
+<style type="text/css">
+	.pic-list li {
+		margin-bottom: 5px;
+	}
+	
+	.tabType.col-md-9 {
+		display: none;
+	}
+	
+	.tabType.col-md-9.active {
+		display: block;
+	}
+	.aaactive{
+		color: red;
+	}
+	
+	/* 翻页 */
+	.bottom {
+    	font-size: 14px;
+    	display: block;
+	}
+	.bottom ul, li {
+    	list-style: none;
+	}
+	.flip li {
+    	display: inline;
+    	padding: 2px 8px;
+	}
+	.flip .active{
+		background: #C0C0C0;
+	}
+	.flip .active a{
+		color: #000000;
+	}
+	/* 知名景点修改 */
+	.editor{
+		float: right;
+		background: #e5e5e5;
+		font-size: 16px;
+		padding: 3px 15px;
+	}
+	.table-bordered{
+		box-shadow: 0px 0px 20px #888888;
+		margin-bottom: 30px;
+	}
+	.wrap{
+		padding-top: 0px;
+	}
+	.edit_nav{
+		padding-top: 20px;
+		width: 100%;
+		position: fixed;
+		z-index: 9999;
+		background:white;
+		overflow: hidden;
+	}
+	.edit_nav ul{
+		float: left;
+	}
+	.edit_back{
+		float: right;
+		margin-right: 500px;
+	}
+	.edit_con{
+		margin-top:60px;
+	}
+</style>
+
+<script type="text/html" id="photos-item-tpl">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names[]" value="{name}" style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;" onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+<script type="text/html" id="photos-item-tpl2">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls2[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names2[]" value="{name}" style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;" onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+
+<body>
+	<div class="wrap js-check-wrap">
+		<div class="edit_nav">
+			<ul class="nav nav-tabs">
+				<li>
+					<a href="{:url('City/index')}">城市</a>
+				</li>
+				<li class="active">
+					<a data-toggle="tab" href="#city">旅游城市</a>
+				</li>
+				<li id="edit_spot" class="">
+					<a data-toggle="tab" href="#spot">知名景点</a>
+				</li>
+				<li id='edit_food' class="">
+					<a data-toggle="tab" href="#foods">特色美食</a>
+				</li>
+				<li id='edit_goods' class="">
+					<a data-toggle="tab" href="#goods">本地特产</a>
+				</li>
+				<li id='edit_traffic' class="">
+					<a data-toggle="tab" href="#traffic">城市交通</a>
+				</li>
+			</ul>
+			<a class="edit_back btn btn-default" href="{:url('City/index')}">{:lang('BACK')}</a>
+		</div>
+		<!-- ~~~~~~~~~~~~~旅游城市~~~~~~~~~~~~~~~~~ -->
+		<div class="row">
+			<div class="col-md-9 edit_con">
+				<div id="city" class="col-md-9 tabType active">
+					<table class="table table-bordered">
+						<tr>
+							<th width="100">目的地<span class="form-required">*</span></th>
+							<td>
+								<div class="form-control">
+									<select class="pro province_id" name="post[province_id]">
+										<option value="">省/直辖市</option>
+										<volist name="area" id="vo">
+											<option value="{$vo['area_id']}" {$vo.status}>{$vo.area_name}</option>
+										</volist>
+									</select>
+									<select class="city city_id" name="post[city_id]">
+										<option value="{pigcms{$vo['area_id']}">城市</option>
+										<volist name="cityList" id="vo">
+											<option value="{$vo['area_id']}" {$vo.status}>{$vo.area_name}</option>
+										</volist>
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>适玩天数<span class="form-required">*</span></th>
+							<td>
+
+								<input class="form-control" placeholder="请输入天数" name="post[fit_day]" type="text" id="day" value="{$post.fit_day}" />
+							</td>
+						</tr>
+						<tr>
+							<th>城市热度<span class="form-required">*</span></th>
+							<td>
+
+								<input class="form-control" placeholder="请输入热度(如:Top1)" name="post[city_score]" type="text" id="city_score" value="{$post.city_score}" />
+							</td>
+						</tr>
+						<tr>
+							<th>热门景点</th>
+							<td>
+								<input class="form-control" type="text" name="post[hot_spots]" id="hot_spots" value="{$post.hot_spots}" placeholder="请输入景点名称">
+								<p class="help-block">提示:多个景点之间用 | 隔开(如：西湖|雷锋塔|灵隐寺)</p>
+							</td>
+						</tr>
+						<tr>
+							<th>特色美食</th>
+							<td>
+								<input class="form-control" type="text" name="post[food]" id="food" value="{$post.food}" placeholder="请输入特色美食">
+								<p class="help-block">提示:多个美食之间用顿号隔开</p>
+							</td>
+						</tr>
+						<tr>
+							<th>经纬度</th>
+							<td>
+								<input class="form-control" type="text" name="post[longitude]" id="longitude" value="{$post.longitude}" placeholder="请输入经度">
+								<input class="form-control" type="text" name="post[latitude]" id="latitude" value="{$post.latitude}" placeholder="请输入纬度">
+							</td>
+						</tr>
+						<tr>
+							<th>简要介绍</th>
+							<td>
+								<script type="text/plain" id="content" name="post[city_Introduction]">{$post.city_Introduction}</script>
+							</td>
+						</tr>
+						<tr>
+							<th>相册</th>
+							<td>
+								<ul id="picture" class="pic-list list-unstyled form-inline">
+							
+									<foreach name="post.more2" item="vo">
+										<php>$img_url=cmf_get_image_preview_url($vo['url']);</php>
+										<li id="saved-image{$key}">
+											<input id="photo-{$key}" type="hidden" name="photo_urls[]"
+													value="{$vo.url}">
+											<input class="form-control" id="photo-{$key}-name" type="text"
+													name="photo_names[]"
+													value="{$vo.name|default=''}" style="width: 200px;" title="图片名称">
+											<img id="photo-{$key}-preview"
+													src="{:cmf_get_image_preview_url($vo['url'])}"
+													style="height:36px;width: 36px;"
+													onclick="parent.imagePreviewDialog(this.src);">
+											<a href="javascript:uploadOneImage('图片上传','#photo-{$key}');">替换</a>
+											<a href="javascript:(function(){$('#saved-image{$key}').remove();})();">移除</a>
+										</li>
+									</foreach>
+							
+								</ul>
+								<a href="javascript:uploadMultiImage('图片上传','#picture','photos-item-tpl');"
+                                        class="btn btn-sm btn-default">选择图片</a>
+							</td>
+						</tr>
+						<!--<tr><td colspan="2"><a class="editor" href="javascript:;" onclick="city_change();">修改</a></td></tr>-->
+						<tr><td colspan="2"><a class="editor" href="javascript:;" id="save_edit" parameter="{$post.id}">修改</a></td></tr>
+					</table>
+				</div>
+				<!----------------知名景点----------------------------->
+				<!--知名景点-->
+				<input type="hidden" class="spot_pa" name="page1" value="{$pp1.totalPage}">
+                                <input type="hidden" class="cityId" name="city_id" value="{$pp1.city_id}">
+				<div id="spot" class="col-md-9 tabType">
+					<div class="for_spot"></div>
+
+					<div class="bottom">
+						<ul id="spot_flip" class='flip'></ul>
+					</div>
+				</div>
+
+				<!----------------------特色美食------------------>
+				<input type="hidden" class="foods_pa" name="page1" value="{$pp2.totalPage}">
+				<div id="foods" class="col-md-9 tabType">
+					<div class="edit_food"></div>
+					<div class="bottom">
+						<ul id="food_flip" class='flip'></ul>
+					</div>
+				</div>
+				<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~-本地特产~~~~~~~~~~~~~~~~~~~~~~-->
+				<input type="hidden" class="goods_pa" name="page1" value="{$pp3.totalPage}">
+                <div id="goods" class="col-md-9 tabType" >
+					<div class="edit_goods"></div>
+					<div class="bottom">
+						<ul id="goods_flip" class='flip'></ul>
+					</div>
+				</div>
+		
+				<!--城市交通-->
+				<input type="hidden" class="traffic_pa" name="page1" value="{$pp4.totalPage}">
+				<div id="traffic" class="col-md-9 tabType">
+					<div class="edit_traffic"></div>
+					<div class="bottom">
+						<ul id="traffic_flip" class='flip'></ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
+	</div>
+	
+	<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+	<script type="text/javascript">
+		//编辑器路径定义
+		var editorURL = GV.WEB_ROOT;
+	</script>
+	<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/js/tourist/jqPaginator.js"></script>
+	<script type="text/javascript" src="__STATIC__/js/tourist/template-native.js"></script>
+	<!-- ~~~~~~~~~~~~~~~~-~~~~~~~~~~~~~~~~~~~~~~~~~~~~特色美食  模版~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<script type="text/html" id="foot_test">
+		<%for(i = 0; i < food.length; i ++) {%>
+			<table class="table table-bordered" id="id_<%=food[i].id%>" >
+				<tr>
+					<th width="100">菜品名称</th>
+					<td>
+
+						<input class="form-control"  placeholder="请输入菜品名称" name="post[dishes_name]" type="text" id="dishes_name<%=i%>"  value= <%=food[i].dishes_name%> />
+					</td>
+				</tr>
+				<tr>
+					<th width="100">菜品摘要</th>
+					<td>
+						
+						<input class="form-control" placeholder="请输入菜品摘要" name="post[dishes_Introduction]" type="text" id="dishes_Introduction<%=i%>" value=<%=food[i].dishes_Introduction%> />
+					</td>
+				</tr>
+				<tr>
+					<th>菜品简介</th>
+					<td class = "foot_dishes_details" data-textid = "content3_<%=i%>"  ></td>
+				</tr>
+				<tr>
+					<th>菜品图片</th>
+					<td class = "foodimg">
+						<ul id="pic2_<%=i%>" class="pic-list list-unstyled form-inline">
+							<%for(img = 0; img < food[i].url.length; img ++) {%>   
+								<li id="saved-image<%=i%><%=img%>goodsfood">
+									<input class="Img" id="photo-<%=i%><%=img%>goodsfood" type="hidden" name="photo_urls2[]" value=<%=food[i].url[img]%> />
+									<input class="form-control" id="photo-<%=i%><%=img%>goodsfood-name" type="text" name="photo_names2[]"  style="width: 200px;" title="图片名称" value=<%=food[i].pic_name[img]%> />
+									<img id="photo-<%=i%><%=img%>goodsfood-preview" src="<%=food[i].url[img]%>" style="height:36px;width: 36px;" onclick="parent.imagePreviewDialog(this.src);">
+									<a href="javascript:;" onclick="uploadOneImage('图片上传','#photo-<%=i%><%=img%>goodsfood');">替换</a>
+									<a href='javascript:(function(){$("#saved-image<%=i%><%=img%>goodsfood").remove();})();'>移除</a>
+								</li>
+							<%}%>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>是否推荐</th>
+					<td class="set_frozen">
+						<% if (food[i].is_recommended == 0){ %>
+							<span class="cb-enable">
+								<label class="cb-enable cb-enable-label ">  
+									<span>是</span>
+									<input class="is_recommended" type="radio" name="post[is_recommended]<%=i%>" value="1" />
+								</label>
+							</span>
+							<span class="cb-disable">
+								<label class="cb-disable  selected ">
+									<span>否</span>
+									<input class="is_recommended" type="radio" name="post[is_recommended]<%=i%>" value="0" checked="checked" />
+								</label>
+							</span>
+						<%} else {%>
+							<span class="cb-enable">
+								<label class="cb-enable cb-enable-label ">  
+									<span>是</span>
+									<input class="is_recommended" type="radio" name="post[is_recommended]<%=i%>" value="1" checked="checked"/>
+								</label>
+							</span>
+							<span class="cb-disable">
+								<label class="cb-disable  selected ">
+									<span>否</span>
+									<input class="is_recommended" type="radio" name="post[is_recommended]<%=i%>" value="0"  />
+								</label>
+							</span>
+						<%}%>
+					</td>
+				</tr>
+				<tr><td colspan="2"><a class="editor" href="javascript:;" onclick="foot_change(<%=food[i].id%>,<%=i%>);">修改</a></td></tr>
+			</table>
+		<%}%>
+	</script>
+	<!-- ~~~~~~~~~~~~~~~~-~~~~~~~~~~~~~~~~~~~~~~~~~~~~本地特产  模版~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<script type="text/html" id="goods_test">
+		<% for( i = 0; i < goods.length; i++) { %>
+			<table class="table table-bordered" id="<%=goods[i].id%>">
+				<tr>
+					<th width="100">商品名称</th>
+					<td>
+						<input class="form-control" placeholder="请输入商品名称" name="post[goods_name]" type="text"  id="goods_name" value=<%=goods[i].goods_name %> />
+					</td>
+				</tr>   
+				<tr>
+					<th width="100">商品摘要</th>
+					<td>
+						<input class="form-control" placeholder="请输入商品摘要" name="post[goods_Introduction]" type="text"  id="goods_Introduction" value=<%=goods[i].goods_Introduction%> />
+					</td>
+				</tr>
+				<tr>
+					<th>商品简介</th>
+					<td class="goods_details"></td>
+				</tr>
+				<tr>
+					<th>商品图片</th>
+					<td>
+						<ul id="pic3_<%=i%>" class="pic-list list-unstyled form-inline">
+							<%for(img=0;img < goods[i].url.length;img++){%>
+								<li id="saved-imageid<%=i%><%=img%>goods">
+									<input id="photo-<%=i%><%=img%>goods" type="hidden" name="photo_urls3[]" value=<%=goods[i].url[img]%>  />
+									<input class="form-control" id="photo-<%=i%><%=img%>goods-name" type="text" name="photo_names3[]"   style="width: 200px;" title="图片名称" value=<%=goods[i].pic_name[img]%> />
+									<img id="photo-<%=i%><%=img%>goods-preview" src="<%=urlTop%><%=goods[i].url[img]%>" style="height:36px;width: 36px;" onclick="imagePreviewDialog(this.src);">
+									<a href="javascript:uploadOneImage('图片上传','#photo-<%=i%><%=img%>goods');">替换</a>
+									<a href="javascript:(function(){$('#saved-imageid<%=i%><%=img%>goods').remove();})();">移除</a>
+								</li>
+							<%}%>
+						</ul>
+					</td>
+				</tr>
+					<tr>
+					<th>是否推荐</th>
+					<td class="set_frozen">
+						<% if( goods[i].goods_is_recommended == 0 ){ %>
+							<span class="cb-enable">
+								<label class="cb-enable cb-enable-label ">  
+									<span>是</span>
+									<input class="goods_is_recommended" type="radio" name="post[goods_is_recommended]<%=i%>" value="1"/>
+								</label>
+							</span>
+							<span class="cb-disable">
+								<label class="cb-disable  selected ">
+									<span>否</span>
+									<input class="goods_is_recommended" type="radio" name="post[goods_is_recommended]<%=i%>" value="0" checked="checked"/>
+								</label>
+							</span>
+						<%} else {%>
+							<span class="cb-enable">
+								<label class="cb-enable cb-enable-label ">  
+									<span>是</span>
+									<input class="goods_is_recommended" type="radio" name="post[goods_is_recommended]<%=i%>" value="1" checked="checked"/>
+								</label>
+							</span>
+							<span class="cb-disable">
+								<label class="cb-disable  selected ">
+									<span>否</span>
+									<input class="goods_is_recommended" type="radio" name="post[goods_is_recommended]<%=i%>" value="0"/>
+								</label>
+							</span>
+						<%}%>
+					</td>
+				</tr>
+				<tr><td colspan="2"><a class="editor" href="javascript:;" onclick="goods_change(<%=goods[i].id%>,<%=i%>);">修改</a></td></tr>
+			</table>
+		<%}%>
+	</script>
+	<!-- ~~~~~~~~~~~~~~~~-~~~~~~~~~~~~~~~~~~~~~~~~~~~~城市交通  模版~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<script type="text/html" id="traffic_test">
+		<%for(i=0;i < traffic.length;i++){%>
+			<table class="table table-bordered" id="id_<%=traffic[i].id %>">
+				<tr>
+					<th width="100">车站名称</th>
+					<td>
+						<input class="form-control" placeholder="请输入车站" name="post[traffic_name]" type="text" id="traffic_name" value=<%=traffic[i].traffic_name%> />
+					</td>
+				</tr>
+				<tr>
+					<th>交通类型</th>
+					<td>
+						<div class="form-control">
+							<select class="traffic_type" id="traffic_type" name="post[traffic_type]">
+								<%if(traffic[i].traffic_type == "train"){%>
+									<option value='train' selected="selected">火车</option>
+									<option value='plane'>飞机</option>
+									<option value='bus'>汽车</option>
+								<%}%>
+								
+								<%if(traffic[i].traffic_type == "plane"){%>
+									<option value='plane' selected="selected">飞机</option>
+									<option value='train'>火车</option>
+									<option value='bus'>汽车</option>
+								<%}%>
+								<%if(traffic[i].traffic_type == "bus"){%>
+									<option value='bus' selected="selected">汽车</option>
+									<option value='train'>火车</option>
+									<option value='plane'>飞机</option>
+								<%}%>
+							</select>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>联系电话</th>
+					<td>
+						<input class="form-control" placeholder="请输入电话" name="post[traffic_phone]" type="text" id="traffic_phone" value=<%=traffic[i].traffic_phone%> />
+					</td>
+				</tr>
+				<tr>
+					<th width="100">车站地址</th>
+					<td>
+						<input class="form-control" placeholder="请输入地址" name="post[traffic_address]" type="text" id="traffic_address" value=<%=traffic[i].traffic_address%> />
+					</td>
+				</tr>
+				<tr>
+					<th>经纬度</th>
+					<td>
+						<input class="form-control" type="text" name="post[traffic_longitude]" id="traffic_longitude" placeholder="请输入经度" value=<%=traffic[i].traffic_longitude%> />
+						<input class="form-control" type="text" name="post[traffic_latitude]" id="traffic_latitude" placeholder="请输入纬度" value=<%=traffic[i].traffic_latitude%> />
+						<p class="help-block">提示(注：没有可不填)</p>
+					</td>
+				</tr>
+				<tr>
+					<th>车站图片</th>
+					<td>
+						<ul id="pic4_<%=i%>" class="pic-list list-unstyled form-inline">
+							<%for(img=0;img < traffic[i].url.length;img++){%>
+								<li id="saved-image<%=i%><%=img%>traffic">
+									<input id="photo-<%=i%><%=img%>traffic" type="hidden" name="photo_urls4[]" value=<%=traffic[i].url[img]%> />
+									<input class="form-control" id="photo-<%=i%><%=img%>traffic-name" type="text" name="photo_names4[]" value="<%=traffic[i].pic_name[img]%>" style="width: 200px;" title="图片名称">
+									<img id="photo-<%=i%><%=img%>traffic-preview" src="<%=urlTop%><%=traffic[i].url[img]%>" style="height:36px;width: 36px;" onclick="imagePreviewDialog(this.src);">
+									<a href="javascript:uploadOneImage('图片上传','#photo-<%=i%><%=img%>traffic');">替换</a>
+									<a href="javascript:(function(){$('#saved-image<%=i%><%=img%>traffic').remove();})();">移除</a>
+								</li>
+							<%}%>
+						</ul>
+					</td>
+				</tr>
+				<tr><td colspan="2"><a class="editor" href="javascript:;" onclick="traffic_change(<%=traffic[i].id %>,<%=i%>);">修改</a></td></tr>
+			</table>
+		<%}%>
+	</script>
+	<script type="text/javascript">
+		$(function() {
+			editorRunder('content');
+
+			$('.btn-cancel-thumbnail').click(function() {
+				$('#thumbnail-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+				$('#thumbnail').val('');
+			});
+
+                        $('#save_edit').on('click', function() {
+                            var cityInfo = {};
+                            
+                            var picArr = [],
+                            City = {};
+                            
+                            City.id = $('#save_edit').attr('parameter');
+                            City.city_id = $('.city_id').val();
+                            City.province_id = $('.province_id').val();
+                            City.fit_day = $('#day').val();
+                            City.hot_spots = $('#hot_spots').val();
+                            City.food = $('#food').val();
+                            City.longitude = $('#longitude').val();
+                            City.latitude = $('#latitude').val();
+							City.city_score = $('#city_score').val();
+                            City.city_Introduction = $(document.getElementById('ueditor_0').contentWindow.document.body).html();
+                            $("input[name='photo_urls[]']").each(function() {
+                                var temp ={};
+                                temp.url = $(this).val();
+                                temp.name = $(this).siblings("input[name='photo_names[]']").val();
+                                picArr.push(temp);
+                            });
+                            City.photo_urls = picArr;
+                            cityInfo.City = City;
+                            
+                            $.post('{:url('City/do_edit_city')}', cityInfo,function(data) {
+                                    var json = data;
+                                    if(json.code == 1) {
+                                            $.jBox.tip("数据保存中...", 'loading');
+                                            // 2秒后完成操作
+                                            window.setTimeout(function() {
+                                                    $.jBox.tip(json.info, 'success');
+                                                    // window.location.href = '__ROOT__/index.php/tourist/City/index';
+                                            }, 2000);
+                                    } else {
+                                            $.jBox.tip(json.info, 'error');
+                                    }
+                            })
+                        })
+
+			//知名景点
+			$("#edit_spot").on("click",function(){
+				var totalPage = Number($(".spot_pa").val());
+				console.log(totalPage);
+				sopt_page(totalPage);
+			});
+
+			//特色美食
+			$("#edit_food").on("click",function(){
+				var food_pagenum = Number($(".foods_pa").val());
+				food_page(food_pagenum);
+			})
+			
+			//本地特产
+			$("#edit_goods").on("click",function(){
+				var goods_pagenum = Number($(".goods_pa").val());
+				goods_page(goods_pagenum);
+			})
+			
+			//城市交通
+			$("#edit_traffic").on("click",function(){
+				var traffic_pagenum = Number($(".traffic_pa").val());
+				traffic_page(traffic_pagenum);
+			})
+			
+		
+		});
+
+		//editorcontent.render('content');
+		//----------------------------编辑器多次调用时，传参数----------------------------------
+		function editorRunder() {
+
+			for(var i = 0; i < arguments.length; i++) {
+				var editorcontent = new baidu.editor.ui.Editor();
+				editorcontent.render(arguments[i]);
+
+				try {
+					editorcontent.sync();
+				} catch(err) {
+					console.log(err);
+				};
+			};
+		};
+
+		// ----------------------------------------------------知名景点----------------------------------------------------------------
+		//知名景点----------数据
+		function edit_spot(page_num){
+			var url = '__ROOT__/index.php/tourist/City/famous_spot';
+			$.post(url,{page:page_num}, function(data){
+				var data = JSON.parse(data);
+				console.log(data)
+				var data_spot = data.spot;
+				var data_urlTop = data.urlTop;
+				var spot_html = '';
+				for(var i = 0;i<data_spot.length;i++){
+
+					//摘要id
+
+					var spot_id = data_spot[i].id;
+					var content2_id = "content2_"+spot_id;
+					spot_html += "<table id='id_"+spot_id+"' class='table table-bordered'><tr><th width='100'>景点名称</th> <td><input class='form-control' placeholder='请输入景点' name='spotName' type='text' id='spotName"+spot_id+"' value="+data_spot[i].spot_name+" /></td></tr>";
+					spot_html += "<tr><th>景点地址</th><td><input class='form-control' placeholder='请输入景点地址' name='post[spot_address]'   type='text' id='spot_address"+spot_id+"' value="+ data_spot[i].spot_address +"  /></td></tr>";
+					spot_html += "<tr><th>景点评分</th><td><input class='form-control' placeholder='请输入景点评分,(如:9.8)' name='post[score]' type='text' id='score"+spot_id+"' value="+data_spot[i].score+" /></td></tr>";
+					spot_html += "<tr><th>景点摘要</th><td><input class='form-control' placeholder='请输入景点摘要' name='post[absture]' type='text' id='absture"+spot_id+"' value="+data_spot[i].absture+" /></td></tr>";
+					spot_html += "<tr><th>景点简介</th><td><script type='text/plain' id="+content2_id+" name='post[spot_Introduction]' class='spot_Introduction'>"+data_spot[i].spot_Introduction+"</scr"+"ipt></td></tr>";
+		
+					var spot_img =data_spot[i].url;
+					var spot_name = data_spot[i].pic_name;
+					spot_html += "<tr><th>相册</th><td><ul id='photos"+[i]+"' class='pic-list list-unstyled form-inline'>";
+					
+					for(var img = 0;img<spot_img.length;img++){
+						var img_url = spot_img[img];
+						var img_name = spot_name[img];
+						// console.log(img_url)
+						// console.log(img_name)
+						//图片
+						var img_index = i.toString()+img.toString();
+						var remove_id = '"#saved-image'+img_index+'"'
+						spot_html += "<li id='saved-image"+img_index+"'><input class='Img' id='photo-"+img_index+"'"+
+						" type='hidden' name='photo_urls[]' value='"+img_url+"'>"+
+						"<input class='form-control' id='photo-"+img_index+"-name' type='text' name='photo_names[]' value='"+img_name+"' style='width: 200px;' title='图片名称'>"+
+						"<img id='photo-"+img_index+"-preview' src='"+img_url+"' style='height:36px;width: 36px;' onclick='parent.imagePreviewDialog(this.src);'>"+
+						"<a href='javascript:;' "+
+						"onclick=uploadOneImage('图片上传',"+
+						"'#photo-"+img_index+"'"+
+						");>替换</a> <a href='javascript:(function(){$("+remove_id+").remove();})();'>移除</a></li>"
+						
+						
+					}
+					spot_html += "</ul></td></tr>";
+					//知名景点
+					spot_html += '<tr>\
+						<th>省热门景点</th>\
+						<td class="set_frozen">'
+					var spot_hot = data_spot[i].is_province_hot;
+					if(spot_hot == 0){
+						spot_html +='<span>\
+										<label for="t_hot_'+i+'">\
+											<span>是</span>\
+											<input class="is_province_hot" id="t_hot_'+spot_id+'" type="radio" name="hot_'+spot_id+'" value="1"/>\
+										</label>\
+										<label for="f_hot_'+i+'">\
+											<span>否</span>\
+											<input class="is_province_hot" id="f_hot_'+spot_id+'" type="radio" name="hot_'+spot_id+'" value="0" checked="checked" />\
+										</label>\
+									</span>';
+					}else{
+						spot_html +='<span>\
+										<label for="t_hot_'+i+'">\
+											<span>是</span>\
+											<input class="is_province_hot" id="t_hot_'+spot_id+'" type="radio" name="hot_'+spot_id+'" value="1" checked="checked"/>\
+										</label>\
+										<label for="f_hot_'+i+'">\
+											<span>否</span>\
+											<input class="is_province_hot" id="f_hot_'+spot_id+'" type="radio" name="hot_'+spot_id+'" value="0"/>\
+										</label>\
+									</span>'
+					}
+					spot_html += '<tr></td></tr><tr><td colspan="2"><a class="editor" href="javascript:;" onclick="spot_change('+spot_id+","+i+');">修改</a></td></tr></table>'
+
+				}
+				$(".for_spot").html(spot_html);
+				//编辑器
+				$(".spot_Introduction").each(function(i){
+					var spot_Int =  $(".spot_Introduction").eq(i).attr("id");
+					editorRunder(spot_Int);
+				});
+				
+			
+			})
+		};
+		
+		//知名景点--------- 翻页
+		function sopt_page (totalPage) {
+			$('#spot_flip').jqPaginator({
+				totalPages: totalPage, //总页数
+				visiblePages:5, //显示的页数
+				currentPage: 1, //当前页
+				onPageChange: function(num, type) {
+					edit_spot(num);
+				}
+			});
+		};
+		//知名景点-----------修改
+		var spot_obj = {};
+		function spot_change (id,i){
+			console.log(id);
+			spot_obj.city_id = $(".cityId").val();
+			spot_obj.spot_name = $("#spotName"+id).val();
+			spot_obj.spot_address = $("#spot_address"+id).val();
+			spot_obj.score = $("#score"+id).val();
+			spot_obj.absture = $("#absture"+id).val();
+			var content2_id =  "content2_"+id;
+			spot_obj.spot_Introduction = UE.getEditor(content2_id).getContent();
+			spot_obj.pic = [];
+			$("#photos"+i+" li").each(function(i,n){
+				var img_src = $(n).find("input[name='photo_urls[]']").val();
+				var img_name = $(n).find("input[name='photo_names[]']").val();
+				var img_obj = {};
+				img_obj.url = img_src;
+				img_obj.name = img_name;
+				spot_obj.pic.push(img_obj)
+			})
+			spot_obj.is_province_hot = $("#id_"+id+" .is_province_hot:checked").val();
+			spot_obj.id = id;
+			console.log(spot_obj)
+			var url = '__ROOT__/index.php/tourist/City/do_edit_spot';
+			$.post(url,{spot_obj:spot_obj}, function(data,status){
+//				if(status == "success"){
+//					console.log("111")
+//				}
+//				console.log(data);
+                                var json = data;
+                                    if(json.code == 1) {
+                                            $.jBox.tip("数据保存中...", 'loading');
+                                            // 2秒后完成操作
+                                            window.setTimeout(function() {
+                                                    $.jBox.tip(json.info, 'success');
+                                                    // window.location.href = '__ROOT__/index.php/tourist/City/index';
+                                            }, 2000);
+                                    } else {
+                                            $.jBox.tip(json.info, 'error');
+                                    }
+			})
+		};
+
+		//-----------------------------------------------------------------特色美食----------------------------------------------------
+		//特色美食--------------数据
+		function edit_food(page_num){
+			var url = '__ROOT__/index.php/tourist/City/special_food';
+			$.post(url,{page:page_num}, function(data){
+				var data = JSON.parse(data);
+				var data_food = data.food;
+			console.log(data)
+				var food_html = template("foot_test",data);
+				$(".edit_food").html(food_html);
+				// document.getElementById('foods').innerHTML = food_html;
+				$(data_food).each(function(i){
+					$(".foot_dishes_details").eq(i).html("<script  type='text/plain' id='content3_"+i+"' name='post[dishes_details]'>"+data_food[i].dishes_details+"</scr"+"ipt>");
+					var foot_content3id = 'content3_'+i
+					editorRunder(foot_content3id);
+				});
+			})
+		};
+		//特色美食--------------翻页
+		function food_page(totalPage){
+			$('#food_flip').jqPaginator({
+				totalPages: totalPage, //总页数
+				visiblePages:5, //显示的页数
+				currentPage: 1, //当前页
+				onPageChange: function(num, type) {
+					edit_food(num);
+				}
+			});
+		};
+		//特色美食--------------修改
+		var food_obj = {};
+		function foot_change(id,i){
+			food_obj.city_id = $(".cityId").val();
+			food_obj.dishes_picture=[];
+			food_obj.dishes_name = $("#id_"+id).find("input[name='post[dishes_name]']").val();
+			food_obj.dishes_Introduction = $("#id_"+id).find("#dishes_Introduction"+i).val();
+			food_obj.dishes_details = UE.getEditor("content3_"+i).getContent();
+			$("#pic2_"+i+" li").each(function(i,n){
+				var img_obj = {};
+				var img_url =  $(n).find("input[name='photo_urls2[]']").val();
+				var img_name = $(n).find("input[name='photo_names2[]']").val();
+				img_obj.url = img_url;
+				img_obj.name = img_name; 
+				food_obj.dishes_picture.push(img_obj)
+			});
+			food_obj.is_recommended = $("#id_"+id).find("input[name='post[is_recommended]"+i+"']:checked").val();
+			food_obj.id = id;
+			console.log(food_obj)
+			var url = '__ROOT__/index.php/tourist/City/do_edit_food';
+			$.post(url,{food_obj:food_obj}, function(data){
+				var json = data;
+                                    if(json.code == 1) {
+                                            $.jBox.tip("数据保存中...", 'loading');
+                                            // 2秒后完成操作
+                                            window.setTimeout(function() {
+                                                    $.jBox.tip(json.info, 'success');
+                                                    // window.location.href = '__ROOT__/index.php/tourist/City/index';
+                                            }, 2000);
+                                    } else {
+                                            $.jBox.tip(json.info, 'error');
+                                    }
+			})
+		};	
+		// ----------------------------------------------------------------本地特产-------------------------------------------------
+		// 本地特产-------------数据
+		function edit_goods(page_num){
+			var url = '__ROOT__/index.php/tourist/City/special_goods';
+			$.post(url,{page:page_num} ,function(data){
+				var data = JSON.parse(data);
+				console.log(data);
+				var goods_html = template("goods_test",data);
+				$(".edit_goods").html(goods_html);
+				for(var i = 0;i < data.goods.length; i++){
+					$(".goods_details").eq(i).html("<script type='text/plain' id='content4_"+i+"' name='post[goods_details]'>"+data.goods[i].goods_details+"</scr"+"ipt>");
+					var goods_content4id = "content4_"+i;
+					editorRunder(goods_content4id);
+				};
+			});
+		};
+		//本地特产----------------翻页
+		function goods_page (totalPage){
+			$('#goods_flip').jqPaginator({
+				totalPages: totalPage, //总页数
+				visiblePages:5, //显示的页数
+				currentPage: 1, //当前页
+				onPageChange: function(num, type) {
+					edit_goods(num);
+				}
+			});
+		};
+		//本地特产----------------修改
+		var goods_obj = {};
+		function goods_change(id,i){
+                        goods_obj.city_id = $(".cityId").val();
+			goods_obj.goods_pic = [];
+			goods_obj.goods_name = $("#"+id).find("input[name='post[goods_name]']").val();
+			goods_obj.goods_Introduction = $("#"+id).find("input[name='post[goods_Introduction]']").val();
+			goods_obj.goods_details = UE.getEditor("content4_"+i).getContent();
+			$("#pic3_"+i+" li").each(function(i,n){
+				var img_obj = {};
+				img_obj.url = $(n).find("input[name='photo_urls3[]']").val()
+				img_obj.name = $(n).find("input[name='photo_names3[]']").val();
+				goods_obj.goods_pic.push(img_obj);
+			});
+			goods_obj.goods_is_recommended = $("#"+id).find("input[name='post[goods_is_recommended]"+i+"']:checked").val();
+			goods_obj.id = id;
+			console.log(goods_obj);
+
+			var url = '__ROOT__/index.php/tourist/City/do_edit_goods';
+			$.post(url,{goods_obj:goods_obj}, function(data){
+				var json = data;
+                                if(json.code == 1) {
+                                        $.jBox.tip("数据保存中...", 'loading');
+                                        // 2秒后完成操作
+                                        window.setTimeout(function() {
+                                                $.jBox.tip(json.info, 'success');
+                                                // window.location.href = '__ROOT__/index.php/tourist/City/index';
+                                        }, 2000);
+                                } else {
+                                        $.jBox.tip(json.info, 'error');
+                                }
+			})
+		};
+		//-----------------------------------------------------------------城市交通-------------------------------------------------------
+		//城市交通---------------数据
+		function edit_traffic(page_num){
+			var url = '__ROOT__/index.php/tourist/City/city_traffic';
+			$.post(url,{page:page_num}, function(data){
+				var data = JSON.parse(data);
+				console.log(data);
+				var traffic_html = template("traffic_test",data);
+				$(".edit_traffic").html(traffic_html);
+			})
+		};
+		//城市交通--------------翻页
+		function traffic_page (totalPage){
+			$('#traffic_flip').jqPaginator({
+				totalPages: totalPage, //总页数
+				visiblePages:5, //显示的页数
+				currentPage: 1, //当前页
+				onPageChange: function(num, type) {
+					edit_traffic(num);
+				}
+			});
+		};
+		//城市交通--------------修改
+		var traffic_obj = {};
+		function traffic_change(id,i){
+			traffic_obj.city_id = $(".cityId").val();
+			traffic_obj.traffic_pic = [];
+			traffic_obj.traffic_name = $("#id_"+id).find("input[name='post[traffic_name]']").val();
+			traffic_obj.traffic_phone = $("#id_"+id).find("input[name='post[traffic_phone]']").val();
+			traffic_obj.traffic_type = $("#id_"+id).find("option:selected").val();
+			traffic_obj.traffic_address = $("#id_"+id).find("input[name='post[traffic_address]']").val();
+			traffic_obj.traffic_longitude = $("#id_"+id).find("input[name='post[traffic_longitude]']").val();
+			traffic_obj.traffic_latitude = $("#id_"+id).find("input[name='post[traffic_latitude]']").val();
+			$("#pic4_"+i+" li").each(function(i,n){
+				var img_obj = {};
+				img_obj.url = $(n).find("input[name='photo_urls4[]']").val();
+				img_obj.name = $(n).find("input[name='photo_names4[]']").val();
+				traffic_obj.traffic_pic.push(img_obj);
+			});
+			traffic_obj.id = id;
+//			console.log(traffic_obj);
+
+			var url = '__ROOT__/index.php/tourist/City/do_edit_traffic';
+			$.post(url,{traffic_obj:traffic_obj}, function(data){
+				var json = data;
+                                    if(json.code == 1) {
+                                            $.jBox.tip("数据保存中...", 'loading');
+                                            // 2秒后完成操作
+                                            window.setTimeout(function() {
+                                                    $.jBox.tip(json.info, 'success');
+                                                    // window.location.href = '__ROOT__/index.php/tourist/City/index';
+                                            }, 2000);
+                                    } else {
+                                            $.jBox.tip(json.info, 'error');
+                                    }
+			})
+		};
+
+		function doSelectCategory() {
+			var selectedCategoriesId = $('#js-categories-id-input').val();
+			openIframeLayer("{:url('AdminCategory/select')}?ids=" + selectedCategoriesId, '请选择分类', {
+				area: ['700px', '400px'],
+				btn: ['确定', '取消'],
+				yes: function(index, layero) {
+					//do something
+
+					var iframeWin = window[layero.find('iframe')[0]['name']];
+					var selectedCategories = iframeWin.confirm();
+					if(selectedCategories.selectedCategoriesId.length == 0) {
+						layer.msg('请选择分类');
+						return;
+					}
+					$('#js-categories-id-input').val(selectedCategories.selectedCategoriesId.join(','));
+					$('#js-categories-name-input').val(selectedCategories.selectedCategoriesName.join(' '));
+					//console.log(layer.getFrameIndex(index));
+					layer.close(index); //如果设定了yes回调，需进行手工关闭
+				}
+			});
+		}
+
+		//省份切换到城市
+		$(".pro").on("change", function() {
+			var area_id = $(this).val();
+			$('.city option').each(function() {
+				if($(this).text() != '城市') {
+					$(this).remove();
+				}
+			});
+			$('.area option').each(function() {
+				if($(this).text() != '地区') {
+					$(this).remove();
+				}
+			});
+			$.get("__ROOT__/index.php/tourist/City/getCityLink", {
+				area_type: 2,
+				area_id: area_id
+			}, function(data) {
+				var json = $.parseJSON(data);
+				var option = "";
+				$.each(json, function(key, val) {
+					option += '<option value="' + val.area_id + '">' + val.area_name + '</option>';
+				});
+				$(".city").append(option);
+			});
+
+		});
+
+		
+	</script>
+</body>
+
+</html>

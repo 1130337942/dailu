@@ -1,0 +1,537 @@
+/* nav */
+.nav {
+    width: 100%;
+    height: 52px;
+    line-height: 52px;
+    background-color: white;
+    border-radius: 8px;
+    margin-top: 28px;
+    position: absolute;
+  }
+  .nav .nav_icon {
+    margin-left: 30px;
+    float: left;
+    display: flex;
+    display: -webkit-flex;
+    align-content: center;
+  }
+  .nav .nav_icon i {
+    display: inline-block;
+  }
+  .nav .nav_icon .icon1 {
+    width: 66px;
+    height: 30px;
+    background-image: url(/static/common/img/logo.png);
+    background-size: 100% 100%;
+    margin-right: 15px;
+    margin-top: 7px;
+  }
+  .nav .nav_icon span {
+    font-size: 24px;
+    color: #5f9ff1;
+    position: relative;
+  }
+  .nav .nav_icon span::before {
+    content: "o";
+    position: absolute;
+    top: -11px;
+    left: 30px;
+    font-size: 2px;
+  }
+  .nav .nav_icon .icon2 {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: url("/static/v1/img/map/weathericon.png");
+    margin-top: 12px;
+    margin-left: 15px;
+  }
+ 
+  .nav .nav_title {
+    float: left;
+    font-size: 20px;
+    cursor: pointer;
+    color: #454545;
+    font-weight: bold;
+    overflow: hidden;
+  }
+  .trc_title{
+    max-width: 460px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+  }
+  .nav .nav_title i {
+    display: inline-block;
+    width: 18px;
+    height: 9px;
+    background: url("/static/common/img/drop.png") no-repeat;
+    background-size: 100% 100%;
+    margin-left: 5px;
+    margin-bottom: 2px;
+  }
+  .nav .nav_rig {
+    float: right;
+    font-size: 14px;
+    margin-right: 30px;
+  }
+  .nav .nav_rig .r_text {
+    color: #999999;
+  }
+  .nav .nav_rig .r_text a {
+    color: #000;
+  }
+  .nav .nav_rig .save {
+    color: #3889ff;
+    border-right: 1px solid #d3d9e6;
+    padding-right: 20px;
+  }
+  .nav .nav_rig .landing {
+    margin-left: 20px;
+    padding: 3px 12px;
+    border-radius: 30px;
+    box-shadow: inset 0px 0px 12px 0px rgba(0, 0, 0, 0.08);
+    background-color: #649ff5;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    
+  }
+  .nav .nav_rig .landing:hover{
+    background-color: #74adff;
+  }
+  .nav .nav_rig .landing:active{
+    background-color: #5a91e1;
+  }
+  .nav .nav_rig .portrait {
+    width: 28px;
+    height: 28px;
+    margin: 12px 0px 12px 16px;
+    float: right;
+  }
+  .nav .nav_rig .portrait img {
+    float: left;
+    border-radius: 50%;
+  }
+
+/*我的出行计划 start*/
+
+.madeTravelMask {
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(51, 51, 51, 0.68);
+    display: none;
+}
+
+.madeTravelMask .madeTravel {
+    margin: 150px auto 0;
+    width: 600px;
+    height: 580px;
+    background-color: #f5f5f5;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.24);
+    border-radius: 8px;
+    position: relative;
+}
+
+.madeTravelMask .closeMadeTravelMask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 36px;
+    color: #fff;
+    cursor: pointer;
+    font-style: normal;
+    text-align: center;
+    line-height: 36px;
+    font-size: 20px;
+    background:url('/static/common/img/shutDown.png') no-repeat center;
+}
+
+.upload_box {
+    position: relative;
+}
+
+.upload_img {
+    position: absolute;
+    top: 168px;
+    left: calc(300px - 60px);
+    width: 84px;
+    height: 34px;
+    line-height: 34px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 17px;
+    padding: 0 18px;
+    color: #ffffff;
+    font-size: 14px;
+}
+.upload_but{
+    position: absolute;
+    top: 165px;
+    left: calc(300px - 60px) ;
+    width: 120px;
+    height: 34px;
+    line-height: 34px;
+    border-radius: 17px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 14px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.upload_icon{
+    display: inline-block;
+    width: 16px ;
+	height: 14px ;
+    background: url("/static/v1/img/cover_icon_s.png");
+    background-size: 16px 14px;
+    margin-left: 18px;
+    vertical-align: -2px;
+    margin-right: 8px;
+}
+.picturesicon {
+    display: inline-block;
+    background: url("/static/v1/img/map/picturesicon.png");
+    width: 16px;
+    height: 14px;
+    margin-bottom: -2px;
+}
+
+.upload_imgbg {
+    position: relative;
+    top: -36px;
+    padding: 10px;
+    left: -55px;
+    cursor: pointer;
+    width: 170px;
+}
+
+.madeTravelMask .madeTravel .bgImg {
+    width: 100%;
+    height: 374px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.madeTravelMask .madeTravel .cartBox {
+    position: absolute;
+    bottom: 16px;
+    left: 20px;
+    width: 560px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+}
+
+.madeTravelMask .madeTravel .cartBox .cart-top {
+    padding: 15px;
+    width: 530px;
+}
+
+.madeTravelMask .madeTravel .cartBox .diyDay {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    width: 244px;
+    padding: 0 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    border: solid 1px #e5e5e5;
+    color: #666;
+    position: relative;
+}
+
+.madeTravelMask input {
+    width: 100%;
+    outline: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    border: none;
+    font-size: 16px;
+}
+.madeTravelMask .title{
+    width: 265px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    border: solid 1px #e5e5e5;
+    position: relative;
+    padding: 0px 20px 0px 40px;
+}
+.ico_title{
+    background: url('/static/v1/img/addStrokeform/tit.png')
+}
+.madeTravelMask .madeTravel .cartBox .dayNum {
+    padding: 0 30px 0 40px;
+    line-height: 40px;
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+    border: solid 1px #e5e5e5;
+    position: relative;
+}
+
+.madeTravelMask .madeTravel .cartBox .dayNum .ctr-daynum {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.madeTravelMask .madeTravel .cartBox .wap2 input {
+    width: 30px;
+    text-align: center;
+    outline: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    border: none;
+}
+
+.madeTravelMask .madeTravel .cartBox .wap2,
+.madeTravelMask .madeTravel .cartBox .wap3 {
+    margin-top: 6px;
+}
+.madeTravelMask .madeTravel .cartBox .wap2 .man,
+.madeTravelMask .madeTravel .cartBox .wap3 .start {
+    padding: 0 40px;
+    width: 183px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 4px 0 0 4px;
+    border: solid 1px #e5e5e5;
+    position: relative;
+}
+
+.madeTravelMask .madeTravel .cartBox .wap2 .man .ctr-adult,
+.madeTravelMask .madeTravel .cartBox .wap2 .child .ctr-child {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.madeTravelMask .madeTravel .cartBox .wap2 .man .ctr-adult .add,
+.madeTravelMask .madeTravel .cartBox .wap2 .child .ctr-child .add,
+.madeTravelMask .madeTravel .cartBox .dayNum .ctr-daynum .add {
+    display: block;
+    width: 100%;
+    height: 10px;
+    background: #fff url(/static/common/img/add.png) center center no-repeat;
+    background-size: 9px 5px;
+}
+.madeTravelMask .madeTravel .cartBox .wap2 .man .ctr-adult .add:hover,
+.madeTravelMask .madeTravel .cartBox .wap2 .child .ctr-child .add:hover,
+.madeTravelMask .madeTravel .cartBox .dayNum .ctr-daynum .add:hover{
+    background: #fff url("/static/common/img/add_b.png")center no-repeat;
+   
+}
+.madeTravelMask .madeTravel .cartBox .wap2 .man .ctr-adult .sub,
+.madeTravelMask .madeTravel .cartBox .wap2 .child .ctr-child .child_sub,
+.madeTravelMask .madeTravel .cartBox .dayNum .ctr-daynum .sub {
+    display: block;
+    width: 100%;
+    height: 10px;
+    background: #fff url(/static/common/img/under.png) center center no-repeat;
+}
+.madeTravelMask .madeTravel .cartBox .wap2 .man .ctr-adult .sub:hover,
+.madeTravelMask .madeTravel .cartBox .wap2 .child .ctr-child .child_sub:hover,
+.madeTravelMask .madeTravel .cartBox .dayNum .ctr-daynum .sub:hover{
+    background: #fff url(/static/common/img/under_b.png)center no-repeat;
+}
+.madeTravelMask .madeTravel .cartBox .wap2 .child,
+.madeTravelMask .madeTravel .cartBox .wap3 .end {
+    padding: 0 40px;
+    width: 183px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 0 4px 4px 0;
+    border: solid 1px #e5e5e5;
+    position: relative;
+    border-left: none;
+}
+
+
+.madeTravelMask .madeTravel .cartBox .wap1 .startTime {
+    padding: 0 40px;
+    line-height: 40px;
+    width: 110px;
+    height: 40px;
+    border-radius: 4px;
+    position: relative;
+    border: solid 1px #e5e5e5;
+}
+
+.madeTravelMask .madeTravel .cartBox .wap2 .traffic .tra-wap {
+    display: none;
+    position: absolute;
+    z-index: 5;
+    top: 40px;
+    left: -1px;
+    border: 1px solid #e5e5e5;
+    background-color: #fff;
+}
+
+.madeTravelMask .madeTravel .cartBox .wap2 .traffic .tra-wap p {
+    padding: 0 40px;
+    width: 110px;
+    position: relative;
+    border-bottom: 1px solid #e5e5e5;
+    cursor: pointer;
+}
+
+.madeTravelMask .madeTravel .cartBox .wap2 .traffic .tra-wap p:hover {
+    color:rgb(93, 165, 233);
+   
+}
+.madeTravelMask .madeTravel .cartBox .wap2 .traffic .tra-wap p:hover .ico.air {
+    background: #fff url(/static/v1/img/addStrokeform/air.png) center center no-repeat;
+}
+.madeTravelMask .madeTravel .cartBox .wap2 .traffic .tra-wap p:hover .ico.train {
+     background: #fff url(/static/v1/img/addStrokeform/train.png) center center no-repeat;
+}
+.madeTravelMask .madeTravel .cartBox .wap2 .traffic .tra-wap p:hover .ico.car {
+    background: #fff url(/static/v1/img/addStrokeform/car.png) center center no-repeat;
+}
+.madeTravelMask .madeTravel .cartBox .wap2 .traffic .tra-wap p:hover .ico.tra_other {
+    background: #fff url(/static/v1/img/addStrokeform/otherJT.png) center center no-repeat;
+
+}
+.madeTravelMask .madeTravel .cartBox .buttonBox {
+    margin-top: 20px;
+    line-height: 48px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.madeTravelMask .madeTravel .cartBox .buttonBox .cancel {
+    width: 175px;
+    height: 48px;
+    background-color: #cccccc;
+    border-radius: 0 0 0 4px;
+}
+
+.madeTravelMask .madeTravel .cartBox .buttonBox .save {
+    width: 385px;
+    height: 48px;
+    background-color: #f5a21b;
+    border-radius: 0 0 4px 0px;
+}
+.madeTravelMask .madeTravel .cartBox .buttonBox .save:hover{
+    background-color: #ffad28;
+}
+.madeTravelMask .madeTravel .cartBox .buttonBox .save:active{
+    background-color: #e79512;
+}
+.madeTravelMask .madeTravel .cartBox .ico {
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    /*  left: 12px;*/
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.madeTravelMask .madeTravel .cartBox .ico:first-child {
+    left: 12px;
+    background: #fff url(/static/v1/img/addStrokeform/tit.png) center center no-repeat;
+}
+
+.madeTravelMask .madeTravel .cartBox .ico.daynum {
+    background: #fff url(/static/v1/img/addStrokeform/daynum.png) center center no-repeat;
+}
+
+.madeTravelMask .madeTravel .cartBox .ico.adult {
+    background: #fff url(/static/v1/img/addStrokeform/adult.png) center center no-repeat;
+}
+
+.madeTravelMask .madeTravel .cartBox .ico.children {
+    background: #fff url(/static/v1/img/addStrokeform/children.png) center center no-repeat;
+}
+
+.madeTravelMask .madeTravel .cartBox .ico.train {
+    background: url("/static/v1/img/map/railwayb.png") center center no-repeat;
+}
+.madeTravelMask .madeTravel .cartBox .ico.tra_other {
+    background: url("/static/v1/img/addStrokeform/otherJTb.png") center center no-repeat;
+}
+.madeTravelMask .madeTravel .cartBox .ico.car {
+    background: url("/static/v1/img/addStrokeform/carb.png") center center no-repeat;
+}
+.madeTravelMask .madeTravel .cartBox .ico.departure {
+    background: #fff url(/static/v1/img/addStrokeform/departure.png) center center no-repeat;
+}
+
+.madeTravelMask .madeTravel .cartBox .ico.return {
+    background: #fff url("/static/v1/img/addStrokeform/return.png") center center no-repeat;
+}
+
+.madeTravelMask .madeTravel .cartBox .ico.air {
+    background: url("/static/v1/img/map/airb.png") center center no-repeat;
+
+}
+
+.madeTravelMask .madeTravel .cartBox .ico.bus {
+    background: #fff url(/static/v1/img/addStrokeform/bus.png) center center no-repeat;
+}
+
+.madeTravelMask .madeTravel .cartBox .ico.date {
+    background: #fff url(/static/v1/img/addStrokeform/date.png) center center no-repeat;
+}
+
+.madeTravelMask .madeTravel .cartBox .ico.arr {
+    background: #fff url(/static/common/img/drop.png) center center no-repeat;
+    /*left: none;*/
+    right: 10px;
+    cursor: pointer;
+}
+#date_picker{
+    width: 90px;
+    text-align: center;
+}
+#wap3_date {
+    border: none;
+    width: 85px;
+    font-size: 16px;
+}
+
+.upload_but #nav_file{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/*我的出行计划 end*/
+@media screen and (max-width:1560px){
+    .nav{
+        margin-top: 20px;
+    }
+    .madeTravelMask .madeTravel{
+        margin-top: 80px;
+    }
+}
+@media screen and (max-width:1366px){
+    .nav{
+        margin-top: 20px;
+    }
+    .madeTravelMask .madeTravel{
+        margin-top: 60px;
+    }
+}

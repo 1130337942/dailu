@@ -1,0 +1,39 @@
+ <!doctype HTML>
+<html style="font-size:100px;">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta content="telephone=no" name="format-detection" />
+<meta name="keywords" content="{$news_detail.keywords}" />
+<meta name="description" content="旅游资讯。" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"/>
+<title>袋鹿资讯</title>
+<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+<script type="text/javascript" src="<?php AutoVersion('/static/common/h5common/rem.js');?>"></script>
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/h5common/normalize.css');?>">
+<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/news/mdetails.css');?>">
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js"></script>
+</head>
+<body>
+	<div class="main">
+		<div class="header">
+			<img class="logo" src="/static/v1/img/news/news_m_logo.png" alt="袋鹿旅行">
+			<a class="downApp" href="javascript:;">打开</a>
+		</div>
+		<div class="title">
+			<div class="tit_con">{$news_detail.title}</div>
+			<div class="tips">
+				<span class="author">作者：{$news_detail.writer}</span>
+				<span class="date">{$news_detail.create_time|date='Y年m月d日',###}</span>
+			</div>
+		</div>
+		<div class="content">
+			{$news_detail.content}
+		</div>
+	</div>
+</body>
+	<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+	<script src='/static/common/layer3.1.1/layer.js'></script>
+	<script type="text/javascript"  src="<?php AutoVersion('/static/common/js/common.js');?>"></script>
+	<script src="<?php AutoVersion('/static/v1/js/news/mdetails.js');?>"></script>
+</html>

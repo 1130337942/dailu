@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>酒店申请退款</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/store/hotelMoneyback.css');?>">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_storeForm"/>
+	<div class="progress">
+		<div class="main clearfix">
+			<div class="logo fl"><a href="/"><img src="/static/common/img/logo.png" alt="袋鹿"></a></div>
+			<div class="fr progress_info">
+				<span class="step1 active">申请退款<i></i></span>
+				<span class="step2">在线支付<i></i></span>
+				<span class="step3">订单完成</span>
+			</div>
+		</div>
+	</div>
+	<div class="mainWap clearfix">
+		<div class="wap1">
+			<div class="wap1_tit clearfix">
+					<p class="detail_num fl">订单号 <span>{$order_detail.OrderId}</span></p>
+					<p class="right_ctrl fr">订单总金额 <strong>¥{$order_detail.TotalPrice}</strong></p>
+			</div>
+			<div class="hotel_info">
+				<p>酒店信息：<span>{$order_detail.HotelName}  |  {$order_detail.RoomTypeName}（{$order_detail.PaymentType}）{$order_detail.NumberOfRooms}间</span>	</p>
+				<p>入住信息：<span>入住时间：{$order_detail.ArrivalDate}  |  退房时间：{$order_detail.DepartureDate}</span>	</p>
+				<p>费用明细：<span>房费 ¥{$order_detail.TotalPrice}</span></p>
+				<p>入住人：  <foreach name="order_detail.OrderRooms" item="vo"><span>{$vo.Customers.0.Name}</span></foreach> </p>
+			</div>
+			
+		</div>
+		<div class="wap2">
+			<div class="wap2_tit">
+				退款填写
+			</div>
+			<div class="backreason">
+				取消原因*:
+				<select name="" id="cause">
+					<option value="自愿取消">自愿取消（行程变化）</option>
+					<option value="对酒店相关条件不满意">对酒店相关条件不满意</option>
+					<option value="已换其他酒店">已换酒店</option>
+					<option value="航班推迟">航班推迟</option>
+					<option value="行程变更">行程变更</option>
+					<option value="订单重复">订单重复</option>
+					<option value="其它">其它</option>
+				</select>
+				<i></i>
+			</div>
+			<div class="describe">
+				取消说明*
+				<p>
+					<textarea name="" id="orther_cause" cols="30" rows="10"></textarea>
+				</p>
+			</div>
+			<div class="ctrl">
+				<!-- <p><i class="checkBox on"></i>本人已阅读并同意以下条款<a href="javascript:;">《我也不知道什么条款》</a></p> -->
+				<if condition="$order_detail.cancelable == true && $order_detail.cancel_info == false"/>
+					<span class="submit_reason submit" value="{$order_detail.OrderId}">提交申请</span>	
+				<else />
+					<span class="submit">无法申请</span>
+				</if></p>
+			</div>
+		</div>
+	</div>
+
+	<include file="public@publicFooter"/>
+	
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script src='/static/common/layer3.1.1/layer.js'></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/hotelmoneyBack.js"></script>
+</html>

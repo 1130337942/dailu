@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>选择增值业务</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="<?php AutoVersion('stylesheet" href="/static/common/css/common.css');?>">
+	<link rel="<?php AutoVersion('stylesheet" href="/static/v1/css/itinerary/addServer.css');?>">
+</head>
+<body>
+	<div class="mask">
+		<div class="mask_box">
+			<img src="/static/v1/img/Pacman-1s-120px.gif" alt="">
+			<div class="tip">正在生成行程单 . . . </div>
+		</div>
+	</div>
+	<div class="nameMask">
+		<div class="nameMaskMain">
+			<div class="maskMain_tit">为自己的行程加个名字吧</div>
+			<div class="name_wap">
+				<input class="travel_title" placeholder="取个好听的名字吧，最多20个字符哦~" type="text"><span>确定</span>
+			</div>
+			<i class="close"></i>
+		</div>
+	</div>
+	<include file="public@publicHeader"/>
+	<div class='bgWap'>
+		<div class="main">
+			<p class="topBorder"></p>
+			<div class="title clearfix">
+				
+				<div class="stapBar fl">
+					<span></span>
+					<span></span>
+				</div>
+				<h3 class='fl'>选择增值服务</h3>
+				<div class="shortCart fr">
+						<a href="#"><i></i>在线服务</a>
+						<a href="#"><i></i>帮助</a>
+				</div>		        
+			</div>
+			<div class="mainTable">
+				<table border="1" cellpadding="0" cellspacing="0">
+					<thead>
+						<tr>
+							<th>目的地</th>
+							<th>天数</th>
+							<th>日期</th>
+							<th>已选元素</th>
+							<th>行程总公里数</th>
+							<th>服务</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+					<tfoot>
+						<tr class='foot'>
+						<td colspan='5'>袋鹿可全程提供包车服务</td>
+						
+						<td colspan='2' class='serverCheck'><span style="margin-left: 0;padding-right: 0"><i class='check allbus'></i>全程包车</span><!-- <span><i class='check allshare'></i>全程租车</span> --></td>
+						
+					</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div class="bottomServer clearfix">
+				 <div class="item1 fl">
+				 	<a target="_blank" href="/portal/DownloadApp/downloadApp.html"><img src="/static/v1/img/dailuServer1.png" alt=""></a>
+					
+				 </div>
+				 <div class="item2 fl clearfix">
+					<div class='fl'><a target="_blank" href="/portal/DownloadApp/downloadApp.html"><i></i>智能景讲</a></div>
+					<div class='fl'><a target="_blank" href="/portal/DownloadApp/downloadApp.html"><i class="dl"></i>景点导览</a></div>
+					<div class='fl'><a target="_blank" href="/portal/DownloadApp/downloadApp.html"><i class="dh"></i>交通导航</a></div>
+					<div class='fl'><a target="_blank" href="/portal/DownloadApp/downloadApp.html"><i class="zx"></i>周边推送</a></div>
+				 </div>
+				 <div class="item3 fl">
+						<span class="tit"><i class='on'></i> 选择管家服务</span><br>
+						<span class="tip"> 免费体验</span>
+				 </div>
+			</div>
+			<div class='btnBox'>
+					<button class='edit'>编辑行程</button>
+					<button class='check'>生成行程单</button>
+			</div>
+		</div>
+	</div>
+</body>
+<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+<script src='/static/common/layer3.1.1/layer.js'></script>
+<script src="<?php AutoVersion('/static/v1/js/itinerary/addServer.js');?>"></script>
+</html>                           

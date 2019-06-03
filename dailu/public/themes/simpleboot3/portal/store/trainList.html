@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>火车票列表</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/css/swiper.min.css"> -->
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/common/js/pagination/pagination.css">
+	<link rel="stylesheet" href="/static/v1/css/store/trainList.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_store"/>
+	<div class="searchwap clearfix">
+		<div class="fl city">
+			<div class="tip"><span>出发城市</span><span class="change"></span><span>到达城市</span></div>
+			<div class="put_in">
+				<input id='leave_city' type="text" value="{$_COOKIE['start_city']}" size="15" name="leave_city" mod="address|notice" mod_address_source="hotel" mod_address_suggest="" mod_address_reference="cityid" mod_notice_tip="中文/拼音" autocomplete="off"/>
+				<input id="cityid" name="cityid" type="hidden" value="" />
+				<input id='dest_city' type="text" value="{$_COOKIE['end_city']}" size="15" name="dest_city" mod="address|notice" mod_address_source="hotel" mod_address_suggest="" mod_address_reference="cityid" mod_notice_tip="中文/拼音" autocomplete="off"/>
+				<input id="cityid" name="cityid" type="hidden" value="" />
+				<!-- <input type="text" id="leave_city" value={$_COOKIE['start_city']}><input type="text" id="dest_city" value={$_COOKIE['end_city']}> -->
+			</div>
+		</div>
+		<div class="fl type">
+			<div class="dan"><i class="checkBox on"></i>不限</div>
+			<div class="wangfan"><i class="checkBox"></i>只看高铁动车 </div>
+		</div>
+		<div class="fl leave_day">
+			<div class="tip">出发日期</div>
+			<div class="put_in"><input id="leave_day" type="text" value={$_COOKIE['date']}></div>
+		</div>
+		
+		<div class="fr search_btn">搜 索</div>
+	</div>1
+	<div class="calender">
+		<span class="prev"></span>
+		<span class="next"></span>
+		<ul class="clearfix listbox">
+			<li>
+				<div class="day">11-29</div>                              
+				<div class="week">周四</div>
+			</li>
+			<li>
+				<div class="day">11-29</div>
+				<div class="week">周四</div>
+			</li>
+
+			<li>
+				<div class="day">11-29</div>
+				<div class="week">周四</div>
+			</li>
+
+			<li>
+				<div class="day">11-29</div>
+				<div class="week">周四</div>
+			</li>
+
+			<li>
+				<div class="day">11-29</div>
+				<div class="week">周四</div>
+			</li>
+
+			<li>
+				<div class="day">11-29</div>
+				<div class="week">周四</div>
+			</li>
+
+			<li>
+				<div class="day">11-29</div>
+				<div class="week">周四</div>
+			</li>
+
+			<li>
+				<div class="day">11-29</div>
+				<div class="week">周四</div>
+			</li>
+
+			<li>
+				<div class="day">11-29</div>
+				<div class="week">周四</div>
+			</li>
+		</ul>
+	</div>
+	<div class="filter_box">
+		<span class="tit">筛选</span>
+		<ul class="clearfix">
+			<li class="filter fl">
+				<p><i class="checkBox on" type="no"></i>不限</p>
+			</li>
+			<li class="filter fl">
+				<p><i class="checkBox on" type="G"></i>高铁</p>
+			</li>
+			<li class="filter fl">
+				<p><i class="checkBox on" type="D"></i>动车</p>
+				
+			</li>
+			<li class="filter fl">
+				<p><i class="checkBox on" type="T"></i>特快</p>
+			</li>
+			<li class="filter fl">
+				<p><i class="checkBox on" type="K"></i>快速</p>
+			</li>
+			<li class="filter fl">
+				<p><i class="checkBox on" type="Z"></i>直达</p>
+			</li>
+		</ul>
+		
+	</div>
+	<div class="listWap">
+		<div class="title">
+			<span class="train_info">车次信息</span>
+			<span class="departure">出发</span>
+			<span class="rate">耗时</span>
+			<span class="arrive">到达</span>
+			<span class="train_price">参考价</span>
+		</div>
+		<div class="trainList">
+			<ul>
+				<li class="list">
+					<div class="train_info">
+						<div class="trainNum">G101</div>
+					</div>
+					<div class="departure">
+						<div class="time">06:54</div>
+						<div class="station">北京南 <span class="s">始</span><span class="g hide">过</span></div>
+					</div>	
+					<div class="rate">
+						<div class="line">5时57分</div>
+					</div>	
+					<div class="arrive">
+						<div class="time">06:54</div>
+						<div class="station">
+							<span class="g hide">过</span><span class="z">终</span>
+							北京南 
+						</div>
+					</div>
+					<div class="train_price">
+						<div class="setType">
+							 <span class="set">商务座</span>
+							 <span class="price">¥1024</span>
+							 <span class="num">86 张</span>
+							 <span class="book">预订</span>
+						</div>
+						<div class="setType">
+							 <span class="set">一等座</span>
+							 <span class="price">¥1024</span>
+							 <span class="num">86 张</span>
+							 <span class="book">预订</span>
+						</div>
+						<div class="setType">
+							 <span class="set">二等座</span>
+							 <span class="price">¥1024</span>
+							 <span class="num">86 张</span>
+							 <span class="book">预订</span>
+						</div>
+						<div class="setType">
+							 <span class="set">二等座</span>
+							 <span class="price">¥1024</span>
+							 <span class="num">86 张</span>
+							 <span class="book">预订</span>
+						</div>
+					</div>	
+				</li>
+				<li class="list">
+					<div class="train_info">
+						<div class="trainNum">G101</div>
+					</div>
+					<div class="departure">
+						<div class="time">06:54</div>
+						<div class="station">北京南 <span class="s">始</span><span class="g hide">过</span></div>
+					</div>	
+					<div class="rate">
+						<div class="line">5时57分</div>
+					</div>	
+					<div class="arrive">
+						<div class="time">06:54</div>
+						<div class="station">
+							<span class="g hide">过</span><span class="z">终</span>
+							北京南 
+						</div>
+					</div>
+					<div class="train_price">
+						<div class="setType">
+							 <span class="set">商务座</span>
+							 <span class="price">¥1024</span>
+							 <span class="num">86 张</span>
+							 <span class="book">预订</span>
+						</div>
+						<div class="setType">
+							 <span class="set">一等座</span>
+							 <span class="price">¥1024</span>
+							 <span class="num">86 张</span>
+							 <span class="book">预订</span>
+						</div>
+						<div class="setType">
+							 <span class="set">二等座</span>
+							 <span class="price">¥1024</span>
+							 <span class="num">86 张</span>
+							 <span class="book">预订</span>
+						</div>
+						<div class="setType">
+							 <span class="set">二等座</span>
+							 <span class="price">¥1024</span>
+							 <span class="num">86 张</span>
+							 <span class="book">预订</span>
+						</div>
+					</div>	
+				</li>
+			</ul>
+			<div id="pagination"></div>
+		</div>
+	</div>
+	<div class="longTimemask hide">
+		<div class="msg_box">
+			<div class="message_header">温馨提示</div>
+			<div class="msg_body">
+				距离您上一次查询已超过<strong>10分钟</strong>，请您重新查询最新报价哦～
+			</div>
+			<div class="msg_ctrl">
+				<span class="search">重新查询</span>
+				<span class="cancel">取消</span>
+			</div>
+		</div>
+	</div>
+	<div class="virtue clearfix">
+		<div class="vir_list fl">
+			<div class="img_l">
+				
+			</div>
+			<div class="info_r">
+				<div class="tit">价格透明</div>
+				<div class="info">价格信息全部展示，透明比价</div>
+			</div>
+		</div>
+		<div class="vir_list fl">
+			<div class="img_l">
+				
+			</div>
+			<div class="info_r">
+				<div class="tit">价格透明</div>
+				<div class="info">价格信息全部展示，透明比价</div>
+			</div>
+		</div>
+		<div class="vir_list fl">
+			<div class="img_l">
+				
+			</div>
+			<div class="info_r">
+				<div class="tit">价格透明</div>
+				<div class="info">价格信息全部展示，透明比价</div>
+			</div>
+		</div>
+	</div>
+	<include file="public@publicFooter"/>
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/pagination/jquery.pagination.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/storecity/fixdiv.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/storecity/address.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/trainList.js"></script>
+</html>

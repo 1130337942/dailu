@@ -1,0 +1,75 @@
+ <!doctype HTML>
+<html style="font-size:100px;">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"/>
+<title>景点详情</title>
+<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+<script src='/static/common/h5common/rem.js'></script>
+<link rel="stylesheet" href="/static/common/h5common/normalize.css">
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/swiper/swiper.css');?>">
+<link rel="stylesheet" href="<?php AutoVersion('/static/common/swiper/animate.min.css');?>">
+<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/itinerary/tripDetail.css');?>">
+</head>
+<body>
+	<div class="main">
+		<div class="header"><span class="prevPage"></span></div>
+		<div class="banner_img">
+				<div class="swiper-container1 ">
+					<div class="swiper-wrapper">
+					</div>
+				</div>
+				 <div class="swiper-container2 hide">
+				 	<div class="swiper-wrapper">
+				 		
+				 	</div>
+				 </div> 
+			
+			<div class="imgCount">0张</div>
+			
+			<!-- <div class="tabs">
+				<span class="imgs active">图片</span>
+				<span class="videos">视频</span>
+			</div> -->
+		</div>
+		<div class="detail_info">
+			<div class="detail_tit"></div>
+			<div class="address"></div>
+			<div class="itemlist"><i class="ico jijie"></i><span>景点介绍</span><strong class="spot_desc"></strong><div class="more_msg">查看更多</div></div>
+			<div class="itemlist"><i class="ico leixing"></i><span>景点类型</span><strong class="type"></strong></div>
+			<div class="itemlist"><i class="ico shiwan"></i><span>适玩时间</span><strong class="play_time"></strong></div>
+			<div class="itemlist"><i class="ico kaifang"></i><span>开放时间</span><strong class="suit_time"></strong></div>
+			<div class="itemlist"><i class="ico jijie"></i><span>适玩季节</span><strong class="suit_season"></strong></div>
+			<div class="itemlist"><i class="ico dianhua"></i><span>景点电话</span><a class="phone" href="javascript:;"></a></div>
+			<div class="itemlist"><i class="ico menpiao"></i><span>门票信息</span><strong class="ticket"></strong> <div class="more_msg">查看更多</div></div>
+		</div>
+		<div class="comment_wap">
+			<div class="title">用户评论 <a  class="toComment" href="javascript:;"></a></div>
+			<div class="commemt_box">
+						<div class="comment_in">
+							<ul class="">
+								
+							</ul>
+							<div class="nocomment">这个景点暂无评论哟</div>
+							<div class="morecomment">加载更多评论</div>
+						</div>
+			</div>
+		</div>
+		<!-- <div class="layMore">查看更多</div> -->
+	</div>
+	<div class="sliderbox">
+		<div class="sliderMask swiper-container">
+			<div class="sliderIMg swiper-wrapper">
+			</div>
+		</div>
+	</div>
+</body>
+	<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+	<script src="<?php AutoVersion('/static/common/swiper/swiper.js');?>"></script>
+	<script src="<?php AutoVersion('/static/common/swiper/swiper.animate1.0.3.min.js');?>"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+	<script src="/static/common/layer3.1.1/layer.js"></script>
+	<script type="text/javascript"  src="<?php AutoVersion('/static/common/js/common.js');?>"></script>
+	<script src="<?php AutoVersion('/static/v1/js/itinerary/tripDetail.js');?>"></script>
+</html>

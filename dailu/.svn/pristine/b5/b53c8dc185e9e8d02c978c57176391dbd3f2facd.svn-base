@@ -1,0 +1,198 @@
+
+.hide {
+	display: none;
+}
+.checkBox{
+	cursor: pointer;
+	margin-right: 15px;
+	font-size: 14px;
+	color: #999;
+}
+.checkBox::before {
+	margin-right: 6px;
+	display: inline-block;
+	content:'';
+	vertical-align: middle;
+	width: 12px;
+	height: 12px;
+	border: 1px solid #e5e5e5;
+	background-color: #fafafa;
+}
+.on.checkBox::before {
+	background: #fff url(/static/v1/img/checked.png) center center no-repeat;
+}
+input,select{
+     appearance:none;
+    -moz-appearance:none;
+   -webkit-appearance:none;  
+	outline: none;
+	border: none;
+	font-family: 'DINMittelschriftStd';
+}
+.progress {
+	background-color: #f6f6f6;
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+	left: 0;
+	top: 28px;
+	padding-top: 2px;
+	height: 70px;
+	/*background-color: #f6f6f6;*/
+	border-bottom: 1px solid #e5e5e5;
+}
+.progress .main {
+	height: 100%;
+	width: 1200px;
+	margin: 0 auto;
+}
+.progress .logo{
+	padding-top: 13px;
+	width: 87px;
+	height: 40px;
+} 
+.progress .progress_info{
+	line-height: 70px;
+	color: #999;
+}
+.progress .progress_info i{
+	display: inline-block;
+	width: 136px;
+	height: 2px;
+	border-radius: 1px;
+	background-color: #e5e5e5;
+	margin:0 12px;
+	vertical-align: middle;
+	position: relative;
+}
+.progress .progress_info i::after {
+	position: absolute;
+	top: -2px;
+	right: 0px;
+	display: inline-block;
+	content: '';
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #e5e5e5;
+}
+.progress .progress_info .active{
+	color:#659ff5;
+}
+.progress .progress_info .active i,
+.progress .progress_info .active i::after {
+	background-color: #659ff5;
+}
+
+.main_wap{
+	width: 1200px;
+	margin: 0 auto; 
+	padding-top: 110px;
+
+}
+.pointOut {
+	background-color: #fff;	
+	margin: 8px auto 0;
+	text-align: center;
+	padding: 110px 0;
+	position: relative;
+}
+.pointOut::after {
+	display: block;
+	content: '';
+	width: 1120px;
+	height: 1px;
+	background-color: #e5e5e5;
+	position: absolute;
+	bottom: 0;
+	left: 40px;
+	/*margin: 0 auto;*/
+}
+.pointOut .success {
+	font-size: 24px;
+}
+.pointOut .tip {
+	color: #999;
+}
+.pointOut .btn {
+	margin: 0 auto;
+	display: block;
+	width: 160px;
+	height: 48px;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	line-height: 48px;
+	margin-bottom: 8px;
+	color: #999;
+}
+.pointOut .to_list {
+	background-color: #659ff5;
+	border-color: #659ff5;
+	color: #fff;
+	margin-top: 28px;
+}
+.pointOut  .ico_check {
+	display:inline-block; 
+	position: relative;
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	background-color: #f4a21e;
+}
+.pointOut  .ico_check::before {
+	content: '';
+	display: block;
+	width: 25px;
+	height: 12px;
+	border-bottom: 2px solid #fff;
+	border-left: 2px solid #fff;
+	position: absolute;
+	top: 25%;
+	left: 20%;	
+	transform: rotate(-45deg);	
+}
+.virtue {
+	margin: 0px auto 96px;
+	width: 1200px;
+	height: 124px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px 
+		rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+}
+.virtue .vir_list{
+	margin-top: 40px;
+}
+.virtue .img_l ,
+.virtue .info_r {
+	display: inline-block;
+	height: 60px;
+	vertical-align: middle;
+}
+
+.virtue .img_l {
+	width: 60px;
+	background: #fff url(/static/v1/img/touming.png) center 0 no-repeat;
+}
+.virtue .vir_list:nth-child(1){
+	margin-left: 48px;
+} 
+.virtue .vir_list:nth-child(2) .img_l {
+	width: 60px;
+	background: #fff url(/static/v1/img/kf_tel.png) center 0 no-repeat;
+}
+.virtue .vir_list:nth-child(3) .img_l {
+	width: 60px;
+	background: #fff url(/static/v1/img/jisu.png) center 0 no-repeat;
+}
+.virtue .info_r {
+	margin-left: 15px;
+	width: 300px;
+	color: #999;
+}
+.virtue .info_r .tit {
+	margin-bottom: 5px;
+	color: #333;
+	font-family: PingFang-SC-Bold;
+	font-size: 20px;
+}

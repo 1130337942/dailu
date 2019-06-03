@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>袋鹿订单列表</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/store/hotelOrderdetails.css');?>">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@publicHeader"/>
+	<div class="main clearfix">
+		<div class="main_title">
+			<a href="javascript:;">个人中心</a> >
+			<a href="javascript:;">我的订单</a> >
+			<a href="javascript:;">订单详情</a> 
+		</div>
+		<div class="wap1">
+			<div class="wap1_tit clearfix">
+					<p class="detail_num fl">订单号 <span>{$order_detail.OrderId}</span></p>
+					<p class="right_ctrl fr">订单总金额 <strong>¥{$order_detail.TotalPrice}</strong>
+						<if condition="$order_detail.ShowStatus == '8'">
+							<a class="pay" href="/portal/store/hotelPay.html?hotel_id={$order_detail.hotel_id}">立即支付</a>
+						<else />
+						</if>
+						<if condition="$order_detail.cancelable == true "/>
+							<a class="cancel" href="/portal/store/hotelOrderCancel.html?order_id={$order_detail.OrderId}">取消订单</a>
+						<else />
+						</if>
+					</p>
+			</div>
+			<div class="hotel_info">
+				<p>酒店信息：<span>{$order_detail.HotelName}  |  {$order_detail.RoomTypeName}（{$order_detail.PaymentType}）{$order_detail.NumberOfRooms}间</span>	</p>
+				<p>入住信息：<span>入住时间：{$order_detail.ArrivalDate}  |  退房时间：{$order_detail.DepartureDate}</span>	</p>
+				<p>费用明细：<span>房费 ¥{$order_detail.TotalPrice}</span></p>
+				<p>入住人：<foreach name="order_detail.OrderRooms" item="vo"><span>{$vo.Customers.0.Name}</span></foreach> </p>
+					
+			</div>
+			<div class="hotel_info bb_n">
+				<p>下单时间：<span>{$order_detail.create_date}</span></p>
+				<p>支付方式：<span><switch name="order_detail.pay_type">
+								<case value="1">微信</case>
+								<case value="2">支付宝</case>
+								<case value="3">网银</case>
+							</switch></span></p>
+				<p>支付金额：<span>¥<if condition="$order_detail.pay_status == 1">{$order_detail.TotalPrice}
+							<else />0
+						</if>
+							</span></p>
+				<p>订单状态：<span><switch name="order_detail.ShowStatus">
+								<case value="1">担保失败</case>
+								<case value="2">等待担保</case>
+								<case value="4">等待确认</case>
+								<case value="8">等待支付</case>
+								<case value="16">等待核实入住</case>
+								<case value="32">酒店拒绝订单</case>
+								<case value="64">未入住</case>
+								<case value="128">已经离店</case>
+								<case value="256">已经取消</case>
+								<case value="512">已经确认</case>
+								<case value="1024">已经入住</case>
+								<case value="2048">正在担保-处理中</case>
+								<case value="4096">正在支付-处理中</case>
+								<case value="8192">支付失败</case>
+							</switch></span></p>
+				<!-- <p>订单状态：<span>已退款</span></p> -->
+				<!-- <p>订单记录：<span>{$order_detail.CreationDate} 订单提交成功<br> -->
+								<!-- 2017-12-26 17:13:44 订单取消申请99111782402，乘客朱琳订单取消申请已提交，正在处理中</span></p> -->
+			</div>
+		</div>
+		<div class="wap2">
+			<div class="wap2_tit">
+				酒店信息
+			</div>
+			<div>
+				<p>酒店名称：<span>{$order_detail.HotelName}</span></p>
+				<p>联系电话：<span>{$order_detail.OrderHotel.Phone}</span></p>
+				<p>详细地址：<span>{$order_detail.OrderHotel.Address}</span></p>
+			</div>
+		</div>
+		<div class="wap3">
+			<div class="wap3_tit">订单说明</div>
+			<div>
+				<!-- <p>订单修改：<span>下单成功后，订单无法修改，只能取消订单后重新预订</span></p> -->
+				<p><span>{$order_detail.PrepayRule.Description}</span></p>
+				<!-- <p>订单退款：<span>下单成功后，订单无法修改，只能取消订单后重新预订</span></p> -->
+				<!-- <p>开具发票：<span>如需发票，请在离店时与酒店前台确认开具发票</span></p> -->
+			</div>
+		</div>
+	</div>
+
+	<include file="public@publicFooter"/>
+	
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<!-- <script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/store/hotelForm.js');?>"></script> -->
+</html>

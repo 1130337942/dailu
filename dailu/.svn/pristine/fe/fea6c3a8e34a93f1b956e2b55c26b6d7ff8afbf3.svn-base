@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Keywords" content="好吃好玩,自由行行程定制,自由行计划定制,自由行攻略定制,自由行行程设计,自由行线路设计,袋鹿,袋鹿旅行">
+    <meta name="description" content="【袋鹿旅行不仅仅是最实用的智能化的旅游行程制作工具，也是自由行用户的行程伴侣。在线听达人讲述当地的风土人情；周边推荐好吃好玩，景区智讲、电子导航；一键预定机票、酒店、包车等服务。让你尽情享受旅行中的自由、轻松、快乐】">
+    <meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/common/css/common.css">
+    <link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+    <link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/addStrokeform/addStrokeform.css');?>">
+    <link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+    <include file="public@ie">
+   <title>快速定制私有行程_自由行的好伴侣_袋鹿旅行</title>
+</head>
+<body>
+    <div class="body_bg" id="body_bg">
+        <div class="main" id="js_main">
+            <div class="title">袋鹿开启您的行程</div>
+            <div class="form_box clearfix">
+                <div class="go_time">
+                    <p class="form_p">出发时间</p>
+                    <div class="form_data_content">
+                        <input type="text" id="date_picker" class="form_input" value="" readonly="readonly">
+                        <label for="date_picker" class="label_icon"></label>
+                    </div>
+                </div>
+                <div class="traffic_tools">
+                    <p class="form_p">交通工具</p>
+                    <div class="form_content clearfix" data-click="show">
+                        <span class="det_name" data-click="show">飞机交通</span>
+                        <i class="choose_icon" data-click="show"></i>
+                    </div>
+                    <div class="form_bottom">
+                        <div class="select_box clearfix">
+                            <div class="select_clas_box hover_color clearfix">
+                                <i class="form_icon air_icon tra_active0"></i>
+                                <span class="select_name">飞机交通</span>
+                            </div>
+                            <div class="select_clas_box clearfix">
+                                <i class="form_icon train_icon"></i>
+                                <span class="select_name">铁路交通</span>
+                            </div>
+                            <div class="select_clas_box clearfix">
+                                <i class="form_icon other_icon"></i>
+                                <span class="select_name">汽车交通</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="day_num">
+                    <p class="form_p">出行天数</p>
+                    <div class="form_content" data-click="show" >
+                        <span data-click="show" class="change_daynum change_daynum_text">选择出行天数</span><span class="day_num_text" data-click="show"></span>
+                        <i class="choose_icon" data-click="show"></i>
+                    </div>
+                    <div class="form_bottom" data-click="show">
+                        <div class="select_box clearfix" data-click="show">
+                            <i class="form_icon daynum_icon"></i>
+                            <div class="select_content">
+                                <input type="text" value="5" maxlength="2" class="input_day_num" data-click="show"   onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''|| parseInt((value=value.replace(/\D/g,'')) ==0 ) ?'1':value,10))"  onafterpaste="value=(parseInt((value=value.replace(/\D/g,''))==''|| parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" > 天
+                            </div>
+                            <div class="ondow_box" data-click="show">
+                                <img src="/static/common/img/add.png" class="add_icon" data-click="show" alt="">
+                                <img src="/static/common/img/under.png" class="under_icon" data-click="show" alt="">
+                            </div>
+                        </div>
+                        <div class="but_box clearfix" data-click="show">
+                            <div class="but_cancel">取消</div>
+                            <div class="but_line"></div>
+                            <div class="but_det daynum_but_det">确定</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form_box clearfix">
+                <div class="people_num">
+                    <p class="form_p">出游人数</p>
+                    <div class="form_content" data-click="show">
+                        <p class="adulttext" data-click="show"><span class="change_adult" data-click="show">1</span>成人&nbsp;</p>,
+                        <p  class="childrentext" data-click="show"><span class="change_children" data-click="show">0</span>儿童</p>
+                        <i class="choose_icon" data-click="show"></i>
+                    </div>
+                    <div class="form_bottom">
+                        <div class="select_box clearfix">
+                            <div class="adult_box clearfix">
+                                <i class="form_icon adult_icon"></i>
+                                <div class="select_content">
+                                    <input type="text" value="1"  class="adult_num" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" onafterpaste="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))">成人
+                                </div>
+                                <div class="ondow_box">
+                                    <img src="/static/common/img/add.png" class="add_icon" alt="" data-click="show">
+                                    <img src="/static/common/img/under.png" class="under_icon" alt="" data-click="show">
+                                </div>
+                            </div>
+                            <div class="children_box clearfix">
+                                <i class="form_icon children_icon"></i>
+                                <div class="select_content">
+                                    <input type="text" value="0" class="children_num" onKeyUp="value=value.replace(/\D/g,'')" onchange="value=value.replace(/\D/g,'')" >儿童
+                                </div>
+                                <div class="ondow_box">
+                                    <img src="/static/common/img/add.png" class="add_icon" alt="" data-click="show">
+                                    <img src="/static/common/img/under.png" class="under_icon" alt="" data-click="show">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="but_box clearfix">
+                            <div class="but_cancel">取消</div>
+                            <div class="but_line"></div>
+                            <div class="but_det peoplenum_but_det">确定</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="city">
+                    <p class="form_p">出发城市
+                        <i class="city_icon"></i></p>
+                    <div class="form_content" data-click="show">
+                        <span class="departurecity" data-click="show"></span>
+                        <span class="returncity dis_none" data-click="show"></span>
+                        <i class="choose_icon" data-click="show"></i>
+                    </div>
+                    <div class="form_bottom">
+                        <div class="select_box clearfix">
+                            <div class="departure_box clearfix">
+                                <i class="form_icon departure_icon"></i>
+                                <div class="select_content clearfix">
+                                    <input type="text" value="" class="departure_city" data-value="" readonly="readonly" data-click="show">
+                                    <i class="choose_icon"></i>
+                                </div>
+
+                            </div>
+                            <div class="return_box dis_none clearfix">
+                                <i class="form_icon return_icon"></i>
+                                <div class="select_content clearfix">
+                                    <input type="text" value="" class="return_city" data-value="" readonly="readonly" data-click="show">
+                                    <i class="choose_icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="city_text dis_none clearfix">
+                            <p>出发城市</p>
+                            <p>返回城市</p>
+                        </div>
+                        <div class="but_box clearfix">
+                            <div class="but_cancel">取消</div>
+                            <div class="but_line"></div>
+                            <div class="but_det city_but_det">确定</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="now_go"></div>
+        </div>
+    </div>
+    <div class="more_cities dis_none">
+        <div class="more_cities_box">
+            <div class="more_top clearfix">
+                <div data-this="" class="current_city_name fl"></div>
+                <div class="seach_box clearfix">
+                    <input type="text" placeholder="请输入城市名字" id="search_city" class="seach_input" autocomplete="off" >
+                    <label for="search_city" class="search_icon"></label>
+                    <div class="seach_list dis_none" id="seach_list"></div>
+                </div>
+            </div>
+            <div class="city_top clearfix">
+                <div class="current_city city_color city_list_bgcolor">当前城市</div>
+                <div class="other_city" >其他城市</div>
+            </div>
+            <div class="city_list city_list_bgcolor">
+                <div class="current_list "></div>
+                <div class="other_list clearfix">
+                    <div class="zxs">
+                        <div class="city_color">直辖市</div>
+                        <ul class="zxs_ul clearfix"></ul>
+                    </div>
+                    <div class="sf">
+                        <div class="city_color">省份</div>
+                        <ul class="sf_ul clearfix"></ul>
+                    </div>
+                </div>
+                <div class="sfcity"></div>
+            </div>
+            <div class="city_bottom">取消</div>
+        </div>
+    </div>
+    <div id="container" class="dis_none"></div>
+</body>
+<script type="text/javascript" charset="UTF-8" src="https://webapi.amap.com/maps?v=1.4.12&key=e343e74e5c243c04a3b03a1bc35a0327&plugin=AMap.CitySearch"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/allUrl.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/addStrokeform/addStrokeform.js?var=1533699880"></script>
+
+</html>

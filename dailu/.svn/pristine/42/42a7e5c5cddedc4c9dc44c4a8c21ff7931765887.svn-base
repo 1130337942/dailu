@@ -1,0 +1,599 @@
+
+html {
+	color: #333;
+}
+input {
+	border: none;
+}
+input::-webkit-outer-spin-button, 
+input::-webkit-inner-spin-button{ 
+-webkit-appearance: none !important;
+}
+input[type="number"]{
+	-moz-appearance:textfield;
+}
+
+input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #ccc;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #ccc;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #ccc;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #ccc;
+}
+
+#embed-captcha {
+	width: 264px;
+	overflow: hidden;
+	padding-left: 10px;
+	margin-bottom: 10px;
+}
+#wait {
+	background-color: #fff;
+	padding-left: 40px;
+	padding-bottom: 10px;
+}
+#embed-captcha .geetest_radar_btn,
+#embed-captcha .geetest_success_btn {
+	border-radius: 6px;
+}
+
+#embed-captcha .geetest_success_logo,
+#embed-captcha  .geetest_logo{
+	display: none;
+}
+
+.mainBox {
+	width: 100%;
+	min-height: 100%;
+	min-width: 1200px;
+	overflow: hidden;
+	background: #fff url('/static/v1/img/loginBg.png') center center no-repeat;
+}
+.mainBox .loginBox{
+	padding-top: 76px;
+	padding-left: 60px;
+	margin:0 auto;
+	width: 840px;
+	height: 504px;
+	background: #fff url(/static/v1/img/loginWap.png) center center no-repeat;
+	box-shadow: 2px 3px 8px 0px 
+		rgba(0, 0, 0, 0.08);
+	border-radius: 6px;
+	margin-top: 188px;
+	position: relative;
+}
+
+.mainBox .loginBox .logo {
+	width: 76px;
+	height: 37px;
+	background: #fff url(/static/common/img/logo.png) 0 0 no-repeat;
+	background-size:100% 100%; 
+}
+.mainBox .loginBox .close {
+	position:absolute;
+	padding: 10px 15px;
+	top: 0px;
+	right: 0px;
+	font-size: 20px;
+	color: #fff;
+}
+.mainBox .loginBox .leftInfo .zh{
+	padding: 24px 0;
+	font-size: 24px;    
+}
+.mainBox .loginBox .leftInfo .make {
+	font-size: 14px;
+	color: #67a1f5;
+	line-height: 36px;
+}
+
+.listWap{
+	padding: 34px;
+	margin-right: 70px;
+	width: 262px;
+	height: 360px;
+	background-color: #ffffff;
+	box-shadow: 0px 2px 16px 0px 
+		rgba(51, 51, 51, 0.06);
+	border-radius: 4px;
+}
+.listWap .erwm,
+.listWap .code{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: #fff url(/static/v1/img/erwm.png) center center no-repeat;
+}
+.listWap .code{
+	display: none;
+	background: #fff url(/static/v1/img/code.png) center center no-repeat;
+}
+.listWap .wap1 {
+	position: relative;
+}
+.listWap .wap1 .erwm,
+.listWap .wap1 .code {
+	position: absolute;
+	top: 50%;
+	margin-top: -10px;
+	right: 0;
+	cursor: pointer;
+}
+.listWap .wap1 .en {
+	color:#659ff5; 
+}
+.listWap .wap2 input{
+	padding-left: 30px;
+	margin-top: 25px;
+	border:none;
+	width: 232px;
+	height: 38px;
+	border-radius: 6px;
+}
+.listWap .wap2 input{
+	transition: 0.2s;
+	background-color: #f6f6f6;
+	border: 1px solid #fff;
+}
+
+
+.listWap .wap2 input.active {
+	box-shadow: 0px 0px 4px 0px 
+		rgba(101, 159, 245, 0.2);
+	transition: 0.2s;
+	border: 1px solid #659ff5;
+	background-color: #fff;
+}
+.listWap .wap2{
+	position: relative;
+}
+.listWap .wap2 label {
+	display: block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 35px;
+	left: 6px;
+	background: transparent url('/static/v1/img/user.png') center center no-repeat;
+}
+.listWap .wap2 label.user.active{
+	background: url('/static/v1/img/user_on.png') center center no-repeat;
+}
+.listWap .wap2 label.psworld.active{
+	background: url('/static/v1/img/passWorld_on.png') center center no-repeat;
+}
+.listWap .wap2 label.psworld{
+	top: 102px;
+	background: url('/static/v1/img/passWorld.png') center center no-repeat;
+}
+.listWap .wap3 {
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	color:#ccc;
+	font-size: 12px;
+}
+.listWap .wap3 a:hover {
+	color: #659ff5;
+}
+.listWap .normal {
+	/*display: none;*/
+}
+.listWap .wap4 .login{
+	cursor: pointer;
+	font-size: 16px;
+	color:#fff;
+	border: none;
+	width: 262px;
+	height: 42px;
+	background-image: linear-gradient(-90deg, 
+		#5795f1 0%, 
+		#7ab0ff 100%), 
+	linear-gradient(
+		#659ff5, 
+		#659ff5);
+	background-blend-mode: normal, 
+		normal;
+	box-shadow: 0px 4px 12px 0px 
+		rgba(62, 122, 212, 0.22);
+	border-radius: 4px;
+	font-family: PingFang-SC-Medium;
+}
+.listWap .wap4 .register{
+	margin-top: 10px;
+	background-color: #fff;
+	width: 262px;
+	height: 42px;
+	color: #b3b3b3;
+	font-size: 16px;
+	border-radius: 4px;
+	border: solid 1px #cccccc;
+	cursor: pointer;
+}
+.listWap .wap5{
+	margin-top: 26px;
+	border-top: 1px solid #e5e5e5;
+	padding-top: 25px;
+	height: 63px;
+	text-align: center;
+	position: relative;
+	font-size: 0;
+} 
+.listWap .wap5::after {
+	display: block;
+	position: absolute;
+	content: 'or';
+	color: #ccc;
+	font-size: 16px;
+	line-height: 10px;
+	top: 0;
+	margin-top: -7px;
+	left: 50%;
+	margin-left: -8px;
+	width: 16px;
+	height: 10px;
+	background-color: #fff;
+
+}
+.listWap .wap5 span{
+	display: inline-block;
+	width: 52px;
+	height: 35px;
+	background-color: #f6f6f6;
+	border-radius: 17px;
+	cursor: pointer;
+	margin-right: 17px;
+}
+.listWap .wap5 span:nth-child(1){
+	transition: 0.3s;
+	background:  #f6f6f6 url(/static/v1/img/wechat.png) center center no-repeat;
+}
+.listWap .wap5 span:nth-child(1):hover{
+	transition: 0.3s;
+	background:  #6fa8fb url(/static/v1/img/wechat2.png) center center no-repeat;
+	box-shadow: 0px 2px 8px 0px 
+		rgba(62, 122, 212, 0.22);
+}
+.listWap .wap5 span:nth-child(2){
+	transition: 0.3s;
+	background:  #f6f6f6 url(/static/v1/img/weibo.png) center center no-repeat;
+}
+.listWap .wap5 span:nth-child(2):hover{
+	box-shadow: 0px 2px 8px 0px 
+		rgba(62, 122, 212, 0.22);
+	transition: 0.3s;
+	background:  #6fa8fb url(/static/v1/img/weibo2.png) center center no-repeat;
+}
+.listWap .wap5 span:nth-child(3){
+	transition: 0.3s;
+	background:  #f6f6f6 url(/static/v1/img/qq.png) center 8px no-repeat;
+}
+.listWap .wap5 span:nth-child(3):hover{
+	box-shadow: 0px 2px 8px 0px 
+		rgba(62, 122, 212, 0.22);
+	transition: 0.3s;
+	background:  #6fa8fb url(/static/v1/img/qq2.png) center 8px no-repeat;
+}
+.listWap .wap5 span:nth-child(2+n){
+	/*margin-left: 16px;*/
+}
+
+.listWap .erwmBox{
+	display: none;
+	padding-top: 30px;
+	text-align: center;
+	font-size: 14px;
+	color: #999;
+}
+.listWap .erwmBox img {
+	width: 220px;
+	height: 220px;
+}
+
+.listWap .erwmBox a{
+	color: #659ff5;
+}
+.listWap .erwmBox .typeWap{
+	margin-top: 25px;
+}
+.listWap .erwmBox .typeWap span {
+	cursor: pointer;
+}
+.listWap .erwmBox .typeWap span:hover{
+	color: #659ff5;
+}
+.listWap .erwmBox .typeWap .to-passWorld {
+	margin-right: 20px;
+}
+
+
+
+/* 注册部分 registerWap */
+
+.registerWap  {
+	padding:40px 34px;
+	margin-right: 70px;
+	width:282px;
+	height:388px;
+	background-color: #ffffff;
+	box-shadow: 0px 2px 16px 0px 
+		rgba(51, 51, 51, 0.06);
+	border-radius: 4px;
+}
+.registerWap .list1{
+	color: #ccc;
+	font-size: 14px;
+}
+.registerWap .list1 a {
+	color:#659ff5;
+}
+.registerWap .list1 .en {
+	font-size: 20px;
+	color:#659ff5;
+}
+
+.registerWap .list2 {
+	text-align: center;
+	margin-top: 25px;
+	position: relative;
+}
+.registerWap .list2 input {
+	transition: 0.2s;
+	padding-left: 34px;
+	width: 228px;
+	height: 38px;
+	background-color: #f6f6f6;
+	border-radius: 6px;
+	margin-bottom: 10px;
+	border: 1px solid #fff;
+}	
+
+.registerWap .list2 input.active,
+.registerWap .passWorld input.active{
+	box-shadow: 0px 0px 4px 0px 
+		rgba(101, 159, 245, 0.2);
+	transition: 0.2s;
+	border: solid 1px #659ff5;
+	background-color: #fff;
+} 
+.registerWap .passWorld label.active{
+	transition: 0.2s;
+	background: transparent url(/static/v1/img/passWorld_on.png) center center no-repeat;
+}
+.registerWap .list2 label.active{
+	transition: 0.2s;
+	background: transparent url(/static/v1/img/user_on.png) center center no-repeat;
+}
+.registerWap .list2 label.active.p-lab{
+	transition: 0.2s;
+	background: transparent url(/static/v1/img/phone2.png) center center no-repeat;
+}
+.registerWap .list2 label.active.in-lab{
+	transition: 0.2s;
+	background: transparent url(/static/v1/img/invitation.png) center center no-repeat;
+}
+.registerWap .list2 label {
+	transition: 0.2s;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	left: 15px;
+	top: 10px;
+	background: transparent url(/static/v1/img/user.png) center center no-repeat;
+}
+.registerWap .list2 label .errInfo,
+.registerWap .passWorld label .errInfo {
+	z-index: 10;
+	padding-left: 30px;
+	font-size: 12px;
+	text-align: left;
+	width: 226px;
+	min-height: 30px;
+	line-height: 26px;
+	position: absolute;
+	top: 35px;
+	left: -7px;
+	color: #86181d;
+	background-color: #ffdce0;
+	border: 1px solid #cea0a5;
+	border-radius: 3px;
+	display: none;
+}
+.registerWap .list2 label.error .errInfo,
+.registerWap .passWorld label.error .errInfo {
+	display: block;
+}
+.registerWap .list2 label .errInfo::after,
+.registerWap .passWorld label .errInfo::after{
+	content: '';
+	position: absolute;
+	top: -4px;
+	left: 9px;
+	display: block;
+	width: 5px;
+	height: 5px;
+	background-color: #ffdce0;
+	border-right: 1px solid #cea0a5;
+	border-top: 1px solid #cea0a5;
+	transform: rotate(-45deg);
+}
+.registerWap .list2 label .status,
+.registerWap .passWorld label .status{
+	display: none;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 0;
+	right: -260px;
+	background:  transparent url(/static/v1/img/error.png) center center no-repeat;
+}
+.registerWap .list2 label.error .status,
+.registerWap .passWorld label.error .status{
+	display: block;
+}
+.registerWap .list2 .p-lab{
+	transition: 0.2s;
+	top: 63px;
+	background: transparent url(/static/v1/img/phone.png) center center no-repeat;
+}
+
+.registerWap .list2 .in-lab{
+	transition: 0.2s;
+	top: 115px;
+	background: transparent url(/static/v1/img/invitation2.png) center center no-repeat;
+}
+
+.registerWap  .phoneCode {
+	text-align: center;
+	position: relative;
+	margin-bottom: 10px;
+
+}
+.registerWap  .phoneCode input{
+	padding-right: 94px;
+	padding-left: 15px;
+	width: 153px;
+	height: 38px;
+	background-color: #f6f6f6;
+	border-radius: 6px;
+}
+.registerWap  .phoneCode label {
+	display: block;
+	margin-top: 11px;
+	text-align: center;
+	width: 98px;
+	height: 16px;
+	font-size: 14px;
+	position: absolute;
+	top: 0;
+	border-left: 1px solid #d9d9d9;
+	right: 8px;
+	cursor: pointer;
+	color: #659ff5;
+}
+.registerWap  .phoneCode label.disabled{
+	color: #ccc;
+	cursor: wait;
+}
+
+.registerWap  .passWorld  {
+	position: relative;
+	text-align: center;
+}
+
+.registerWap  .passWorld input {
+	padding-left: 34px;
+	width: 228px; 
+	height: 38px;
+	background-color: #f6f6f6;
+	border-radius: 6px;
+	border: 1px solid #fff;
+}
+.registerWap .passWorld label {
+	transition: 0.2s;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	left: 15px;
+	top: 11px;
+	background: transparent url(/static/v1/img/passWorld.png) center center no-repeat;
+}
+.registerWap .registerBox {
+	margin-top: 20px;
+	text-align: center;
+	color: #ccc;
+	font-size: 12px;
+}
+.registerWap .registerBox button {
+	margin-bottom: 10px;
+	width: 262px;
+	height: 42px;
+	background-image: linear-gradient(-90deg, 
+		#5795f1 0%, 
+		#7ab0ff 100%), 
+	linear-gradient(
+		#659ff5, 
+		#659ff5);
+	background-blend-mode: normal, 
+		normal;
+	box-shadow: 0px 4px 12px 0px 
+		rgba(62, 122, 212, 0.22);
+	border-radius: 6px;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+} 
+.registerWap .registerBox .agree a{
+	cursor: pointer;
+	color: #659ff5;
+}
+
+
+.agreementMask{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	min-width: 1200px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.agreementMask .agreementInfo{
+	width: 936px;
+	min-height: 580px;
+	background-color: #ffffff;
+	border-radius: 6px;
+	margin: 188px auto 0;
+}
+.agreementMask .agreementInfo .title {
+	border-bottom: 1px solid #e5e5e5;
+	height: 60px;
+	line-height: 60px;
+	color: #333;
+	padding-left: 37px;
+	font-size: 18px;
+	position: relative;
+}
+.agreementMask .agreementInfo .title .close{
+	position: absolute;
+	top: 50%;
+	margin-top: -15px;
+	right: 25px;
+	width: 30px;
+	text-align: center;
+	line-height: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+.agreementMask .agreementInfo  .agr-content{
+	padding:28px 37px;
+	color: #666;
+	font-size: 16px;
+	line-height: 30px;
+}
+.agreementMask .agreementInfo .diybook{
+	padding-left: 37px;
+	line-height: 30px;
+}
+.agreementMask .agreementInfo .btnBox {
+	text-align: center;
+	margin-top: 60px;
+	padding-bottom: 28px;
+}
+.agreementMask .agreementInfo .agreeBtn {
+	color: #fff;
+	border: none;
+	width: 864px;
+	height: 48px;
+	background-color: #659ff5;
+	border-radius: 4px;
+	font-size: 18px;
+	cursor: pointer;
+}

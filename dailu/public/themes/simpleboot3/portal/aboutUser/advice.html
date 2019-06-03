@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>意见建议</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/webuploader-0.1.5/webuploader.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/aboutUser/advice.css">
+</head>
+<body>
+	<!-- headerstart -->
+	<include file="public@publicHeader"/>
+	<!-- header end -->
+      <div class="mainBox" style="min-height: 1000px; padding-top: 68px;">
+			<div class="infoBox">
+				<div class="title">
+					<h3>意见反馈</h3>
+					<div class="con">
+						我们期待每一个和你交流的机会，无论是投诉还是祝福，意见或建议,<br>
+						如果提交有关浏览速度、系统BUG、视觉显示问题，请注明您使用的操作系统、浏览器，以便我们尽快对应查找问题并解决。
+					</div>
+				</div>	
+				<div class="adviceType">
+					<h3>问题类型</h3>
+					<ul class="typeBox clearfix">
+						<li type="func"  class="list fl func active"><i></i>功能问题</li>
+						<li type="acc"  class="list fl acc"><i></i>账号问题</li>
+						<li type="oper"  class="list fl oper"><i></i>操作反馈</li>
+						<li type="other"  class="list fl other"><i></i>其它问题</li>
+					</ul> 
+				</div>
+				<div class="upload">
+					<h3>上传图片</h3>
+					<div class="prev_img"></div>
+					<div>
+						<div id="uploader-demo">
+							<!--用来存放item-->
+							<div id="fileList" class="uploader-list"></div>
+							<div id="filePicker"  class="uploading">选择图片</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="massage">
+					<h3>内容反馈</h3>
+					<textarea placeholder='欢迎提出宝贵的意见或建议，我们会认真阅读，您的支持是我们最的的动力。（需上传所遇问题的图片）' maxlength="500" name="massage" id="massage" cols="" rows=""></textarea>
+				</div>
+				<button class="submit">提交反馈</button>
+			</div>
+      </div>  
+		
+	
+
+	<!-- public footer start -->
+	<include file="public@publicFooter"/>
+	<!-- public footer end -->
+
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script src='/static/common/layer3.1.1/layer.js'></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/webuploader-0.1.5/webuploader.js"></script>
+<script type="text/javascript" src="/static/v1/js/aboutUser/advice.js"></script>
+</html>

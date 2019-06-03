@@ -1,0 +1,214 @@
+<include file="public@header" />
+</head>
+<style>
+        .big{
+            height:150px;
+            width:150px;
+        }
+        .dialog{
+            height:20px;
+            width:20px;
+        }
+    </style>
+<body>
+    <div class="wrap js-check-wrap">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="javascript:;">新闻列表</a>
+            </li>
+            <li>
+                <a href="/news/news/appnews.html">APP新闻发布</a>
+            </li>
+        </ul>
+        <form class="well form-inline margin-top-20" method="post" action="{:url('news/appNewsList')}">
+            <select class="type" name="type" style="height: 25px;">
+                <option value="">新闻类型</option>
+                <option value="1">企业咨询</option>
+                <option value="2">旅游指南</option>
+                <option value="3">粉丝互动</option>
+                <option value="4">媒体聚焦</option>
+            </select>
+            <select class="hot_spot" name="hot_spot" style="height: 25px;">
+                <option value="">是否热点</option>
+                <option value='true'>是</option>
+                <option value='false'>否</option>
+            </select>
+            新闻标题：<input type="text" name="title">
+            <input type="submit" value="查询" class="btn btn-primary" />
+            <a class="btn btn-danger" href="{:url('news/appNewsList')}">清空</a>
+
+        </form>
+        <form class="js-ajax-form" action="" method="post">
+            <table class="table table-hover table-bordered table-list">
+                <thead>
+                    <tr>
+                        <th width="50">新闻标题</th>
+                        <th width="50">新闻摘要</th>
+                        <th width="50">新闻封面</th>
+                        <th width="20">新闻类型</th>
+                        <th width="20">新闻作者</th>
+                        <th width="20">keywords</th>
+                        <th width="20">是否热点</th>
+                        <th width="25">发表时间</th>
+                        <th width="25">新闻链接</th>
+                        <th width="25">操作</th>
+                    </tr>
+                </thead>
+                <!-- 数据渲染 -->
+                <foreach name="news_data" item="vo">
+                    <tr>
+                        <td>{$vo.title}</td>
+                        <td>{$vo.remark}</td>
+                        <td>
+                            <if condition="$vo.image eq '无图片'">
+                                无图片反馈
+                            <else />
+                                点击预览
+                                <img class="dialog" src='{$vo.image}' style="cursor:pointer;"></img>
+                                <div class="dialog_large_image"></div>
+                            </if>
+                        </td>
+                        <td>
+                            <switch name="$vo.type">
+                            <case value='1'>企业咨询</case>
+                            <case value='2'>旅游指南</case>
+                            <case value='3'>粉丝互动</case>
+                            <default>媒体聚焦</case>
+                            </switch>
+                        </td>
+                        <td>{$vo.writer}</td>
+                        <td>{$vo.keywords}</td>
+                        <td><if condition="$vo.hot_spot eq 'true' " >
+                                是
+                            <else />
+                                否
+                            </if>
+                        </td>
+                        <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+                        <td>http://www.dailuer.com/portal/news/mdetails?id={$vo.id}</td>
+                        <td>
+                            <a href="javascript:;" class="del" id="{$vo.id}">{:lang('DELETE')}</a>
+                        </td>
+                    </tr>
+                </foreach>
+            </table>
+            <div style="text-align: center;"><span class="textcenter pagebar">{$page}</span></div>
+        </form>
+    </div>
+    <script src="__STATIC__/js/admin.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/jBox/Skins/Default/jbox.css" />
+    <script type="text/javascript" src="/static/jbox/jquery.jBox-2.3.min.js"></script>
+    <script src="/static/common/laydate/laydate.js"></script>
+    <script>
+        //日历
+        $(function () {
+            //点击图片放大预览
+            $("img.dialog").each(function (i, n) {
+                $(n).click(function () {
+                    if($(n).hasClass("big")){
+                        $(n).removeClass("big").addClass("dialog")
+                    }else{
+                        $(n).addClass("big").removeClass("dialog")
+                    } 
+                });
+                
+            })
+        });
+        //刪除(将status改成0)
+        $('.del').click(function () {
+            var id = $(this).attr("id");
+            $.jBox("确定删除！！！", {
+                title: "提示消息",
+                width: 200,
+                height: 80,
+                buttons: {
+                    '确定': 1,
+                    '取消': 0
+                },
+                buttonsFocus: 0,
+                submit: function (v, h, f) {
+                    if (v == 0) {
+                        return true; // close the window  
+                    } else {
+                        $.get("deleteNews", {
+                            id: id,
+                        }, function (data) {
+                            if (data.status == 'ok') {
+                                window.location.reload();
+                            }
+                        }, 'json');
+                    }
+                    return false;
+                }
+            });
+        });
+
+        function reloadPage(win) {
+            win.location.reload();
+        }
+
+        $(function () {
+            setCookie("refersh_time", 0);
+            Wind.use('ajaxForm', 'artDialog', 'iframeTools', function () {
+                //批量复制
+                $('.js-articles-copy').click(function (e) {
+                    var ids = [];
+                    $("input[name='ids[]']").each(function () {
+                        if ($(this).is(':checked')) {
+                            ids.push($(this).val());
+                        }
+                    });
+
+                    if (ids.length == 0) {
+                        art.dialog.through({
+                            id: 'error',
+                            icon: 'error',
+                            content: '您没有勾选信息，无法进行操作！',
+                            cancelVal: '关闭',
+                            cancel: true
+                        });
+                        return false;
+                    }
+
+                    ids = ids.join(',');
+                    art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=copy&ids=" +
+                        ids, {
+                            title: "批量复制",
+                            width: "300px"
+                        });
+                });
+                //批量移动
+                $('.js-articles-move').click(function (e) {
+                    var ids = [];
+                    $("input[name='ids[]']").each(function () {
+                        if ($(this).is(':checked')) {
+                            ids.push($(this).val());
+                        }
+                    });
+
+                    if (ids.length == 0) {
+                        art.dialog.through({
+                            id: 'error',
+                            icon: 'error',
+                            content: '您没有勾选信息，无法进行操作！',
+                            cancelVal: '关闭',
+                            cancel: true
+                        });
+                        return false;
+                    }
+
+                    ids = ids.join(',');
+                    art.dialog.open(
+                        "__ROOT__/index.php?g=portal&m=AdminArticle&a=move&old_term_id={$term.term_id|default=0}&ids=" +
+                        ids, {
+                            title: "批量移动",
+                            width: "300px"
+                        });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

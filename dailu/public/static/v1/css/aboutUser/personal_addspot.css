@@ -1,0 +1,130 @@
+.main {
+	width: 1200px;
+	margin: 0 auto;
+	min-height: 600px;
+	margin-top: 70px;
+}
+
+table{
+	width: 100%;
+	border-color: #f9f9f63b;
+	font-size: 14px;
+}
+td{
+	padding: 8px;
+	line-height: 1.5;
+}
+td.tit {
+	width: 100px;
+}
+.form_control{
+    /*height: 34px;*/
+    padding: 6px 12px;
+    border: 1px solid #dce4ec;
+}
+.form_control select {
+	margin-right: 5px;
+	padding: 3px;
+	-webkit-appearance: select;
+}
+input[type=checkbox]{
+	-webkit-appearance: checkbox;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+input[type=radio]{
+	-webkit-appearance: radio;
+}
+td input.form_control.play_time{
+	width: 200px;
+}
+td input.form_control {
+	width: 100%;
+	box-sizing: border-box;
+}
+input select {
+	line-height: inherit;
+
+}
+.period_time {
+	padding: 4px 20px;
+}
+.submit_wap {
+	padding: 50px 0; 	
+}
+.submit_wap button ,
+.submit_wap a {
+	cursor: pointer;
+	margin-right: 20px;
+	color: #fff;
+    background-color: #2C3E50;
+    border-color: #2C3E50;
+    padding:5px 20px;
+}
+
+.loadingMask {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	top: 0;
+	left: 0;
+	background-color: rgba(255,255,255,0.9);
+}
+.loadingMask .loading{
+	width: 124px;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -62px;
+	margin-top: -62px;
+}
+
+#map_wap{
+	display: none;
+	z-index: 9999;
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	background-color: #fff;
+	width: 100%;
+	height: 100%;
+}
+#myPageTop {
+	display: none;
+	position: fixed;
+	z-index: 9999;
+	top: 120px;
+}
+#myPageTop a {
+	color: #659ff5;
+	font-weight: 600;
+}
+
+/*上传图片通用样式*/
+.upload-ul{ position: relative;  display: inline-block; *display: inline; *zoom:1; max-width: 520px; }
+.upload-ul li{ position: relative; float: left; display: inline-block; width: 120px; height: 90px; margin: 0 10px 10px 0; padding: 0; border: none; cursor: pointer; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; overflow: hidden; }
+.upload-pick{ background: url(/static/common/somepicUpload/upload-bj.png) no-repeat 0 0; }
+.upload-pick:hover{ background: url(/static/common/somepicUpload/upload-bj.png) no-repeat 0 -90px; }
+.webuploader-pick{position: relative;display: inline-block;vertical-align: top; width: 100%; height: 100%;}
+.webuploader-container{ position: relative; width: 100%; height: 100%; }
+.webuploader-container label{position: absolute;left: 0;top: 0;width: 100%;}
+.webuploader-element-invisible{opacity: 0;width: 100%;height: 100%;clip: rect(1px 1px 1px 1px);clip: rect(1px,1px,1px,1px);}
+.viewThumb{ position:relative;width: 100%;height: 100%;overflow:hidden;border-radius: 0rem;}
+.viewThumb img{ width: 100%;height: 100%}
+.diyBar{ position: absolute; display:none; top: 0;left: 0;width: 100%;height: 100%;background: url(../images/bgblack.png);z-index: 3;}
+.diyProgress{ position: absolute; left: 0;top: 33px;width: 100%;height: 24px;line-height:24px;font-size: 14px;text-align: center;color: #FFF;background:rgba(10,168,241,.7); z-index: 3;}
+.diyControl{ position: absolute; display:none; left: 0;bottom: 0;width: 100%;height: 24px;line-height:24px;font-size: 14px;background: rgba(0,0,0,0.5); z-index: 3; }
+.viewThumb:hover .diyControl{ display: block; }
+.diyControl span{ display: inline-block; padding: 6.5px 13px; width: 12px; height: 11px; }
+.diyControl span i{ display: block; width: 12px; height: 11px; opacity: .7; }
+.diyControl span i:hover{ opacity: 1; cursor: pointer; }
+.diyLeft{ margin-left: 3px; }
+.diyLeft{ margin-right: 3px; }
+.diyLeft i{ margin-left: 3px; background: url(/static/common/somepicUpload/upload-icon1.png) no-repeat 0 0; }
+.diyCancel i{ background: url(/static/common/somepicUpload/upload-icon1.png) no-repeat 0 -11px; }
+.diyRight i{ margin-right: 3px; background: url(/static/common/somepicUpload/upload-icon1.png) no-repeat 0 -22px; }
+.upload-btn{ display: inline-block; padding: 10px 50px; font: 16px/20px 'Microsoft YaHei'; background:rgba(10,168,241,.7); color: #fff; border-radius: 5px; }
+.upload-btn:hover{ background:rgba(10,168,241,1) }

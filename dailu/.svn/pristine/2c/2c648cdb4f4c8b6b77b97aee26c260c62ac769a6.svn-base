@@ -1,0 +1,757 @@
+html{
+	height: auto;
+}
+html body {
+	min-width: 1200px;
+	height: 100%;
+	background-color: #f6f6f6;
+	color: #333;
+	padding-top: 92px;
+}
+.main {
+	width: 1200px;
+	margin: 0 auto;
+	background-color: #f6f6f6;
+}
+.hide {
+	display: none;
+}
+.lineBox {
+	/*margin-top: 92px;*/
+	padding: 30px;
+	/*padding-top: 122px;*/
+	width: 1138px;
+	/*height: 480px;*/
+	background-color: #ffffff;
+	border-radius: 16px;
+	border: solid 1px #f0f0f0;
+}
+.main .lineBox .leftMsg {
+	width: 520px;
+	/*background-color: pink;*/
+	height: 100%;
+}
+.main .lineBox .rightPic  {
+	margin-top: 10px;
+	width: 618px;
+	height: 400px;
+	border-radius: 16px;
+	overflow: hidden;
+}
+.main .lineBox .leftMsg h4{
+	font-size: 24px;
+	padding-bottom: 10px;
+	position: relative;
+	font-weight: 600;
+}
+
+.main .lineBox .leftMsg h4::after {
+	position: absolute;
+	display: block;
+	content:'';
+	width: 46px;
+	height: 4px;
+	background-color: #000;
+	bottom: 0;
+	left: 0;
+}
+.main .lineBox .leftMsg .place{
+	font-size: 17px;
+	margin: 10px 0 22px	;
+}
+.main .lineBox .leftMsg .ico {
+	line-height: 30px;
+	font-size: 16px;
+	color: #666;
+	padding-left: 30px;
+	position: relative;
+}
+.main .lineBox .leftMsg .ico::after{
+	position: absolute;
+	display: block;
+	content: '';
+	width: 20px;
+	height: 20px;
+	top: 50%;
+	margin-top: -10px;
+	left: 0;
+}
+.main .lineBox .leftMsg .ico.num::after{
+	background: #fff url(/static/v1/img/tripinfo/per_num.png) center center no-repeat;
+}
+.main .lineBox .leftMsg .ico.day::after{
+	background: #fff url(/static/v1/img/tripinfo/day_num.png) center center no-repeat;
+}
+.main .lineBox .leftMsg .ico.startDay::after{
+	background: #fff url(/static/v1/img/tripinfo/date.png) center center no-repeat;
+}
+.main .lineBox .leftMsg .ico.totMoney::after{
+	background: #fff url(/static/v1/img/tripinfo/rmb_num.png) center center no-repeat;
+}
+.main .lineBox .leftMsg .blogger {
+	margin-top: 60px;
+}
+.main .lineBox .leftMsg .blogger .headImg{
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-right: 22px;
+}
+
+.main .lineBox .leftMsg .blogger .msg{
+	
+	height: 48px;
+}
+.main .lineBox .leftMsg .blogger .name{
+	font-size: 18px;
+	color: #333;
+	
+}
+.main .lineBox .leftMsg .blogger .msg .date{
+	font-size: 14px;
+	color: #999;
+}
+.main .lineBox .leftMsg .shortCart {
+	padding-right: 80px;
+	padding-top: 20px;
+	position: relative;
+}
+.leftMsg .shortCart  .addTrip{
+	width: 180px;
+	height: 42px;
+	border-radius: 8px;
+	border: solid 1px #e5e5e5;
+	line-height: 42px;
+	color: #999;
+	font-size: 14px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+.leftMsg .shortCart  .addTrip:hover {
+	color: #659ff5;
+	font-weight: 600;
+}
+
+.leftMsg .shortCart  .addTrip i{
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	width: 18px;
+	height: 18px;
+	background: #fff url(/static/v1/img/tripInfo/addtrip.png) 0 0 no-repeat;
+	border-radius: 50%;
+	margin: 0 15px;
+}
+.leftMsg .shortCart  .addTrip i.active {
+	background: #fff url(/static/v1/img/tripInfo/addtrip2.png) 0 0 no-repeat;
+}
+/* 
+.leftMsg .shortCart  .addTrip i::before{
+	position: absolute;
+	content: '';
+	width: 4px;
+	height: 8px;
+	border-bottom: 2px solid #fff;
+	border-right: 2px solid #fff;
+	transform: rotate(45deg);
+	left:6px;
+	top: 3px;
+} */
+.main .lineBox .leftMsg .shortCart .short {
+	display: inline-block;
+	padding-top: 32px;
+	position: relative;
+	margin-left: 20px;
+	color: #999;
+	cursor: pointer;
+	font-size: 14px;
+}
+.main .lineBox .leftMsg .shortCart .short::after {
+	position: absolute;
+	display: block;
+	content: '';
+	width: 24px;
+	height: 24px;
+	background: url(/static/v1/img/like.png) 0 0 no-repeat;
+	top: 10px;
+	margin-left: -10px;
+	left: 50%;
+}
+.leftMsg .shortCart .shareBox{
+	padding: 16px;
+	width: 355px;
+	height: 140px;
+	background-color: #fff;
+	border-radius: 4px;
+	position: absolute;
+	top: -170px;
+	right: -178px;
+	display: none;
+	box-shadow: 0px 2px 10px 0px 
+		rgba(0, 0, 0, 0.08);
+} 
+
+.leftMsg .shortCart .shareBox .copy {
+	color: #fff;
+	background-color: #659ff5;
+	padding: 3px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	float: right;
+}
+.leftMsg .shortCart .shareBox .copy:hover{
+	background-color: #74adff;
+}
+
+.share_code_box {
+	/*margin-top:20px;*/
+	position: relative;
+	height: 100px;
+}
+.leftMsg .shortCart .shareBox .share_code_img{
+	width: 100px;
+	height: 100px;
+}
+.leftMsg .shortCart .shareBox .tip {
+	position: absolute;
+	display: inline-block;
+	top: 44%;
+	left: 110px;
+	color: #666;
+}
+
+.leftMsg .shortCart .shareBox #foo{
+	border:none;
+	width: 500px;
+	font-size: 14px;
+	color: #999;
+	height: 18px;
+	line-height: 18px;
+	padding-left: 10px;
+	border:1px solid #eee;
+	height: 24px;
+	width: 246px;
+	margin-left: 4px;
+}
+
+.leftMsg .shortCart .shareBox  #shareTitle{
+	position: absolute;
+	border:none;
+	padding-left: 10px;
+	width: 180px;
+	height: 24px;
+	border: 1px solid #eee;
+	display: inline-block;
+	top: 10%;
+	left: 100px;
+	color: #666;
+}
+.leftMsg .shortCart .shareBox .titledit,
+.leftMsg .shortCart .shareBox .titlesave{
+	position: absolute;
+	border:none;
+	/*padding-left: 10px;*/
+	top: 10%;
+	right: 0px;
+}
+.leftMsg .shortCart .shareBox .titledit{
+	width: 20px;
+	height: 28px;
+	background: #fff url(/static/v1/img/tripinfo/edit.png) center center no-repeat;
+}
+.leftMsg .shortCart .shareBox .titlesave{
+	background-color: #659ff5;
+	padding: 3px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	color: #fff;
+}
+.leftMsg .shortCart .share:hover .shareBox{
+	display: block;
+}
+.main .lineBox .leftMsg .shortCart .see::after{
+	background: url(/static/v1/img/tripinfo/see.png) center 1px no-repeat;
+}
+.main .lineBox .leftMsg .shortCart .comment::after{
+	background: url(/static/v1/img/pinlun.png) center center no-repeat;
+}
+.main .lineBox .leftMsg .shortCart .share::after{
+	background: url(/static/v1/img/fengxiang.png) center center no-repeat;
+}
+.main .lineBox .leftMsg .shortCart .like::after{
+	background: url(/static/v1/img/like.png) center center no-repeat;
+}
+.main .lineBox .leftMsg .shortCart .is_like::after{
+	background: url(/static/v1/img/like2.png) center center no-repeat;
+}
+.main .lineBox .leftMsg .shortCart .collect::after{
+	background: url(/static/v1/img/shouchang.png) center center no-repeat;
+}
+.main .lineBox .leftMsg .shortCart .c_collect::after{
+	background: url(/static/v1/img/shouchang2.png) center center no-repeat;
+}
+.main .dayWap  {
+	margin-top: 10px;
+}
+.main .dayWap .leftLift{
+	width: 112px;
+	max-height: 100%;
+	overflow-y:auto; 
+	text-align: center;
+	background-color: #ffffff;
+	border-radius: 16px;
+	border: solid 1px #f0f0f0;
+}
+.main .dayWap .leftLift .tit {
+	padding: 40px 0;
+	color: #659ff5;
+	width: 72px;
+	margin: 0 auto;
+	border-bottom: 1px solid #659ff5;
+}
+.main .dayWap .leftLift .on{
+	color: #659ff5;
+	position: relative;
+}
+.main .dayWap .leftLift ul{
+	padding: 18px 0;
+}
+
+.main .dayWap .leftLift li{
+	line-height: 40px;
+}
+.main .dayWap .leftLift li a:hover {
+	color: #659ff5;
+}
+.main .dayWap .leftLift .on::after {
+	display: block;
+	content: '';
+	width: 0px;
+	height: 0px;
+	border-top: 4px solid transparent;
+	border-left: 4px solid transparent;
+	border-bottom: 4px solid #659ff5;
+	border-right: 4px solid #659ff5;
+	position: absolute;
+	top: 50%;
+	margin-top: -3px;
+	left: -16px;
+	transform: rotate(-45deg);
+}
+.main .dayWap .rightList{
+	padding: 40px;
+	width: 1000px;
+	/*height: 1113px;*/
+	background-color: #ffffff;
+	border-radius: 16px;
+	border: solid 1px #f0f0f0;
+}
+.main .dayWap .rightList .tit .lemma{
+	font-size: 20px;
+	line-height: 24px;
+}
+.main .dayWap .rightList .tit .place{
+	margin-top: 10px;
+	font-size: 16px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.main .dayWap .rightList .list .listTit{
+	font-size: 20px;
+	height: 60px;
+	line-height: 60px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.main .dayWap .rightList .list .listTit{
+	margin-bottom: 20px;
+}
+.main .dayWap .rightList .list .listTit .line span{
+	font-size: 22px;
+	color: #659ff5;
+	padding-right: 30px;
+	position: relative;
+}
+.main .dayWap .rightList .list .listTit .line span::after {
+	display: block;
+	content: '';
+	width: 1px;
+	height: 14px;
+	background-color: #cccccc;
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	margin-top: -7px;
+}
+.main .dayWap .rightList .list .listTit .date .time{
+	color: #999;
+}
+.main .dayWap .rightList .list .infoBox {
+	border-left: 1px solid #659ff5;
+	padding-left: 18px;
+	margin-left: 35px;
+}
+.main .dayWap .rightList .list .infoBox .pc{
+	font-size: 18px;
+	padding-bottom: 10px;
+	color: #659ff5;
+	position: relative;
+}
+.main .dayWap .rightList .list .infoBox  .pc::after {
+	position: absolute;
+	top: 0;
+	left: -28px;
+	display: block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	border: 4px solid #659ff5;
+	background-color: #fff;
+	content: '';
+}
+.main .dayWap .rightList .list .listTit .line .city_abb{
+	color: #999;
+	margin-left: 20px;
+	font-size: 18px;
+	font-style: normal;
+}
+.main .dayWap .rightList .list .infoBox .massage{
+	height: 260px;
+	
+} 
+.main .dayWap .rightList .list .infoBox .massage .ms-img{
+	width: 300px;
+	height: 200px;
+	font-size: 14px;
+	color: #999;
+	overflow: hidden;
+}
+.main .dayWap .rightList .list .infoBox .massage .ms-img img{
+	/*width: 100%;*/
+	/*height: auto;*/
+}
+.main .dayWap .rightList .list .infoBox .massage .ms-img p {
+	margin-top: 10px;
+	
+}
+.main .dayWap .rightList .list .infoBox .massage  .ticket{
+	max-height: 74px;
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow:hidden;
+}
+.main .dayWap .rightList .list .infoBox .massage  .ticket p {
+	display: inline-block;
+}
+.main .dayWap .rightList .list .infoBox .massage .ms-img i{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	margin-right: 10px;
+
+}
+.main .dayWap .rightList .list .infoBox .massage .ms-img i.train {
+	background: #fff url(/static/v1/img/tripinfo/train.png) 0 0 no-repeat;
+}
+.main .dayWap .rightList .list .infoBox .massage .ms-img i.bus {
+	background: #fff url(/static/v1/img/tripinfo/bus.png) 0 0 no-repeat;
+}
+.main .dayWap .rightList .list .infoBox .massage .ms-img i.plane {
+	background: #fff url(/static/v1/img/tripinfo/plane.png) 0 0 no-repeat;
+}
+.main .dayWap .rightList .list .infoBox .massage .msg-txt {
+	width: 592px;
+	line-height: 26px;
+	color:#666;
+	height: 100%;
+	overflow: hidden;
+}
+.main .dayWap .rightList .list .infoBox .massage .msg-txt .introduce{
+	height: 104px;
+	text-overflow:ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+	overflow:hidden;
+}
+.main .dayWap .rightList .list .infoBox .massage .msg-txt .mag_info span {
+	color: #333;
+	font-weight: 600;
+}
+.main .dayWap .rightList .list .infoBox .massage .msg-txt .mag_info {
+	margin-top: 20px;
+}
+
+.main .costTable {
+	background-color: #ffffff;
+	border-radius: 16px;
+	border: solid 1px #f0f0f0;
+	margin-top: 10px;
+}
+.main .costTable .head{
+	font-size: 18px;
+	line-height: 60px;
+	height: 60px;
+	padding-left: 35px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.main .costTable .head em{
+	font-style:normal;
+	color: #e5e5e5;
+}
+.main .costTable .head span {
+	color: #659ff5;
+	font-size: 20px;
+}
+.main .costTable .tableBox{
+	/*max-height: 528px;*/
+	overflow: hidden;
+}
+.main .costTable .openMore {
+	border-top: 1px solid #e5e5e5;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #649ff5;
+	cursor: pointer;
+}
+.main .costTable table {
+	width: 100%;
+	border-color: #f9f9f63b;
+	padding: 0;
+	margin: 0;
+	border-right-color:transparent;
+}
+.main .costTable table th{
+	border:none;
+	color: #b3b3b3;
+	text-align:left;
+	height: 46px;
+	padding-left: 20px;
+}
+.main .costTable table td{
+	height: 46px;
+	text-indent: 2em;
+}
+.main .costTable table td.t_tit {
+	border-left: none ;
+}
+.main .costTable table td:last-child {
+	border-right: none;
+}
+.main .costTable table td .ico {
+	display: inline-block;
+	vertical-align: middle;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+.main .costTable table td .ico.train {
+	background: url(/static/v1/img/tripinfo/train.png) center center no-repeat;
+}
+.main .costTable table td .ico.bus {
+	background: url(/static/v1/img/tripinfo/bus.png) center center no-repeat;
+}
+.main .costTable table td .ico.plane {
+	background: url(/static/v1/img/tripinfo/plane.png) center center no-repeat;
+}
+.main .costTable table td .ico.jd {
+	background: url(/static/v1/img/tripinfo/jd.png) center center no-repeat;
+}
+.main .costTable table td .ico.hotel {
+	background: url(/static/v1/img/tripinfo/hotel.png) center center no-repeat;
+}
+.main .costTable table td .ico.eat {
+	background: url(/static/v1/img/tripinfo/eat.png) center center no-repeat;
+}
+
+.main .costTable .percent{
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	color: #659ff5;
+	border-bottom: 1px solid #e5e5e5;
+	padding-left: 35px;
+}
+.main .costTable .percentBox .p-left{
+	width: 500px;
+	height: 270px;
+	padding-top: 20px;
+}
+.main .costTable .percentBox .p-right{
+	width: 560px;
+	height: 270px;
+	/*background-color:blue;*/
+}
+.main .costTable .percentBox .p-right li  {
+	width: 50%;
+	line-height: 52px;
+	/*margin-left: 30px;*/
+}
+.main .costTable .percentBox .p-right li span {
+	vertical-align: middle;
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background-color: #975ee4;
+	border-radius: 4px;
+	margin-right: 4px;
+}
+.main .costTable .percentBox .p-right li:nth-child(2) span{
+	background-color: #fbd336;
+}
+.main .costTable .percentBox .p-right li:nth-child(3) span{
+	background-color: #3aa0ff;
+}
+.main .costTable .percentBox .p-right li:nth-child(4) span{
+	background-color: #f2637a;
+}
+.main .userComment {
+	overflow:hidden;
+	width: 1198px;
+	background-color: #ffffff;
+	border-radius: 16px;
+	border: solid 1px #f0f0f0;
+	margin:10px 0 30px;
+
+}
+.main .userComment .tit {
+	height: 40px;
+	padding:0 32px;
+	line-height: 40px;
+	border: 1px solid #e5e5e5;
+}
+.main .userComment .tit span {
+	vertical-align:middle;
+	width: 102px;
+	height: 32px;
+	line-height: 32px;
+	background-color: #659ff5;
+	border-radius: 4px;
+	text-align: center;
+	color: #fff;
+	margin-top: 4px;
+}
+.main .com-list .headPic{
+	width: 46px;
+	height: 46px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.main .com-list .list{
+	padding: 10px 32px;	
+	font-size: 14px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.main .com-list .list .com-info{
+	width: 1070px;
+}
+.main .com-list .list .com-info .name{
+	color: #999;
+	font-size: 14px;
+}	
+.main .com-list .list .com-info .name i{
+	font-style: normal;
+	color: #f5a21b;
+}
+.main .com-list .list .com-info .text{
+	font-size: 14px;
+}
+.main .com-list .list .com-info .com-img {
+	margin: 10px 0;
+}
+.main .com-list .list .com-info .com-img img{
+	width: 120px;
+	height: 120px;
+	float: left;
+
+}
+.main .com-list .list .com-info .com-img img:nth-child(n+2){
+	margin-left: 6px;
+}
+.main .com-list .list .com-info .com-time{
+	color: #999;
+}
+.main .com-list .list .com-info .com-time .short span{
+	margin-left: 10px;
+}
+.main .com-list .list .com-info .com-time .ico {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-color: red;
+	vertical-align: middle;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.main .com-list .list .com-info .com-time .like{
+    background: url(/static/v1/img/xihuan.png) center center no-repeat;
+}
+.main .com-list .list .com-info .com-time .like:hover{
+    background: url(/static/v1/img/xihuan2.png) center center no-repeat;
+}
+.main .com-list .list .com-info .com-time .like.on{
+    background: url(/static/v1/img/xihuan2.png) center center no-repeat;
+}
+.main .com-list .list .com-info .com-time .report{
+    background: url(/static/v1/img/jubao.png) center center no-repeat;
+}
+
+.userComment .more {
+	text-align: center;
+	font-size: 14px;
+	color: #999;
+	height: 46px;
+	line-height: 46px;
+}
+.daochu {
+	position: fixed;
+	top: 100px;
+	right: 100px;
+	padding: 10px;
+	background-color: #659ff5;
+	color: #fff;
+}
+.shareTrip{
+	position: fixed;
+	top: 100px;
+	right: 200px;
+	padding: 10px;
+	background-color: #659ff5;
+	color: #fff;
+}
+.shareTrip:hover,
+.daochu:hover {
+	background-color: #4a8ae9;
+}
+.shareTrip .ewm_box{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 50px;
+	left: 0;
+	border-radius: 4px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.shareTrip .ewm_box .tip {
+	color: #666;
+	font-size: 14px;
+	text-align: center;
+}
+.shareTrip .ewm_box img {
+	width: 100%;
+	height: 100%;
+}
+.hide {
+	display: none;
+}
+.main .lineBox .leftMsg .shortCart .short.hide {
+	display: none;
+}
+.pub_footer {
+	margin-top: 80px;
+}

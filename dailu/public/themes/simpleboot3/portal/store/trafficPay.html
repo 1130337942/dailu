@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>袋鹿订单付款页</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/traffic_pay.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_storeForm"/>
+	<div class="progress">
+		<div class="main clearfix">
+			<div class="logo fl"><a href="/"><img src="/static/common/img/logo.png" alt="袋鹿"></a></div>
+			<div class="fr progress_info">
+				<span class="step1 active">填写订单<i></i></span>
+				<span class="step2 active">在线支付<i></i></span>
+				<span class="step3">订单完成</span>
+			</div>
+		</div>
+	</div>
+	<div class="main_wap">
+		<div class="hotel_info">
+			<div class="tit">订单提交成功，请尽快付款！订单号 {$order_info.order_no}</div>
+			<p></p>
+			<div class="pro">请您在 <span style="color:red; font-weight: normal;" class="lookout" time="{$order_info.create_time}"></span> 前完成支付，订单30分钟之后将被自动取消</div>
+			
+		</div>
+		
+		<div class="type_box">
+			<div class='tit'>支付方式</div>
+			
+			<ul class="type_list clearfix">
+				<li class="list alipay fl active" type="alipay"></li>
+				<li class="list weixin fl" type="weixin"></li>
+				<li class="list online fl" type="online"></li>
+			</ul>
+			<div class="pay_wap"><if condition="$order_info.pay_status == 0 "><span>应付金额<strong>¥ {$order_info.all_price}</strong></span><a id="{$order_info.id}" class="submit submit_btn" href="javascript:;">立即支付</a><else /><a class="submit">已支付</a></if>
+			</div>
+		</div>
+		<div class="weixin_mask">
+			<div class="weixin_box">
+				<div>请使用微信扫描二维码完成支付
+				<br>支付金额 <strong>¥</strong></div>
+				<div>
+					<img class="weixin_ewm" src="" alt="">
+				</div>
+			</div>	
+		</div>
+	</div>
+	
+	<include file="public@publicFooter"/>
+	
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/traffic_pay.js"></script>
+
+</html>

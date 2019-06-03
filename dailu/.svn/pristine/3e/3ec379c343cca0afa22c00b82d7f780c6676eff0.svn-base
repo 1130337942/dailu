@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="{$news_detail.keywords}" />
+	<meta name="description" content="{$news_detail.title}" />
+	<title>{$news_detail.title}</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/common/css/common.css');?>">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/news/details.css');?>">
+</head>
+<body>
+	<include file="public@publicHeader"/>
+	<div class="main clearfix">
+		<div class="leftDetail">
+			<div class="title_wap">
+				<div class="title">{$news_detail.title}</div>
+				<div class="clearfix ctrl_wap">
+					<div class="fl">作者：{$news_detail.writer} <span class="time">{$news_detail.create_time|date='Y-m-d H:i:s',###}</span></div>
+					<div class="share fr">
+						分享：<span class="shareList"></span>
+							  
+					</div>
+				</div>
+			</div>
+			<div class="content">{$news_detail.content}</div>	
+			<div class="bottom_ctrl clearfix">
+				<div class="fl">文本分类：<a class="type" href="/portal/news/newsList?type={$news_detail.type}">
+					<switch name="$news_detail.type">
+						<case value='1'>企业咨询</case>
+						<case value='2'>旅游指南</case>
+						<case value='3'>粉丝互动</case>
+						<default>媒体聚焦</case>
+					</switch>
+					</a></div>
+				<div class="share fr">
+						分享：<span class="shareList"></span>
+				</div>
+			</div>
+		</div>
+		<div class="rightHot">
+				<div class="tit">热点推荐</div>
+			<ul class="hot_list">
+				<foreach name="hot_news" item="vo">
+					<a href="/portal/news/details.html?id={$vo.id}">
+					<li class="list">
+						<div class="list_tit">
+							{$vo.title}
+						</div>
+						<div class="time">{$vo.time}</div>
+					</li>
+							</a>
+				</foreach>
+			</ul>
+		</div>
+	</div>
+	<include file="public@publicFooter"/>
+</body>
+	<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+	<script src='/static/common/clipboard/clipboard.min.js'></script>
+	<script src='/static/common/layer3.1.1/layer.js'></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+	<script type="<?php AutoVersion('text/javascript"  src="/static/common/js/common.js');?>"></script>
+	<script src="<?php AutoVersion('/static/v1/js/news/details.js');?>"></script>
+	<script src="<?php AutoVersion('/static/v1/js/news/sosh.min.js');?>"></script>
+	<script type="text/javascript">
+       		
+    </script>
+</html>

@@ -1,0 +1,2 @@
+/admin.php?g=System&c=Group&a=getCityLink
+__ROOT__/index.php/tourist/City/do_add_city

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>酒店详情</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/common/js/pagination/pagination.css">
+	<link rel="stylesheet" href="/static/v1/css/store/doubleDate.css">
+	<link rel="stylesheet" href="/static/v1/css/store/hotel_detail.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_store"/>
+	<div class="bread main">
+		<a class="link" href="javascript:;">首页</a> > <a class="link" href="/portal/store/hotelIndex.html">酒店</a> > <a href="javascript:;" id="q_city" city="{$hotel_detail.Detail.CityName}">{$hotel_detail.Detail.CityName}市酒店</a> > <a href="javascript:;">{$hotel_detail.Detail.HotelName}</a>
+	</div> 
+	<div class="hetel_show clearfix">
+		<div class="big_img fl">
+			<img src="{$hotel_detail.Images.0.Locations.0.Url}" alt="">
+			<span class="hotel_moreimg"></span>
+		</div>
+		<div class="fr right_info">
+			<div class="title ">
+				<div phone="{$hotel_detail.Detail.Phone}" title="{$hotel_detail.Detail.HotelName}" class="tit" hotel_id="{$hotel_detail.HotelId}">{$hotel_detail.Detail.HotelName}</div>
+				<div class="loca"><span zone_id="{$hotel_detail.Detail.BusinessZone}" id="area" class="" lng='{$hotel_detail.Detail.Longitude}' lat='{$hotel_detail.Detail.Latitude}'>[{$hotel_detail.Detail.BusinessZoneName}] </span>{$hotel_detail.Detail.Address}</div>
+				<div class="service">
+					<volist name="hotel_detail.Facilities" id="vo">
+						<span class="ico{$vo.id} ico" title="{$vo.type}"></span>  
+					</volist>
+				</div>
+				<div class="grade"> 
+					<span>
+						<p>{$hotel_detail.Detail.Review.Score}</p>
+						<p style="font-size: 14px;color:#999;">评分</p>
+					</span>
+					<!-- <span>
+						<p>{$hotel_detail.Detail.Review.Count}</p>
+						<p style="font-size: 14px;color:#999;">评论</p>
+					</span> -->
+				</div>
+			</div>
+			<div class="bottom_info clearfix">
+				<ul class="left_img clearfix fl">
+					<volist name="hotel_detail.hotelImage" id="vo">
+						<li class="fl img_list"><span class=""></span><img src="{$vo}" alt=""></li>
+					</volist>
+				</ul>
+				<div class="map fr">
+					<div  id="map_s">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main clearfix">
+		<div class="main_left fl">
+			<div class="title_bar" id="doubledate">
+				<a href="javascript:;" class="tab active hotelInfo" type='hotelInfo_t'>房型信息</a>
+				<a href="javascript:;" class="tab introduce" type='introduce_t'>酒店信息</a>
+				<a href="javascript:;" class="tab traffic" type='traffic_t'>交通信息</a>
+				<!-- <a href="javascript:;" class="tab comment" type='comment_t'>用户点评</a> -->
+				
+				<span date="" class="fr">离开时间 <input class="doubledate" id='leave_time' type="text" value="{$departure_date}"></span>
+				<span date="" class="fr">入住时间 <input class="doubledate" id='arr_time' type="text" value="{$arrival_date}"></span>
+			</div> 
+			<div class="filter_wap clearfix">
+				<!-- <div class="filterItem fl">
+					<span class="">床型</span>
+					<div class="h5"></div>
+					<ul class="options">
+						<li>不限</li>
+						<li>大床</li>
+						<li>其它</li>
+					</ul>
+				</div>
+				<div class="filterItem fl">
+					<span class="active">支付方式</span>
+					<div class="h5"></div>
+					<ul class="options">
+						<li>不限</li>
+						<li>在线付</li>
+						<li>到店付</li>
+					</ul>
+				</div>
+				<div class="filterItem fl">
+					<span class="active">早餐</span>
+					<div class="h5"></div>
+					<ul class="options">
+						<li>不限</li>
+						<li>不含早</li>
+					</ul>
+				</div>
+				<a class="clearly" href="javascript:;">立即清除</a> -->
+			</div>
+			<div class="hotel_list">
+				<ul>
+					<volist name="hotel_detail.Rooms" id="vo">
+						<li class="list hov">
+							<div class="preview up">
+								<div class="roomimg_head">
+								<img src="{$vo.ImageUrl}" alt=""></div>
+								<div class="tit" room_id="{$vo.RoomId}">{$vo.Name}</div>
+								<div class="service">
+									<span>房间{$vo.Area}㎡</span>
+									<span>{$vo.BedType}</span> 
+									<span>可住人数：{$vo.Capcity}人</span> 
+									<span>楼层：{$vo.Floor}</span> 
+									<span>{$vo.Broadnet}</span>
+								</div>
+								<div class="short">
+									<div class="price">¥ {$vo.lowPrice} <em>起</em></div>
+									<div class="showBtn">共{$vo.num}个产品<i class="ico"></i></div>
+								</div>
+							</div>
+							<div class="slideWap hide">
+								<div class="slide_title">
+									<span class="cp">产品名称</span>
+									<span class="gy">供应商</span>
+									<span class="zc">早餐</span>
+									<span class="qx">取消规则</span>
+									<span class="rj">日均价</span>
+								</div>
+								<volist name="vo.RatePlans" id="voo">
+									<div class="slide_list">
+										<span class="cp" hotel_code="{$voo.HotelCode}" payment_type="{$voo.PaymentType}" room_type="{$voo.RoomTypeId}" rate_plan="{$voo.RatePlanId}" total_price="{$voo.TotalRate}">{$voo.RatePlanName}</span>
+										<span class="gy">艺龙</span>
+										<span class="zc">{$voo.ValueAdd.TypeCode}</span>
+										<span class="qx"><if condition="$voo.PrepayRule">{$voo.PrepayRule.ChangeRule}<elseif condition="$voo.GuranteeRule" />{$voo.GuranteeRule.ChangeRule}<else />免费取消</if></span>
+										<span class="rj price">¥ {$voo.AverageRate}</span>
+										
+										<if condition="$voo.Status eq 1 && $voo.NightlyRates.0.Status eq 1 ">
+										<span class="zt can" >
+											<div class="destine" title="预定酒店时需提前在线支付房费">
+												<a href="javascript:;">预订</a>
+												<span class="qx_type">{$voo.payType} </span>
+											</div>
+											<if condition="$voo.CurrentAlloment!=0">
+											<span class="last">仅剩{$voo.CurrentAlloment}间</span>
+											</if>
+										</span>
+
+										<else />
+										<span class="zt not" >
+											<div class="destine" title="此房型已售完">
+												<a href="javascript:;">已售完</a>
+												<span class="qx_type">{$voo.payType} </span>
+											</div>
+										</span>
+										</if>
+										</div>
+									</volist>
+									<div class="otherInfo">
+										<div class="otherImg">
+											<volist name="vo.trueImg.small" id="vo1">
+												<div class="preview_img">
+													<img class="img_s" src="{$vo1}" alt="">
+													<div class="bigImg">
+														<img class="" src="{$vo.trueImg.big[$key]}" alt="">
+													</div>
+												</div>
+												
+											</volist>
+										</div>
+										<!-- <div class="msg">上网方式：全部房间包含{$vo.Broadnet}无线、宽带</div> -->
+									</div>
+								</div>
+							</li>
+						</volist>
+					</ul>
+				</div>   
+				<div class="hotelInfo_box">
+					<div class="title introduce_t"><span>酒店信息</span></div>
+					<div class="infoWap">
+						<div class="tit">特色介绍</div>
+						<div class="info">
+							<if condition="isset($hotel_detail.Detail.Features) == true">
+								{$hotel_detail.Detail.Features}
+							<else />
+							</if>
+						</div>
+						<div class="list"><span class="tit">酒店电话</span><span class="tell">{$hotel_detail.Detail.Phone} </span></div>
+						<div class="list"><span class="tit">入离时间</span>入住时间:15点以后，离店时间:12点以前</div>
+						<div class="list"><span class="tit">上网服务</span>公共区域提供WiFi</div>
+						<div class="list"><span class="tit">停车场</span>酒店提供停车位</div>
+						<div class="list"><span class="tit">开业时间</span>不详</div>
+						<div class="list"><span class="tit">酒店设施</span>{$hotel_detail.Detail.GeneralAmenities}</div>
+						<div class="list"><span class="tit">附近交通</span>{$hotel_detail.Detail.Traffic}</div>
+					</div>
+
+				</div>  
+				<div class="trafficInfo">
+					<div class="title traffic_t"><span>交通信息</span></div>
+					<div class="bigmap">
+						<div id="bigmap"></div>
+					</div>
+				</div>
+				<div class="userComment">
+					<!-- <div class="title comment_t"><span>用户点评</span></div>
+					<div class="count">
+						<div class="con_1">
+							<span>设施  <em>4.0</em></span>
+							<span>服务  <em>4.0</em></span>
+							<span>卫生  <em>4.4</em></span>
+							<span>位置  <em>4.0</em></span>
+							<span>性价比  <em>4.8</em></span>
+						</div>
+						<div class="tag">
+							<span>服务优越</span>
+							<span>干净卫生</span>
+							<span>不此案</span>
+							<span>好的</span>
+						</div>
+						<div class="tot_count">
+							<p class="c">{$hotel_detail.Detail.Review.Score}</p>
+							<p>挺好哒</p>
+						</div>
+					</div>
+					<div class="cstatistics">
+						<span class="tot active">全部（6658）</span>
+						<span class="good">推荐（4627）</span>
+						<span class="bad">不推荐（527）</span>
+						<span class="pic">带图点评（211）</span>
+					</div>
+					<div class="comment_list">
+						<ul class="list_box">
+							<li class="list">
+								<div class="type">
+									<span class="hotel">江滩江景房</span>
+									<span class="star"><i>☆</i><i>☆</i><i>☆</i></span>
+								</div>
+								<div class="info">
+									看到很多人喷贾小朵的，我觉得她无论是人物角色设定、演员本身特质、演技都没有问题。一、她是煤老板的女儿，意味不是大家闺秀、书香门第，个性与气质
+									的确要稍微“村儿”一点比较好。
+								</div>
+								<div class="time">2018年3月7日  11:00:15</div>
+								<div class="comment_user">
+									<div class="headImg"><img src="/static/v1/img/header.jpg" alt=""></div>
+									<div class="u_name">牛大王XIAO</div>	
+								</div>
+							</li>
+							
+						</ul>
+						<div id="pagination"></div>	
+					</div> -->
+				</div>
+			</div>
+			<div class="main_right fr">
+				<div class="title">周边酒店</div>
+				<ul class="nearby">
+					<foreach name="near_hotels" id="vo">
+						<li class="nearby_list">
+							<div class="near_img">
+								<img src="{$vo.Detail.ThumbNailUrl}" alt="">
+							</div>
+							<div class="n_name" hotel_id="{$vo.HotelId}">{$vo.Detail.HotelName}</div>
+							<div class="n_rows">距离该酒店约{$vo.dis}米</div>
+							<div class="n_price">¥ {$vo.LowRate} <span>起</span></div>
+						</li>
+					</foreach>
+				</ul>
+				<div class="nearby_more">
+					<a href="javascript:;" price="{$hotel_detail.LowRate}">点击查看周边同价位酒店</a>
+				</div>
+			</div>
+	</div>
+		<div class="hide tooltip"></div>
+		<div id="slideshow">
+			<div class="topWap">
+				<div class="box_bigimg">
+					<img class="bigimg" src="" alt="">
+				</div>
+				<span class="prevBtn"></span>
+				<span class="nextBtn"></span>
+				<span class="slider_close"></span>
+			</div>
+			<div class="botomWap">
+				<div class="response_wap">
+					<div class="img_filter">
+					</div>
+					<div class="imglist">
+						<ul class="clearfix">
+							
+						</ul>
+					</div>
+					<span class="imglist_prev"></span>
+					<span class="imglist_next"></span>
+				</div>
+				
+			</div>
+		</div>
+		<include file="public@publicFooter"/>
+	</body>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/doubleDate2.0.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/pagination/jquery.pagination.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=zCYe26uTQPGYmENmF1fXa2tO1dhZjSOw"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/hotel_detail.js"></script>
+	</html>

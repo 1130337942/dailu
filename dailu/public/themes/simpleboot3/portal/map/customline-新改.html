@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <include file="public@head"/>
+    <link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/map/customLine.css');?>">
+</head>
+
+<body>
+    <div class="loading_box">
+        <div class="loading_content">
+            <img src="/static/v1/img/loading.gif" alt="">
+            <div class="loading_text">袋鹿正在努力加载地图...</div>
+        </div>
+    </div>
+    <div class="main_box">
+        <include file="public@nav"/>
+        <div class="content">
+            <div class="con_lef">
+                <div class="con_lef_top">
+                    <div class="Three_points">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="f_top">
+                        <div class="f_top_p">本次行程&nbsp;
+                            <span class="num_day"></span>
+                            <div class="sj_icon dis_none">
+                                <i class="addsj_icon"></i>
+                                <i class="reducesj_icon"></i>
+                            </div>&nbsp;天
+                            <span class="beyond_day_num dis_none"></span>
+                        </div>
+                        <div class="progressbar_box">
+                            <div id="progressbar"></div>
+                        </div>
+                        <p class="calendar">
+                            <span class="date"></span> 出发</p>
+                    </div>
+                </div>
+                <div class="f_main">
+                    <div class="f_main_main">
+                        <div class="people_num">
+                            <div class="_l">
+                                <img src="/static/v1/img/map/peoplenum.png" alt="">
+                            </div>
+                            <div class="_r">
+                                <p class="p1">出行人数</p>
+                                <p class="p2">
+                                    <span class="adult"></span>成人
+                                    <span class="children"></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="departure js_endfly">
+                            <div class="_l">
+                                <img src="/static/v1/img/map/departurecity.png" alt="">
+                            </div>
+                            <div class="_r">
+                                <p class="p1">出发城市</p>
+                                <p class="p2 departure_city"></p>
+                            </div>
+                        </div>
+                        <div class="city_box dis_none"> </div>
+                        <div class="return">
+                            <div class="_l">
+                                <img src="/static/v1/img/map/returncity.png" alt="">
+                            </div>
+                            <div class="_r">
+                                <p class="p1">返回城市</p>
+                                <p class="p2 return_city"></p>
+                            </div>
+                        </div>
+                        <div class="f_prompt">
+                            <div class="f_prompt_img clearfix">
+                                <img class="prompt_img1" src="/static/v1/img/map/click_r.gif" alt="">
+                                <img class="prompt_img2" src="/static/v1/img/map/click_toR.png" alt="">
+                            </div>
+                            <div class="f_prompt_text">亲，在右侧寻找要去的地方</div>
+                        </div>
+                    </div>
+
+                    <div class="f_main_bg"></div>
+                </div>
+
+                <div class="f_main_next dis_none">选好了，要线路方案</div>
+                <div class="text_logo">DAILUER</div>
+                <div class="text_logo_bgc dis_none"></div>
+
+            </div>
+            <div class="con_map">
+                <div class="map_head">
+                    <div class="map_head_l"></div>
+                    <div class="map_head_r">
+                        <span class="js_map_service"><i class="icon_1"></i>在线客服</span>
+                        <span class="js_help"><i class="icon_2"></i>帮助</span>
+                    </div>
+                </div>
+                <div id="map"></div>
+            </div>
+            <!-- province  -->
+            <div class="con_rig provinces_con_rig">
+                <div class="r_top provinces_r_top">
+                    <input id="nearby" class="provinces_search_s" placeholder="搜索想去的地方、景点…" type="text" autocomplete="off"  >
+                    <label for="nearby" class="search_icon province_search_icon"></label>
+                    <i class="provsearch_del search_del"></i>
+                </div>
+                <div class="r_main province_r_main"></div>
+                <div class="r_main search_content_list dis_none"></div>
+            </div>
+            <!-- city -->
+            <div class="con_rig city_con_rig dis_none">
+                <div class="r_top city_r_top clearfix">
+                    <div class="back">
+                        <i class="back_icon"></i>
+                        <span>返回</span>
+                    </div>
+                    <div class="city_nearby_right">
+                        <label for="citynearby" class="search_icon city_search_icon"></label>
+                    </div>
+                </div>
+                <div class="r_top search_content dis_none">
+                    <input id="search_nearby" class="city_search_s" placeholder="添加想去的目的地" type="text" autocomplete="off" >
+                    <i class="citysearch_del search_del "></i>
+                </div>
+                <div class="r_top addcity_r_top dis_none clearfix">
+                    <p class="addcitytext">为您推荐<span class="sur_this_city"></span>周边的城市</p>
+                    <input class="dis_none" type="text" id="sur_input" placeholder="添加想去的目的地" autocomplete="off">
+                    <label for="sur_input" class="search_icon"></label>
+                    <i class="sur_del"></i>
+                </div>
+                <div class="r_main city_r_main"></div>
+                <div class="r_main surrounding_city_r_main dis_none">
+                    <ul class="js_surcity_li"></ul>
+                </div>
+                <div class="r_main citysearch_cont_list dis_none"></div>
+                <div class="r_main sur_serch_list dis_none">
+                    <ul class="js_sur_ul"></ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Province details -->
+    <div class="details_popup_box province_details_popup_box">
+        <div class="auto_details"><div class="details_popup province_details">
+            <div class="details_popup_top province_details_top">
+                <div class="top_details_text province_top_details_text">
+                    <p class="p1"></p>
+                    <p class="p2"></p>
+                    <p class="p3"></p>
+                </div>
+                <div class="shut_down"></div>
+            </div>
+            <div class="details_popup_main province_details_main">
+                <div class="details_popup_tab">
+                    <ul class="clearfix">
+                        <li>热门城市</li>
+                        <li>热门景点</li>
+                        <li>本地特色</li>
+                    </ul>
+                    <i class="details_popup_tab_active"></i>
+                </div>
+                <div class="tab_content_box">
+                    <!-- .........tab1........ -->
+                    <div class="hot_city  tab_content"></div>
+                    <!-- ..........tab2............ -->
+                    <div class="hot_spots  tab_content dis_none"></div>
+                    <!-- .........tab3........ -->
+                    <div class="special_goods  tab_content dis_none"></div>
+                </div>
+            </div>
+        </div></div>
+        <i class="mask"></i>
+    </div>
+    <!-- CITY   details -->
+    <div class="details_popup_box city_details_popup_box">
+        <div class="auto_details"><div class="details_popup city_details">
+            <div class="details_popup_top city_details_top">
+                <div class="top_details_text city_top_details_text"></div>
+                <div class="shut_down"></div>
+            </div>
+            <div class="details_popup_main city_details_main">
+                <div class="details_popup_tab">
+                    <ul class="clearfix">
+                        <li>知名景点</li>
+                        <li>特色美食</li>
+                        <li>特色商品</li>
+                        <li>城市交通</li>
+                    </ul>
+                    <i class="details_popup_tab_active"></i>
+                </div>
+                <div class="tab_content_box">
+                    <!-- .........tab1........ -->
+                    <div class="city_hot_sport tab_content"></div>
+                    <!-- ..........tab2............ -->
+                    <div class="city_foot tab_content  dis_none"></div>
+                    <!-- .........tab3........ -->
+                    <div class="city_goods tab_content dis_none"></div>
+                    <div class="city_traffic tab_content dis_none">
+                        <ul>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+        <i class="mask"></i>
+    </div>
+    
+    <!-- prompt box -->
+    <div class="prompt prompt_b dis_none">
+        <div class="prompt_box">
+            <div class="prompt_content">
+                <p class="prompt_title">袋鹿提醒您~</p>
+                <p class="prompt_text"></p>
+                <div class="prompt_but">确定</div>
+            </div>
+        </div>
+    </div>
+    <div class="prompt prompt_c dis_none">
+        <div class="cancel_prompt_box">
+            <div class="prompt_content">
+                <p class="prompt_title">袋鹿提醒您~</p>
+                <p class="cancel_prompt_text"></p>
+                <div class="cancel_prompt_but clearfix">
+                    <div class="prompt_det">确定</div>
+                    <div class="prompt_cancel">取消</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="visitors visitors_plan dis_none">
+        <p class="visitors_text">您可以 “我的出行计划”中修改您的行程计划</p>
+        <div class="visitors_end">关闭</div>
+    </div>
+    <div class="visitors visitors_ri dis_none">
+        <p class="visitors_text">您可以在右侧选择第一目的地城市</p>
+        <div class="visitors_end">关闭</div>
+    </div>
+    <div class="visitors visitors_lef dis_none">
+        <p class="visitors_text p1">点击 “我的行程计划"修改行程总天数</p>
+        <p class="visitors_text">点击 - 或 + 修改目的地游玩天数</p>
+        <div class="visitors_end">关闭</div>
+    </div>
+    <div class="visitors visitors_firstcity dis_none">
+        <p class="visitors_text">亲，
+            <span class="visitors_firstcity_name"></span>周边还有好多好玩的地方,您可以在右侧选择。</p>
+        <div class="visitors_end">关闭</div>
+    </div>
+    <div class="info_text_none"></div>
+
+    <div class="is_phone">
+        <div class="img_box"><img src="/static/v1/img/map/yindao.png" alt=""></div>
+        <div class="ph_text">为了您的体验和服务请在<span class="pc_text">PC端</span>访问袋鹿</div>
+        <div class="wz">www.dailuer.com</div>
+        <div class="is_phone_down"></div>
+    </div>
+
+</body>
+
+
+
+
+<script type="text/javascript" charset="UTF-8" src="http://maps.google.cn/maps/api/js?sensor=false&language=zh-CN&key=AIzaSyCHN56rgx83Aov8o308nMSePnx_6miAVHk"></script>
+<include file="public@scripts"/>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.fly.js"></script>
+<script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/map/customLine.js');?>"></script>
+
+
+</html>

@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>高德地图取点</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <style>
+		#myPageTop{
+			z-index: 100;
+		}
+		.submit {
+			margin-left: 50px;
+		}
+		.list {
+			margin-left: 26px;
+		}
+		.reload {
+			margin-left: 50px;
+		}
+		#scenery{
+			margin-left: 50px;
+		}
+        .view_id_box {
+            display: inline-block;
+            margin-left: 20px;
+            position: relative;
+        }
+        .view_id_box ul {
+            max-height: 500px;
+            overflow: auto;
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 0;
+            background-color: #fff;
+            color: #666;
+        }
+         .view_id_box ul li {
+            padding: 3px 10px;
+            cursor: pointer;
+         }
+         .view_id_box ul li:hover {
+            background-color: #88ace8;
+            color: #fff;
+         }
+    </style>
+    <script src="http://webapi.amap.com/maps?v=1.4.2&key=e854e3e37416034bf934488d82c31a36"></script>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.2&key=e854e3e37416034bf934488d82c31a36&plugin=AMap.Autocomplete"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+     <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+</head>
+<body>
+<div id="container">
+<div id="myPageTop">
+    <table>
+        <tr>
+            <td>
+                <label>按关键字搜索：</label>
+            </td>
+            <td class="column2">
+                <label>左击获取经纬度：</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" placeholder="请输入关键字进行搜索" id="tipinput">
+            </td>
+            <td class="column2">
+                <input type="text" id="lnglat">
+            </td>
+			<td>
+			<a class="list" href="/portal/Enclosure/coordinate.html" target="_blank">列表</a>
+			</td>
+        </tr>
+         <tr>
+            <button id='layerChange' style='margin-right: 5px' class='Satellite'>切换卫星/常规地图</button>
+            <button class="closeLine">确定</button>
+            <button class="reload">清除</button>
+            <input type="text" placeholder='景点名称' id='scenery'>
+            <div class="view_id_box">
+                <input  id="view_id" type="text" placeholder='景区名称'>
+                <ul>
+                </ul>
+            </div>
+            <button class="submit">提交</button>
+        </tr>
+    </table>
+    <div class='coord'>
+    <div style='padding-left: 20px;'>图中标记的坐标点</div>
+		<ul>
+			<li><input type="text"></li>
+		</ul>
+    </div>
+</div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var marker,map = new AMap.Map('container', {
+        resizeEnable: true,
+        center: [120.20545,30.205453],
+        zoom: 13
+    });
+  
+    //为地图注册click事件获取鼠标点击出的经纬度坐标
+    var lineArr = [];
+    var submitArr = [];
+    var polyline,svgMARKER;
+    var index = 0 ;
+    var isClosed = false;
+    var clickEventListener = map.on('click', function(e) {
+        document.getElementById("lnglat").value = e.lnglat.getLng() + ',' + e.lnglat.getLat()
+      
+        	var pointArr = [];
+        	var temp = {};
+        		var x  = e.lnglat.getLng();
+        		var y  = e.lnglat.getLat();
+        		temp.Lng=x; 
+        		temp.Lat=y; 
+        		addMarker(temp)
+        		submitArr.push(temp);
+        		[].push.call(pointArr, x, y);
+       	 		lineArr.push(pointArr);
+       	 		line(map);
+    });
+    var auto = new AMap.Autocomplete({
+        input: "tipinput"
+    });
+
+ AMap.event.addListener(auto, "select", select);//注册监听，当选中某条记录时会触发
+ $.post('view',{},function(res){
+    var view_list =res;   
+    $('.view_id_box input').on('keyup',function(){
+     $('.view_id_box ul').html('');
+     var this_value = $(this).val().trim();
+     if(!this_value) return false;
+     var showList = [];
+     $(view_list).each(function(i,ele){
+        if(this.spot_name.indexOf(this_value)!=-1){
+           showList.push(this); 
+       }
+   })
+     var str ='';
+     for(var i=0;i<showList.length;i++){        
+        str+= '<li class="view_list" view_id='+showList[i].id +' type='+showList[i].type+'>'+showList[i].spot_name+'</li>'
+    }
+    $('.view_id_box ul').html(str).show()
+    $('.view_id_box ul li').on('click',function(){
+        $('.view_id_box input').val($(this).text()).attr('view_id',$(this).attr('view_id')).attr('view_type',$(this).attr('type'));
+        $(this).parent('ul').hide()
+    })
+})
+},'json')
+ 
+ 
+
+$('.closeLine').on('click',function(){
+		var firstpoint = lineArr[0];
+		lineArr.push(firstpoint);
+		line(map)
+		isClosed = true ;
+		random();
+
+	})
+$('.submit').on('click',function(){
+	if($('#scenery').val().trim()!=''){
+		var query={};
+        query.scenery = $('#scenery').val().trim();
+		query.view_id = $('#view_id').attr('view_id').trim();
+        query.coord = submitArr;
+		query.type = $('#view_id').attr('view_type');
+		$.post('getMap',query,function(data){
+      if(!data){
+        alert("后台出错")
+        return false;
+      }
+			if(data.status==true){
+				alert('提交成功');
+				window.location.reload();
+			}else{
+        alert('提交失败')
+      }
+		},'json')
+	}else{
+		alert('请填写景点名称');
+	}
+})
+
+$('#layerChange').on('click',function(){
+      
+       if($(this).hasClass('Satellite')){  
+         var satellite = new AMap.TileLayer.Satellite();
+         map.setLayers([satellite]);
+         $(this).toggleClass('Satellite');
+       }else{
+            var normal = new AMap.TileLayer({})
+             map.setLayers([normal]);
+            $(this).toggleClass('Satellite');
+       }    
+      
+ })
+
+$('.reload').on('click',function(){
+	map.remove(polyline);
+	map.clearMap();
+	lineArr=[];submitArr=[];index=0;isClosed=false;
+	$('.coord').hide()
+})
+$('#view_id').on('change',function(event){
+    var type =  $("#view_id option:selected").attr('type')
+    $(this).attr('type',type)
+})
+
+
+function select(e) {
+        if (e.poi && e.poi.location) {
+            map.setZoom(15);
+            map.setCenter(e.poi.location);
+        }
+  }
+
+
+
+function line (arg){
+		if(polyline){
+			polyline.setMap(null);
+		}
+  	 	polyline = new AMap.Polyline({
+       	path: lineArr,          //设置线覆盖物路径
+        strokeColor: "#3366FF", //线颜色
+        strokeOpacity: 0.5,       //线透明度
+        strokeWeight: 2,        //线宽
+        strokeStyle: "solid",   //线样式
+        strokeDasharray: [10, 5] //补充线样式
+        });
+  		polyline.setMap(arg);
+}
+
+ function addMarker(arg) {
+        AMapUI.loadUI(['overlay/SvgMarker'], function(SvgMarker) {
+           //创建一个水滴状的shape
+       var shape = new SvgMarker.Shape.TriangleFlagPin({
+            height: 30, //高度
+            //width: **, //不指定,维持默认的宽高比
+            fillColor: 'red' //填充色
+                //strokeWidth: 1, //描边宽度
+                //strokeColor: '#666' //描边颜色
+        });
+
+        //利用该shape构建SvgMarker
+           svgMARKER  =  new SvgMarker(shape, {
+            zIndex: 120,
+            map: map,
+             position: [arg.Lng,arg.Lat],
+             showPositionPoint: true,
+             draggable: true,
+       		 cursor: 'move',
+       		 raiseOnDrag: true
+        });
+        svgMARKER.index = index ++
+          AMap.event.addListener(svgMARKER, 'dragging', function(e){
+          	var temp = [];
+          	var obj ={}
+        	var lat = e.lnglat.lat,
+            lng = e.lnglat.lng;
+            obj.Lng = lng ;
+            obj.Lat = lat ;
+            [].push.call(temp,lng,lat);
+        	submitArr.splice(this.index,1,obj)
+            lineArr.splice(this.index,1,temp)
+            if(isClosed&&this.index ==0 ){
+            	lineArr.splice(lineArr.length-1,1,temp)
+            }
+      		lineArr.splice(this.index,1,temp)
+      		map.remove(polyline);
+      		line(map)
+           this.setPosition(new AMap.LngLat(lng,lat));   
+    });   
+    })
+      
+    }
+
+    function random() {
+    	$('.coord').show();
+    	var str ='';
+    	$(submitArr).each(function(i,ele){
+    		str += '<li><input type="text" value='+ ele.Lng+',' +ele.Lat +'></li>'
+    	})
+    	$('.coord ul').empty().append(str)
+    }
+</script>
+</body>
+</html>

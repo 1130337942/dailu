@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<meta name="Keywords" content="{$Keywords}">
+	<meta name="description" content="{$description}">
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/common/css/common.css');?>">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/common/DL-fonts-family/dailu.css');?>">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/itinerary/tripInfo.css');?>">
+	<script src="https://webapi.amap.com/maps?v=1.4.10&key=e343e74e5c243c04a3b03a1bc35a0327&plugin=AMap.Transfer"></script>
+	<script src="<?php AutoVersion('/static/common/js/echarts.min.js');?>"></script>
+</head>
+<body>
+	<include file="public@publicHeader"/>
+	<div class="topBanner">
+		<img class="banner_bg" src="" alt="">
+		<div class="opacity_bg"></div>
+		<div class="banner_main clearfix">
+			<div class="banner_left fl">
+				<div class="p30">
+					<div class="triptitle"></div>
+					<p class="line"></p>
+					<div class="linecity"></div>
+					<div class='ico num'>人数：0人</div>
+					<div class='ico day'>天数：0天</div>
+					<div class='ico startDay'>出发日期： </div>
+					<div class='ico totMoney'>费用：¥<span class="calc_tot"></span></div>
+					<div class="shortCart clearfix">
+						<span class='short fl collect'>收藏</span>
+						<span class='hide short fl c_collect'>已收藏</span>
+						<span class='short fl like'>喜欢</span>
+						<span class='short fl share'>分享
+							<div class="shareBox">
+							<div class="share_code_box">
+								<img class="share_code_img" src="/static/v1/img/tripinfo/appewm.png" alt="">
+								<input id="shareTitle" type="text" placeholder="编辑分享的标题/选填">
+								<span class="titledit"></span>
+								<span class="titlesave hide">确认</span>
+								<input id="foo" readonly="true" type="text" value='dailu.com/portal/itinerary/	tripinfo.html?them=53&trip=53-1537237756'>
+								<span class="copy" data-clipboard-target="#foo">复制链接</span> 
+								<span class="tip">扫一扫，分享给朋友</span>
+							</div>
+							</div>
+						</span>
+						<span class='short fl tocom'>评论</span>
+						<span class='short fl see'>查看</span>
+					
+					</div>
+
+				</div>
+				<div class="addTrip">添加到我的行程</div>
+			</div>
+			<div class="banner_right fr">
+					<div class="rightimg coverimg"><img src="" alt=""></div>
+					<img class="rightimg mapimg hide" src="" alt="">
+					<div class="toggleMap"></div>
+				<div class="bottom_msg clearfix blogger">
+					<div class="headImg fl">
+						<img src="/static/v1/img/header.jpg" alt="">
+					</div>
+					<div class="fl tripmsg">
+						<div class="name"></div>
+						<div class=''>
+							<span class="edit_date">发布</span><span class="clicknum">查看</span> · <span class="likenum">喜欢</span> · <span class="collectnum">收藏</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<div class="dayWap clearfix">
+				<div class="fixfloor">
+						
+				</div>
+				<!-- <div class="daylist">
+				<div class="main">
+					<div class="day_header">
+						<div class="header_traffic"><span class="br1 daynum">Day1</span><span class="br1">南京 — 常州</span><span>铁路交通 · 217公里</span><span class="fr">约 1小时20 分钟</span></div>
+						<div class="currCity">
+							<span class="cityname">杭州</span>
+							<div class="fr"><span class="br1">09:00 - 19:00 </span><span>3月25日</span></div>
+						</div>
+					</div>
+					<div class="eachList clearfix">
+						<span class="spotIndex">01</span>
+						<div class="imgouter fl">
+							<img src="http://www.dailuer.com/upload/portal/cover/20190416/11041327635.jpeg" alt="">
+						</div>
+						<div class="list_info fl">
+							<div class="eachtitle">
+								<span class="tj" title="特价">特</span><span class="spotname">西湖景区</span><span>游玩时间：5小时</span>
+								<div class="fr">人文景观 · 第 <span class="num">2</span> 名 <strong></strong>评论 <span class="num">321</span>条
+				                        		</div>
+				                        	
+				                        	</div>
+				                        	<div class="explain">
+								自古有“人间天堂”的美誉。杭州有着2200年的悠久历史，是我国八大古都之一，其盛名又以西湖为首，她拥有三面云山，一水抱城的山光水色，以“淡妆浓抹总相宜”的自然风光传承至今，情系天下众生。
+				                        	</div>
+				                        	<div class="info_wap"><span class="weight">景点地址：</span>杭州市西湖区湖墅南路37-46号</div>
+				                        	<div class="info_wap"><span class="weight">开放时间：</span>00:00-24:00</div>
+				                        	<div class="info_wap"><span class="weight">景点门票：</span>免费</div>
+						</div>
+					</div>
+					<div class="commen_traffic">
+						<div class="trafficType">
+							<span> 公共交通 · 16公里 · 28分钟</span>
+						</div>
+						<span class="toggle fr">[展开详情]</span>
+					</div>
+				</div>
+				</div>
+				<p class="daylist_line"></p> -->
+		</div>
+		<div class="main">
+		<div class="costTable">	
+			<div class="head">
+				<span>费用清单</span>
+				<div class="fr">全部费用： ¥<span class="calc_tot"></span> 元</div>  
+			</div>
+			<div class="tableBox">
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody>
+						
+					</tbody>
+					
+				</table>
+			</div>
+		<!-- 	<div class="openMore">展开更多</div> -->
+			<div class='percent'>费用占比</div>
+			<div class='percentBox clearfix'>
+				<div class="p-left fl" id='p-left'></div>
+				<div class="p-right fr">
+					<ul class='clearfix'>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="userComment">
+			<div class="tit">
+				游客评论  <strong class="commentCount">0</strong> 条 <span class='fr toComment'>我要评论</span>
+			</div>
+			<ul class="com-list">
+					<!-- <li class='list clearfix'>
+						<div class='headPic fl'>
+							<img src="/static/v1/img/header.jpg" alt="">
+						</div>
+						<div class='com-info fr'>
+							<div class="name">牛大王的尔雅 <span><i>☆</i><i>★</i><i>★</i></span></div>
+							<div class='text'>
+								看到很多人喷贾小朵的，我觉得她无论是人物角色设定、演员本身特质、演技都没有问题。一、她是煤老板的女儿，意味不是大家闺秀、书香门第，个性与气质的确要稍微
+								“村儿”一点比较好。
+							</div>
+							<div class="com-img clearfix">
+								<img src="/static/v1/img/com-img.jpg" alt="">
+								<img src="/static/v1/img/com-img.jpg" alt="">
+								<img src="/static/v1/img/com-img.jpg" alt="">
+							</div>
+							<div class="com-time clearfix">
+								<div class="t-left fl">2018年3月7日  11:00:15</div>
+								<div class='short fr'><span> <i class='ico like'></i>喜欢</span><span><i class='ico report'></i>举报</span></div>
+							</div>
+						</div>
+					</li> -->
+				</ul>
+				<div class='more'>查看更多</div>
+		</div>
+	</div>
+	
+	<div class="commentbox" id="commentbox">
+		<div class="tips">在下面输入你想要评论的内容吧！</div>
+		<textarea name="" id="commentinfo" cols="30" rows="10"></textarea>
+		<div class="clearfix">
+			<div class="fl">
+				<ul class="upload-ul clearfix">
+					<li class="upload-pick">
+						<div class="webuploader-container clearfix" id="commentPicUpload"></div>
+					</li>
+				</ul>
+			</div>
+			<div class="fr submit">发表评论</div>
+		</div>
+	</div>
+	<div class="commentMask"></div>
+	<div id="imgShow">
+		<img src="" alt="">
+	</div>
+	<include file="public@publicFooter"/>
+</body>
+	<script src='/static/common/js/jquery.1.8.3.min.js'></script>
+	<script src='/static/common/clipboard/clipboard.min.js'></script>
+	<script src='/static/common/layer3.1.1/layer.js'></script>
+	<script src='/static/common/somepicUpload/webuploader.min.js'></script>
+	<script src='/static/common/somepicUpload/diyUpload.js'></script>
+	<script type="text/javascript" charset="UTF-8" src="/static/common/js/template.js"></script>
+	<script type="<?php AutoVersion('text/javascript"  src="/static/common/js/common.js');?>"></script>
+	<script src="<?php AutoVersion('/static/v1/js/itinerary/tripInfo.js');?>"></script>
+	<script type="text/javascript">
+       
+    </script>
+</html>

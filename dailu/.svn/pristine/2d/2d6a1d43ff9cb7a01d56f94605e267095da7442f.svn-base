@@ -1,0 +1,633 @@
+.body_bg {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: url("/static/v1/img/addStrokeform/bg.jpg") no-repeat;
+  position: relative;
+}
+input {
+  border: none ;
+}
+.form_p {
+  color: rgba(153, 153, 153, 0.9);
+  font-size: 14px;
+}
+.form_input {
+  color: rgba(51, 51, 51, 0.9);
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #f2f5f9;
+}
+.choose_icon,
+.label_icon {
+  width: 14px;
+  height: 7px;
+  background-image: url("/static/common/img/drop.png");
+  margin-top: 9px;
+  float: right;
+  cursor: pointer;
+}
+.form_icon {
+  width: 15px;
+  height: 15px;
+  float: left;
+  margin-top: 4px;
+}
+.select_icon {
+  float: right;
+  width: 11px;
+  height: 6px;
+  background: gray;
+  margin-top: 8px;
+  cursor: pointer;
+}
+.form_content,
+.form_data_content {
+  margin-top: 3px;
+  color: rgba(51, 51, 51, 0.9);
+  font-size: 18px;
+  font-weight: 800;
+}
+.form_content {
+  cursor: pointer;
+}
+.form_bottom {
+  background: #FFF;
+  border-radius: 5px;
+  padding: 12px 10px;
+  box-shadow: 1px 1px 5px rgba(204, 204, 204, 0.9);
+  position: absolute;
+  z-index: 1;
+  display: none;
+}
+.select_box {
+  padding: 6px 7px;
+  border-radius: 3px;
+  border: solid 1px rgba(204, 204, 204, 0.9);
+}
+.select_content {
+  margin-left: 10px;
+  float: left;
+}
+.select_content .select_text {
+  color: #666666;
+  font-weight: 800;
+}
+.ondow_box {
+  position: absolute;
+  right: 0px;
+  margin-top: 1px;
+}
+.ondow_box img {
+  width: 9px;
+  height: 5px;
+  padding: 2px 4px;
+  cursor: pointer;
+  display: block;
+}
+.but_box {
+  text-align: center;
+  color: #666666;
+}
+.but_box .but_cancel,
+.but_box .but_det {
+  float: left;
+  cursor: pointer;
+  font-weight: bold;
+  padding-top: 12px;
+}
+.but_box .but_line {
+  float: left;
+  width: 1px;
+  height: 15px;
+  background-color: rgba(204, 204, 204, 0.9);
+  margin-top: 15px;
+}
+.main {
+  width: 510px;
+  height: 870px;
+  position: absolute;
+  left: 608px;
+  margin-top: 30px;
+  padding: 0 60px;
+}
+.main .title {
+  text-align: center;
+  font-size: 30px;
+  color: rgba(51, 51, 51, 0.9);
+  padding-top: 100px;
+  font-family: 'benMo';
+}
+.main .form_box {
+  border-bottom: solid 1px rgba(204, 204, 204, 0.9);
+}
+.main .form_box:nth-child(2) {
+  margin-top: 50px;
+}
+.main .form_box:nth-child(3) {
+  width: 347px;
+  margin-top: 30px;
+}
+.go_time,
+.people_num,
+.traffic_tools,
+.day_num,
+.city {
+  float: left;
+  position: relative;
+  padding-bottom: 15px;
+}
+.go_time {
+  width: 180px;
+}
+.go_time #date_picker {
+  width: 135px;
+}
+.go_time #date_picker:hover {
+  color: #659ff5;
+}
+.go_time .label_icon {
+  margin-left: 0px;
+}
+.traffic_tools {
+  width: 128px;
+  margin-left: 37px;
+}
+.traffic_tools .form_bottom {
+  width: 171px;
+}
+.traffic_tools .select_content {
+  width: 139px;
+}
+.traffic_tools .select_box {
+  border: none;
+  padding: 0px;
+  border: solid 1px rgba(204, 204, 204, 0.9);
+}
+.traffic_tools .select_clas_box {
+  padding: 10px 20px;
+  width: 130px;
+  cursor: pointer;
+  color: #333333;
+  border: none;
+  border-bottom: solid 1px rgba(204, 204, 204, 0.9);
+}
+.traffic_tools .select_clas_box:hover {
+  color: #5da5e9;
+}
+.traffic_tools .select_clas_box:hover .air_icon {
+  background: url("/static/v1/img/addStrokeform/air.png");
+  background-size: 100% 100%;
+}
+.traffic_tools .select_clas_box:hover .train_icon {
+  background: url("/static/v1/img/addStrokeform/train.png");
+  background-size: 100% 100%;
+}
+.traffic_tools .select_clas_box:hover .other_icon {
+  background-image: url("/static/v1/img/addStrokeform/otherJT.png");
+}
+.traffic_tools .select_clas_box:last-child {
+  border-bottom: none;
+}
+.traffic_tools .hover_color {
+  color: #5da5e9;
+}
+.traffic_tools .select_name {
+  margin-left: 20px;
+}
+.traffic_tools .but_cancel,
+.traffic_tools .but_det {
+  width: 89px;
+}
+.traffic_tools .air_icon,
+.traffic_tools .train_icon,
+.traffic_tools .other_icon {
+  background-size: 100% 100%;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+}
+.traffic_tools .air_icon {
+  background-image: url("/static/v1/img/map/airb.png");
+}
+.traffic_tools .train_icon {
+  background-image: url("/static/v1/img/map/railwayb.png");
+}
+.traffic_tools .other_icon {
+  background-image: url("/static/v1/img/addStrokeform/otherJTb.png");
+}
+.traffic_tools .tra_active0 {
+  background: url("/static/v1/img/addStrokeform/air.png");
+  background-size: 100% 100%;
+}
+.traffic_tools .tra_active1 {
+  background: url("/static/v1/img/addStrokeform/train.png");
+  background-size: 100% 100%;
+}
+.traffic_tools .tra_active2 {
+  background-image: url("/static/v1/img/addStrokeform/otherJT.png");
+}
+.day_num {
+  width: 128px;
+  margin-left: 37px;
+}
+.day_num input {
+  width: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.day_num .change_daynum_text {
+  font-size: 15px;
+  font-weight: normal;
+}
+.day_num .corred {
+  color: red;
+  font-weight: bold;
+}
+.day_num .form_bottom {
+  width: 150px;
+  right: 0;
+}
+.day_num .form_bottom .daynum_icon {
+  background-image: url("/static/v1/img/addStrokeform/daynum.png");
+  background-size: 100% 100%;
+}
+.day_num .select_box {
+  position: relative;
+}
+.day_num .but_det,
+.day_num .but_cancel {
+  width: 74px;
+}
+.day_num .form_content:hover span {
+  color: #659ff5;
+}
+.people_num {
+  width: 180px;
+}
+.people_num .form_bottom {
+  width: 240px;
+}
+.people_num .form_bottom .adult_icon {
+  background-image: url("/static/v1/img/addStrokeform/adult.png");
+  background-size: 100% 100%;
+}
+.people_num .form_bottom .children_icon {
+  background-image: url("/static/v1/img/addStrokeform/children.png");
+  background-size: 100% 100%;
+}
+.people_num .adult_box,
+.people_num .children_box {
+  width: 112px;
+  float: left;
+  position: relative;
+}
+.people_num .adult_box {
+  border-right: 1px solid rgba(204, 204, 204, 0.9);
+}
+.people_num .adult_box .ondow_box {
+  margin-right: 5px;
+  margin-top: 1px;
+}
+.people_num .children_box {
+  width: 111px;
+}
+.people_num .children_box i {
+  margin-left: 7px;
+}
+.people_num input {
+  width: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.people_num .but_det,
+.people_num .but_cancel {
+  width: 119px;
+}
+.people_num p {
+  display: inline;
+}
+.people_num .adulttext:hover,
+.people_num .childrentext:hover {
+  color: #659ff5;
+}
+.city {
+  width: 128px;
+  margin-left: 37px;
+}
+.city .city_icon {
+  display: inline-block;
+  width: 6px;
+  height: 8px;
+  background-image: url("/static/v1/img/addStrokeform/back.png");
+  background-size: 100% 100%;
+  margin-right: 4px;
+  display: none;
+}
+.city .form_bottom {
+  width: 180px;
+}
+.city .form_bottom .departure_icon {
+  background-image: url("/static/v1/img/addStrokeform/departure.png");
+  background-size: 100% 100%;
+}
+.city .form_bottom .return_icon {
+  background-image: url("/static/v1/img/addStrokeform/return.png");
+  background-size: 100% 100%;
+}
+.city .select_content {
+  width: 140px;
+}
+.city .return_box,
+.city .departure_box {
+  float: left;
+  width: 122px;
+}
+.city .departure_box {
+  width: 165px;
+}
+.city .return_box .form_icon {
+  margin-left: 7px;
+}
+.city .departurecity {
+  margin-right: 5px;
+}
+.city .departure_city,
+.city .return_city {
+  width: 123px;
+  font-size: 16px;
+}
+.city .city_text p {
+  width: 122px;
+  float: left;
+  margin-left: 7px;
+  font-size: 12px;
+  color: #b3b3b3;
+  margin-top: 8px;
+}
+.city .but_det,
+.city .but_cancel {
+  width: 89px;
+}
+.returncity:hover,
+.departurecity:hover,
+.det_name:hover,
+.but_cancel:hover,
+.but_det:hover {
+  color: #659ff5;
+}
+.now_go {
+  width: 114px;
+  height: 40px;
+  text-align: center;
+  margin-top: 30px;
+  cursor: pointer;
+  line-height: 40px;
+  font-size: 18px;
+  background: url(/static/v1/img/addStrokeform/go.png) no-repeat 100% 100%;
+}
+.now_go:hover {
+  margin-top: 29px;
+}
+.more_cities {
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.more_cities_box {
+  width: 480px;
+  height: 508px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 200px;
+  padding: 18px 0px;
+  color: #666666;
+  position: relative;
+  overflow: hidden;
+}
+.more_cities_box .more_top {
+  padding: 0px 22px;
+}
+.more_cities_box .city_top {
+  border-top: solid 1px #f6f6f6;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 15px;
+}
+.more_cities_box .city_top .current_city,
+.more_cities_box .city_top .other_city {
+  width: 106px;
+  text-align: center;
+}
+.more_cities_box .city_top div {
+  float: left;
+}
+.more_cities_box .seach_box {
+  float: right;
+  position: relative;
+  width: 178px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 4px;
+  border: solid 1px #659ff5;
+}
+.more_cities_box .seach_box #search_city {
+  width: 140px;
+  margin-left: 10px;
+}
+.more_cities_box .seach_box #search_city::-webkit-input-placeholder {
+  color: #999999;
+}
+.more_cities_box .seach_box #search_city:-moz-placeholder {
+  color: #999999;
+}
+.more_cities_box .seach_box #search_city input:-ms-input-placeholder {
+  color: #999999;
+}
+.more_cities_box .search_icon {
+  float: right;
+  width: 16px;
+  height: 16px;
+  background-image: url("/static/common/img/search.png");
+  margin-top: 7px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.more_cities_box .searchdel {
+  background-image: url("/static/v1/img/map/searchdel.png");
+  width: 12px;
+  height: 12px;
+  margin-top: 8px;
+}
+.more_cities_box .seach_list {
+  position: absolute;
+  width: 178px;
+  height: 150px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: solid 1px #659ff5;
+  left: -1px;
+  z-index: 2;
+  margin-top: 3px;
+}
+.more_cities_box .seach_list li {
+  line-height: 29px;
+  padding: 0px 10px;
+  border-bottom: solid 1px #e5e5e5;
+  cursor: pointer;
+}
+.more_cities_box .city_bottom {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  background-color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  line-height: 40px;
+  left: 0px;
+  color: #666666;
+}
+.more_cities_box .city_bottom:hover {
+  color: #659ff5;
+}
+.current_city_name {
+  width: 62px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  background-color: #659ff5;
+  color: #ffffff;
+  border-radius: 2px;
+}
+.list_bg {
+  background-color: #659ff5;
+  color: #ffffff;
+  border-radius: 2px;
+}
+.city_list {
+  position: relative;
+  width: 100%;
+  height: 400px;
+}
+.city_list li {
+  float: left;
+  width: 72px;
+  margin-top: 15px;
+  margin-left: 7px;
+  padding: 5px 0px;
+  font-size: 14px;
+  text-align: center;
+}
+.city_list .current_list,
+.city_list .other_list,
+.city_list .sfcity {
+  position: absolute;
+  top: 0px;
+  left: 0;
+}
+.city_list .current_list li:hover,
+.city_list .other_list li:hover,
+.city_list .sfcity li:hover {
+  background-color: #659ff5;
+  color: #ffffff;
+  border-radius: 2px;
+}
+.city_list .other_list {
+  display: none;
+}
+.city_list .sf,
+.city_list .zxs {
+  margin-top: 15px;
+}
+.city_list .sf div,
+.city_list .zxs div {
+  padding-left: 22px;
+}
+.city_list_bgcolor {
+  background-color: #f6f6f6;
+}
+.city_color {
+  color: #333333;
+  font-weight: 800;
+}
+@media screen and (max-width: 2560px) {
+  .body_bg {
+    background-position-x: 37%;
+    background-size: 100%;
+  }
+  .main {
+    left: 31.8%;
+  }
+}
+@media screen and (max-width: 1746px) {
+  .body_bg {
+    background-position-x: 37%;
+    background-size: 100%;
+  }
+  .main {
+    left: 30%;
+  }
+}
+@media screen and (max-width: 1680px) {
+  .body_bg {
+    background-position-x: 37%;
+    background-size: auto;
+  }
+  .main {
+    left: 31%;
+  }
+}
+@media screen and (max-width: 1600px) {
+  .body_bg {
+    background-position-x: 37%;
+  }
+  .main {
+    left: 31%;
+  }
+}
+@media screen and (max-width: 1560px) {
+  .body_bg {
+    background-position-x: 37%;
+  }
+  .main {
+    left: 30.5%;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .body_bg {
+    background-position-x: 42%;
+  }
+  .main {
+    left: 28%;
+  }
+}
+@media screen and (max-width: 1366px) {
+  .body_bg {
+    background-position-x: 40%;
+  }
+  .main {
+    left: 28%;
+  }
+  .more_cities_box {
+    margin-top: 100px;
+  }
+}
+@media screen and (max-width: 1060px) {
+  .body_bg {
+    background-position-x: 40%;
+    background-size: auto;
+  }
+  .main {
+    left: 24%;
+  }
+  .more_cities_box {
+    margin-top: 100px;
+  }
+}

@@ -1,0 +1,221 @@
+
+html {
+	background-color: #659ff5;
+	height: 100%;
+}
+body {
+	height: 100%;
+}
+.clearfix {
+    zoom: 1;
+}
+#wait {
+	background-color: #fff;
+}
+#embed-captcha .geetest_radar_btn,
+#embed-captcha .geetest_success_btn {
+	border-radius: 0.04rem;
+	border-color:rgba(217,217,217,1);
+}
+
+#embed-captcha .geetest_success_logo,
+#embed-captcha  .geetest_logo{
+	display: none;
+}
+.clearfix::after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+.fl {
+    float: left;
+}
+.hide {
+	display: none;
+}
+.fr {
+    float: right;
+}
+input {
+	height: 0.24rem;
+	color: #666;
+	outline: none;
+}
+input::-webkit-input-placeholder{
+	color:rgba(204,204,204,1);
+}
+.main {
+	background-color: #fff;
+	min-height: 100%;
+	max-width: 4.14rem;
+	margin:0px auto;
+	box-sizing: border-box;
+	color:#333;
+	font-family: "PingFang","Lantinghei","Helvetica Neue",'Helvetica','Arial',"Microsoft YaHei","STHeitiSC-Light",'simsun',"WenQuanYi Zen Hei","WenQuanYi Micro Hei","sans-serif";
+	font-size: 0.14rem;
+	padding:0 0.25rem;
+	background: #fff url(/static/v1/img/tripinfoShare/login_bg.png) bottom right no-repeat;	
+	-webkit-background-size: 1.6rem 2.8rem;
+	background-size: 1.6rem 2.8rem;
+}
+
+.header {
+	height: 0.36rem;
+	line-height: 0.36rem;
+	text-align: center;
+	font-size: 0.18rem;
+	position: relative;
+	font-weight: 600;
+	display: flex;
+	justify-content: space-between;
+}
+.header .back {
+	margin-top: 0.09rem;
+	width: 0.18rem;
+	height: 0.18rem;
+	background: url(/static/v1/img/tripinfoShare/bac2x.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
+.title {
+	margin-top: 0.25rem;
+}
+.title img {
+	width: 0.58rem;
+}
+.title .tips {
+	margin-top: 0.08rem;
+	font-size: 0.22rem;
+	font-family:PingFang-SC-Medium;
+}
+.ctrl_bar {
+	margin-top: 0.5rem;
+}
+.input_wap {
+	border-bottom: 1px solid rgba(217,217,217,1);
+	display: flex;
+	justify-content: space-between;
+	padding: 0.1rem 0;
+	margin-bottom:0.1rem;
+}
+.input_wap input {
+	width: 2.2rem;
+	border:none;
+	background-color: transparent;
+}
+.input_wap a,
+.input_wap .ctrl {
+	color:rgba(101,159,245,1);
+}
+.input_wap .pass_toggle {
+	display: inline-block;
+	width: 0.18rem;
+	height: 0.16rem;
+	background:  url(/static/v1/img/tripinfoShare/passworld_hide.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	vertical-align: middle;
+	position: relative;
+	margin-right: 0.14rem;
+}
+.input_wap .pass_toggle.pass_on{
+	background:  url(/static/v1/img/tripinfoShare/passworld_on.png) center center no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	/*margin-top: -0.02rem;*/
+} 
+.register_main .input_wap .pass_toggle::after,
+.reset_main .input_wap .pass_toggle::after {
+	display: none;
+}
+.input_wap .pass_toggle::after {
+	display: inline-block;
+	width: 0.01rem;
+	height: 0.14rem;
+	background:rgba(229,229,229,1);
+	content: '';
+	vertical-align: middle;
+	position: absolute;
+	right: -0.1rem;
+	top: 50%;
+	margin-top: -0.08rem;
+}
+.input_wap  .msg_code{
+	width: 1.2rem;
+}
+.input_wap  .user_name{
+	width: 100%;
+}
+.input_wap  .setPassworld{
+	width: 100%;
+}
+.doLogin,
+.toRegister ,
+.doRegister,
+.doReset{
+	width:100%;
+	height:0.49rem;
+	line-height: 0.49rem;
+	border:1px solid rgba(101,159,245,1);
+	border-radius:0.04rem;
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+	color:rgba(101,159,245,1);
+	font-size: 0.16rem;
+	margin-top: 0.1rem;
+}
+.doLogin,.doReset{
+	margin-top: 0.24rem;
+	background:rgba(101,159,245,1);
+	border-color:rgba(101,159,245,1);
+	color: #fff;
+}
+.doRegister{
+	margin-top: 0.24rem;
+	background:rgba(246,246,246,1);
+	color:rgba(204,204,204,1);
+	border-color: rgba(246,246,246,1);
+}
+.doRegister.on{
+	background:rgba(101,159,245,1);
+	border-color:rgba(101,159,245,1);
+	color: #fff;
+}
+
+.invitation_mask {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.4);
+}
+.invitation_mask .mask_main {
+	margin:65% auto;
+	width: 3rem;
+	height: 1.8rem;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 0.08rem;
+	color: #333;
+	padding:0.2rem 0.16rem;
+}
+.invitation_mask .mask_main  span{
+	margin-top: 0.2rem;
+	display: inline-block;
+	width: 1.8rem;
+	background-color: #fff;
+	background-color: #659FF5;
+	color:#fff;
+	padding: 0.06rem 0.05rem;
+	border-radius: 0.04rem;
+}
+#phone {
+	width: 3rem;
+}

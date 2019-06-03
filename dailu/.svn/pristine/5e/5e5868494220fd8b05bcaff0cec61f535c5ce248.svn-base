@@ -1,0 +1,81 @@
+$(function(){
+	// form 切换
+	var formList = (function(){
+		var init = {};
+			init.index = 0;
+			init.changeType =  function(){
+				$('.leftForm .type .type_list').on('click',function(){
+					$(this).addClass('active').siblings('.type_list').removeClass('active')
+					init.index = $(this).attr('index');
+					var _self = $('.formList .list.active')
+					if(!$('.formList .list').is(":animated")){
+						$('.formList .list.active').stop().animate({'left':'-295px'},300,function(){
+						}).removeClass('active')
+						$('.formList .list').animate({'left':'0'},300)	
+						$('.formList .list:eq('+init.index+')').addClass('active')
+					}
+					
+				})
+
+			}
+
+		
+
+		return init 
+	})(window||{})
+
+	var dateInput = ['#arr_time','#leave_time','#air_arr_time','#air_leave_time','#train_arr_time','#meet_day','#private_day']
+		$(dateInput).each(function(i,ele){
+			$(ele).val(getDate())
+			$(ele).datepicker({
+				minDate: 0,
+				dateFormat: "yy-mm-dd"
+			});
+
+
+		})	
+
+
+	$('.wap .title .tit_right span').on('click',function(){
+		var query = {};
+			query.type = $(this).parents('.title').attr('type')
+			query.city = $(this).html();
+		$.post("test.php",query,
+			function(data){
+    			
+
+
+ 			}, "json");
+	})
+
+
+	var mySwiper = new Swiper ('.swiper-container', {
+		autoplay: {
+			delay: 3000,
+			stopOnLastSlide: false,
+			disableOnInteraction: true,
+		},
+		loop: true,
+
+    	// 如果需要分页器
+    	pagination: {
+    		el: '.swiper-pagination',
+    		type: 'bullets',
+    		clickable :true,
+    	}
+    }) 
+
+	formList.changeType()
+
+	$('.checkBox').on('click',function(){
+		$(this).addClass('on').siblings('.checkBox').removeClass('on');
+	})
+  
+
+    $('.bannerWap .formList .airSubmit').on('click',function(){
+    	window.location.href="/portal/store/airIndex.html";
+    }) 
+    $('.bannerWap .formList .hotelSubmit').on('click',function(){
+    	window.location.href="/portal/store/hotelIndex.html"
+    })                      
+})

@@ -1,0 +1,91 @@
+$(function(){
+	sessionStorage.removeItem('is_plan_edit')
+	sessionStorage.removeItem('is_hotel')
+	var tot_tour = 0;
+	var u_name = getCookie('user_name');
+	var u_id = getCookie('uid');     
+	// $('.user').text(decodeURI(u_name));
+	$('.navBox .leftBar li').removeClass('active').eq(1).addClass('active');
+	$.post('personal_planData',{uid:u_id},function(res){
+		if(!res) return fasle ;
+		var data =res;
+		$('.tot_rout .num').text(data.num);
+  		var tourListRender = template.compile(tourListTemplate);
+   	 	var html = tourListRender(data);
+    	$('.contentWap .main .tot_rout').after(html);
+
+		$('.list').find('.edit').on('click',function(oEvent){
+			//省份下的城市
+			sessionStorage.setItem("is_City_data",'ok');
+			sessionStorage.setItem("form_data",'ok')
+			sessionStorage.setItem('is_plan_edit','ok')
+			
+			var list_plan = $(this).parents('.list')
+			var postdata = {
+				is_plan_edit:'ok',
+				uid:list_plan.attr('data-uid'),
+				trip_id:list_plan.attr("data-trip_id")
+			}
+			
+			$.post('/portal/scenerymap/Personal_edit',postdata,function(data){
+				window.location.href="/portal/scenerymap/tripOverview.html?hotel=0"
+			},'json')
+			// oEvent.cancelBubble = true;
+			oEvent.stopPropagation();
+			return false
+		})
+		
+
+	},'json')
+	
+	
+	// javascript:void(0);
+	// /portal/itinerary/tripInfo.html?them={{item.uid}}&trip={{item.trip_id}}
+ 	var  tourListTemplate = '{{each tourList as value i}}\
+		<div class="monthWap">\
+				<div class="month"><span>{{value[0].month}}月</span>/{{value[0].date.substr(0,4)}}</div>\
+				<ul class="routeList clearfix">\
+				{{each value as item k}}\
+					<li class="list fl" data-uid={{item.uid}} data-trip_id={{item.trip_id}}>\
+						<a  href="/portal/itinerary/tripInfo/{{item.trip_id}}.html">\
+							<div class="picBox">\
+								<img src="{{item.image_cover}}" alt="">\
+								<div class="day"><strong>{{item.day_num}}</strong>天</div>\
+								{{if item.old_new=="new"}}\
+								<div class="imgMask">\
+									<div class="cart">\
+										<span class="copy cart_hide"><strong>复制</strong> </span>\
+										<span class="edit"><strong>编辑</strong> </span>\
+										<span class="del cart_hide"><strong>删除</strong></span>\
+									</div>\
+								</div>\
+								{{/if}}\
+								<div class="line hide">\
+									发布时间<br>{{item.creatDate}}\
+								</div>\
+							</div>\
+							<div class="info">\
+								<div class="con">{{item.trip_name}}\
+								</div>	\
+								<div class="date">\
+									{{item.date}} | 出发\
+								</div>\
+							</div>\
+							<div class="up_user">\
+								{{each item.jindian_name as place j}}\
+									{{place}}\
+									{{if j<item.jindian_name.length-1}}\
+									·\
+									{{/if}}\
+								{{/each}}\
+							</div>\
+						</a>\
+					</li>\
+				{{/each}}\
+				</ul>\
+			</div>\
+		{{/each}}'
+
+
+
+})

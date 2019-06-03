@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer"  content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<title>袋鹿订单付款页</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/css/jquery-ui.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="/static/v1/css/store/traffic_pay.css">
+</head>
+<body style='background-color:#f6f6f6'>
+	<include file="public@public_header_storeForm"/>
+	<div class="progress">
+		<div class="main clearfix">
+			<div class="logo fl"><a href="/"><img src="/static/common/img/logo.png" alt="袋鹿"></a></div>
+			<div class="fr progress_info">
+				<span class="step1 active">填写订单<i></i></span>
+				<span class="step2 active">在线支付<i></i></span>
+				<span class="step3">订单完成</span>
+			</div>
+		</div>
+	</div>
+	<div class="main_wap">
+		<div class="hotel_info">
+			<div class="tit">订单提交成功，请尽快付款！订单号DL772874666274609</div>
+			<p></p>
+			<div class="pro">请您在 <span class="lookout"> 00:29:32 </span>内完成支付，否则订单将被自动取消</div>
+			
+		</div>
+		
+		<div class="type_box">
+			<div class='tit'>支付方式</div>
+			
+			<ul class="type_list clearfix">
+				<li class="list alipay fl active" type="alipay"></li>
+				<li class="list weixin fl" type="weixin"></li>
+				<li class="list online fl" type="online"></li>
+			</ul>
+			<div class="pay_wap"><span>应付金额<strong>¥2555 </strong></span>
+				<a class="submit" href="javascript:;">立即支付</a>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<include file="public@publicFooter"/>
+	
+</body>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/common.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/static/v1/js/store/hotel_pay.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//ajax提交
+		$("#ajaxBtn").click(function() {
+			var params = $("#myform").serialize();
+			$.ajax( {
+				type : "POST",
+				url : "hotelOrderPay",
+				data : params,
+				success : function(msg) {
+					alert("success: " + msg);
+				}
+			});
+		})
+	})
+</script>
+
+</html>

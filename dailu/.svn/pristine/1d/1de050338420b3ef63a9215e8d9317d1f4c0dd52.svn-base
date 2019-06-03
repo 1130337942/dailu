@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <include file="public@head"/>
+    <link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/map/travelItinerary.css');?>">
+</head>
+<body>
+    <div class="loading_box">
+        <div class="loading_content">
+            <img src="/static/v1/img/loading.gif" alt="">
+            <div class="loading_text">袋鹿正在努力加载...</div>
+        </div>
+    </div>
+    <div class="main_box">
+        <include file="public@nav">
+        <div class="content">
+            <div class="con_lef">
+                <div class="con_lef_top">
+                    <div class="Three_points">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="f_top">
+                        <div class="f_top_p">本次行程&nbsp;
+                            <span class="num_day"></span>
+                            <div class="sj_icon dis_none">
+                                <i class="addsj_icon"></i>
+                                <i class="reducesj_icon"></i>
+                            </div>&nbsp;天
+                            <span class="beyond_day_num dis_none"></span>
+                        </div>
+                        <div class="progressbar_box">
+                            <div id="progressbar"></div>
+                        </div>
+                        <p class="calendar">
+                            <span class="date"></span> 出发</p>
+                    </div>
+                </div>
+                <div class="f_main">
+                    <div class="f_main_main">
+                        <div class="departure">
+                            <div class="_l">
+                                <img src="/static/v1/img/map/departurecity.png" alt="">
+                            </div>
+                            <div class="_r">
+                                <p class="p1">出发城市</p>
+                                <p class="p2 departure_city"></p>
+                            </div>
+                        </div>
+                        <div class="city_box"></div>
+                        <div class="return">
+                            <div class="_l">
+                                <img src="/static/v1/img/map/returncity.png" alt="">
+                            </div>
+                            <div class="_r">
+                                <p class="p1">返回城市</p>
+                                <p class="p2 return_city"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="f_main_but clearfix"><p class="pre fl">修改城市</p><div class="line fl"></div><p class="next fl">下一步</p></div>
+                <div class="text_logo">DAILUER</div>
+                <div class="text_logo_bgc"></div>
+
+            </div>
+            <div class="con_map">
+                <div class="map_head">
+                    <div class="map_head_l"></div>
+                    <div class="map_head_r">
+                        <span class="js_map_service"><i class="icon_1"></i>在线客服</span>
+                        <span class="js_help"><i class="icon_2"></i>帮助</span>
+                    </div>
+                </div>
+                <div id="map"></div>
+            </div>
+           
+        </div>
+    </div>
+    
+    <!-- prompt box -->
+    <div class="prompt js_prompt dis_none">
+        <div class="prompt_box">
+            <div class="prompt_content">
+                <p class="prompt_title">袋鹿提醒您~</p>
+                <p class="prompt_text">已为你智能优化行程线路及交通方式，如不满意您可在左侧拖拽城市顺序或更改交通方式。</p>
+                <div class="prompt_but">确定</div>
+            </div>
+        </div>
+    </div>
+    <div class="prompt prompt_c dis_none">
+        <div class="cancel_prompt_box">
+            <div class="prompt_content">
+                <p class="prompt_title">袋鹿提醒您~</p>
+                <p class="cancel_prompt_text">是否满意优化方案</p>
+                <div class="cancel_prompt_but clearfix">
+                    <div class="prompt_det">满意</div>
+                    <div class="prompt_cancel">不满意</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="traffic_more dis_none">
+        <div class="air_trc clearfix">
+            <div class="trc_l uncheck fl"></div>
+            <div class="fl trc_r">
+                <div><i class="air_trc_icon"></i><span class="trc_name">飞机交通</span></div>
+                <div><span class="flt_time js_traTime"></span>小时</div>
+            </div>
+        </div>
+        <div class="train_trc clearfix">
+            <div class="trc_l uncheck fl"></div>
+            <div class="fl trc_r">
+                <div><i class="train_trc_icon"></i><span class="trc_name">铁路交通</span></div>
+                <div><span class="trc_time js_traTime"></span>小时</div>
+            </div>
+        </div>
+        <div class="other_trc clearfix">
+            <div class="trc_l uncheck fl"></div>
+            <div class="fl trc_r">
+                <div><i class="other_trc_icon"></i><span class="trc_name">其他交通</span></div>
+                <div><span class="other_time js_traTime"></span>小时</div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="visitors visitors_traffic dis_none">
+        <p class="visitors_text">可选择您喜欢的出行工具</p>
+        <div class="visitors_end">关闭</div>
+    </div> -->
+    <div class="visitors visitors_drag dis_none">
+        <p class="visitors_text">不满意拖拽可调整游玩顺序</p>
+        <div class="visitors_end">关闭</div>
+    </div>
+    <div class="info_text_none"></div>
+</body>
+
+
+
+
+<script type="text/javascript" charset="UTF-8" src="http://ditu.google.cn/maps/api/js?sensor=false&language=zh-CN&key=AIzaSyCHN56rgx83Aov8o308nMSePnx_6miAVHk"></script>
+<include file="public@scripts"/>
+<script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/map/travelItinerary.js');?>"></script>
+
+
+</html>

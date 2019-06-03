@@ -1,0 +1,196 @@
+<include file="public@header" />
+</head>
+<style>
+    .big{
+        height:150px;
+        width:150px;
+    }
+    .dialog{
+        height:20px;
+        width:20px;
+    }
+</style>
+<body>
+    <div class="wrap js-check-wrap">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="javascript:;">达人分享列表</a>
+            </li>
+        </ul>
+        <form class="well form-inline margin-top-20" method="get" action="{:url('Hottrip/index')}">
+            行程单id:
+            <input type="text" class="form-control" name="keyword" style="width: 200px;" value="{$keyword|default=''}" placeholder="请输入行程单id..."
+            />
+            <input type="submit" value="查询" class="btn btn-primary" />
+            <a class="btn btn-danger" href="{:url('Hottrip/index')}">清空</a>
+        </form>
+        <form class="js-ajax-form" action="" method="post">
+            <table class="table table-hover table-bordered table-list">
+                <thead>
+                    <tr>
+                        <notempty name="category">
+                            <th width="50">{:lang('SORT')}</th>
+                        </notempty>
+                        <th width="50">行程单id</th>
+                        <th width="90">行程名称</th>
+                        <th width="40">用户名</th>
+                        <th width="50">查看二维码</th>
+                        <th width="50">提交时间</th>
+                        <th width="50">通过时间</th>
+                        <th width="45">状态</th>
+                        <th width="70">操作</th>
+                    </tr>
+                </thead>
+
+                <!-- 数据展示位置 -->
+                <foreach name="trip_info" item="vo">
+                    <tr>
+                        <td>{$vo.trip_id}</td>
+                        <!-- <td><a href="/portal/itinerary/tripInfo.html?them={$vo.uid}&trip={$vo.trip_id}">{$vo.trip_name}</a></td> -->
+                        <td><a href="/portal/itinerary/tripInfo/{$vo.trip_id}.html">{$vo.trip_name}</a></td>
+                        <td>{$vo.user_name}</td>
+                        <td>
+                            点击预览
+                            <img class="dialog" src='getarcode?url={$vo.url}' style="cursor:pointer;"></img>
+                            <div class="dialog_large_image"></div>
+                        </td>
+
+                        <td>{$vo.submit_time|date='Y-m-d H:i:s',###}</td>
+                        <td>{$vo.pass_time|date='Y-m-d H:i:s',###}</td>
+                        <td>
+                            <if condition="$vo.status eq 1">
+                                <font color="red">待审核
+                                    <else />
+                                    <font color="green">已审核
+                                        </button>
+                            </if>
+                        </td>
+                        <td>
+                            <if condition="$vo.status eq 1">
+                                <a href="javascript:;" class="review" id="{$vo.id}">提交审核</a> |
+                                <a href="javascript:;" class="del" id="{$vo.id}">{:lang('DELETE')}</a>
+                                <elseif condition="$vo.status eq 2" />
+                                <a href="javascript:;" class="come_back" id="{$vo.id}"><font color="blue">撤回审核</font></a> |
+                                <a href="javascript:;" class="del" id="{$vo.id}">{:lang('DELETE')}</a>
+                            </if>
+                        </td>
+                    </tr>
+                </foreach>
+
+                <tfoot>
+                    <tr>
+                        <notempty name="category">
+                            <th width="50">{:lang('SORT')}</th>
+                        </notempty>
+                        <th width="50">行程单id</th>
+                        <th width="90">行程名称</th>
+                        <th width="40">用户名</th>
+                        <th width="50">查看二维码</th>
+                        <th width="50">提交时间</th>
+                        <th width="50">通过时间</th>
+                        <th width="45">状态</th>
+                        <th width="70">操作</th>
+                    </tr>
+                </tfoot>
+            </table>
+           
+            <div style="text-align: center;"><span class="textcenter pagebar">{$page}</span></div>
+        </form>
+    </div>
+    <script src="__STATIC__/js/admin.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/jBox/Skins/Default/jbox.css" />
+    <script type="text/javascript" src="/static/jbox/jquery.jBox-2.3.min.js"></script>
+    <script>
+        //提交审核(将status改成2)
+        $('.review').click(function () {
+            var id = $(this).attr("id");
+            var way = 0;
+            $.get("submitReview", {
+                id: id,
+                way: way
+            }, function (data) {
+                if (data.status == 'ok') {
+                    window.location.reload();
+                }
+            }, 'json');
+        });
+        //撤回审核(将status改成1)
+        $('.come_back').click(function () {
+            var id = $(this).attr("id");
+            var way = 1;
+            $.get("submitReview", {
+                id: id,
+                way: way
+            }, function (data) {
+                if (data.status == 'ok') {
+                    window.location.reload();
+                }
+            }, 'json');
+        });
+        //刪除(将status改成0)
+        $('.del').click(function () {
+            var id = $(this).attr("id");
+            var way = 2;
+            $.jBox("确定删除！！！", {
+                title: "提示消息",
+                width: 200,
+                height: 80,
+                buttons: {
+                    '确定': 1,
+                    '取消': 0
+                },
+                buttonsFocus: 0,
+                submit: function (v, h, f) {
+                    if (v == 0) {
+                        return true; // close the window  
+                    } else {
+                        $.get("submitReview", {
+                            id: id,
+                            way:way
+                        }, function (data) {
+                            if (data.status == 'ok') {
+                                window.location.reload();
+                            }
+                        }, 'json');
+                    }
+                    return false;
+                }
+            });
+        });
+
+        $(function () {
+            //点击二维码图片放大
+            // $("img.dialog").each(function (i, n) {
+            //         $(n).click(function () {
+            //             $(n).hide()
+            //             var large_image = '<img src= ' + $(n).attr("src") + '></img>';
+            //             $('.dialog_large_image').eq(i).show().html($(large_image).animate({
+            //                 height: '150px',
+            //                 width: '150px'
+            //             }, 500));
+            //         });
+            //     })
+            // //点击二维码图片缩小
+            // $(".dialog_large_image").each(function(i,n){
+            //     $(n).click(function () {
+            //         $(n).hide()
+            //         $("img.dialog").eq(i).show()
+            //     });
+            // })
+           
+            $("img.dialog").each(function (i, n) {
+                $(n).click(function () {
+                    if($(n).hasClass("big")){
+                        $(n).removeClass("big").addClass("dialog")
+                    }else{
+                        $(n).addClass("big").removeClass("dialog")
+                    }
+                    
+                });
+                
+            })
+        });
+    </script>
+</body>
+
+</html>

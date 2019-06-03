@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>生成海报</title>
+	<link rel="shortcut icon" href="/static/common/img/logo.ico" mce_href="/static/common/img/logo.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/static/common/css/common.css">
+	<link rel="stylesheet" href="/static/common/DL-fonts-family/dailu.css">
+	<link rel="stylesheet" href="<?php AutoVersion('/static/v1/css/aboutUser/create_poster.css');?>">
+</head>
+<body>
+
+	<include file="public@publicHeader"/>
+		<div class="main clearfix">
+			<div class="left_wap fl">
+				<div class="downPicBox">
+					<img id="hh" class="hide" src="/static/v1/img/logo2.png" alt="">
+					<div class="trip_ewmbox">
+						<div id="trip_ewm"></div>
+					</div>
+					<div class="poster_img_box hide">
+						<div class="editImg">
+						<input class="file_input" type="file" id="file">
+						重新上传</div>
+						<img class="poster_img" src="" alt="">
+					</div>
+					<div class="inner">
+						<input class="file_input" type="file" id="file">
+						<img class="poster1" src="/static/v1/img/poster_1.png" alt="">
+						<div class="t_poster">
+							单击上传海报底图
+
+						</div>
+						
+					</div>
+				</div>
+					
+			</div>
+			<div class="right_wap fr">
+				<div class="cover-wrap" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center; overflow: scroll;">	
+						<div class="" style="width:900px;height:900px;margin:50px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+							<div id="clipArea" style="margin:10px;height: 800px;"></div>
+							<div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+								<button id="clipBtn" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;">保存图片</button>
+							</div>
+						</div>
+				</div>
+				<div class="write_info">
+					<div class="title_info">
+						<input type="text" placeholder="请输入要导出海报的文件名">
+					</div>
+					<!-- <div class="tips">出团信息（展示在移动端行程单中）</div>
+					<div class="wap">
+						<span class="name">旅行社名</span><input id="agency" type="text" placeholder="请输入旅行社名称">
+					</div>
+					<div class="wap">
+						<input placeholder="出团人数" type="text" class="peopleNum tit" ><input id="peopleNum" type="text" placeholder="如12人成行">
+					</div>
+					
+					<div class="wap">
+						<input placeholder="出团价格" type="text" class="team_price tit" ><input id="team_price" type="text" placeholder="如99元">
+					</div>
+					<div class="wap">
+						<input placeholder="出团日期" type="text" class="departure_date tit" ><input id="departure_date" type="text" placeholder="请输入出团日期">
+					</div>
+					<div class="wap">
+						<span class="name">h5底部落款</span><input id="inscribe" type="text" placeholder="如 祝您玩的愉快！">
+					</div>
+					<div class="wap">
+						<span class="name">整体特色</span><input id="allchara" type="text" placeholder="请输入h5行程的特色内容">
+					</div>
+					<div class="wap">
+						<span class="name">备注信息</span><input id="remarks" type="text" placeholder="请输入所需的备注内容">
+					</div> -->
+					<!-- <div class="cover_wap clearfix">
+						<div class="cover_left fl">
+							<div class="waplist">上传行程封面 <span>上传封面 <input type="file" id="coverfile"></span></div>
+							<div class="file_tip">格式：JPG、PNG，尺寸：290*198PX</div>
+							<div class="waplist">
+								上传自定义Logo <span>上传Logo <input type="file" id="logofile"></span>
+							</div>
+							<div class="file_tip">格式：JPG、PNG，尺寸：290*198PX</div>
+					
+						</div>
+						<div class="cover_right fr">
+							<img class="coverimg" src="" alt="">
+							<img class="logo" src="" alt="">
+						</div>
+					</div> -->
+					<div class="ctrl_wap">
+						<span class="up_btn disabled">
+						<!-- <input type="file" id="file"> -->保存海报
+						</span>
+						<span class="down_btn">下载海报</span>
+						<span class="tphone_btn">导出到手机
+							<div class="pic_ewm">
+							</div>
+							
+						</span>
+					</div>
+					<div class="gs">格式：JPG、PNG，小于 1M，尺寸：640*1008PX</div>
+				</div>
+				<div class="zy_poster">
+					<img src="/static/v1/img/zy_poster.png" alt="">
+					<div class="zn">
+						操作指南：二维码可自由拖动至图片任意位置
+					</div>
+				</div>
+			</div>
+		</div>
+<!-- 
+		<div class="coverLoad">
+			<div class="logo_file" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center;">	
+						<div class="" style="width:900px;height:600px;margin:100px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+							<div id="clipArea_logo" style="margin:10px;height: 520px;"></div>
+							<div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+								<button id="clipBtn_logo" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;">保存logo</button>
+							</div>
+						</div>
+			</div>
+			<div class="cover_file" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.4);z-index: 10000000;text-align:center; overflow-y: scroll;">	
+						<div class="" style="width:980px;height:720px;margin:100px auto;background-color:#FFFFFF;overflow: hidden;border-radius:4px;">
+							<div id="clipArea_cover" style="margin:10px;height: 640px;"></div>
+							<div class="" style="height:56px;line-height:36px;text-align: center;padding-top:8px;">
+								<button id="clipBtn_cover" style="width:120px;height: 36px;border-radius: 4px;background-color:#ff8a00;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 36px;outline: none;">保存封面</button>
+							</div>
+						</div>
+			</div>
+		</div> -->
+		<!-- <div class="remark_mask">
+			<i class="mask"></i>
+			<div class="remark_box">
+				<div class="remark_box_title">备注信息 <span class="close">确认</span></div>
+				<script id="remarks1" name="content" type="text/plain"></script>
+			</div>
+		</div>
+		<div class="allchara_mask">
+			<i class="mask"></i>
+			<div class="allchara_box">
+				<div class="allchara_box_title">整体特色 <span class="close">确认</span></div>
+				<script id="allchara1" name="content" type="text/plain"></script>
+			</div>
+		</div> -->
+	<include file="public@publicFooter"/>
+
+	
+
+</body>
+<!-- <script src="http://code.jquery.com/jquery-1.7.0.min.js"></script> -->
+<script type="text/javascript" charset="UTF-8" src="/static/common/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript"  src="/static/common/js/pdf.js/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="/static/common/js/pdf.js/canvas2image.js"></script>
+<script type="text/javascript"  src="/static/common/js/pdf.js/html2canvas.min.js"></script>
+<script src="/static/common/js/cover_js/iscroll-zoom.js"></script>
+<script src="/static/common/js/cover_js/hammer.js"></script>
+<script src="/static/common/js/cover_js/lrz.all.bundle.js"></script>
+<script src="/static/common/js/cover_js/jquery.photoClip.min.js"></script>
+ <!-- 配置文件 -->
+<script type="text/javascript" src="/static/js/ueditor/ueditor.config1.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/static/js/ueditor/ueditor.all.min.js"></script>
+<script src="/static/common/layer3.1.1/layer.js"></script>
+<script src="/static/common/laydate/laydate.js"></script>
+<script type="text/javascript"  src="<?php AutoVersion('/static/common/js/common.js');?>"></script>
+
+<script type="text/javascript" charset="UTF-8" src="<?php AutoVersion('/static/v1/js/aboutUser/create_poster.js');?>"></script>
+</html>
